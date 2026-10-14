@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/validation.yml",
-      "sha256": "17f8581a45733c4f60fc0837d04e56de4f16919d4d4a216827c15aaef9b9bde4",
-      "bytes": 1311,
+      "sha256": "870b9bdc1802ac7c38791478616996a78690e707c6bfeb21cb3db43c94ad2c64",
+      "bytes": 1411,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
