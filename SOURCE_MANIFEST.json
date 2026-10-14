@@ -58,8 +58,8 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "3450879bb1c9ead05af51bbf1a7eb3191cbbd2ca18bfb66d548f5c11f44b4778",
-      "bytes": 233358,
+      "sha256": "1badcbb4c21d9b0151efa39a1dfc81e994ead8d1bdce9abb37ed5003274cd69e",
+      "bytes": 233397,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
@@ -70,8 +70,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "376073336d3891114b7beb2ed8441d8eead6963a23631b01939d48716553f333",
-      "bytes": 5302,
+      "sha256": "913ef8e095a0eef1c68677ab08cc73375f712a21464e6993fde612760f875d16",
+      "bytes": 6692,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
@@ -2304,6 +2304,12 @@
       "path": "_spec/theme4_campaigns/stage9_smoke_manifest.json",
       "sha256": "3a189c459476763435db9a3fd895176ecf7c73f06c192c7e7fff5a747e8640a3",
       "bytes": 4505,
+      "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
+    },
+    {
+      "path": "docs/figures/emergence-lab.svg",
+      "sha256": "0afa919bd75cde83b4d8ce22c4317f3cef33b962774efd2e0ca8efeb14f9c7bb",
+      "bytes": 16920,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {

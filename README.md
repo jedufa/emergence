@@ -1,47 +1,65 @@
-# Emergence
+<div align="center">
 
-**What if intelligence were not designed, but discovered by evolution?**
+# EMERGENCE
 
-A computational laboratory for life, adaptation, and the conditions that make
-adaptive capabilities useful.
+### What if intelligence were not designed, but discovered by evolution?
 
-Create the conditions. Let evolution explore. Follow the evidence.
+**A computational laboratory for evolution, adaptation, and the environmental conditions that make new capabilities useful.**
 
-Emergence brings together ecological worlds, heritable agent models, controlled
-experiments, and authenticated execution records. Its scientific question is
-which environmental and population conditions allow useful adaptations to arise,
-persist, and spread. Intelligence, cooperation, and cultural evolution are
-research ambitions—not results established by this distribution.
+*Create the conditions · Let evolution explore · Follow the evidence*
+
+[**Explore the laboratory ↓**](#explore-the-laboratory) · [**Run the CPU example →**](#try-a-reproducible-example) · [**Research boundaries →**](#what-the-results-do-not-say)
+
+<br>
+
+![Project status](https://img.shields.io/badge/status-research%20source%20preview-425c69?style=flat-square)
+![Language](https://img.shields.io/badge/Python-3.14%20CPU%20route-3776ab?style=flat-square)
+![License](https://img.shields.io/badge/license-Apache--2.0-2e8474?style=flat-square)
+![Scope](https://img.shields.io/badge/science-bounded%20claims-6e6786?style=flat-square)
+
+</div>
+
+![Conceptual visual identity for the Emergence laboratory: ecological variation linked through evidence, not actual experimental output](docs/figures/emergence-lab.svg)
+
+<sub>Conceptual illustration, **not simulation data**. See the [verified release scope](docs/release/VALIDATION.md) for actual execution evidence.</sub>
+
+---
+
+## The research question
+
+**Under what conditions do useful adaptations arise, persist and spread?**
+
+Emergence combines configurable ecological worlds, heritable agent models, controlled experiments, and recorded execution evidence. Instead of programming a desired intelligent behavior directly, the research asks which conditions make adaptive capabilities useful to evolving populations.
+
+Intelligence, cooperation and cultural evolution remain **research ambitions**, not established results of this source distribution. A population surviving a disturbance is not, by itself, proof of intelligence or increased evolvability.
 
 ## Explore the laboratory
 
-| Area | What the source provides | Start here |
-|---|---|---|
-| Worlds | Resource landscapes, environmental configuration, ecological dynamics | [WorldKit](emergence_worldkit/), [world implementations](engine/env/) |
-| Agents and adaptation | Policies, heredity, mutation, selection and experimental adaptation mechanisms | [AgentKit](emergence_agentkit/), [evolution](engine/evolution/) |
-| Experiments | Matched treatments, deterministic campaign compilation, explicit execution requests | [Lab](emergence_lab/), [composition](eiel_composition/) |
-| Evidence | Typed identities, checkpoint contracts, artifact inventories and paired comparisons | [Contracts](emergence_contracts/), [evidence](emergence_evidence/), [campaigns](engine/campaigns/) |
+| Research surface | What the source contains | Explore |
+|:--|:--|:--|
+| **Worlds and ecology** | Resource landscapes, configurable environments and ecological dynamics | [WorldKit](emergence_worldkit/) · [World implementations](engine/env/) |
+| **Agents and heredity** | Policies, genomes, mutation, selection and experimental adaptation mechanisms | [AgentKit](emergence_agentkit/) · [Evolution](engine/evolution/) |
+| **Experiment design** | Matched treatments, deterministic campaign compilation and explicit execution requests | [Lab](emergence_lab/) · [Composition](eiel_composition/) |
+| **Evidence and replay** | Typed identities, checkpoint contracts, artifact inventories and paired comparisons | [Contracts](emergence_contracts/) · [Evidence](emergence_evidence/) |
 
 ```mermaid
 flowchart LR
-    Q[Research question] --> C[Explicit campaign and controls]
-    C --> W[Worlds and evolving populations]
-    W --> O[Authenticated observations]
-    O --> A[Comparison and exact continuation]
+    Q["Research question"] --> C["Controls and campaign"]
+    C --> W["Worlds and populations"]
+    W --> O["Recorded observations"]
+    O --> A["Paired comparison and continuation"]
     A --> Q
 ```
 
-The source includes both current modular interfaces and legacy integrated runtime
-components. The boundaries are still being improved; this is an early research
-source preview, not a stable general-purpose simulation API.
+*Conceptual research workflow. The repository contains both modular interfaces and legacy integrated runtime components. Their boundaries are still evolving; this is not a stable general-purpose simulation API.*
 
-## Try it
+## Try a reproducible example
 
-The verified beginner route is Linux x86-64 with Python 3.14 and CPU-only PyTorch.
-A C++ compiler and Ninja are needed for the native example. No GPU, cloud account,
-credentials, or historical research archive is required.
+The verified beginner path is **Linux x86-64, Python 3.14, and CPU-only PyTorch**. You need a C++ compiler and Ninja for the native example; no GPU, cloud account, API key or historical archive is required.
 
 ```bash
+git clone https://github.com/jedufa/emergence.git
+cd emergence
 python3.14 -m venv .venv
 . .venv/bin/activate
 python -m pip install --index-url https://download.pytorch.org/whl/cpu torch==2.10.0
@@ -50,19 +68,19 @@ python -m pip install ".[research,dev]"
 python -I examples/release/component_smoke.py
 ```
 
-The smoke constructs real world configurations and verifies packaged contract
-resources. It does not simulate evolution. Continue with the
-[CPU experiment walkthrough](QUICKSTART.md) to build the native engine, execute
-one matched treatment pair, and check exact midpoint continuations.
+**Important:** The component smoke verifies world configurations and packaged contract resources. **It does not simulate evolution.**
 
-That example changes reproduction-attempt probability from 0 to 0.15 while
-holding the declared seeds and other inputs fixed. It runs six legacy
-generations of 160 ticks and restores each treatment from its midpoint. It is a
-bounded engineering demonstration using the explicit legacy route, not evidence
-of general evolvability or a population-structure experiment. Two treatments
-sharing seeds are one paired block, not two independent replications.
+Continue with the [step-by-step CPU experiment walkthrough](QUICKSTART.md) to build the native owner, run a matched treatment pair, verify checkpoint continuations and inspect the evidence receipts.
+
+### What that example demonstrates
+
+The walkthrough varies reproduction-attempt probability from **0 to 0.15**, using the same declared seed block and other inputs. It exercises six legacy generations of 160 ticks per treatment, then checks exact midpoint continuation.
+
+The recorded comparison is **one paired block**, not independently replicated scientific evidence. The [validation record](docs/release/VALIDATION.md) documents its tested environment, observations, local engineering checks and exclusions.
 
 ## Use the components
+
+The source also exposes modular research interfaces:
 
 ```python
 from dataclasses import replace
@@ -73,38 +91,30 @@ world = replace(EnvConfig(), width=32, height=32, patch_world_enable=True)
 policy = MLPPolicy(obs_size=4, hidden_size=12, n_actions=3)
 ```
 
-See [validation and supported scope](docs/release/VALIDATION.md) for what was
-actually checked, [source changes](docs/release/PUBLIC_SCOPE.md) for the public
-snapshot boundary, and [third-party notices](THIRD_PARTY_NOTICES.md) for source
-attribution and dependency terms.
+This illustrates configuration and construction, not a complete experiment. The [CPU walkthrough](QUICKSTART.md) is the recommended end-to-end starting point.
 
-## Research with care
+## What the results do not say
 
-Survival, retained adaptive variation, and the ability to generate new
-adaptations are different outcomes. A population that recovers after a shock
-has not thereby demonstrated intelligence or greater evolvability. Experiments
-should declare controls, independent seed blocks, intervention schedules,
-measurement rules, and storage budgets before execution.
+Scientific validity depends on the **question, controls, seed independence, intervention, measurement and recorded implementation**. Exact replay is valuable only when source, checkpoint and artifact identities support it.
 
-Exact history is useful only when checkpoint identity, implementation identity,
-and restoration checks support the claim. This source distribution grants no
-inherited GPU, Full Evolution, or formal Qualification status. Advanced CUDA,
-cluster, historical operator, and long-running campaign workflows need their
-own compatible artifacts, configuration and validation. Some historical test
-sentinels remain outside the supported CPU gate; their limitations are documented.
+This public preview does **not** establish general intelligence, cultural evolution, broad evolvability, GPU parity, Full Evolution, or inherited formal Qualification. Advanced CUDA, cluster, historical operator and long-campaign workflows need separate compatible artifacts and validation. Some historical tests remain outside the supported CPU gate, with their limitations openly recorded.
+
+[**Verification and exclusions**](docs/release/VALIDATION.md) · [**Public source scope**](docs/release/PUBLIC_SCOPE.md) · [**Quickstart**](QUICKSTART.md)
 
 ## Participate
 
-Explore a world or agent model, reproduce the CPU example, question an
-interpretation, or propose a bounded experiment. Changes should preserve
-reproducible identities and state clearly which assumptions they introduce.
-See [CONTRIBUTING.md](CONTRIBUTING.md) and [SECURITY.md](SECURITY.md).
+Explore a world, reproduce the bounded CPU example, challenge an interpretation, or propose an experiment with explicit controls. Changes should preserve reproducible identities and distinguish observations from claims.
 
-## License
+[**Contributing**](CONTRIBUTING.md) · [**Security**](SECURITY.md) · [**Third-party notices**](THIRD_PARTY_NOTICES.md)
 
-Eligible first-party code, tests and documentation are offered under
-[Apache-2.0](LICENSE), Copyright (c) 2026 Jean-Francois Dufour.
-Included upstream material retains its own terms, including BSD, the Sun fdlibm
-notice and LGPL-2.1-or-later. See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
-The source license does not grant rights to third-party trademarks, datasets,
-CUDA toolchains or binaries that are not included here.
+Eligible first-party source, tests and documentation are offered under **[Apache-2.0](LICENSE)**, Copyright © 2026 Jean-Francois Dufour. Included upstream material retains its own license terms, including BSD, Sun fdlibm and LGPL-2.1-or-later. Third-party trademarks, datasets, CUDA tools and absent binaries are not licensed by this repository.
+
+---
+
+<div align="center">
+
+### Build the world. Run the experiment. Respect the evidence.
+
+*EMERGENCE · Evolutionary Intelligence Emergence Laboratory*
+
+</div>
