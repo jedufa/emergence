@@ -11,10 +11,24 @@ jobs:
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
+          # Audit authored commits, including the exact PR head and its history.
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
           fetch-depth: 0
           persist-credentials: false
       - name: Check every source file and reachable commit
         run: python3 tools/release/privacy_guard.py
+      - name: Check out the PR merge result
+        if: github.event_name == 'pull_request'
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.sha }}
+          path: .ci-merge-source
+          persist-credentials: false
+      - name: Check every merged source file
+        if: github.event_name == 'pull_request'
+        working-directory: .ci-merge-source
+        # The full history gate above is mandatory; this adds merge-tree coverage.
+        run: python3 ../tools/release/privacy_guard.py --working-tree-only
   cpu:
     runs-on: ubuntu-latest
     timeout-minutes: 30

@@ -4,8 +4,8 @@
   "files": [
     {
       "path": ".github/workflows/validation.yml",
-      "sha256": "870b9bdc1802ac7c38791478616996a78690e707c6bfeb21cb3db43c94ad2c64",
-      "bytes": 1411,
+      "sha256": "327f63b69eaa1b6fac0de7ad09dafd4e2ed4d8d3fd78ebc865aa325a9508ca30",
+      "bytes": 2139,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
@@ -14356,8 +14356,8 @@
     },
     {
       "path": "tests/release/test_privacy_guard.py",
-      "sha256": "d5e668eefe5b3538c09a8a4e6899aacfb2d6609906f72ff56f820638b8fcd58f",
-      "bytes": 2256,
+      "sha256": "b8a9fdbf803d4599a482c6a71f20d3f158a025a030f963c79b37155d580c3c22",
+      "bytes": 3988,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
