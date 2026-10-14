@@ -3,6 +3,12 @@
   "self_exclusion": "SOURCE_MANIFEST.json only; bind this file through Git or the distribution checksum",
   "files": [
     {
+      "path": ".github/FUNDING.yml",
+      "sha256": "47402fefd23e824eed7cb4626e6d17f536269d9a2e83e887bfe334e470229e14",
+      "bytes": 81,
+      "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
+    },
+    {
       "path": ".github/workflows/validation.yml",
       "sha256": "327f63b69eaa1b6fac0de7ad09dafd4e2ed4d8d3fd78ebc865aa325a9508ca30",
       "bytes": 2139,
@@ -58,8 +64,8 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "1badcbb4c21d9b0151efa39a1dfc81e994ead8d1bdce9abb37ed5003274cd69e",
-      "bytes": 233397,
+      "sha256": "65fb741acc48e22f6f9306cfb42f85dcbac4e6d82a43d1274c40367716e70c86",
+      "bytes": 233425,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
