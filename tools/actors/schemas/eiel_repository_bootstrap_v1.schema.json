@@ -1,0 +1,201 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_repository_bootstrap_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "type": "object"
+    },
+    "blocked_check_names": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "bootstrap_id": {
+      "pattern": "^BST-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "checks": {
+      "items": {
+        "properties": {
+          "details": {
+            "type": "object"
+          },
+          "message": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "WARN",
+              "BLOCKED"
+            ]
+          }
+        },
+        "required": [
+          "name",
+          "status",
+          "message"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "environment": {
+      "type": "object"
+    },
+    "generated_at_utc": {
+      "type": "string"
+    },
+    "non_goals": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "readiness": {
+      "enum": [
+        "READY",
+        "READY_WITH_WARNINGS",
+        "BLOCKED"
+      ]
+    },
+    "refresh_inputs": {
+      "additionalProperties": true,
+      "description": "Non-secret operator choices required to render a reproducible Bootstrap refresh command.",
+      "properties": {
+        "acknowledge_dirty": {
+          "type": "boolean"
+        },
+        "allow_current_python": {
+          "type": "boolean"
+        },
+        "collection": {
+          "enum": [
+            "all",
+            "evidence",
+            "documents"
+          ]
+        },
+        "gpu_required_mode": {
+          "enum": [
+            "auto",
+            "yes",
+            "no"
+          ]
+        },
+        "limit": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "preflight_exemption_reason": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "python": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "repository": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_repository_bootstrap_v1"
+    },
+    "task": {
+      "properties": {
+        "campaign_authorized": {
+          "type": "boolean"
+        },
+        "edit_authorized": {
+          "type": "boolean"
+        },
+        "expected_validation": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gpu_required": {
+          "type": "boolean"
+        },
+        "mode": {
+          "enum": [
+            "review",
+            "diagnosis",
+            "implementation",
+            "campaign",
+            "qualification",
+            "documentation",
+            "evidence",
+            "mechanical"
+          ]
+        },
+        "operator_instruction_binding": {
+          "oneOf": [
+            {
+              "$ref": "eiel_operator_instruction_binding_v1.schema.json"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "operator_instruction_ref": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "write_scope": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "mode",
+        "operator_instruction_ref",
+        "edit_authorized",
+        "campaign_authorized",
+        "gpu_required",
+        "write_scope",
+        "expected_validation",
+        "operator_instruction_binding"
+      ],
+      "type": "object"
+    },
+    "warning_check_names": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "bootstrap_id",
+    "readiness",
+    "generated_at_utc",
+    "task",
+    "repository",
+    "environment",
+    "authority",
+    "checks",
+    "non_goals"
+  ],
+  "title": "EIEL repository bootstrap receipt payload",
+  "type": "object"
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": "eiel_recurrent_state_capacity_epoch_manifest_v1",
+  "contract_id": "stable_gru_v1_plus_modular_recurrent_v1",
+  "precision": {
+    "storage": "float32",
+    "compute": "float32",
+    "comparison": {
+      "stable_gru_cpu": {"rtol": 0.0, "atol": 5e-7},
+      "sequence": {"rtol": 0.0, "atol": 2e-6},
+      "integer_and_lifecycle": "exact"
+    },
+    "ambiguity": "The nn.GRUCell scalar module and production batched bmm graph are semantically equivalent but are not bit-identical on CPU; the batched graph is authoritative."
+  },
+  "stable_gru": {
+    "hidden_width": 64,
+    "memory_ladder": [0, 8, 16, 32, 64],
+    "gate_order": ["reset", "update", "new"],
+    "equations": [
+      "encoded=tanh(encW*observation+encb)",
+      "input_projection=Wih*encoded+bih",
+      "hidden_projection=Whh*h_prev+bhh",
+      "reset=sigmoid(input_reset+hidden_reset)",
+      "update=sigmoid(input_update+hidden_update)",
+      "new=tanh(input_new+reset*hidden_new)",
+      "h_next=(1-update)*new+update*h_prev",
+      "logits=headW*h_next+headb"
+    ],
+    "packed_parameter_order": ["encW", "encb", "Wih", "bih", "Whh", "bhh", "headW", "headb"],
+    "packed_width_formula": "H*O+H+3*H*H+3*H+3*H*H+3*H+A*H+A",
+    "mask": "Prefix mask index < effective_memory_dim is applied to h_prev before the cell and h_next before commit.",
+    "partition": "Rows retain alive/refill order within each MLP/GRU partition; stride misses are sorted by agent_id before partitioning.",
+    "rng": {
+      "stride_one": "MLP [rows,actions] then GRU [rows,actions] from torch policy stream",
+      "stride_many": "MLP [rows,stride,actions] then GRU [rows,actions] from policy_np; GRU action is repeated",
+      "deterministic": "argmax and zero policy draws"
+    },
+    "lifecycle": {
+      "founder": "zero hidden row",
+      "newborn": "zero hidden row after parameter-bank sync",
+      "inheritance": "controller parameters may be inherited; runtime hidden state is never inherited",
+      "death": "dead row becomes unreachable; stale bytes may remain until slot reuse",
+      "slot_reuse": "slot-token mismatch synchronizes parameters and zeros hidden row",
+      "tick_commit": "hidden state commits after forward and before action sampling",
+      "failure": "compute failure commits nothing; failure after hidden commit does not roll back",
+      "cancellation": "checked at tick boundary before policy execution"
+    },
+    "checkpoint": {
+      "authoritative": ["_Hmem", "_gru_hidden", "_gru_inited", "policy stride action sequence", "policy stride token", "policy stride cursor"],
+      "cache_only": ["_gru_pack", "per-field GRU parameter banks", "_policy_tick_cache"],
+      "continuation": "Fresh owner rebuilds parameter banks, restores Hmem, and preserves valid stride-cache rows."
+    },
+    "cost": {
+      "formula": "max(0, gru_cost_base + gru_cost_per_dim * effective_memory_dim)",
+      "default_base": 0.004,
+      "default_per_dim": 0.00008,
+      "charge_point": "environment apply after recurrent forward"
+    }
+  },
+  "modular_recurrent": {
+    "envelope": {"physical_module_slots": 16, "physical_connection_slots": 48, "logical_profiles": {"legacy": [12, 32], "expanded": [16, 48]}, "state_width_per_module": 1, "storage": "float32", "physical_resize_within_epoch": false, "epoch_metadata": ["capacity_epoch_id", "capacity_epoch_generation"]},
+    "identity_and_order": {"local_address": "module_id", "stable_identities": ["module_instance_id", "homology_id"], "ancestry": "parent_module_instance_id", "topology_identity": "topology_key", "canonical_prefix_sort": ["homology_id", "module_instance_id", "module_id"], "execution_order": "module_execution_order explicit plane, independent of physical packing order"},
+    "distinct_masks": ["module_occupied", "module_dormant", "connection_occupied", "module_state_present", "module_output_present", "input_binding_enabled", "output_binding_enabled", "development_latch_present", "development_effective_gain_present"],
+    "routing": {"input_semantics": ["self_energy", "self_health"], "output_semantics": {"move_north": 0, "move_south": 1, "move_east": 2, "move_west": 3, "rest": 5}, "bindings_per_module": 2, "binding_gain_bounds": [-1.0, 1.0], "input_aggregate_clip": [-1.0, 1.0], "output_residual_clip": [-0.25, 0.25], "routing_selects_action": false},
+    "gated_scalar": {"operator": "gated_scalar_recurrent_v1", "state_width": 1, "parameter_order": ["reset_bias", "reset_input_gain", "reset_state_gain", "update_bias", "update_input_gain", "update_state_gain", "candidate_bias", "candidate_input_gain", "candidate_state_gain", "output_gain"], "core_parameter_bounds": [-4.0, 4.0], "output_gain_bounds": [-2.0, 2.0], "preactivation_clip": [-16.0, 16.0], "state_clip": [-1.0, 1.0], "equations": ["aggregate=clip(external_input+routed_previous,-1,1)", "reset=sigmoid(clip(reset_bias+reset_input_gain*aggregate+reset_state_gain*state_before,-16,16))", "update=sigmoid(clip(update_bias+update_input_gain*aggregate+update_state_gain*state_before,-16,16))", "candidate=tanh(clip(candidate_bias+candidate_input_gain*aggregate+candidate_state_gain*(reset*state_before),-16,16))", "state_after=clip((1-update)*state_before+update*candidate,-1,1)", "base_output=clip(output_gain*state_after,-1,1)", "expressed_output=clip(expression_scale*base_output,-1,1)", "effective_output=clip(developmental_gain*expressed_output,-1,1)"], "execution_rng_draws": 0},
+    "capacity_epoch": {"ordinary_mutation_can_resize": false, "eligibility": {"window_generations": 3, "minimum_cap_contacts": 3, "minimum_blocked_legal_mutations": 2, "minimum_near_cap_lineages": 2, "minimum_active_capacity_fraction_each_sample": 0.8, "low_bloat_each_sample": true, "compression_relief_failed_each_sample": true}, "migration": {"source_profile": [12, 32], "target_profile": [16, 48], "safe_boundary": "completed_generation_before_next_generation_rng_draw", "next_generation_delta": 1, "rollback_checkpoint_verified": true, "migration_rng_draws": 0, "physical_resize_count": 0, "new_tail": "canonical empty", "old_subspace": "byte exact", "preserved": ["identity", "topology", "order", "state", "routing", "cost"]}, "inactive_state": "canonical zero parameters, zero hidden state, zero routing, zero cost", "isolation_axes": ["agent", "cell", "generation", "checkpoint branch"]},
+    "operations": ["activate", "duplicate", "route", "specialize", "disable", "prune"],
+    "mutation": {"attempts": 1, "externally_owned_draws": 2, "draw0_operation_bins": [[0.0, 0.25, "toggle_dormancy"], [0.25, 0.5, "prune_eligible_module"], [0.5, 0.75, "refine_descendant_parameter"], [0.75, 1.0, "refine_descendant_routing_or_expression"]], "draw1_decomposition": "target=floor(draw1*eligible_count); fraction=draw1*eligible_count-target", "invalid_draw_policy": "reject without mutation", "native_rng_draws": 0},
+    "inheritance": {"donor_draw_bins": [[0.0, 0.5, "parent_a"], [0.5, 1.0, "parent_b"]], "atomic_unit": "complete homologous module record", "runtime_state": "reset, never inherited"},
+    "neutral_duplication": "Deep-copy hereditary parameters and routing, assign new stable identities and ancestry, remain active, and force output_gain=0; latent state may evolve while public output remains zero.",
+    "dormancy_and_prune": {"dormancy": "hereditary reversible state freeze with exact zero public output", "prune_eligibility": "output-neutral generic module only", "minimum_generic_modules": 1, "dependency_policy": "reject referenced prerequisite", "incident_connections": "remove", "repack": "local addresses only; stable identities preserved"},
+    "cost": {"mode": "reporting_only", "coefficients": {"allocated_module": 1, "executing_integrator": 4, "executing_gated": 32, "evaluated_connection": 2, "active_input_binding": 1, "active_output_binding": 2, "active_dependency_edge": 1, "dormant_module_maintenance": 0}},
+    "checkpoint": {"canonical_authority": ["profile", "capacity_epoch_id and generation", "stable identities and ancestry", "module_execution_order", "operators and parameters", "distinct masks", "routing and connections", "module state and previous output", "development explicit/latch/effective gain planes"], "sort_before_digest": true, "fresh_owner_continuation": "project canonical owner, restore only into empty fresh owner, then continue next tick exactly"},
+    "commit": "Compute a complete candidate state, validate it, then commit atomically."
+  },
+  "fail_closed": [
+    "unknown schema_version",
+    "unknown policy family",
+    "unsupported hidden or observation shape",
+    "non-finite recurrent parameter or state",
+    "invalid active mask or routing target",
+    "capacity change outside an explicit epoch",
+    "checkpoint ABI mismatch",
+    "draw-tape underflow or overflow"
+  ],
+  "source_references": [
+    {"path": "engine/agents/batched_gru.py", "lines": "9-71", "claim": "authoritative batched equations and logit transforms"},
+    {"path": "engine/agents/gru_policy.py", "lines": "26-55", "claim": "fixed-width scalar module structure"},
+    {"path": "engine/simulation/runner_pkg/runner_base.py", "lines": "595-604", "claim": "bank float32 and fixed action dimensions"},
+    {"path": "engine/simulation/runner_pkg/runner_bank.py", "lines": "679-726,1992-2049", "claim": "slot state allocation, packing, reset, and token synchronization"},
+    {"path": "engine/simulation/runner_pkg/runner_policy.py", "lines": "1760-1903,2219-2237,2843-2973", "claim": "mask, forward, eager hidden commit, and stride macro-action"},
+    {"path": "engine/simulation/runner_pkg/runner_ticks_loop.py", "lines": "1221-1349,2931-2942,3317-3386,3638-4079", "claim": "cache, cancellation, row ordering, and tick lifecycle"},
+    {"path": "engine/evolution/reproduction.py", "lines": "1084-1126,1308-1316,2133-2225", "claim": "memory inheritance and optional policy mutation"},
+    {"path": "engine/evolution/population_pkg/spawn.py", "lines": "752-811,873-898", "claim": "controller donation and newborn construction"},
+    {"path": "engine/simulation/checkpoint_bundle_v2.py", "lines": "6006-6133,6988-7018,7295-7366,8388-8444,8732-8858", "claim": "checkpoint and continuation authority"},
+    {"path": "engine/simulation/runner_pkg/runner_ticks_env_apply.py", "lines": "777-798,1670-1690", "claim": "cost charge and death visibility"},
+    {"path": "engine/evolution/structural_gated_recurrent_v1.py", "lines": "12-87,180-285", "claim": "gated parameter bounds, equations, and nested mutation bins"},
+    {"path": "engine/evolution/structural_sustainable_growth_v1.py", "lines": "27-116,220-580", "claim": "two-draw operations, dormancy, pruning, neutral duplication, and exact cost"},
+    {"path": "engine/perf/cuda_architecture_b_modular_state_abi.py", "lines": "17-104,250-790", "claim": "fixed physical envelope, distinct planes, canonical state and routing"},
+    {"path": "engine/perf/cuda_architecture_b_modular_capacity_epoch.py", "lines": "1-120,150-487", "claim": "zero-RNG 12/32 to 16/48 controlled migration integrity"},
+    {"path": "engine/simulation/capacity_epoch.py", "lines": "530-590", "claim": "three-generation capacity pressure eligibility thresholds"},
+    {"path": "engine/perf/native/recurrent/modular_recurrent_v1.hpp", "lines": "1-241", "claim": "native fixed-envelope ABI and operation surface"},
+    {"path": "engine/perf/native/recurrent/modular_recurrent_v1.cpp", "lines": "1-838", "claim": "native modular validation, execution, mutation, cost, and epoch behavior"}
+  ]
+}

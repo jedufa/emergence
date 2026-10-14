@@ -1,0 +1,278 @@
+harness_api: 1
+version: 1
+name: lineage_birth_attempt_failure_condition_diagnostic_20260705
+description: Bounded lineage parent-attempt and failure-condition attribution diagnostic using event schema
+  v2.
+intent: Diagnose whether selected-parent breadth fails through attempt exposure, success conditional on
+  attempt, no-space failure, non-space/unknown failure, parent condition, or a mixed cascade; diagnostic
+  only.
+matrix_order:
+- funnel_setting
+- context
+- init_arm
+- seed
+axes:
+  funnel_setting:
+    values:
+    - baseline
+    - parent_selection_softness_profile
+    flags:
+      baseline:
+      - --knob
+      - pop_cfg.parent_fraction=0.20
+      - --knob
+      - pop_cfg.cull_fraction=0.60
+      parent_selection_softness_profile:
+      - --knob
+      - pop_cfg.parent_fraction=0.40
+      - --knob
+      - pop_cfg.cull_fraction=0.60
+  context:
+    values:
+    - tuned_full_jungle
+    - wdl_delayed_hazard
+    flags:
+      tuned_full_jungle:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.0
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.05
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.25
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_max=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_max=0.5
+      - --knob
+      - env_cfg.patch_regrowth_min_multiplier=0.1
+      - --knob
+      - env_cfg.jungle_cover_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_shelter_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_terrain_damage_multiplier_min=0.15
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.05
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.1
+      - --knob
+      - env_cfg.jungle_recovery_fertility_enable=false
+      - --knob
+      - env_cfg.jungle_resource_spread_enable=false
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=false
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=false
+      - --knob
+      - env_cfg.lineage_diversity_reporting_enable=true
+      wdl_delayed_hazard:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.0
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.05
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.25
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.jungle_cover_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_shelter_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_terrain_damage_multiplier_min=0.15
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.05
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.1
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=true
+      - --knob
+      - env_cfg.lineage_diversity_reporting_enable=true
+  init_arm:
+    values:
+    - legacy
+    - founder_balanced
+    flags:
+      legacy:
+      - --knob
+      - sim_cfg.lineage_founder_balance_enable=false
+      founder_balanced:
+      - --knob
+      - sim_cfg.lineage_founder_balance_enable=true
+      - --knob
+      - sim_cfg.lineage_founder_group_count=8
+      - --knob
+      - sim_cfg.lineage_founder_min_agents_per_group=8
+      - --knob
+      - sim_cfg.lineage_founder_assignment_mode=deterministic_round_robin
+      - --knob
+      - sim_cfg.lineage_founder_balance_schema_version=1
+seeds:
+- 101
+- 202
+- 303
+- 404
+- 505
+cli_defaults:
+- - --generations
+  - '36'
+- - --steps
+  - '80'
+- - --pop
+  - '64'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cuda
+- - --bank_device
+  - cuda
+- - --knob
+  - sim_cfg.device=cuda
+- - --knob
+  - sim_cfg.bank_device=cuda
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.lineage_qd_archive_enable=false
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=1
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_strict_replay_mode=true
+- - --knob
+  - sim_cfg.lineage_collapse_forensics_enable=true
+- - --knob
+  - sim_cfg.lineage_collapse_forensics_schema_version=1
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_reporting_enable=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_schema_version=1
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_per_generation=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_events=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_include_patch_context=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_include_basin_context=true
+- - --knob
+  - sim_cfg.pressure_autopilot_enable=false
+- - --knob
+  - sim_cfg.pressure_autopilot_hold=true
+- - --knob
+  - sim_cfg.pressure_autopilot_suggestion_only=true
+- - --knob
+  - sim_cfg.force_memory_disabled=false
+- - --knob
+  - sim_cfg.reset_memory_each_tick=false
+- - --knob
+  - sim_cfg.force_prediction_zero_lr=false
+- - --knob
+  - sim_cfg.reset_prediction_each_tick=false
+- - --knob
+  - sim_cfg.disable_prediction_error_selection_pressure=true
+- - --knob
+  - sim_cfg.episode0_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_pred_err_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_thrashing_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_drive_jitter_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_selfharm_fitness_weight=0.0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- metrics/lineage_reproduction_funnel_generation_summary.csv
+- metrics/lineage_reproduction_funnel_run_summary.json
+- metrics/lineage_reproduction_funnel_schema.json
+- metrics/lineage_reproduction_funnel_events.jsonl
+naming:
+  run_tag_prefix: lineage_birth_attempt_failure_condition_diagnostic_20260705
+  run_id_format: lineage_birth_attempt_failure_condition_diagnostic_20260705__setting_{funnel_setting}__context_{context}__init_{init_arm}__seed{seed:06d}
+  run_tag_format: lineage_birth_attempt_failure_condition_diagnostic_20260705__setting_{funnel_setting}__context_{context}__init_{init_arm}
+execution_policy:
+  cell_definition: one independent seeded simulation run
+  workers: 6
+  cpu_affinity: disabled
+  policy_source: AGENTS.md Parallel Campaign Execution
+  planned_runs: 40
+  event_schema_version_required: 2

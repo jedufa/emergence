@@ -1,0 +1,17 @@
+id: mem_max_24_mid_generation_resume
+title: MEM-MAX-24 Mid-Generation Resume and Common-State Lineage
+status: implemented_vertical_slice
+owner: codex
+created: 2026-07-10
+decision: MEM-MAX-24C
+report: docs/500_campaigns-decisions-closeouts/520_campaign-reports/300_lineage-reproduction/EIEL-DOC-000474--eiel-mem-max-24-mid-generation-resume-and-common-state-lineage-2026-07-10.md
+evidence: evidences/04-theme-4-cognition/109-mem-max-24-mid-generation-resume-and-common-state-lineage.md
+outputs: docs/900_lifecycle/940_incoming/mem_max_24_mid_generation_resume/
+runner: tools/bin/mem_max_24_mid_generation_resume_package.py
+default_off: true
+claims:
+  intelligence: false
+  emergence: false
+  consciousness: false
+  broad_cognition: false
+  mem_evo_a: false

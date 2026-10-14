@@ -1,0 +1,9 @@
+{
+  "branch": "REPLACE_WITH_BRANCH",
+  "campaign_id": "REPLACE_WITH_CAMPAIGN_ID",
+  "device": "cuda",
+  "git_commit": "REPLACE_WITH_COMMIT",
+  "profile": "COG-P1",
+  "registry_path": "REPLACE_WITH_REGISTRY_PATH",
+  "worktree": "REPLACE_WITH_WORKTREE"
+}

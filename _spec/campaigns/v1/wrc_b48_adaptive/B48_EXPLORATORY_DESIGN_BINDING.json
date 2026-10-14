@@ -1,0 +1,478 @@
+{
+  "design_dependency_repairs": [
+    {
+      "affected_configurations": [
+        "C15",
+        "C16"
+      ],
+      "changed_parameter": "wdl.active_duration_ticks",
+      "from": 24,
+      "preserved_replicates_per_configuration": 3,
+      "reason": "preserve the existing fixed-MLP WDL batch ABI, which requires one shared WDL mechanics context across B48",
+      "to": 6
+    },
+    {
+      "affected_configurations": [
+        "C01",
+        "C02",
+        "C03",
+        "C04",
+        "C05",
+        "C06",
+        "C07",
+        "C08",
+        "C09",
+        "C10",
+        "C11",
+        "C12",
+        "C13",
+        "C14",
+        "C15"
+      ],
+      "changed_parameter": "env_cfg.patch_world_waste_consequence_enable",
+      "from": false,
+      "preserved_replicates_per_configuration": 3,
+      "reason": "preserve the exact full Patch P2 toggle context while movement-cost application is enabled",
+      "to": true
+    }
+  ],
+  "design_source_commit": "d5a0f3ad118848d67f3c16cb4caf62d0a0ad83bc",
+  "physical_cells": 48,
+  "plan_sha256": "406bbda2f3f4785352e2989f0f79ce0622e47628e94475378e44e03ed93d4f70",
+  "receipt_sha256": "06ef278be010df0aeec9eb9b1b4cae3d55c6c5beb6f7ef480119931c19d26ff6",
+  "rows": [
+    {
+      "branch_id": "branch-56284d0d8fda8863e8e2",
+      "cell_id": "cell-1e97c971fcd7866d42ed",
+      "compiled_ordinal": 41,
+      "config_id": "C01",
+      "physical_cell": 0,
+      "rng_lineage_id": "rng-20ac6cf6771dcec37c4e",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-3e32f038e0e9ddf6664f",
+      "cell_id": "cell-1edf5d14360efd94a129",
+      "compiled_ordinal": 14,
+      "config_id": "C01",
+      "physical_cell": 1,
+      "rng_lineage_id": "rng-4d458b633b802c2e293f",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-4a2fd047faf86842fb1c",
+      "cell_id": "cell-5ffa59375969944c9984",
+      "compiled_ordinal": 2,
+      "config_id": "C01",
+      "physical_cell": 2,
+      "rng_lineage_id": "rng-bc79f427eafc2a36187f",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-992d89a7eefceba5c9d4",
+      "cell_id": "cell-4c87023c60bacd46e8b9",
+      "compiled_ordinal": 21,
+      "config_id": "C02",
+      "physical_cell": 3,
+      "rng_lineage_id": "rng-6aa77a934616df5c527a",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-a7cb8f59544432b4ace1",
+      "cell_id": "cell-c9f84e08cca2f20834bf",
+      "compiled_ordinal": 45,
+      "config_id": "C02",
+      "physical_cell": 4,
+      "rng_lineage_id": "rng-de768f71141678ff71de",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-e5ba839b7ee34fc25cc0",
+      "cell_id": "cell-12d4c5e799b4870e3ac8",
+      "compiled_ordinal": 22,
+      "config_id": "C02",
+      "physical_cell": 5,
+      "rng_lineage_id": "rng-3524e754c2a61a653ac1",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-f5c752ee9f4f9e3ec0c9",
+      "cell_id": "cell-4d36e84f059f9c8dadb9",
+      "compiled_ordinal": 30,
+      "config_id": "C03",
+      "physical_cell": 6,
+      "rng_lineage_id": "rng-153bf2c80bb5e6545cf8",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-84e680b085e0bf8618de",
+      "cell_id": "cell-24dd999fc1c3cd50bc55",
+      "compiled_ordinal": 1,
+      "config_id": "C03",
+      "physical_cell": 7,
+      "rng_lineage_id": "rng-2f8c55b36bb1ba23c62f",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-39bb547dca940b9de688",
+      "cell_id": "cell-05b92188ed55bff7aacd",
+      "compiled_ordinal": 39,
+      "config_id": "C03",
+      "physical_cell": 8,
+      "rng_lineage_id": "rng-b7ea7325b305c138491f",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-6994f7d7c625581071c7",
+      "cell_id": "cell-ad2f9d9db6c66d6e1b72",
+      "compiled_ordinal": 16,
+      "config_id": "C04",
+      "physical_cell": 9,
+      "rng_lineage_id": "rng-8926d6189be39bd92015",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-37b0bc0559fb6ddd5268",
+      "cell_id": "cell-1f1796b900ce525bd2d3",
+      "compiled_ordinal": 43,
+      "config_id": "C04",
+      "physical_cell": 10,
+      "rng_lineage_id": "rng-1b1d234576abe07061a2",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-d3b093ac0f817d01c122",
+      "cell_id": "cell-cebe9248a64a8e83c5d9",
+      "compiled_ordinal": 25,
+      "config_id": "C04",
+      "physical_cell": 11,
+      "rng_lineage_id": "rng-8f4bb3484820b4a41c0a",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-ccbc74dde64b41b201f6",
+      "cell_id": "cell-ed6d6f56a35bc3bab179",
+      "compiled_ordinal": 24,
+      "config_id": "C05",
+      "physical_cell": 12,
+      "rng_lineage_id": "rng-626da6379f2dbccfaae3",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-ca1594ca878e23b3bc07",
+      "cell_id": "cell-5f1f11ede4af9dc125c7",
+      "compiled_ordinal": 28,
+      "config_id": "C05",
+      "physical_cell": 13,
+      "rng_lineage_id": "rng-e40530dda7ce8b7d13f4",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-50978712d8d329faec3d",
+      "cell_id": "cell-7965d6969cdc8eaf5415",
+      "compiled_ordinal": 9,
+      "config_id": "C05",
+      "physical_cell": 14,
+      "rng_lineage_id": "rng-55cd1da6f1c8e6a78166",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-798bbb5a8eecb4936a4c",
+      "cell_id": "cell-91e642ff500c6773856c",
+      "compiled_ordinal": 20,
+      "config_id": "C06",
+      "physical_cell": 15,
+      "rng_lineage_id": "rng-2481e3fb635a04242877",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-2d3b27efaf7cb32b129a",
+      "cell_id": "cell-dfc79936f31f7952e601",
+      "compiled_ordinal": 40,
+      "config_id": "C06",
+      "physical_cell": 16,
+      "rng_lineage_id": "rng-8693ff7eddeab8b02b16",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-80ed32bceb0e35c37fec",
+      "cell_id": "cell-272fb9392868e708f1f2",
+      "compiled_ordinal": 31,
+      "config_id": "C06",
+      "physical_cell": 17,
+      "rng_lineage_id": "rng-c86cdc9b4504a304d8bd",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-b775be019dff9c9bfeea",
+      "cell_id": "cell-7f64a7c09d8c171c660c",
+      "compiled_ordinal": 19,
+      "config_id": "C07",
+      "physical_cell": 18,
+      "rng_lineage_id": "rng-fdf11bf885434a9c25c7",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-4adaf3c135467f1ed5e2",
+      "cell_id": "cell-f1b553b8da47625bc07c",
+      "compiled_ordinal": 18,
+      "config_id": "C07",
+      "physical_cell": 19,
+      "rng_lineage_id": "rng-76a4a9757eab6ee4340a",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-9156ef1d6f49be552972",
+      "cell_id": "cell-48f3ac9f510af48df30c",
+      "compiled_ordinal": 11,
+      "config_id": "C07",
+      "physical_cell": 20,
+      "rng_lineage_id": "rng-8cd80e0e228f8e56b688",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-a1b504cb14f9a78c67a0",
+      "cell_id": "cell-a57b858a5998344ac40b",
+      "compiled_ordinal": 26,
+      "config_id": "C08",
+      "physical_cell": 21,
+      "rng_lineage_id": "rng-7aa6c1053a905178bc61",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-a1be23d4c9a3a4fd61e5",
+      "cell_id": "cell-b7859fc5381722c1a691",
+      "compiled_ordinal": 23,
+      "config_id": "C08",
+      "physical_cell": 22,
+      "rng_lineage_id": "rng-e783036bfe35ffec252f",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-87cff8be06e803f9e7f6",
+      "cell_id": "cell-a0f65d088249d6adcb83",
+      "compiled_ordinal": 36,
+      "config_id": "C08",
+      "physical_cell": 23,
+      "rng_lineage_id": "rng-60f2d45c22529f7d814d",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-727d429bdec210b02fe1",
+      "cell_id": "cell-8b465128f6c44b1ce366",
+      "compiled_ordinal": 13,
+      "config_id": "C09",
+      "physical_cell": 24,
+      "rng_lineage_id": "rng-39248ae4456070cb58cc",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-4240c849595c33a89156",
+      "cell_id": "cell-d24fdf601d05f0c40583",
+      "compiled_ordinal": 17,
+      "config_id": "C09",
+      "physical_cell": 25,
+      "rng_lineage_id": "rng-8d897286255216ac7af0",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-79fadcad397c81c36e8b",
+      "cell_id": "cell-3d7273216a07ef83d550",
+      "compiled_ordinal": 12,
+      "config_id": "C09",
+      "physical_cell": 26,
+      "rng_lineage_id": "rng-cc73ab5ddc6e3466ca25",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-839758fc527f774d7d8b",
+      "cell_id": "cell-d08c3ed979e12613f228",
+      "compiled_ordinal": 29,
+      "config_id": "C10",
+      "physical_cell": 27,
+      "rng_lineage_id": "rng-f27bc0b120cce6650b08",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-286e312223516fe0f56c",
+      "cell_id": "cell-94bc48aeed8bd1394257",
+      "compiled_ordinal": 42,
+      "config_id": "C10",
+      "physical_cell": 28,
+      "rng_lineage_id": "rng-4acab3e64cc0617af036",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-5bf02483e3a871d0e98f",
+      "cell_id": "cell-524e13edaec1c35d8e93",
+      "compiled_ordinal": 3,
+      "config_id": "C10",
+      "physical_cell": 29,
+      "rng_lineage_id": "rng-73059571db677318f39c",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-95288ce88d4da3edc81c",
+      "cell_id": "cell-1c706439021c2b0fe1e9",
+      "compiled_ordinal": 27,
+      "config_id": "C11",
+      "physical_cell": 30,
+      "rng_lineage_id": "rng-5955fa7ace949e63e96e",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-cc6c636b8e878889431a",
+      "cell_id": "cell-49fd53f909d190cb53c4",
+      "compiled_ordinal": 35,
+      "config_id": "C11",
+      "physical_cell": 31,
+      "rng_lineage_id": "rng-280843562c5b6469d5bd",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-7e4d47eebb3f0fa38ec9",
+      "cell_id": "cell-96a2c485fbdaed0be5f1",
+      "compiled_ordinal": 37,
+      "config_id": "C11",
+      "physical_cell": 32,
+      "rng_lineage_id": "rng-93b5840576c6142e0a1d",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-feb053b0924323b917c3",
+      "cell_id": "cell-f98b90f4a8465af724a5",
+      "compiled_ordinal": 32,
+      "config_id": "C12",
+      "physical_cell": 33,
+      "rng_lineage_id": "rng-b9bab93f97f1c3987bcb",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-a78a7db0bd30a812e7ff",
+      "cell_id": "cell-b39a266a04ca47388e85",
+      "compiled_ordinal": 5,
+      "config_id": "C12",
+      "physical_cell": 34,
+      "rng_lineage_id": "rng-2046a257bd3736ab3f59",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-5961aac18466cffe903f",
+      "cell_id": "cell-f1484aa687f4b02c8cf0",
+      "compiled_ordinal": 15,
+      "config_id": "C12",
+      "physical_cell": 35,
+      "rng_lineage_id": "rng-2507b7a375a82937da2a",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-9a225f4f58a6ad3f0e7a",
+      "cell_id": "cell-c47af1053286e90267fc",
+      "compiled_ordinal": 46,
+      "config_id": "C13",
+      "physical_cell": 36,
+      "rng_lineage_id": "rng-e7f4e3e22499c685a3ba",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-a52b8466c6d0f61b1616",
+      "cell_id": "cell-a7ebfa798f68fd32f5f3",
+      "compiled_ordinal": 38,
+      "config_id": "C13",
+      "physical_cell": 37,
+      "rng_lineage_id": "rng-99b1ed7ca766913aa6ec",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-73b3d7280ab454824c4e",
+      "cell_id": "cell-e01d34bcb7180ad09d42",
+      "compiled_ordinal": 7,
+      "config_id": "C13",
+      "physical_cell": 38,
+      "rng_lineage_id": "rng-a46eee6658b36208cff3",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-532f329fee784e2a3cc1",
+      "cell_id": "cell-b7503222d564d238425a",
+      "compiled_ordinal": 6,
+      "config_id": "C14",
+      "physical_cell": 39,
+      "rng_lineage_id": "rng-265f19db26462fe4a883",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-50e452136e2104e630fd",
+      "cell_id": "cell-fde10638e5c69d3c98af",
+      "compiled_ordinal": 10,
+      "config_id": "C14",
+      "physical_cell": 40,
+      "rng_lineage_id": "rng-f6c9b6af527ee350b53b",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-75bbdf2975a132ee9bfb",
+      "cell_id": "cell-eb4634d128287f60a550",
+      "compiled_ordinal": 4,
+      "config_id": "C14",
+      "physical_cell": 41,
+      "rng_lineage_id": "rng-887f41e20832cec8daa3",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-ea029d4d4375f85f34a2",
+      "cell_id": "cell-f47f80409000dfcebcdf",
+      "compiled_ordinal": 8,
+      "config_id": "C15",
+      "physical_cell": 42,
+      "rng_lineage_id": "rng-02ee288fa976ea183c32",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-6bb21886554f69479809",
+      "cell_id": "cell-de97ab602e772077eaf0",
+      "compiled_ordinal": 33,
+      "config_id": "C15",
+      "physical_cell": 43,
+      "rng_lineage_id": "rng-b1bbdcec642ab6a5fd19",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-3de7f770d042b808f625",
+      "cell_id": "cell-1641f086169f814d2851",
+      "compiled_ordinal": 34,
+      "config_id": "C15",
+      "physical_cell": 44,
+      "rng_lineage_id": "rng-8ceece4afbccc93453c4",
+      "seed_tuple": "S3"
+    },
+    {
+      "branch_id": "branch-68de080d4790362089ee",
+      "cell_id": "cell-4a471a46f807097b2daa",
+      "compiled_ordinal": 47,
+      "config_id": "C16",
+      "physical_cell": 45,
+      "rng_lineage_id": "rng-37154e787ca5a900b820",
+      "seed_tuple": "S1"
+    },
+    {
+      "branch_id": "branch-515d5736f0b2b5fe9ba5",
+      "cell_id": "cell-6aeea2419cb7ef8911e7",
+      "compiled_ordinal": 44,
+      "config_id": "C16",
+      "physical_cell": 46,
+      "rng_lineage_id": "rng-a7bd035914f7f440a177",
+      "seed_tuple": "S2"
+    },
+    {
+      "branch_id": "branch-b68d700ed6297b370ae3",
+      "cell_id": "cell-22abe9199de16523b6cd",
+      "compiled_ordinal": 0,
+      "config_id": "C16",
+      "physical_cell": 47,
+      "rng_lineage_id": "rng-df7b268495b5840752b5",
+      "seed_tuple": "S3"
+    }
+  ],
+  "schema_version": "eiel_wrc_b48_adaptive_design_binding_v1"
+}

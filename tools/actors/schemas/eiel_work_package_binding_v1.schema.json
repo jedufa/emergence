@@ -1,0 +1,123 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_work_package_binding_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "bound_repo_root": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "contract_receipt_locator": {
+      "pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$)).+$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contract_receipt_path": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "contract_receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "document_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "package_schema_version": {
+      "const": "eiel_work_package_v1"
+    },
+    "package_version": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "path_kind": {
+      "const": "repository_relative"
+    },
+    "recommended_authority": {
+      "enum": [
+        "ARCHITECTURE_AUTHORITY",
+        "ENGINEERING_AUTHORITY",
+        "IMPLEMENTATION_AUTHORITY",
+        "REVIEW_AUTHORITY"
+      ]
+    },
+    "recommended_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_work_package_binding_v1"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "sha256_kind": {
+      "enum": [
+        "canonical_work_package_contract_v2",
+        "canonical_work_package_contract_v1",
+        "raw_file_sha256_v1"
+      ]
+    },
+    "source_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "source_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "uncertainty_class": {
+      "enum": [
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "U5"
+      ]
+    },
+    "work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "bound_repo_root",
+    "package_schema_version",
+    "package_version",
+    "path",
+    "path_kind",
+    "recommended_authority",
+    "recommended_model",
+    "schema_version",
+    "sha256",
+    "source_commit",
+    "uncertainty_class",
+    "work_id"
+  ],
+  "title": "EIEL Work Package binding",
+  "type": "object"
+}

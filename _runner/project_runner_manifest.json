@@ -1,0 +1,128 @@
+{
+  "schema_version": "project_runner_manifest_v1",
+  "project_id": "emergence",
+  "project_root": "experiments/projects/emergence",
+  "runners": {
+    "registry_batch": {
+      "entrypoint": "experiments/projects/emergence/_runner/run_registry_batch.py",
+      "cwd": "experiments/projects/emergence",
+      "description": "Launch an Emergence registry batch or a selected subset through the project-local adapter.",
+      "args": {
+        "registry": {
+          "type": "str",
+          "required": true
+        },
+        "runs_root": {
+          "type": "str",
+          "default": ""
+        },
+        "batch_tag": {
+          "type": "str",
+          "default": ""
+        },
+        "overwrite": {
+          "type": "bool",
+          "default": false
+        },
+        "dry_run": {
+          "type": "bool",
+          "default": false
+        },
+        "print_cmds": {
+          "type": "bool",
+          "default": false
+        },
+        "only_run_id": {
+          "type": "string_list",
+          "default": []
+        },
+        "only_seed": {
+          "type": "string_list",
+          "default": []
+        },
+        "knob": {
+          "type": "string_list",
+          "default": []
+        },
+        "perf": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "pressure_point_search": {
+      "entrypoint": "experiments/projects/emergence/_runner/run_pressure_point_search.py",
+      "cwd": "experiments/projects/emergence",
+      "description": "Run the controlled four-week pressure-point search supervisor.",
+      "args": {
+        "campaign_id": {
+          "type": "str",
+          "required": true
+        },
+        "runs_root": {
+          "type": "str",
+          "default": ""
+        },
+        "duration_days": {
+          "type": "int",
+          "default": 28
+        },
+        "max_active_children": {
+          "type": "int",
+          "default": 1
+        },
+        "profile": {
+          "type": "str",
+          "default": "evolvability_band"
+        },
+        "poll_seconds": {
+          "type": "int",
+          "default": 60
+        },
+        "dry_run": {
+          "type": "bool",
+          "default": false
+        },
+        "once": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    },
+    "registry_case": {
+      "entrypoint": "experiments/projects/emergence/_runner/run_registry_case.py",
+      "cwd": "experiments/projects/emergence",
+      "description": "Launch one Emergence registry case through the project-local adapter.",
+      "args": {
+        "registry": {
+          "type": "str",
+          "required": true
+        },
+        "only_run_id": {
+          "type": "str",
+          "required": true
+        },
+        "batch_tag": {
+          "type": "str",
+          "default": ""
+        },
+        "overwrite": {
+          "type": "bool",
+          "default": false
+        },
+        "print_cmds": {
+          "type": "bool",
+          "default": false
+        },
+        "dry_run": {
+          "type": "bool",
+          "default": false
+        },
+        "perf": {
+          "type": "bool",
+          "default": false
+        }
+      }
+    }
+  }
+}

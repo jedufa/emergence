@@ -1,0 +1,1084 @@
+{
+  "schema_version": "emergence_privacy_exceptions_v1",
+  "policy": "Exact file SHA-256, rule and line only; content changes require review. No rule is disabled.",
+  "findings": [
+    {
+      "path": "_spec/authoritative_state/v1/abi_variants.json",
+      "line": 0,
+      "rule": "unreviewed_binary_or_large_file",
+      "sha256": "c34ad4db9c7ef3abad2e8ee213011a2368ee9e3488b9d13e0eee1f4b496762fb",
+      "reason": "Reviewed UTF-8 JSON source contract: ABI/field registry or deterministic world-bundle configuration; no embedded binary or observation archive"
+    },
+    {
+      "path": "_spec/authoritative_state/v1/field_registry.json",
+      "line": 0,
+      "rule": "unreviewed_binary_or_large_file",
+      "sha256": "04f84dcfee0da7a01a9148b2d2fcde8bf2d5f184d958cecc022def0cbbc51440",
+      "reason": "Reviewed UTF-8 JSON source contract: ABI/field registry or deterministic world-bundle configuration; no embedded binary or observation archive"
+    },
+    {
+      "path": "_spec/campaigns/v1/loop_atlas_1024_v1/world_bundle_v1.json",
+      "line": 0,
+      "rule": "unreviewed_binary_or_large_file",
+      "sha256": "aeaa91d83be870f179358b22f2d3b56a09d66ffc4141abb93fff5fa4b333842c",
+      "reason": "Reviewed UTF-8 JSON source contract: ABI/field registry or deterministic world-bundle configuration; no embedded binary or observation archive"
+    },
+    {
+      "path": "_spec/science_instrument/v1/eiel_science_execution_authority_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "94cc6c60446af805bb30ae3ba86fdc77ceea09a52364c81f3e530ed34d5cda04",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "_spec/science_instrument/v1/eiel_science_request_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "216e2c53edbd0b4e561374216bab0bdc2503cbd36816d932d35b7a2e757ce7a4",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "_spec/science_instrument/v1/science_cuda_v2_execution_plan.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "8de5cf084dab068919c22465048107263e6bfc2f1ca53e1d13752e2a17aa5e31",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "registries/campaigns/eiel_campaign_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "15b086e317acd8bcca7fa941c20b5062b11a1caeeb6686edd36fcab8d3d55948",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "registries/capacity_profiles/eiel_capacity_profile_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "9525c71797d0831ac7af57e371310a1a5fb7a392537e9953e6ae62cbceb83229",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "registries/qualification_plans/eiel_qualification_matrix_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "3d221e48531bfde84f5451812cd154dd1f6fb45a4b708f43b3559bc8995fccb9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "registries/qualification_plans/eiel_qualification_plan_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "8e02bd6c339587f858ae61486189f7e5b91040678630c0735499533cd12896d1",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "registries/validation_plans/eiel_validation_plan_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "3671ac3ce01bb67a6041082574ff6268d2e17da7a05e21c0c3648afbf55f1746",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tests/security/test_report_redaction_checker.py",
+      "line": 9,
+      "rule": "account_path",
+      "sha256": "7e588ad4a78648c801c3a567fd5b51ae04ac6ff735b253b1c9cb52b4d620eb5d",
+      "reason": "Fictional account path is a negative redaction-test control; preserve detection semantics"
+    },
+    {
+      "path": "tests/security/test_report_redaction_checker.py",
+      "line": 11,
+      "rule": "account_path",
+      "sha256": "7e588ad4a78648c801c3a567fd5b51ae04ac6ff735b253b1c9cb52b4d620eb5d",
+      "reason": "Fictional account path is a negative redaction-test control; preserve detection semantics"
+    },
+    {
+      "path": "tests/test_eiel_bridge_manager_wrapper_v1_5.py",
+      "line": 34,
+      "rule": "conversation_url",
+      "sha256": "d8810d7957940ebe3f0d014d7abec025eb4ac34a20d6eb3cf00319b08c866ed5",
+      "reason": "All-zero fictional conversation identifier tests URL transport; not a personal conversation"
+    },
+    {
+      "path": "tests/tools/test_eiel_bridge_records.py",
+      "line": 17,
+      "rule": "conversation_url",
+      "sha256": "3f307468bf37fbbc59992d890a1daf18458d39173e518dc6c2f59ecd77735d05",
+      "reason": "All-zero fictional conversation identifier tests URL transport; not a personal conversation"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_history_head_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "36fa99ddd9e682b76a4ef077b4afa3867288d62e5c79ce92517c168708d0a876",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_preflight_binding_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "b57e590914768b9b425e582d4867b383eb0a7e5dc99b5b6eb7263723d8707be3",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_record_index_manifest_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "215121cb46a93682b84ae8bfb3651244e2871d137052bc83d19cd05e4e99405c",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_record_index_row_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "6538c37316e61994681da3802da7b39e8adde022f8bdf49d83f14c8967154b2d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_record_index_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "987ce4a7e068b6a204faa1e0179e32fe07c487d4aa407515c7f693f046bca2d0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_record_ref_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "d6e1b90e5ffaddf83aea33621178287ff053747e56ef813a9dbf36d71535f0de",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_actor_store_integrity_audit_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "eb0298f616911ed2051eb1875db5c7639ccc0d21287b799d0eb6ed1c0c60f57f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_assignment_link_intent_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "1002425331efa9d8ea10ef99ee41a4b13d8752d99b111098db0faff533d493c8",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_authoritative_review_binding_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "2af7f935164811d134da315a3c4b2b0ec5033100ce1a733d461ace0ae76a2661",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_authority_binding_projection_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "09a241b5901b0203ef4e7d266149fdc9d2623805b6caf58c2842a00b01475550",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_bootstrap_assessment_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "34f2c30f9dc3fa1776a365b5c14034670cea7ab4cee748def4d41b58a5a02ee5",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_cli_compatibility_manifest_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "c734aa8d3feb10bccd8389785d3bdd7bf34700e0226a7fc395172e4eaccc1de9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_evidence_handoff_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "a8d1ff321d9e8f6a12493d6e6d838cfcf0396311d86739219c2bacfc209fdaa3",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_guidance_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "f468264d566e12af70b65161c9faea9391fd5eb8f0f8ebf0fb2c4ccad417369d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_operator_contract_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "8de9c8e2f073d5df3c0ad376478e3188c7d38cb3174f49c945221e83b4976153",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_resource_handoff_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3f20f6d0a1a42f2fb572badc9270d4f5a2c0b6b50d9d34d49f6ddd8f0afba85f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_session_handoff_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "39ddb529d612ac277b15dd20c1f3983946d775b742b8c022e35d77668ab240bc",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_session_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "ce68015c13f1cfea8cc302ec6a324d50dbf8b9ed6e1a5ff6208825ee7c654461",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_technical_qualification_handoff_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "e903bbf6dcad2339d72c5edc8a3687f056934328c345189b3d65385382a8dad1",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_thread_identity_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "17f11e8e72bba1ea1289ed841591c8cfaf109fa48d69b2ecfbb0ab1ef753534c",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_workspace_audit_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "63b9fcfcf70f14e7ff4203b8c3d5ff82b89626b21733490561f80f074484d05d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_workspace_compact_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "07b056750d65c96452617e760d056b9bd8829643e5ea4797dffd616664a90446",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_workspace_handoff_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "0573d8f76e6fffc5cd3747f77bdbbf8986710b78362d05760f1b8871af108ecf",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_workspace_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "8205f6c7958ef0a3e96a0517e69de476a00a584d04f3941a148995f244469190",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_codex_workspace_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "fd2a712d1829131bea4fe5b902c671cd0548f02843a0b185900ef02bab6d7d79",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_composite_reference_audit_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "1fcba0664a825b672dc44dbd43688639a0e6771da8c4f1e99b77fdf4fa0a9b44",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_context_evidence_artifact_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "c82a7290afe58be4ee8bfd40d65a8c7192990f5a6521a268e117ce287eea7a6d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_context_receipt_v1.schema.json",
+      "line": 359,
+      "rule": "private_host_url",
+      "sha256": "534d7cc424c205648e8c086af4d8b837bc77830254e1366fbdf43d7a604902bb",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_delivery_component_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "a1ad295e4fa9a27d538ca6020b614093d117df4c53085cf1b6d0b4dbd7f1cd08",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_dependency_closure_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "00e954efeab261ada70acdd5f847d5ec569a34346e9b2c02219c5dff3effffc0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_environment_fingerprint_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5e4553ccf6097dfc1f8729248001f22d30264fb04c2979ed9611ba4fb5a0dbcc",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_evidence_assessment_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "ac1d1a4564013b13d0c7f388f98d4d534ef43801ccebc2335db6a568e0612630",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_evidence_attachment_inventory_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "e38504750d7f5afeaaa0e4dcea7e70b03d8d854a82d4e77db465c3b08280aa6a",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_evidence_manager_inspection_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "a034461e56550eae6d7e81d5448c3864ba3ae20f0c724e51cd875c92bc5520a8",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_evidence_manifest_preparation_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "d754ed1082acce3bc2f68ee0dcda2f13f86900f3554ae3ff5460f4d34332e8fe",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_evidence_preflight_receipt_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "9357f46926c40c5eb36baabc90882c3a3a04ffabb44a05e0de5e54fde8cfe808",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_lifecycle_decision_snapshot_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "e0be68456aea55b737d2786c3401eacf9905b619f42b4200c834c45c98825940",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_lifecycle_decision_snapshot_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "6939879ebb08f870ff38951e2f1915cc903f1a1a772db3fb3ee069930fc09b38",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_authority_context_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "eb3399c2d77355291146af4ff5cb248e38ececea5353e68b59af96d81efd96a2",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_authority_validation_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "06a4bb8573dd8e39554aa0ff60cf96541008343a6b7027ccf2b92c4cffeedbba",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_codex_handoff_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "9a482881c83e89cb89294769d1bf5fb22c390bf56e0bee44676b5811ead4d023",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_specification_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "bfdf1059ac5ce30b099647fa66811a14950a2a22947c47b19bf7c675ff9e006e",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_specification_v2.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "1671b6d413ea682f15c2dc619ec70db227604dd6d1f815e4e32495062219d2f0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_validation_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "e0a09ee8bdba3cfbb95c57af6b515b6c9cc7b43a6b152540f46184bf2fd64c1c",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_mission_workflow_state_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "2f1666d4a75cb6511f36a9173648b0a14611db9bcecd0a67477f3fd5d51f2bd9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_next_command_preconditions_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "751fb5588811d263ae44e965c9a581aae57a4f00186d70947b4c3b89b4f23c64",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_operator_instruction_binding_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "a3ea00ef6861cffda17c76e91f88bc3fa5056174a3585a1ef0c3ace76e175f67",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_operator_vocabulary_v1_18.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "1a7491e0714c7d2e34b3647e3d8ebca2ec3a5d5ce9a3ad3c331827cd7d11af56",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_optional_bridge_status_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "4dfd6a0b46b16f3dc379a45e00ac2c97a8a086c7e4c89340df16061cce998746",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_projection_freshness_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "ba23ce3e936a2eb93d318ac58f377ad120f1d0fa819ddf88b650ffa40f0724ae",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_promotion_resolution_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3906f6f515d1947fca8047e85a70233be9afd9a9ff86fd16353bb2e80aac17b2",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_promotion_source_ref_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "419186bc00cd47bf5d158475947d4f4592093e99b27552187eab1ffdbc2db032",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_published_evidence_archive_inspection_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5433ca9159c8cba60a8a40709b28d3018487d66853ac5b7f7ebdd2b922648bdb",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_authority_register_summary_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5ea510f6dce331a9424cd67097a0a04bc80522e8561970bcaaba24d2f18d3495",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_authority_register_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "9be56b1bb9e3873d6a3b38c6a70f5fb496eafb434017068b32763ff9dbe039f9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_catalog_summary_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3fd26e76f3f914720c7cac34f4155d662808fc65f462ec5528085ce94b876e8f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_decision_import_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "e169f0e9aff7e5c27b99339d150188ed2a50b13b6cea10c74219d1dcb7fc8e04",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_evidence_input_ref_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "14b63de06fb77ea9d38a35e9a85a9e0d0467c9bd466ce21d58c433b3bf092ae3",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_explanation_v1_1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "18e0074c3983af61d0fe46ccda3b1175689276c14759a084d636c4a98ebbb530",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_impact_assessment_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "94f91989754dbb924f9aef4737990ddebef9fe52d0bd646e199ca6066d1475cb",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_input_artifact_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "bd1949cf706a525d905f43f9988f902557bc0d8bf50dfd18c36f5a78f061d4b7",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_manager_integration_boundary_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "4ab293c17025f17a7da56198a8c97b1a4a2b9af8520e7a70c6de88a33fa8039a",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_manager_plan_validation_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "9573dc61b2be090559dfed2b1fd7b6700317ffd52d78368402a53634ff6f6b9f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_register_resolution_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5f804501e278713ee6f87ff21102fa03688223334fefa66ab693a25f4f5bf554",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualification_request_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "5a9be1cd010d9b3d641c810f01c65581d8ac923773f1ec6fb43dc312218a8872",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_qualified_runtime_release_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "12ebcc49f3f02233921705add7570c962bea930e3521b43f5c2ca5ad34e20ead",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_register_backed_qualification_plan_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "46b2e2d4cc604e40da5917abfd77c055d68bcdac4091dcb2a60ce3a888639b08",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_repository_adoption_receipt_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "efd9ccbb7f3ed65e88bdcba7514bc6c046e5ff6c6b4359e76a2d3d77e32f8fc6",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_repository_bootstrap_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "497a2bfc6f74405ec54470b1d9a6aaa66f0dcefee436819c884ee91f768f8a16",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_repository_delivery_proof_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "86aafa41105a51bd65b1f72bb3f2814720a499dc4c7d23df8c7b4942c0b266fb",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_repository_integration_receipt_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "139a4d31ef8d88815b05f4b3a802a16f452b529afd48463e61161408313a45a0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_repository_state_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "34cd6d2d21bbb2b104e6d0d30ca3134807ce3d7728adc798d65f8718f9367cad",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_repository_truth_artifact_ref_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "2fc424e7da14572a1041a92d68677e45c72ba7e5c41a208e6452c3eb90530c6b",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_resource_admission_recommendation_v1_2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5180662c2acca99c5333a02922b90e5f10e8c42291415ea9c36ac8c8f4869052",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_resource_demand_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "b4aad478592e8b188e892a900d58d66237accbe13e7333755b6cbe47fd5b726a",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_resource_estimate_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "abdc99228179b8996c564a259c8baea379d54d94f6b87c76af2159b3449bc7cc",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_evidence_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "20b5cb8dc82058c8993b694a8e62a7157d39dff2f4c61ba0e9e67f37ee0187ef",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_evidence_v3.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "d2c346577c06e0da074a20f29d51a40f609f3e1ab99f4ff21a5e101ff26296f9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_evidence_v4.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3adf36d509b5e7a4a8ce1c3e5bb6e2d2e445ccf26996145cbd262c06896ab4b4",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_execution_receipt_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "0dde7a06563f883d2594fc217b6b0c8288923684acf37515e041b6f169c70a48",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_obligation_proof_artifact_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "c3e7ec4b8637fd49f674968ee3cb6efa02fc0a8b69034797c013411b5eefe93e",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_obligation_proof_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "60408248c1d8fd816e52c31cf246f3da2e9f9c61cb56ec0c4fcd0086f27907bd",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_obligation_proof_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5219e862e6b98b9f82334103bb391fa86623f3fb799f8bbbd581cbe808c5863d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_target_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "f378b92ffa5f5d945eb73118ba63b24ff047d4d227c3f0f6f325ec10845ca5ba",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_review_target_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "efbdc24e13b2ecacc4e49013c67241088cd5fd271d6bb3d2bed0e786db928bfe",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_runability_closure_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "eebb91ba8e5200b043b33a3827b395be84b63a032dcfa5a76220858c17260c2b",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_schema_reader_registry_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "edb353e2204e12b25f6f907aa3523589a14a81688ed9bd30fb50dc8b1712e1df",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_attempt_projection_v2.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "83a1d02e3069b17e32f68ca63d543befe6d5a1a46b741ae9607f1e24980384c8",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_delivery_evidence_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "ea8f05defcf7829fa0eb0e20838fa2c313802f974106355dd39fc9eb67078259",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_delivery_evidence_v3.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5d7d83679475384c99118068f381e134f7052a79791d200e960dc01c9186ff63",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_delivery_evidence_v4.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "8fdd11ed5d326e163e8c8c64d30dcd523cb3adcba9fb38e2bbc6ead9ee90317a",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_delivery_material_ref_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "53c0905862bd2798c914f56002eeeaae53bf5f9e159ea907000dfa9f1c32d4e8",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_delivery_material_ref_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "1c34eeb8fe77baa8dd48bde04dc8ebf3a587d0c2dc20581033da85b624ba55bb",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_resource_accounting_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "48735e01fff33f0491c494ac61d3d45af36a08e70892b94718e04eda3840cf5f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_resume_cause_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "70ba42423ede4103085e01181d667bd1f5ec16a5722ae9123f19f9f429c4a9b0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_token_usage_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "58c009a036f7bfcd47da32a5d9520faf9a796a7e8b752684bcb48b57c827e090",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_session_validation_event_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "138760ebbc3a7d48f23c9e3b5e6fd83e9fa7ffa610bd7b434429536f840adab0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_terminal_deciding_authority_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "a13427175bb15f3bcde48bb8c6289af083dc651a12f730449a875337c41648b5",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_terminal_transition_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "0f0212acb456f550580a41799e073511e6025f1ab802a3c0df3a75524d7240c0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_token_report_index_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "895d339449f901ad9e5b330947e00ca737232e44a0d63a11ddc77e87b509baa9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_token_snapshot_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "5de61cf8582eb2843d787e431ba62afcc4222be1e35e8d273e1034c5ae4b81d6",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_token_usage_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "1c1763ea0a48a47e436db827dd562888b662a434cbe8e5a9c79b3d81ccebfb6e",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_unregistered_archive_inspection_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "f1cdeffb4f5196b859b9ba811d2c5dc1f58e6412fa88d7f8697c224583e8bfac",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_acceptance_evidence_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "fd880fc0d978cbe4b68cdb086b91957126f37b29a195f10043aeb00e80e095d3",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_acceptance_evidence_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "733d2df4dc8c766423a1dcd858d720c41abc5db522fa00dba90de799bfbf1c7f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_evidence_requirement_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "7ed97fbca6b444d1272531ae47816c537487f28916f207a2de510f9fb12e3213",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_execution_ref_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "4642b4ed6a9bbc30e1194b586aabda6790f187d42a59223fbd34d964fc052b8b",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_handoff_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "d1b1d2eb57d57262dc555cea456e5f6a015d59cfcf5361e53659610d21adb62f",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_hold_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "7103c2a688c7c8176125af22a1605f5c5e39c6ccc33a342232106de7d4f62752",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_item_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "6fd026d8fb995cb781ed81ab692cca986520976b65cc3437e87a3dea20d7a753",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_lifecycle_projection_v2.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "cb8843901d21ab4be17f39f10cb565d433169ac5f920ad48829910ad1207402c",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_package_binding_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "23520f4e2106910ee2d241fff10e5d10cf1ceb643bbe31fc5a1bde21475031b9",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_package_contract_receipt_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3d6e8fdbfcde904cc163935ebac28569fc75605fff65b59f125561491d8ceda1",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_package_rebind_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "ebe2cd760a739d19c0c05a014a5f1ba101be5b6dc747835f586daf52b616cb52",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_package_v1.schema.json",
+      "line": 25,
+      "rule": "private_host_url",
+      "sha256": "6b99cdd879b6a76db830cdc121c088c4ada7f6d052dcb850bbd391fdf94ef8c0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_qualification_acceptance_evidence_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "78b5c9bd1792359c54ed41a7e290eca08f0ce0c258a5c0779b999c3bd0225a6d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_resource_accounting_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "209194c0c04c811e2aba950a0239c53eb2f9c249b2393d7c4b01283660385b02",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_terminal_decision_receipt_ref_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "8c994bf9c10a83364477f1cd1cb352e3a3d34170041771f686d71af5927e92aa",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_work_terminal_decision_receipt_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "64c850b57d5eb2f56c8d5bd5ea01c7c5a477387a9a6ed4ec97778d8b4dd791f6",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_working_state_v2.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "0d4e39fb6a38ec54cc3f2eb5f94b559891abb0ab010a9ee5e7ecddce13eab876",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_wra_capture_close_intent_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "692ae64cc8482fc4479fb1bdfec62882476e9e85de2af0d46b81d7bc1b07244a",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_wra_capture_close_result_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "b1ab131930b5967ac73c702e6880c43c23f7faa30052ad68684b08705c341cee",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_wra_continuation_capsule_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3b0e1b1eeeaf614c5c963eab67458187959e6c2cb6054b9a24eaf75f743c48c7",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/actors/schemas/eiel_wra_coverage_report_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "c000ca58c85cb3cc5e4c7fa854e2fa5211bb5a9817a0f529b15c97ba9b65f0bd",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_artifact_entry_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "e922a72f8beddbe21eaef24cab35d301eb6e32f860f7f867131ab7751ace9aa6",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_authority_assertion_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "17ea3409321a7a8feeaf57edf8c01a845e209ddf38204b0b557998ca97823517",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_catalog_build_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "49be8c85686891744af0ca68a2087d967e4ffcba731d42c3b7788a470a73e754",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_claim_assertion_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "c4e01bec7b7fbdf75d34cb71d82e62ebd6bed352ae851830295cec807089ca46",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_evidence_record_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "69d8b0fb20e3d61f35d2d347fc2d13d0ed78220af3cda87a2148789eca71d9d7",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_issue_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "affb608016bb2e02108579786d23e6f5997c05b68fc221ca925b7437469b1057",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/evidence/schemas/eiel_librarian_v1/eiel_raw_asset_ref_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "874e4648f6c849ede2887024c0d2df835e4f7116ab3c06a894f2f8263c97220e",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_assignment_lease_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "e45420cbaa901d26ecd0882660085bb335456d024421d4ad06d795eb60d15071",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_dispatch_request_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "a67e6b4de8b6b829207deaeae0faaf17540156ef2f5288582e7a40b15d16dcee",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_scheduler_launch_handshake_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "db8c36c543028a25034f6167531405f684b728cd9dcabd8bc68c0cc3030cb622",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_scheduler_stale_inventory_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "fbaceaecf88dc5da3e5c10a3a47e5baf9b7426ad345dcd67bf96e798c9e2f7c0",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_scheduler_stale_sweep_v1.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "f422349c0768be3d80eecd0e7b0871c4b64d76e2ab79d427e0696c3723667372",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_scheduler_vocabulary_v1_18.schema.json",
+      "line": 2,
+      "rule": "private_host_url",
+      "sha256": "3b649e9f4d1d7078461884f53242eae50d05dd841650c5ca0abf26b29388a68d",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_worker_assignment_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "928b3db3141333ead4b6047d72143a583b5295622c615e33870941fa1f0b7268",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    },
+    {
+      "path": "tools/scheduler/schemas/eiel_worker_result_v1.schema.json",
+      "line": 3,
+      "rule": "private_host_url",
+      "sha256": "6ba5c50d53b01745f8aed0a28e58bca7b8576a03ccbbe789dda8362123045f11",
+      "reason": "Logical JSON Schema identifier; reviewed as an inert identifier, not a private network endpoint"
+    }
+  ]
+}

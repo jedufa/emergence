@@ -1,0 +1,80 @@
+harness_api: 1
+version: 1
+name: migration_pressure_tier3_plan
+description: "Tier 3 nightly tuned towards the Tier 3\u21924\u21925 roadmap: combine\
+  \ Tier 1 spatial ecology + Tier 2 repeated drought + Tier 3 migration costs/risks\
+  \ to create persistent selection for movement decisions that aren't purely reactive.\n"
+intent:
+  question: 'Under spatial heterogeneity + repeated drought, does Tier 3 produce persistent,
+    measurable migration pressure (crossings, costs, border risk) and does overcrowding
+    pressure stay non-trivial (not always zero) across seeds and long horizons?
+
+    '
+  axes:
+  - scenario:
+    - baseline
+    - tier3_full_plan
+matrix_order:
+- scenario
+- seed
+axes:
+  scenario:
+    values:
+    - baseline
+    - tier3_full_plan
+    flags:
+      baseline:
+      - --tier3_regions_spec
+      - '@experiments/assets/tier3_migration/v1/tier3_regions_3x3.json'
+      tier3_full_plan:
+      - --migration_pressure_enable
+      - --tier3_regions_spec
+      - '@experiments/assets/tier3_migration/v1/tier3_regions_3x3.json'
+      - --tier3_regional_carrying_capacity
+      - '@experiments/assets/tier3_migration/v1/tier3_cc_overcrowd_3x3.json'
+      - --tier3_movement_cost_map
+      - '@experiments/assets/tier3_migration/v1/tier3_move_cost_3x3.json'
+      - --tier3_region_transition_risk
+      - '@experiments/assets/tier3_migration/v1/tier3_transition_risk_3x3.json'
+seeds:
+- 1
+- 2
+- 3
+cli_defaults:
+- - --generations
+  - '300'
+- - --steps
+  - '150'
+- - --pop
+  - '256'
+- - --policy_tick_stride
+  - '2'
+- - --spatial_ecology_enable
+- - --spatial_ecology_seed
+  - '42'
+- - --resource_regrowth_map_spec
+  - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json'
+- - --resource_spawn_density_map_spec
+  - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json'
+- - --hazard_rate_map_spec
+  - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json'
+- - --spatial_droughts_enable
+- - --spatial_droughts_spec
+  - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__repeated_NW_severe.json'
+- - --spatial_droughts_log_timeseries_every
+  - '25'
+- - --spatial_droughts_log_periodic_every
+  - '50'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- maps/tier3_region_id.npy
+- maps/tier3_regions_stats.json
+- maps/spatial_ecology/spec.json
+- spatial_droughts/events.json
+naming:
+  run_tag_prefix: tier3_plan_nightly
+  run_id_format: '{name}__scenario_{scenario}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__scenario_{scenario}'

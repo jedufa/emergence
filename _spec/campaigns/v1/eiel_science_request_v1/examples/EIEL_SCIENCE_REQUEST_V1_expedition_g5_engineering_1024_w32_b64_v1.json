@@ -1,0 +1,100 @@
+{
+  "schema_version": "eiel_science_request_v1",
+  "campaign_id": "EIEL-EXPEDITION-G5-ENGINEERING-1024-W32-B64-V1",
+  "test": "EXPEDITION_G5_ENGINEERING_PACKING_1024_V1",
+  "question": {
+    "description": "Engineering-only proof that the Science Request front door deterministically packs 32 conditions by 32 replicates into exact native batches without named outcome targets or scientific claims.",
+    "no_claims": true
+  },
+  "world": {
+    "width": 32,
+    "height": 32,
+    "population": 256,
+    "capacity": 512
+  },
+  "run": {
+    "ticks": 64,
+    "batch": 64,
+    "checkpoint_ticks": [64]
+  },
+  "dimensions": {
+    "condition": [
+      100001, 100002, 100003, 100004, 100005, 100006, 100007, 100008,
+      100009, 100010, 100011, 100012, 100013, 100014, 100015, 100016,
+      100017, 100018, 100019, 100020, 100021, 100022, 100023, 100024,
+      100025, 100026, 100027, 100028, 100029, 100030, 100031, 100032
+    ],
+    "control_enabled": [true],
+    "replicate": [
+      200001, 200002, 200003, 200004, 200005, 200006, 200007, 200008,
+      200009, 200010, 200011, 200012, 200013, 200014, 200015, 200016,
+      200017, 200018, 200019, 200020, 200021, 200022, 200023, 200024,
+      200025, 200026, 200027, 200028, 200029, 200030, 200031, 200032
+    ]
+  },
+  "world_template": {
+    "initialization": {
+      "initial_population": 256,
+      "initial_live_count": 256,
+      "founder_profiles": ["native-broad-diverse-a-v1"],
+      "exact_founder_composition": [
+        {
+          "founder_profile_id": "native-broad-diverse-a-v1",
+          "count": 256
+        }
+      ],
+      "spatial_placement_profile": "deterministic_seeded_shuffle_v1",
+      "standing_variation_profile": "broad-standing-variation-v1"
+    },
+    "controls": {
+      "mutation.enabled": "${control_enabled}"
+    },
+    "seeds": {
+      "ecology": "${replicate}",
+      "founder": "${replicate}",
+      "initialization": "${replicate}",
+      "intervention": "${replicate}",
+      "mutation": "${replicate}",
+      "policy": "${condition}",
+      "task_environment": "${replicate}"
+    }
+  },
+  "replicate_dimension": "replicate",
+  "observe": {
+    "profile": "SCIENCE_STANDARD_V1",
+    "events": [
+      "birth",
+      "birth_parentage",
+      "causal_lifecycle",
+      "death",
+      "lineage_ancestry",
+      "mutation",
+      "mutation_provenance"
+    ],
+    "state": [
+      "compact.state_snapshots",
+      "genome_identity",
+      "population_count"
+    ],
+    "runtime_counters": [
+      "birth_count",
+      "compact.agent_lifetime_metrics",
+      "control_readback",
+      "mutation_count"
+    ],
+    "snapshot_ticks": [0, 64]
+  },
+  "reduce": {
+    "reducer": "science.compact.world_atlas.v1",
+    "configuration": {
+      "analysis_dimensions": ["condition", "control_enabled", "replicate"],
+      "axis_a": "condition",
+      "axis_b": "control_enabled",
+      "decision_family": "EXPEDITION_G5_ENGINEERING_PACKING",
+      "reporting_group": "EXPEDITION_G5_ENGINEERING_PACKING",
+      "tracked_policy_loci": [0, 1, 2, 3, 4, 5, 12, 19, 26, 40],
+      "tracked_trait_loci": [1, 2, 3, 4, 6]
+    }
+  },
+  "expect_worlds": 1024
+}

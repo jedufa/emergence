@@ -1,0 +1,28 @@
+{
+  "name": "hazard_rate_map",
+  "params": {
+    "base": 1.0,
+    "combine": "last_wins",
+    "regions": [
+      {
+        "id": 1,
+        "value": 2.0,
+        "x0": 0,
+        "x1": 16,
+        "y0": 0,
+        "y1": 32
+      },
+      {
+        "id": 2,
+        "value": 0.5,
+        "x0": 16,
+        "x1": 32,
+        "y0": 0,
+        "y1": 32
+      }
+    ]
+  },
+  "seed": 0,
+  "type": "regions",
+  "version": 1
+}

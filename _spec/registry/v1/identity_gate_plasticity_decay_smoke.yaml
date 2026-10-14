@@ -1,0 +1,69 @@
+harness_api: 1
+version: 1
+name: identity_gate_plasticity_decay_smoke
+description: >
+  Feature smoke: verify Identity Gate + Developmental Plasticity Decay are wired
+  and produce measurable directional effects. Minimal matrix, 1 seed.
+intent:
+  question: Sanity-check that new knobs change behavior/metrics and do not crash.
+  axes:
+    - case
+matrix_order:
+  - case
+  - seed
+axes:
+  case:
+    values:
+      - smoke_baseline__gate_off__decay_off
+      - smoke_gate_strong__decay_off
+      - smoke_gate_off__decay_strong
+      - smoke_gate_strong__decay_strong
+    flags:
+      smoke_baseline__gate_off__decay_off: []
+
+      smoke_gate_strong__decay_off:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.5
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+
+      smoke_gate_off__decay_strong:
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=60
+
+      smoke_gate_strong__decay_strong:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.5
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=60
+seeds:
+  - 1
+cli_defaults:
+  - [--generations, '80']
+  - [--steps, '150']
+  - [--pop, '256']
+  - [--policy_tick_stride, '2']
+expected_artifacts:
+  - manifest.json
+  - run_config.csv
+  - config.json
+  - metrics.csv
+  - behaviors.csv
+naming:
+  run_tag_prefix: feat_gate_decay_smoke
+  run_id_format: identity_gate_plasticity_decay_smoke__{case}__seed{seed:06d}
+  run_tag_format: feat_gate_decay_smoke__{case}

@@ -1,0 +1,43 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_actor_record_ref_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Documented EIEL contract for eiel_actor_record_ref_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "kind": {
+      "type": "string"
+    },
+    "record_id": {
+      "type": "string"
+    },
+    "record_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "record_type": {
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "eiel_actor_record_ref_v1"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_id"
+  ],
+  "title": "EIEL Actor Record Reference V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.reference_integrity",
+  "x-eiel-persistence-class": "embedded_durable_exact_reference"
+}

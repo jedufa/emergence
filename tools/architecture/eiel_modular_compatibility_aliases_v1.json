@@ -1,0 +1,125 @@
+{
+  "schema_version": "eiel_modular_compatibility_aliases_v1",
+  "aliases": [
+    {
+      "path": "engine/agents/agent_policy.py",
+      "target": "emergence_agentkit.policy",
+      "names": [
+        "MLPPolicy",
+        "clone_parameters"
+      ],
+      "sha256": "7a4e80f9204864530d1881b21f3b8bc3be570a5d65340c32cd19cd16b2a4f4d4"
+    },
+    {
+      "path": "engine/env/env_config.py",
+      "target": "emergence_worldkit.config",
+      "names": [
+        "EnvConfig"
+      ],
+      "sha256": "2e4263d1b182f8c29c2ac2ed0023c24d5fafe865b376060fcdac1fe6fdb7b697"
+    },
+    {
+      "path": "engine/env/env_config_biomes.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvBiomeConfig"
+      ],
+      "sha256": "bc3d98a229e0941c7cc3a46f0d01e71d4f28bbce83aa4cc4929cfb04712ae387"
+    },
+    {
+      "path": "engine/env/env_config_energy_economy.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvEnergyEconomyConfig"
+      ],
+      "sha256": "5e98e442b4d60d35c00ebfabd66ab87a1cae1e769d44bbc33f10631d3eafceac"
+    },
+    {
+      "path": "engine/env/env_config_gru_cost.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvGruCostConfig"
+      ],
+      "sha256": "35d6e3a80ed9055631e8aa519e727a7f456a1b63f970331e5a209b234f8e3950"
+    },
+    {
+      "path": "engine/env/env_config_health_combat.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvHealthCombatConfig"
+      ],
+      "sha256": "bfd092ca03bbaaa9200c2ccc1790a3274566636523769d835a0a3dd863455ecb"
+    },
+    {
+      "path": "engine/env/env_config_injury.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvInjuryConfig"
+      ],
+      "sha256": "e2feb2b690eb4bf36529479b8cbd34f642dfc776eb6a435afd91d68cef3f14a9"
+    },
+    {
+      "path": "engine/env/env_config_reproduction.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvReproductionConfig"
+      ],
+      "sha256": "06a63d701aceeceb1aa6c5a461f2f0c0eebe9f3ac3b800f800572f7a3479dd40"
+    },
+    {
+      "path": "engine/env/env_config_scar.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvScarConfig"
+      ],
+      "sha256": "b15f8059b2a2b50197539beea6e0166db550640b1de2123680a8a37d90816c70"
+    },
+    {
+      "path": "engine/env/env_config_tier1_spatial_ecology.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvTier1SpatialEcologyConfig"
+      ],
+      "sha256": "592cdb44a9bc014f45177ba31d393f390c316ee4906d9cf55d517dd86abb1661"
+    },
+    {
+      "path": "engine/env/env_config_tier2_spatial_droughts.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvTier2SpatialDroughtsConfig"
+      ],
+      "sha256": "d359c2b833db74af127639b306a4e4debac9343efe6e27e3c63007d03dcc0dda"
+    },
+    {
+      "path": "engine/env/env_config_tier3_migration_pressure.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvTier3MigrationPressureConfig"
+      ],
+      "sha256": "47eef1e3ad8a37f78be9aacc996bb347d7467ea81bb25bc7423da71e828dd350"
+    },
+    {
+      "path": "engine/env/env_config_world.py",
+      "target": "emergence_worldkit.config_sections",
+      "names": [
+        "EnvWorldConfig"
+      ],
+      "sha256": "7d788389bee3202d9a293f9b9eb1bb030f1738b056c9518141bb5bf8caac6810"
+    },
+    {
+      "path": "experiments/harness/schema.py",
+      "target": "emergence_lab.registry",
+      "names": [
+        "RegistryAxis",
+        "RegistryNaming",
+        "ExperimentRegistry",
+        "load_and_validate_registry",
+        "_require",
+        "_as_str_list",
+        "_as_list_of_list_str",
+        "_validate_seeds"
+      ],
+      "sha256": "43d5d8500139f5e260da0ce66a7fdeba07893dd5bf409062bd3e3e1ca30af05f"
+    }
+  ]
+}

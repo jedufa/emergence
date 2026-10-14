@@ -1,0 +1,41 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causyl.local/schemas/eiel_validation_plan_v1.schema.json",
+  "additionalProperties": false,
+  "properties": {
+    "cpu_only": {"const": true},
+    "defaults": {
+      "additionalProperties": false,
+      "properties": {
+        "cwd": {"pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$", "type": "string"},
+        "env": {"additionalProperties": {"type": "string"}, "type": "object"},
+        "inherit_env": {"items": {"type": "string"}, "type": "array", "uniqueItems": true},
+        "timeout_seconds": {"maximum": 86400, "minimum": 1, "type": "integer"}
+      },
+      "type": "object"
+    },
+    "description": {"type": "string"},
+    "plan_id": {"pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$", "type": "string"},
+    "schema_version": {"const": "eiel_validation_plan_v1"},
+    "steps": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "argv": {"items": {"minLength": 1, "type": "string"}, "minItems": 1, "type": "array"},
+          "cwd": {"pattern": "^(?!/)(?!.*(?:^|/)\\.\\.(?:/|$))[^\\u0000]+$", "type": "string"},
+          "env": {"additionalProperties": {"type": "string"}, "type": "object"},
+          "id": {"pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$", "type": "string"},
+          "timeout_seconds": {"maximum": 86400, "minimum": 1, "type": "integer"}
+        },
+        "required": ["id", "argv"],
+        "type": "object"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": ["schema_version", "plan_id", "cpu_only", "steps"],
+  "description": "Structural schema. The executor additionally applies procedural CPU masking, environment-name, executable, and argument safety checks.",
+  "title": "EIEL CPU Validation Plan v1",
+  "type": "object"
+}

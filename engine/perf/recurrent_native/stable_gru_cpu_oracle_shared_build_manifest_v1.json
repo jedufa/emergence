@@ -1,0 +1,113 @@
+{
+  "schema": "eiel_stable_gru_cpu_oracle_shared_build_manifest_v1",
+  "schema_version": 1,
+  "runtime_jit": false,
+  "production_routing_qualified": false,
+  "target": {
+    "platform": "linux",
+    "architecture": "x86_64",
+    "abi": "LP64",
+    "endianness": "little",
+    "cxx_standard": "c++17"
+  },
+  "toolchain": {
+    "compiler": "g++",
+    "identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0"
+  },
+  "sources": [
+    {
+      "path": "engine/perf/native/recurrent/recurrent_common_v1.hpp",
+      "sha256": "74d27146a7d52eb935019b9cd8bc81cf4021856e4331ddb8ab9130588b2f8e59"
+    },
+    {
+      "path": "engine/perf/native/recurrent/stable_gru_v1.hpp",
+      "sha256": "0e76295c386fddd38d2f788365f360b1c22b33a83dcc98ebb0a6ea6e3984fc29"
+    },
+    {
+      "path": "engine/perf/native/recurrent/stable_gru_v1.cpp",
+      "sha256": "4ab1db68cdba81e5f6058dad037ebb6e358c85ea6cd81a55076073aac4e3863f"
+    },
+    {
+      "path": "engine/perf/native/recurrent/stable_gru_cpu_oracle_c_api_v1.h",
+      "sha256": "d15f77a647f45ffd772b19738dfb631bffa8b5c5619a164f642f637956284ddf"
+    },
+    {
+      "path": "engine/perf/native/recurrent/stable_gru_cpu_oracle_c_api_v1.cpp",
+      "sha256": "bc0d7c0ba9877ba3c5d576a8cda3eb9428760a12269118eb5ea371e8ca5b61ec"
+    }
+  ],
+  "build": {
+    "compiler_identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+    "environment": {
+      "LC_ALL": "C",
+      "SOURCE_DATE_EPOCH": "0"
+    },
+    "command": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Werror",
+      "-pedantic",
+      "-fno-exceptions",
+      "-fno-rtti",
+      "-fvisibility=hidden",
+      "-fno-ident",
+      "-frandom-seed=eiel-stable-gru-cpu-oracle-v1",
+      "-Wl,--build-id=none",
+      "-Wl,-z,defs",
+      "-Wl,-z,relro,-z,now",
+      "engine/perf/native/recurrent/stable_gru_v1.cpp",
+      "engine/perf/native/recurrent/stable_gru_cpu_oracle_c_api_v1.cpp",
+      "-o",
+      "{artifact}"
+    ]
+  },
+  "artifact": {
+    "file_name": "libeiel_stable_gru_cpu_oracle_v1.so",
+    "size_bytes": 26832,
+    "sha256": "2e6cc643403d406479b34c62db2a08389cb3aca36b987fd3bf6efdf26e8986d5"
+  },
+  "c_abi": {
+    "version": 1,
+    "version_function": "eiel_stable_gru_cpu_oracle_abi_version_v1",
+    "exported_symbols": [
+      "eiel_stable_gru_checkpoint_project_v1",
+      "eiel_stable_gru_checkpoint_restore_v1",
+      "eiel_stable_gru_cpu_oracle_abi_version_v1",
+      "eiel_stable_gru_forward_batch_v1",
+      "eiel_stable_gru_forward_v1",
+      "eiel_stable_gru_lifecycle_v1",
+      "eiel_stable_gru_mutate_v1",
+      "eiel_stable_gru_packed_parameter_count_v1"
+    ]
+  },
+  "qualification": {
+    "scope": "standalone stable-GRU CPU production-oracle parity only",
+    "requires_source_hash_match": true,
+    "requires_artifact_hash_match": true,
+    "requires_two_build_byte_identity": true,
+    "float_gate": {
+      "rtol": 0.0,
+      "one_step_hidden_atol": 5e-7,
+      "sequence_hidden_atol": 2e-6,
+      "one_step_post_temperature_logits_atol": 5e-6,
+      "sequence_post_temperature_logits_atol": 1e-5,
+      "basis": "bounded real-GRUPolicy production-weight qualification including temperature clamp 0.05; actions remain exact"
+    },
+    "does_not_authorize": [
+      "production routing",
+      "resident state ownership",
+      "CUDA capability publication",
+      "runtime JIT",
+      "WDL plus GRU integration",
+      "Phase 1 integration"
+    ]
+  }
+}

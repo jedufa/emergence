@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-route-binding",
+  "title": "EIEL Science Route Binding V1",
+  "description": "Binds the route-neutral science instrument core to one physical execution route. Paths and mutable branch names are not authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "instrument_manifest_sha256",
+    "route_id",
+    "route_profile_sha256",
+    "machine_profile_id",
+    "capability_projection_sha256",
+    "native_build_closure_sha256",
+    "execution_adapter_sha256",
+    "control_adapter_sha256",
+    "observation_adapter_sha256",
+    "checkpoint_adapter_sha256",
+    "semantic_conformance_sha256",
+    "resource_envelope_sha256",
+    "qualified_envelope_sha256",
+    "qualification_authority_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_route_binding_v1"},
+    "instrument_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "route_id": {"$ref": "#/$defs/path_free_token"},
+    "route_profile_sha256": {"$ref": "#/$defs/digest"},
+    "machine_profile_id": {"$ref": "#/$defs/path_free_token"},
+    "capability_projection_sha256": {"$ref": "#/$defs/digest"},
+    "native_build_closure_sha256": {"$ref": "#/$defs/digest"},
+    "execution_adapter_sha256": {"$ref": "#/$defs/digest"},
+    "control_adapter_sha256": {"$ref": "#/$defs/digest"},
+    "observation_adapter_sha256": {"$ref": "#/$defs/digest"},
+    "checkpoint_adapter_sha256": {"$ref": "#/$defs/digest"},
+    "semantic_conformance_sha256": {"$ref": "#/$defs/digest"},
+    "resource_envelope_sha256": {"$ref": "#/$defs/digest"},
+    "qualified_envelope_sha256": {"$ref": "#/$defs/digest"},
+    "qualification_authority_sha256": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "path_free_token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

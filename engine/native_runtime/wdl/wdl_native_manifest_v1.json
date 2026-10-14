@@ -1,0 +1,306 @@
+{
+  "schema": "eiel_wdl_native_manifest_v1",
+  "schema_version": 1,
+  "contract_name": "WDL delayed-hazard native authority contract",
+  "contract_status": "preparatory_live_python_semantics",
+  "native_namespace": "eiel::wdl::native_v1",
+  "header_constants": {
+    "schema_version": 1,
+    "state_descriptor_count": 7,
+    "observation_channel_count": 1,
+    "scheduled_event_field_count": 6,
+    "tick_metric_field_count": 7,
+    "generation_summary_field_count": 13
+  },
+  "authority": {
+    "current_mechanics_owner": "python",
+    "target_owner": "native_wdl_v1",
+    "python_step": "env.gridworld_pkg.patch_world.apply_wdl_delayed_hazard_step",
+    "python_damage": "simulation.runner_pkg.runner_ticks_loop.TickLoopMixin._apply_wdl_delayed_hazard_damage",
+    "native_header": "engine/native_runtime/wdl/wdl_native_contract.hpp",
+    "parity_rule": "Do not infer intended behavior from field names. Match the source-defined live behavior unless an ambiguity below is explicitly resolved and versioned."
+  },
+  "config": {
+    "effective_enable": "patch_world_enable && wdl_delayed_hazard_enable",
+    "dependencies": [
+      "wdl_delayed_hazard_enable requires patch_world_enable",
+      "wdl_delayed_hazard_schema_version must equal 1",
+      "predrisk_fixed1_enable cannot combine with wdl_delayed_hazard_enable"
+    ],
+    "fields": [
+      {"python_name": "wdl_delayed_hazard_schema_version", "native_name": "schema_version", "dtype": "int32", "default": 1, "canonicalization": "must equal 1"},
+      {"python_name": "patch_world_enable", "native_name": null, "dtype": "bool", "default": false, "canonicalization": "required outer gate"},
+      {"python_name": "wdl_delayed_hazard_enable", "native_name": "enabled", "dtype": "bool/uint8", "default": false, "canonicalization": "effective value is patch_world_enable && value"},
+      {"python_name": "wdl_delayed_hazard_cue_enable", "native_name": "cue_enabled", "dtype": "bool/uint8", "default": true, "canonicalization": "bool/uint8; false suppresses observable cue values while preserving internal prior-cue causal state"},
+      {"python_name": "wdl_delayed_hazard_observation_enable", "native_name": "observation_enabled", "dtype": "bool/uint8", "default": false, "canonicalization": "effective only with patch_world_observation_enable and effective WDL enable"},
+      {"python_name": "wdl_delayed_hazard_observation_dropout_rate", "native_name": "observation_dropout_rate", "dtype": "float32", "default": 0.0, "canonicalization": "clip to [0,1]; non-convertible uses 0"},
+      {"python_name": "wdl_delayed_hazard_delay_steps", "native_name": "delay_steps", "dtype": "int32", "default": 8, "canonicalization": "int; minimum 1"},
+      {"python_name": "wdl_delayed_hazard_cue_duration_steps", "native_name": "cue_duration_steps", "dtype": "int32", "default": 4, "canonicalization": "int; minimum 1; maximum canonical delay_steps"},
+      {"python_name": "wdl_delayed_hazard_active_duration_steps", "native_name": "active_duration_steps", "dtype": "int32", "default": 6, "canonicalization": "int; minimum 1"},
+      {"python_name": "wdl_delayed_hazard_event_period_steps", "native_name": "event_period_steps", "dtype": "int32", "default": 20, "canonicalization": "int; minimum delay_steps + active_duration_steps + 1"},
+      {"python_name": "wdl_delayed_hazard_radius", "native_name": "radius", "dtype": "int32", "default": 1, "canonicalization": "int; minimum 0"},
+      {"python_name": "wdl_delayed_hazard_intensity", "native_name": "intensity", "dtype": "float32", "default": 0.1, "canonicalization": "bounded float [0,1]; non-convertible uses 0.10"},
+      {"python_name": "wdl_delayed_hazard_damage_enable", "native_name": "damage_enabled", "dtype": "bool/uint8", "default": true, "canonicalization": "boolean"},
+      {"python_name": "wdl_delayed_hazard_regrowth_suppression_enable", "native_name": null, "dtype": "bool", "default": false, "canonicalization": "declared but has no live Python consumer"},
+      {"python_name": "wdl_delayed_hazard_deterministic_schedule_enable", "native_name": "deterministic_schedule_enabled", "dtype": "bool/uint8", "default": true, "canonicalization": "false means no event scheduling; there is no stochastic fallback"}
+    ],
+    "native_validation_difference": "The native header API validates already-canonical values and rejects out-of-range values. The live Python step clamps/coerces its numeric mechanics inputs. Callers must canonicalize before native validation if Python parity is required."
+  },
+  "state": {
+    "layout": "seven C-contiguous structure-of-arrays fields, each shaped [height,width]; native view is flattened row-major with cell_count=height*width",
+    "owner": "environment Patch World state",
+    "fields": [
+      {"order": 0, "name": "patch_delayed_hazard_cue", "native_member": "cue", "dtype": "float32", "element_bytes": 4, "shape": "[height,width]", "init": 0.0, "reset": 0.0, "update": "cleared each enabled step; set to 1 for cue_mask and newly scheduled cells", "checkpoint": true, "report": "cue_cell_count", "continuation": "restore exact array before next step", "failure": "missing or wrong shape raises in Python access/validation", "cancel": "no write when native cancellation is accepted before advance_tick", "source": "engine/env/gridworld_pkg/patch_world.py:2138-2149,2565-2641"},
+      {"order": 1, "name": "patch_delayed_hazard_timer", "native_member": "timer", "dtype": "int32", "element_bytes": 4, "shape": "[height,width]", "init": -1, "reset": -1, "update": "occupied iff timer>=0; decrement occupied cells; new schedule writes delay_steps+active_duration_steps; done writes -1", "checkpoint": true, "report": "phase derivation only", "continuation": "restore exact array", "failure": "values below -1 invalid in native checkpoint", "cancel": "unchanged", "source": "engine/env/gridworld_pkg/patch_world.py:2143,2574,2588-2598,2612-2619,2626-2634"},
+      {"order": 2, "name": "patch_delayed_hazard_active", "native_member": "active", "dtype": "float32", "element_bytes": 4, "shape": "[height,width]", "init": 0.0, "reset": 0.0, "update": "cleared each step; 1 where occupied and delay<=age<delay+active_duration", "checkpoint": true, "report": "active_cell_count and damage gate", "continuation": "restore exact array", "failure": "non-finite or outside [0,1] invalid natively", "cancel": "unchanged", "source": "engine/env/gridworld_pkg/patch_world.py:2144,2575,2592-2603"},
+      {"order": 3, "name": "patch_delayed_hazard_intensity", "native_member": "intensity", "dtype": "float32", "element_bytes": 4, "shape": "[height,width]", "init": 0.0, "reset": 0.0, "update": "new schedule writes configured intensity even before active; active rewrites it; cells outside cue/hidden/active write 0", "checkpoint": true, "report": "per-agent raw damage source", "continuation": "restore exact array", "failure": "non-finite or outside [0,1] invalid natively", "cancel": "unchanged", "source": "engine/env/gridworld_pkg/patch_world.py:2145,2576,2603-2604,2631"},
+      {"order": 4, "name": "patch_delayed_hazard_age", "native_member": "age", "dtype": "int32", "element_bytes": 4, "shape": "[height,width]", "init": 0, "reset": 0, "update": "increment occupied cells; new schedule and done write 0", "checkpoint": true, "report": "phase derivation only", "continuation": "restore exact array", "failure": "negative invalid natively", "cancel": "unchanged", "source": "engine/env/gridworld_pkg/patch_world.py:2146,2577,2588-2598,2616,2632"},
+      {"order": 5, "name": "patch_delayed_hazard_event_id", "native_member": "event_id", "dtype": "int64", "element_bytes": 8, "shape": "[height,width]", "init": 0, "reset": 0, "update": "all newly scheduled cells receive the same SHA256-derived positive 63-bit event id; done writes 0", "checkpoint": true, "report": "activated_event_ids_last only", "continuation": "restore exact array", "failure": "negative invalid natively", "cancel": "unchanged", "source": "engine/env/gridworld_pkg/patch_world.py:2147,2516-2527,2578,2609-2610,2618,2633"},
+      {"order": 6, "name": "patch_delayed_hazard_prior_cue", "native_member": "prior_cue", "dtype": "int8", "element_bytes": 1, "shape": "[height,width]", "init": 0, "reset": 0, "update": "set 1 in cue/hidden/active and on schedule; done writes 0", "checkpoint": true, "report": "cue_without_active and active_without_prior_cue integrity counts", "continuation": "restore exact array", "failure": "only 0 or 1 valid natively", "cancel": "unchanged", "source": "engine/env/gridworld_pkg/patch_world.py:2148,2579,2601,2619,2634"}
+    ],
+    "initialization": "initialize_patch_world_arrays adds WDL arrays only under effective enable; initialize_patch_world_runtime_fields resets per-tick counters",
+    "environment_reset": "GridWorld reset recreates all seven arrays from defaults and resets runtime counters",
+    "generation_reset": "runner_generation resets WDL generation accumulators, event contexts, damaged-id set, and generation-persistent cued-agent set"
+  },
+  "schedule": {
+    "mutable_rng_draw_count": 0,
+    "event_trigger": "deterministic_schedule_enabled && abs_step>=0 && abs_step % event_period_steps == 0",
+    "event_index": "abs_step // event_period_steps",
+    "sha256_material_ascii": "wdl1:{base_seed}:{event_index}:{height}:{width}",
+    "coordinate_formula": {
+      "y": "big_endian_u64(digest[0:8]) % max(1,height)",
+      "x": "big_endian_u64(digest[8:16]) % max(1,width)",
+      "event_id": "big_endian_u64(digest[16:24]) & 0x7fffffffffffffff"
+    },
+    "footprint": "axis-aligned square [y-radius,y+radius] x [x-radius,x+radius], clipped to grid; not a Euclidean circle",
+    "collision_rule": "schedule only cells whose timer<0; a logical event may schedule a partial footprint or zero cells",
+    "event_count_semantics": "count of newly scheduled cells, not count of logical event ids",
+    "base_seed_fallback": "Normal GridWorld stores base_seed. If absent, live Python hashes the stringified RNG bit-generator state with process-salted Python hash; this fallback is not guaranteed cross-process deterministic."
+  },
+  "dropout": {
+    "mutable_rng_draw_count": 0,
+    "input": "clip cue to [0,1] and replace non-finite values with 0",
+    "edge_cases": {"dropout_le_zero": "return cue", "dropout_ge_one": "return 0"},
+    "formula": "mixed=(y*1103515245 + x*12345 + (base_seed & 0xffffffff) + 0x9e3779b9) & 0xffffffff; unit=mixed/2^32; keep=unit>=dropout; output=cue if keep else 0",
+    "temporal_semantics": "mask is fixed per cell and base seed because abs_step and event_id are not salted into the formula"
+  },
+  "phase_contract": {
+    "order_within_wdl_step": [
+      "reset per-tick WDL counters",
+      "return zero metrics if effective WDL disabled",
+      "canonicalize numeric config",
+      "snapshot occupied = timer>=0",
+      "age++ and timer-- for occupied cells",
+      "clear cue and active everywhere",
+      "derive cue, hidden, active, and done masks from occupied and updated age",
+      "materialize cue/prior_cue/active/intensity",
+      "accumulate active-cell delay metrics and activated ids",
+      "clear done cells",
+      "schedule current absolute-step event into timer<0 cells",
+      "compute final cell-count and integrity metrics"
+    ],
+    "phase_predicates_after_progression": {
+      "cue": "occupied && age<cue_duration_steps",
+      "hidden_gap": "occupied && age>=cue_duration_steps && age<delay_steps",
+      "active_hazard": "occupied && age>=delay_steps && age<delay_steps+active_duration_steps",
+      "done": "occupied && age>=delay_steps+active_duration_steps",
+      "baseline": "none of the above"
+    },
+    "new_event_state": "cue=1, timer=delay, active=0, intensity=config intensity, age=0, event_id=derived id, prior_cue=1",
+    "exact_simulation_tick_order": [
+      "check graceful-stop flag before authoritative tick work",
+      "spatial drought step",
+      "patch_world_step(abs_step=gen*steps_per_generation+tick)",
+      "inside patch_world_step: WDL, prediction demand, delayed resource, delayed waste, MEM-MAX, trace, food",
+      "accumulate WDL tick/generation environment metrics",
+      "spawn food and other pre-policy environment work",
+      "build alive list, canonical sort, then runner RNG shuffle",
+      "policy observes current WDL cue channel and selects actions",
+      "record passive pre-environment WDL action context",
+      "apply normal environment tick including movement",
+      "apply WDL damage using post-action positions against the pre-policy active map",
+      "apply MEM-MAX consequence and remaining internal-state/reproduction phases"
+    ],
+    "damage_order": "iterate alive environment ids in ascending numeric order; skip invalid positions/non-active cells/missing-dead population agents; apply optional shared PATH1 refuge adjustment; subtract bounded effective damage; update metrics/context; remove agent on health<=0",
+    "source": "engine/simulation/runner_pkg/runner_ticks_loop.py:2931-2967,3317-3339,3638-3647,3702-3721,3799-3805; engine/env/gridworld_pkg/state.py:252-279"
+  },
+  "observation_schema": {
+    "fields": ["wdl_delayed_hazard_cue_norm"],
+    "count": 1,
+    "gating": "patch_world_enable && patch_world_observation_enable && wdl_delayed_hazard_enable && wdl_delayed_hazard_observation_enable",
+    "not_exposed": ["timer", "active", "intensity", "age", "event_id", "prior_cue"],
+    "channel_order": "after legacy food/occupancy and the seven base Patch World normalized maps; WDL is local channel index 8 when no earlier optional extension changes the base set",
+    "local_layout": "zero-padded [2*view_radius+1]^2 window; channel-major stack flattened to float32",
+    "source": "engine/env/gridworld_pkg/patch_world.py:25-36,204-237,1723-1731,1826-1838,1950-1966; engine/env/gridworld_pkg/observations.py:130-193"
+  },
+  "event_schema": {
+    "native_scheduled_event_fields": [
+      "event_id",
+      "abs_step",
+      "center_y",
+      "center_x",
+      "scheduled_cell_count",
+      "intensity"
+    ],
+    "cell_schedule_event": {
+      "id": "event_id shared by scheduled footprint",
+      "count": "scheduled cell count",
+      "activated_ids": "sorted unique positive ids present in active cells each active tick"
+    },
+    "damage_context": "one sampled patch context per damaging agent exposure with wdl_damage and PATH1 adjustment fields; context sampling failure is swallowed",
+    "chronicle_event": {
+      "event_type": "delayed_hazard_cycle",
+      "emission": "generation-level candidate when generation event_count>0 and chronicle persistence condition is ready",
+      "measurements": ["event_count", "damage_total", "agents_damaged", "persistence_generations"],
+      "failure_policy": "chronicle is observability-only and exceptions do not interrupt mechanics"
+    },
+    "source": "engine/simulation/runner_pkg/runner_ticks_loop.py:247-355; engine/simulation/chronicle/recorder.py:802-825; engine/simulation/runner_pkg/runner_generation.py:1643-1664"
+  },
+  "tick_metric_schema": {
+    "count": 7,
+    "fields": [
+      "wdl_delayed_hazard_cue_cell_count",
+      "wdl_delayed_hazard_active_cell_count",
+      "wdl_delayed_hazard_event_count",
+      "wdl_delayed_hazard_cue_without_active_count",
+      "wdl_delayed_hazard_active_without_prior_cue_count",
+      "wdl_delayed_hazard_cue_to_active_delay_sum",
+      "wdl_delayed_hazard_cue_to_active_delay_count"
+    ],
+    "semantics": {
+      "event_count": "newly scheduled cells",
+      "cue_without_active_count": "prior_cue>0 && active<=0, including visible-cue and hidden cells",
+      "active_without_prior_cue_count": "active>0 && prior_cue<=0",
+      "cue_to_active_delay_sum_and_count": "delay is accumulated once per active cell per active tick, not only on transition"
+    },
+    "source": "engine/env/gridworld_pkg/patch_world.py:2606-2641,2804-2831"
+  },
+  "generation_summary_schema": {
+    "header_count": 13,
+    "header_fields": [
+      "wdl_delayed_hazard_event_count",
+      "wdl_delayed_hazard_cue_cell_count_mean",
+      "wdl_delayed_hazard_active_cell_count_mean",
+      "wdl_delayed_hazard_agent_cue_exposure_count",
+      "wdl_delayed_hazard_agent_active_exposure_count",
+      "wdl_delayed_hazard_damage_total",
+      "wdl_delayed_hazard_damage_max",
+      "wdl_delayed_hazard_agents_damaged",
+      "wdl_delayed_hazard_cue_to_active_delay_mean",
+      "wdl_delayed_hazard_cue_without_active_count",
+      "wdl_delayed_hazard_active_without_prior_cue_count",
+      "wdl_delayed_hazard_enable",
+      "wdl_delayed_hazard_tick_count"
+    ],
+    "python_public_extensions": [
+      "wdl_delayed_hazard_damage_mean",
+      "wdl_cue_seen_agents",
+      "wdl_cue_exposed_next_move_away_count",
+      "wdl_cue_exposed_next_move_toward_count",
+      "wdl_cue_exposed_stayed_count",
+      "wdl_pre_hazard_exit_count",
+      "wdl_hazard_enter_count",
+      "wdl_hazard_avoidance_proxy",
+      "wdl_hazard_exposure_after_cue_count",
+      "wdl_hazard_damage_by_lineage_json",
+      "wdl_cue_exposure_by_lineage_json",
+      "wdl_hazard_exposure_by_lineage_json"
+    ],
+    "aggregation": {
+      "cue_and_active_cell_count": "sum per tick divided by WDL tick count",
+      "agents_damaged": "unique damaged agent ids during generation",
+      "agent_cue_exposure_count": "repeated cue exposure rows, not unique agents",
+      "cued_history": "agent-id set persists for the full generation and is not cleared per event",
+      "lineage_damage": "sum damage contexts by lineage",
+      "lineage_hazard_exposure": "1.0 for each lineage having a damage context",
+      "lineage_cue_exposure": "currently always serialized as {}"
+    },
+    "source": "engine/simulation/runner_pkg/runner_generation.py:1187-1291; engine/simulation/metrics_pkg/metrics_logger.py:612-635"
+  },
+  "checkpoint_contract": {
+    "python_bundle_path": "world.patch_world.wdl_delayed_hazard",
+    "python_order": [
+      "world base arrays and environment RNG state",
+      "Patch World base arrays and pending arrays",
+      "WDL schema version and all seven arrays in state descriptor order",
+      "resident environment scalar snapshot",
+      "runner generation counters and contexts",
+      "RNG restore and remaining runner/population state according to bundle-v2 apply order"
+    ],
+    "restore_order": [
+      "restore world arrays",
+      "merge WDL arrays into Patch World validation input",
+      "validate shape and coerce exact dtypes",
+      "install arrays",
+      "initialize runtime fields, which resets per-tick counters",
+      "restore resident environment scalars",
+      "restore runner generation counters, contexts, and damaged-id set",
+      "invalidate transient environment caches"
+    ],
+    "native_binary_layout": {
+      "endianness": "little",
+      "header_bytes": 32,
+      "header_order": ["magic uint32 0x314c4457 (WDL1)", "schema int32", "height int32", "width int32", "base_seed int64", "next_abs_step int64"],
+      "array_order": ["cue float32[]", "timer int32[]", "active float32[]", "intensity float32[]", "age int32[]", "event_id int64[]", "prior_cue int8[]"],
+      "size_formula": "32 + height*width*(4+4+4+4+4+8+1)",
+      "restore_atomicity": "validate complete header and serialized state before first destination state write"
+    },
+    "continuation": {
+      "schedule_state": ["base_seed", "next_abs_step"],
+      "python_absolute_step": "generation*steps_per_generation + tick",
+      "generation_boundary": "all seven arrays continue exactly; per-generation counters/history reset by the next generation",
+      "not_checkpointed": "_wdl_agents_cued_current_gen is not explicitly in bundle-v2 state; normal generation-boundary continuation makes this consistent with its generation reset"
+    },
+    "source": "engine/simulation/checkpoint_bundle_v2.py:6625-6660,7425-7473,7644-7732,8870-8950,8995-9085; engine/native_runtime/wdl/wdl_native_contract.cpp:360-437"
+  },
+  "failure_and_cancel_contract": {
+    "python_step_failure": "config/array/mechanics exceptions propagate from patch_world_step; no partial-write rollback",
+    "python_damage_failure": "WDL/PATH1 import failure returns without damage; patch context failures are swallowed; resident scalar sync failure rethrows only under configured fail-closed mode",
+    "native_status_codes": ["ok", "cancelled", "invalid_config", "invalid_state", "invalid_checkpoint", "insufficient_capacity"],
+    "native_cancel": "advance_tick and apply_delayed_damage validate output pointers, then return cancelled before state, schedule, health, alive, or output-metric writes",
+    "graceful_stop": "first SIGINT/SIGTERM sets stop flag; tick loop checks it before Patch World work; second SIGINT exits immediately",
+    "graceful_checkpoint": "after early tick-loop exit, runner closes the generation and writes a bundle labeled for generation+1",
+    "cancel_ambiguity": "A mid-generation graceful stop skips remaining ticks but advances the checkpoint generation, so continuation skips their absolute-step WDL phases rather than resuming the interrupted tick.",
+    "ordinary_exception": "run status is marked failed and exception is re-raised; there is no automatic failure checkpoint",
+    "source": "engine/simulation/runner_pkg/runner_loop.py:325-369,1420-1467,1498-1512; engine/simulation/runner_pkg/runner_ticks_loop.py:2931-2942"
+  },
+  "known_ambiguities": [
+    {
+      "id": "event_and_exposure_names_are_not_unique_counts",
+      "severity": "reporting_relevant",
+      "live_behavior": "event_count counts scheduled cells; cue exposure counts repeated action rows; delay count counts active cell-ticks.",
+      "migration_decision_required": "Preserve these aggregation units for parity and describe them explicitly in downstream schemas.",
+      "source": "engine/env/gridworld_pkg/patch_world.py:2606-2640; engine/simulation/runner_pkg/runner_generation.py:1187-1243"
+    }
+  ],
+  "resolved_control_path_repairs": [
+    {
+      "id": "configured_active_duration_honored",
+      "behavior": "The live timer retains delay_steps + active_duration_steps and cleanup occurs after exactly active_duration_steps active ticks.",
+      "parity": "Python, CPU-native, and CUDA contracts use the same schedule.",
+      "source": "engine/env/gridworld_pkg/patch_world.py:2912-2963; engine/native_runtime/wdl/wdl_native_contract.cpp:286-342; engine/perf/cuda_architecture_b_persistent_wdl_v1.cuh:363-454"
+    },
+    {
+      "id": "cue_enabled_consumed",
+      "behavior": "cue_enabled now controls scheduled and cue-phase cue visibility while prior-cue state and hazard timing remain deterministic.",
+      "parity": "Python, CPU-native, and CUDA contracts use the same gate.",
+      "source": "engine/env/gridworld_pkg/patch_world.py:2912-2963; engine/native_runtime/wdl/wdl_native_contract.cpp:286-342; engine/perf/cuda_architecture_b_persistent_wdl_v1.cuh:363-454"
+    }
+  ],
+  "source_locations": [
+    "engine/env/env_config.py:289-302",
+    "engine/env/gridworld_pkg/jungle.py:26-30,111-112,127-130",
+    "engine/env/gridworld_pkg/patch_world.py:25-36,204-237,1689-1731,1826-1838,1950-1966,2138-2149,2273-2289,2360-2390,2493-2641,2804-2831",
+    "engine/env/gridworld_pkg/state.py:210-279",
+    "engine/env/gridworld_pkg/observations.py:130-193",
+    "engine/simulation/runner_pkg/runner_ticks_loop.py:70-125,206-355,1838-1874,1973-2200,2795-3010,3317-3339,3638-3805",
+    "engine/simulation/runner_pkg/runner_generation.py:155-177,1187-1291,1643-1664",
+    "engine/simulation/metrics_pkg/metrics_logger.py:612-635",
+    "engine/simulation/chronicle/recorder.py:802-825",
+    "engine/simulation/checkpoint_bundle_v2.py:6625-6660,7425-7473,7644-7732,8870-8950,8995-9085",
+    "engine/simulation/runner_pkg/runner_loop.py:325-369,1420-1467,1498-1512",
+    "tests/evolvability/wdl/test_delayed_hazard_demand_loop.py:79-203",
+    "engine/native_runtime/wdl/wdl_native_contract.hpp:1-146",
+    "engine/native_runtime/wdl/wdl_native_contract.cpp:1-437"
+  ]
+}

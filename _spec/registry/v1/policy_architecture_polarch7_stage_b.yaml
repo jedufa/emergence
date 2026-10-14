@@ -1,0 +1,159 @@
+{
+  "axes": {
+    "arm": {
+      "flags": {
+        "authority_no_cost": [
+          "--knob",
+          "sim_cfg.policy_family_head_residual_genome_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_authority_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_coefficient=0.0",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_step=0.1"
+        ],
+        "authority_with_cost": [
+          "--knob",
+          "sim_cfg.policy_family_head_residual_genome_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_authority_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_coefficient=0.005",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_step=0.1"
+        ],
+        "dormant_mutation_control": [
+          "--knob",
+          "sim_cfg.policy_family_head_residual_genome_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_authority_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_coefficient=0.0",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_step=0.1"
+        ],
+        "historical_control": [
+          "--knob",
+          "sim_cfg.policy_family_head_residual_genome_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_authority_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_coefficient=0.0",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_step=0.0"
+        ],
+        "neutral_fixed_authority_control": [
+          "--knob",
+          "sim_cfg.policy_family_head_residual_genome_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_enable=false",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_authority_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_enable=true",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_cost_coefficient=0.005",
+          "--knob",
+          "sim_cfg.policy_family_head_residual_mutation_step=0.0"
+        ]
+      },
+      "values": [
+        "authority_no_cost",
+        "authority_with_cost",
+        "dormant_mutation_control",
+        "historical_control",
+        "neutral_fixed_authority_control"
+      ]
+    },
+    "context": {
+      "flags": {
+        "clean_control": [
+          "--knob",
+          "sim_cfg.policy_architecture_context=clean_control"
+        ],
+        "crowding_existing": [
+          "--knob",
+          "sim_cfg.policy_architecture_context=crowding_existing"
+        ]
+      },
+      "values": [
+        "clean_control",
+        "crowding_existing"
+      ]
+    }
+  },
+  "cli_defaults": [
+    [
+      "--gen",
+      "36"
+    ],
+    [
+      "--steps",
+      "80"
+    ],
+    [
+      "--pop",
+      "64"
+    ],
+    [
+      "--knob",
+      "sim_cfg.policy_family_head_residual_authority_reporting_enable=true"
+    ],
+    [
+      "--knob",
+      "sim_cfg.campaign_output_profile=compact_default"
+    ],
+    [
+      "--knob",
+      "sim_cfg.allow_generation_checkpointing=false"
+    ]
+  ],
+  "description": "POLARCH-7 frozen stage_b_evolutionary_pilot family-head experiment design; dry-run/spec only, no cell execution in POLARCH-7.",
+  "execution_mode": "frozen_design_spec_no_cells_executed_in_polarch7",
+  "expected_artifacts": [
+    "manifest.json",
+    "metrics.csv"
+  ],
+  "expected_cell_count": 60,
+  "harness_api": 1,
+  "intent": {
+    "claim_boundary": "preregistration only",
+    "question": "Can costed family-head residual authority be tested through demand, behavior, reproduction, inheritance, and retention gates?"
+  },
+  "matrix_order": [
+    "arm",
+    "context",
+    "seed"
+  ],
+  "name": "policy_architecture_polarch7_stage_b_evolutionary_pilot",
+  "naming": {
+    "run_id_format": "policy_architecture_polarch7_stage_b_evolutionary_pilot__{arm}__{context}__seed{seed:06d}",
+    "run_tag_format": "polarch7_stage_b_evolutionary_pilot__{arm}__{context}",
+    "run_tag_prefix": "policy_architecture_polarch7_stage_b_evolutionary_pilot"
+  },
+  "seeds": [
+    797629274,
+    908261578,
+    1185693522,
+    1792869710,
+    1956629872,
+    2038108232
+  ],
+  "version": 1
+}

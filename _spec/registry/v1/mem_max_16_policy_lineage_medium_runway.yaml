@@ -1,0 +1,23 @@
+harness_api: 1
+version: 1
+name: mem_max_16_policy_lineage_medium_runway
+description: MEM-MAX-16 policy-lineage telemetry and conditional medium runway contract.
+matrix_order:
+- runway_cell
+- seed
+axes:
+  runway_cell:
+    values: [useful_normal, useful_ablated, cue_off_normal]
+seeds: [20115]
+cli_defaults:
+- [--generations, "6"]
+- [--steps, "72"]
+- [--pop, "16"]
+- [--grid_size, "7"]
+- [--device, cpu]
+- [--bank_device, cpu]
+expected_artifacts:
+- founder_bank_startup_sentinel.json
+- policy_lineage_event_stream.json
+naming:
+  run_tag_prefix: mem_max_16_policy_lineage

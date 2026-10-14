@@ -1,0 +1,1089 @@
+{
+  "campaign_id": "theme4_stage10h_perception_ecology_calibration",
+  "campaign_name": "Theme 4 Stage 10H Perception-Informative Ecological Pressure Calibration",
+  "campaign_purpose": "calibrate existing ecological scenario configurations into fair perception testbeds",
+  "campaign_type": "perception_ecology_calibration",
+  "cost_levels": {
+    "medium_from_stage10c": {
+      "config_values": {
+        "env_overrides": {
+          "gru_cost_base": 0.004,
+          "gru_cost_per_dim": 8e-05
+        },
+        "sim_overrides": {
+          "developmental_cognition_cost_base": 0.0005,
+          "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+          "enable_experimental_developmental_cost_charging": true,
+          "enable_experimental_perception_cost_charging": true,
+          "enable_experimental_prediction_cost_charging": true,
+          "enable_experimental_sensor_radius_cost_charging": true,
+          "maturation_cost_per_tick": 0.0005,
+          "prediction_cost_base": 0.0005,
+          "prediction_cost_per_lr": 0.001,
+          "prediction_state_cost": 0.0001,
+          "sensor_channel_cost_per_weight": 0.001,
+          "sensor_radius_cost_base": 0.0005,
+          "sensor_radius_cost_per_cell": 0.0001,
+          "sensor_radius_cost_per_cell_channel": 5e-05
+        }
+      },
+      "description": "Medium explicit cost charging from Stage 10C/10F."
+    }
+  },
+  "cost_mode": "medium_from_stage10c",
+  "default_env_overrides": {
+    "gru_cost_base": 0.004,
+    "gru_cost_per_dim": 8e-05
+  },
+  "default_pop_overrides": {},
+  "default_sim_overrides": {
+    "bank_device": "cuda",
+    "behavior_log_enable": false,
+    "checkpoint_bundle_v2_period_gen": 0,
+    "developmental_cognition_cost_base": 0.0005,
+    "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+    "device": "cuda",
+    "enable_cognitive_budget_ledger": true,
+    "enable_cognitive_status_metrics": true,
+    "enable_cognitive_trait_registry": true,
+    "enable_evolvable_sensor_channel_mask": true,
+    "enable_evolvable_sensor_radius": false,
+    "enable_experimental_developmental_cost_charging": true,
+    "enable_experimental_perception_cost_charging": true,
+    "enable_experimental_prediction_cost_charging": true,
+    "enable_experimental_sensor_radius_cost_charging": true,
+    "epi_enable": false,
+    "force_default_sensor_radius": true,
+    "maturation_cost_per_tick": 0.0005,
+    "phase_e_e1_enable": false,
+    "policy_deterministic_actions": true,
+    "policy_tick_stride": 1,
+    "prediction_cost_base": 0.0005,
+    "prediction_cost_per_lr": 0.001,
+    "prediction_state_cost": 0.0001,
+    "sensor_channel_cost_per_weight": 0.001,
+    "sensor_radius_cost_base": 0.0005,
+    "sensor_radius_cost_per_cell": 0.0001,
+    "sensor_radius_cost_per_cell_channel": 5e-05
+  },
+  "evidence_paths": {
+    "note": "evidences/theme4_stage10h_perception_ecology_calibration_evidence.md",
+    "zip": "evidences/theme4_stage10h_perception_ecology_calibration_evidence.zip"
+  },
+  "fixed_sensor_radius_setting": "force_default_sensor_radius",
+  "horizon": {
+    "generations": 4,
+    "mode": "perception_ecology_calibration",
+    "note": "Bounded calibration horizon; shorter than Stage 10F and long enough for pressure probes.",
+    "steps_per_generation": 64,
+    "tick_count": 256
+  },
+  "input_evidence_reference": [
+    "evidences/theme4_stage10f_perception_pressure_isolation_evidence.md",
+    "evidences/theme4_stage10g_perception_ecology_diagnostic_evidence.md"
+  ],
+  "interpretation_limits": [
+    "Stage 10H calibrates scenario configurations only.",
+    "No perception adaptiveness claim is allowed.",
+    "No new cognitive machinery, rewards, policy wiring, selection logic, or Patch/Jungle mechanics are added.",
+    "Coefficient choices are recorded before execution and must not be tuned after seeing results."
+  ],
+  "manifest_version": "theme4_campaign_manifest_v1",
+  "output_directory": "evidences/theme4_stage10h_perception_ecology_calibration",
+  "paired_ablation_groups": [
+    {
+      "ablation_cell_id": "patch_medium_pressure_ablation",
+      "cost_level": "medium_from_stage10c",
+      "expected_affected_metrics": [
+        "perception_capacity_component_mean",
+        "patch_food_harvest_total",
+        "alive"
+      ],
+      "group_id": "patch_medium_pressure_calibration_ablation_contrast",
+      "normal_cell_id": "patch_medium_pressure_normal",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_medium_pressure"
+    },
+    {
+      "ablation_cell_id": "patch_strong_pressure_ablation",
+      "cost_level": "medium_from_stage10c",
+      "expected_affected_metrics": [
+        "perception_capacity_component_mean",
+        "patch_food_harvest_total",
+        "alive"
+      ],
+      "group_id": "patch_strong_pressure_calibration_ablation_contrast",
+      "normal_cell_id": "patch_strong_pressure_normal",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_strong_pressure"
+    },
+    {
+      "ablation_cell_id": "jungle_medium_pressure_ablation",
+      "cost_level": "medium_from_stage10c",
+      "expected_affected_metrics": [
+        "perception_capacity_component_mean",
+        "jungle_predator_events",
+        "alive"
+      ],
+      "group_id": "jungle_medium_pressure_calibration_ablation_contrast",
+      "normal_cell_id": "jungle_medium_pressure_normal",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_medium_pressure"
+    },
+    {
+      "ablation_cell_id": "jungle_strong_pressure_ablation",
+      "cost_level": "medium_from_stage10c",
+      "expected_affected_metrics": [
+        "perception_capacity_component_mean",
+        "jungle_predator_events",
+        "alive"
+      ],
+      "group_id": "jungle_strong_pressure_calibration_ablation_contrast",
+      "normal_cell_id": "jungle_strong_pressure_normal",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_strong_pressure"
+    },
+    {
+      "ablation_cell_id": "combined_medium_pressure_ablation",
+      "cost_level": "medium_from_stage10c",
+      "expected_affected_metrics": [
+        "perception_capacity_component_mean",
+        "patch_food_harvest_total",
+        "jungle_predator_events",
+        "alive"
+      ],
+      "group_id": "combined_medium_pressure_calibration_ablation_contrast",
+      "normal_cell_id": "combined_medium_pressure_normal",
+      "primary_trait": "perception",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_medium_pressure"
+    },
+    {
+      "ablation_cell_id": "combined_strong_pressure_ablation",
+      "cost_level": "medium_from_stage10c",
+      "expected_affected_metrics": [
+        "perception_capacity_component_mean",
+        "patch_food_harvest_total",
+        "jungle_predator_events",
+        "alive"
+      ],
+      "group_id": "combined_strong_pressure_calibration_ablation_contrast",
+      "normal_cell_id": "combined_strong_pressure_normal",
+      "primary_trait": "perception",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_strong_pressure"
+    }
+  ],
+  "scenario_cells": [
+    {
+      "cell_id": "flat_control_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {},
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "self-energy",
+        "self-health",
+        "local-grid"
+      ],
+      "expected_risk": "too_flat_control",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "flat_control",
+      "pressure_type": "flat",
+      "primary_trait": "perception",
+      "scenario_family": "flat",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_control"
+    },
+    {
+      "cell_id": "patch_weak_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "patch_food_regrow_per_step": 0.025,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_food_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "patch-food",
+        "patch-scent"
+      ],
+      "expected_risk": "too_easy_or_perception_weak",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "weak_pressure",
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_family": "patch",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_weak_pressure",
+      "variant_seed": 1101
+    },
+    {
+      "cell_id": "patch_medium_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "patch_cover_default": 0.2,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_shelter_default": 0.1,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.08,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_waste_occupancy_bias",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "patch-food",
+        "patch-cover",
+        "patch-shelter",
+        "patch-waste"
+      ],
+      "expected_risk": "balanced_candidate",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "medium_pressure",
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_family": "patch",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_medium_pressure",
+      "variant_seed": 1102
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "patch_medium_pressure_ablation",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "patch_cover_default": 0.2,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_shelter_default": 0.1,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.08,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_waste_occupancy_bias",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "minimal-perception-ablation"
+      ],
+      "expected_risk": "ablation_contrast",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "ablated",
+      "pressure_level": "medium_pressure",
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_family": "patch",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_medium_pressure",
+      "sim_overrides": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "variant_seed": 1102
+    },
+    {
+      "cell_id": "patch_strong_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "patch_cover_default": 0.35,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.045,
+        "patch_movement_cost_apply_enable": true,
+        "patch_movement_cost_default": 1.25,
+        "patch_movement_cost_energy_scale": 0.1,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.12,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_movement_cost_occupancy_bias",
+        "patch_waste_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "patch-food",
+        "patch-cover",
+        "patch-shelter",
+        "patch-waste",
+        "patch-movement-cost"
+      ],
+      "expected_risk": "too_noisy_or_too_costly",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "strong_pressure",
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_family": "patch",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_strong_pressure",
+      "variant_seed": 1103
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "patch_strong_pressure_ablation",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "patch_cover_default": 0.35,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.045,
+        "patch_movement_cost_apply_enable": true,
+        "patch_movement_cost_default": 1.25,
+        "patch_movement_cost_energy_scale": 0.1,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.12,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_movement_cost_occupancy_bias",
+        "patch_waste_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "minimal-perception-ablation"
+      ],
+      "expected_risk": "ablation_contrast",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "ablated",
+      "pressure_level": "strong_pressure",
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_family": "patch",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_strong_pressure",
+      "sim_overrides": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "variant_seed": 1103
+    },
+    {
+      "cell_id": "jungle_weak_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_predator_base_risk": 0.005,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.03,
+        "patch_cover_default": 0.2,
+        "patch_shelter_default": 0.1,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "jungle_predator_events",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "predator-risk",
+        "patch-cover",
+        "patch-shelter"
+      ],
+      "expected_risk": "too_weak",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "weak_pressure",
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_family": "jungle",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_weak_pressure",
+      "variant_seed": 1201
+    },
+    {
+      "cell_id": "jungle_medium_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.3,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "jungle_predator_events",
+        "jungle_predator_damage_total",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "predator-risk",
+        "patch-cover",
+        "patch-shelter",
+        "birth-scent"
+      ],
+      "expected_risk": "balanced_candidate",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "medium_pressure",
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_family": "jungle",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_medium_pressure",
+      "variant_seed": 1202
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "jungle_medium_pressure_ablation",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.3,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "jungle_predator_events",
+        "jungle_predator_damage_total",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "minimal-perception-ablation"
+      ],
+      "expected_risk": "ablation_contrast",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "ablated",
+      "pressure_level": "medium_pressure",
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_family": "jungle",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_medium_pressure",
+      "sim_overrides": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "variant_seed": 1202
+    },
+    {
+      "cell_id": "jungle_strong_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_juvenile_predator_vulnerability_enable": true,
+        "jungle_predator_base_risk": 0.015,
+        "jungle_predator_health_damage": 0.35,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.08,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.4,
+        "patch_shelter_default": 0.25,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "jungle_predator_events",
+        "jungle_predator_damage_total",
+        "jungle_predator_deaths",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "predator-risk",
+        "patch-cover",
+        "patch-shelter",
+        "juvenile-vulnerability"
+      ],
+      "expected_risk": "too_lethal_if_predator_pressure_saturates",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "strong_pressure",
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_family": "jungle",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_strong_pressure",
+      "variant_seed": 1203
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "jungle_strong_pressure_ablation",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_juvenile_predator_vulnerability_enable": true,
+        "jungle_predator_base_risk": 0.015,
+        "jungle_predator_health_damage": 0.35,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.08,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.4,
+        "patch_shelter_default": 0.25,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "jungle_predator_events",
+        "jungle_predator_damage_total",
+        "jungle_predator_deaths",
+        "patch_shelter_occupancy_bias"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "minimal-perception-ablation"
+      ],
+      "expected_risk": "ablation_contrast",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "ablated",
+      "pressure_level": "strong_pressure",
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_family": "jungle",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_strong_pressure",
+      "sim_overrides": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "variant_seed": 1203
+    },
+    {
+      "cell_id": "combined_weak_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_predator_base_risk": 0.005,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.03,
+        "patch_cover_default": 0.2,
+        "patch_food_regrow_per_step": 0.025,
+        "patch_shelter_default": 0.1,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "jungle_predator_events"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "patch-food",
+        "predator-risk",
+        "patch-shelter"
+      ],
+      "expected_risk": "too_weak",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "weak_pressure",
+      "pressure_type": "combined_patch_jungle",
+      "primary_trait": "perception",
+      "scenario_family": "combined",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_weak_pressure",
+      "variant_seed": 1301
+    },
+    {
+      "cell_id": "combined_medium_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.3,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.08,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_waste_occupancy_bias",
+        "jungle_predator_events",
+        "jungle_predator_damage_total"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "patch-food",
+        "patch-waste",
+        "predator-risk",
+        "patch-shelter"
+      ],
+      "expected_risk": "balanced_candidate",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "medium_pressure",
+      "pressure_type": "combined_patch_jungle",
+      "primary_trait": "perception",
+      "scenario_family": "combined",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_medium_pressure",
+      "variant_seed": 1302
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "combined_medium_pressure_ablation",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.3,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.08,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_waste_occupancy_bias",
+        "jungle_predator_events",
+        "jungle_predator_damage_total"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "minimal-perception-ablation"
+      ],
+      "expected_risk": "ablation_contrast",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "ablated",
+      "pressure_level": "medium_pressure",
+      "pressure_type": "combined_patch_jungle",
+      "primary_trait": "perception",
+      "scenario_family": "combined",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_medium_pressure",
+      "sim_overrides": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "variant_seed": 1302
+    },
+    {
+      "cell_id": "combined_strong_pressure_normal",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_juvenile_predator_vulnerability_enable": true,
+        "jungle_predator_base_risk": 0.015,
+        "jungle_predator_health_damage": 0.35,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.08,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.4,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.045,
+        "patch_movement_cost_apply_enable": true,
+        "patch_movement_cost_default": 1.25,
+        "patch_movement_cost_energy_scale": 0.1,
+        "patch_shelter_default": 0.25,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.12,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_waste_occupancy_bias",
+        "jungle_predator_events",
+        "jungle_predator_damage_total",
+        "jungle_predator_deaths"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "patch-food",
+        "patch-waste",
+        "patch-movement-cost",
+        "predator-risk",
+        "patch-shelter"
+      ],
+      "expected_risk": "too_noisy_or_too_lethal",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "normal",
+      "pressure_level": "strong_pressure",
+      "pressure_type": "combined_patch_jungle",
+      "primary_trait": "perception",
+      "scenario_family": "combined",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_strong_pressure",
+      "variant_seed": 1303
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "combined_strong_pressure_ablation",
+      "classification": "live",
+      "cost_level": "medium_from_stage10c",
+      "env_overrides": {
+        "jungle_juvenile_predator_vulnerability_enable": true,
+        "jungle_predator_base_risk": 0.015,
+        "jungle_predator_health_damage": 0.35,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.08,
+        "jungle_reproduction_emissions_enable": true,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.4,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.045,
+        "patch_movement_cost_apply_enable": true,
+        "patch_movement_cost_default": 1.25,
+        "patch_movement_cost_energy_scale": 0.1,
+        "patch_shelter_default": 0.25,
+        "patch_shelter_from_cover_enable": false,
+        "patch_waste_consume_emit": 0.12,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_behavior_proxy_changes": [
+        "patch_food_harvest_total",
+        "patch_waste_occupancy_bias",
+        "jungle_predator_events",
+        "jungle_predator_damage_total",
+        "jungle_predator_deaths"
+      ],
+      "expected_metric_families": [
+        "core",
+        "population",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "sensor_radius",
+        "guardrails"
+      ],
+      "expected_perception_visible_affordances": [
+        "minimal-perception-ablation"
+      ],
+      "expected_risk": "ablation_contrast",
+      "fixed_sensor_radius_setting": "force_default_sensor_radius",
+      "perception_condition": "ablated",
+      "pressure_level": "strong_pressure",
+      "pressure_type": "combined_patch_jungle",
+      "primary_trait": "perception",
+      "scenario_family": "combined",
+      "scenario_group": "combined",
+      "scenario_variant": "combined_strong_pressure",
+      "sim_overrides": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "variant_seed": 1303
+    }
+  ],
+  "scenario_ladder": {
+    "flat_control": [
+      "flat_control"
+    ],
+    "medium_pressure": [
+      "patch_medium_pressure",
+      "jungle_medium_pressure",
+      "combined_medium_pressure"
+    ],
+    "strong_pressure": [
+      "patch_strong_pressure",
+      "jungle_strong_pressure",
+      "combined_strong_pressure"
+    ],
+    "weak_pressure": [
+      "patch_weak_pressure",
+      "jungle_weak_pressure",
+      "combined_weak_pressure"
+    ]
+  },
+  "scenario_variants": {
+    "combined_medium_pressure": {
+      "expected_affordance": "food/waste plus predator/shelter tradeoff",
+      "pressure_level": "medium_pressure",
+      "scenario_family": "combined",
+      "variant_seed": 1302
+    },
+    "combined_strong_pressure": {
+      "expected_affordance": "high food/waste plus stronger predator risk",
+      "pressure_level": "strong_pressure",
+      "scenario_family": "combined",
+      "variant_seed": 1303
+    },
+    "combined_weak_pressure": {
+      "expected_affordance": "weak food plus weak predator risk",
+      "pressure_level": "weak_pressure",
+      "scenario_family": "combined",
+      "variant_seed": 1301
+    },
+    "flat_control": {
+      "expected_affordance": "flat control with no Patch/Jungle pressure",
+      "pressure_level": "flat_control",
+      "scenario_family": "flat",
+      "variant_seed": 1000
+    },
+    "jungle_medium_pressure": {
+      "expected_affordance": "predator risk moderated by cover/shelter",
+      "pressure_level": "medium_pressure",
+      "scenario_family": "jungle",
+      "variant_seed": 1202
+    },
+    "jungle_strong_pressure": {
+      "expected_affordance": "strong predator risk moderated by cover/shelter",
+      "pressure_level": "strong_pressure",
+      "scenario_family": "jungle",
+      "variant_seed": 1203
+    },
+    "jungle_weak_pressure": {
+      "expected_affordance": "weak predator risk and shelter signal",
+      "pressure_level": "weak_pressure",
+      "scenario_family": "jungle",
+      "variant_seed": 1201
+    },
+    "patch_medium_pressure": {
+      "expected_affordance": "food, cover, shelter, and waste tradeoff",
+      "pressure_level": "medium_pressure",
+      "scenario_family": "patch",
+      "variant_seed": 1102
+    },
+    "patch_strong_pressure": {
+      "expected_affordance": "food, waste, shelter, and movement-cost tradeoff",
+      "pressure_level": "strong_pressure",
+      "scenario_family": "patch",
+      "variant_seed": 1103
+    },
+    "patch_weak_pressure": {
+      "expected_affordance": "food and scent signal",
+      "pressure_level": "weak_pressure",
+      "scenario_family": "patch",
+      "variant_seed": 1101
+    }
+  },
+  "seed_list": [
+    111,
+    222,
+    333,
+    444,
+    555
+  ],
+  "stage": "theme4_stage10h",
+  "validation_warnings": [
+    "Calibration presets use existing EnvConfig/SimConfig knobs only.",
+    "This campaign is not evidence that perception is adaptive.",
+    "Do not tune coefficients after seeing results."
+  ]
+}

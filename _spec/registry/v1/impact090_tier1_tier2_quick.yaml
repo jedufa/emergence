@@ -1,0 +1,228 @@
+harness_api: 1
+version: 1
+name: impact090_tier1_tier2
+description: ">-\n  Quick-scale Phase II (ecological consequences) for Tier 1 + Tier\
+  \ 2.\n  Confirms gradients change occupancy/survival/reproduction spatially (no\
+  \ global collapse, no perverse direction).\n"
+intent:
+  question: Do Tier 1 and Tier 2 gradients change ecological outcomes in a spatially
+    interpretable way (movement/survival/repro) without agent steering?
+  axes:
+  - condition:
+    - II1_T1_uniform__T2_none
+    - II1_T1_med__T2_none
+    - II2_T1_uniform__T2_none
+    - II2_T1_uniform__T2_singleNW
+    - II3_T1_uniform__T2_early
+    - II3_T1_uniform__T2_late
+    - II4_T1_med__T2_hits_refuge
+    - II4_T1_med__T2_spares_refuge
+matrix_order:
+- condition
+- seed
+axes:
+  condition:
+    values:
+    - II1_T1_uniform__T2_none
+    - II1_T1_med__T2_none
+    - II2_T1_uniform__T2_none
+    - II2_T1_uniform__T2_singleNW
+    - II3_T1_uniform__T2_early
+    - II3_T1_uniform__T2_late
+    - II4_T1_med__T2_hits_refuge
+    - II4_T1_med__T2_spares_refuge
+    flags:
+      II1_T1_uniform__T2_none:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__none.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II1_T1_med__T2_none:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__none.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II2_T1_uniform__T2_none:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__none.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II2_T1_uniform__T2_singleNW:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_NW_severe.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II3_T1_uniform__T2_early:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_NW_severe_early.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II3_T1_uniform__T2_late:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_NW_severe_late.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II4_T1_med__T2_hits_refuge:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_CENTER_severe.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      II4_T1_med__T2_spares_refuge:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_SE_severe.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+seeds:
+- 1
+- 2
+- 3
+cli_defaults:
+- - --generations
+  - '30'
+- - --steps
+  - '150'
+- - --pop
+  - '128'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- maps/resource_regrowth_map.npy
+- maps/resource_spawn_density_map.npy
+- maps/hazard_rate_map.npy
+- droughts/README.txt
+- droughts/drought_intensity_timeseries.csv
+- droughts/drought_stats_periodic.csv
+- droughts/regions/drought_region_id_map.npy
+naming:
+  run_tag_prefix: impact090_quick
+  run_id_format: '{name}__cond_{condition}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__cond_{condition}'

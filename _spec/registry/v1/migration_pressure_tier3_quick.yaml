@@ -1,0 +1,49 @@
+harness_api: 1
+version: 1
+name: migration_pressure_tier3
+description: >
+  Quick-scale Tier 3 overcrowding plumbing test.
+  Uses a single region (1x1) with capacity < population to guarantee overcrowd > 0.
+
+intent:
+  question: "Tier 3 carrying capacity: does overcrowd become non-zero and propagate into logged Tier3 metrics?"
+  axes:
+    - scenario: ["baseline", "overcrowd"]
+
+matrix_order: [scenario, seed]
+
+axes:
+  scenario:
+    values: ["baseline", "overcrowd"]
+    flags:
+      baseline:
+        # Baseline uses the same region partition as the variant, but leaves Tier 3 disabled.
+        - "--tier3_regions_spec"
+        - "@experiments/assets/tier3_migration/v1/tier3_regions_1x1.json"
+      overcrowd:
+        - "--migration_pressure_enable"
+        - "--tier3_regions_spec"
+        - "@experiments/assets/tier3_migration/v1/tier3_regions_1x1.json"
+        - "--tier3_regional_carrying_capacity"
+        - "@experiments/assets/tier3_migration/v1/tier3_cc_overcrowd_1x1.json"
+
+seeds: [7]
+
+cli_defaults:
+  - ["--generations", "30"]
+  - ["--steps", "150"]
+  - ["--pop", "256"]
+  - ["--policy_tick_stride", "2"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "run_config.csv"
+  - "config.json"
+  - "metrics.csv"
+  - "maps/tier3_region_id.npy"
+  - "maps/tier3_regions_stats.json"
+
+naming:
+  run_tag_prefix: "tier3_quick"
+  run_id_format: "{name}__scenario_{scenario}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__scenario_{scenario}"

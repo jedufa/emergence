@@ -1,0 +1,63 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_review_target_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "delivery_evidence_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "delivery_material": {
+      "$ref": "eiel_session_delivery_material_ref_v1.schema.json"
+    },
+    "implementation_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "implementing_codex_identities": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "implementing_identity_assurance": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "reviewed_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "reviewed_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reviewed_package_version": {
+      "minimum": 1,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_review_target_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "implementation_session_id",
+    "delivery_material",
+    "delivery_evidence_sha256",
+    "implementing_codex_identities",
+    "implementing_identity_assurance",
+    "reviewed_commit",
+    "reviewed_package_sha256",
+    "reviewed_package_version"
+  ],
+  "title": "EIEL purpose-specific review target",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.session_manager",
+  "x-eiel-persistence-class": "embedded_material_reference"
+}

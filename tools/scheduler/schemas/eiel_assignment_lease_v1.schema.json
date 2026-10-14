@@ -1,0 +1,99 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_assignment_lease_v1.schema.json",
+  "title": "EIEL temporary Assignment Lease payload",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "eiel_assignment_lease_v1"
+    },
+    "assignment_id": {
+      "type": "string",
+      "pattern": "^ASSIGN-[A-Z0-9-]+$"
+    },
+    "assignment_material_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "scheduler_id": {
+      "type": "string",
+      "pattern": "^SCH-[A-Z0-9-]+$"
+    },
+    "claimed_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "expires_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "last_heartbeat_at_utc": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "duration_seconds": {
+      "type": "integer",
+      "minimum": 30
+    },
+    "heartbeat_interval_seconds": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "worker": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "worker_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "pid": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "process_start_identity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "thread_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "worker_id",
+        "pid",
+        "process_start_identity",
+        "thread_id"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "assignment_id",
+    "assignment_material_sha256",
+    "scheduler_id",
+    "claimed_at_utc",
+    "expires_at_utc",
+    "last_heartbeat_at_utc",
+    "duration_seconds",
+    "heartbeat_interval_seconds",
+    "worker"
+  ]
+}

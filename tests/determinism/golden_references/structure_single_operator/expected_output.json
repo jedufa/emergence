@@ -1,0 +1,5 @@
+{
+  "case_id": "golden_structure_single_operator",
+  "schema_version": "golden_reference_expected_output_v1",
+  "note": "Populate with canonical genome bytes/hash expected output"
+}

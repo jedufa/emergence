@@ -1,0 +1,50 @@
+{
+  "case_id": "golden_recombination_single_cross_unmatched_sorted",
+  "schema_version": "golden_reference_input_v1",
+  "kind": "recombination_single_cross",
+  "seed": 33002,
+  "parent_a_payload": {
+    "schema_version": "modular_genome_v1",
+    "hidden_size": 64,
+    "exploration_bias": 0.1,
+    "aggression_bias": 0.1,
+    "reproduction_threshold": 30.0,
+    "mutation_rate": 0.05,
+    "action_temperature": 1.0,
+    "use_gru": false,
+    "memory_dim": 0,
+    "drive_inertia": 0.8,
+    "drive_noise": 0.02,
+    "drive_logit_gain": 1.0,
+    "pred_lr": 0.08,
+    "modules": [
+      {"module_id": "a_m010", "module_type": "generic", "params": {"p": 2.0}},
+      {"module_id": "a_m000", "module_type": "generic", "params": {"p": 1.0}}
+    ],
+    "connections": [
+      {"connection_id": "a_c000", "src_module_id": "a_m000", "dst_module_id": "a_m010", "src_slot": "out", "dst_slot": "in", "value_type": "scalar", "weight": 1.0}
+    ]
+  },
+  "parent_b_payload": {
+    "schema_version": "modular_genome_v1",
+    "hidden_size": 64,
+    "exploration_bias": -0.1,
+    "aggression_bias": 0.2,
+    "reproduction_threshold": 35.0,
+    "mutation_rate": 0.04,
+    "action_temperature": 1.1,
+    "use_gru": false,
+    "memory_dim": 0,
+    "drive_inertia": 0.85,
+    "drive_noise": 0.01,
+    "drive_logit_gain": 1.1,
+    "pred_lr": 0.09,
+    "modules": [
+      {"module_id": "b_m020", "module_type": "generic", "params": {"p": 6.0}},
+      {"module_id": "b_m000", "module_type": "generic", "params": {"p": 4.0}}
+    ],
+    "connections": [
+      {"connection_id": "b_c000", "src_module_id": "b_m000", "dst_module_id": "b_m020", "src_slot": "out", "dst_slot": "in", "value_type": "scalar", "weight": 1.0}
+    ]
+  }
+}

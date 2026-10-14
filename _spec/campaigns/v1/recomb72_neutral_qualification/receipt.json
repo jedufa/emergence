@@ -1,0 +1,22 @@
+{
+  "schema_version": "recomb72_neutral_qualification_v1",
+  "ok": true,
+  "provider_id": "recomb72-neutral-inheritance-provider-v1",
+  "profile_id": "recomb72-neutral-inheritance-cpu-v1",
+  "registry_sha256": "f5c4cffb49328c98c0d184e0634730c22474f3c5c7b41bd8e58fc6f01609cb71",
+  "qualified_batch_range": [
+    1,
+    6
+  ],
+  "fixed_envelope": {
+    "grid": [
+      16,
+      16
+    ],
+    "initial_population": 64,
+    "capacity": 256,
+    "ticks_per_generation": 80,
+    "maximum_generations": 30
+  },
+  "authority": "audit_only_neutral_generation_boundary_fixture"
+}

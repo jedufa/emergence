@@ -1,0 +1,209 @@
+{
+  "schema_version": "golden_suite_catalog_v1",
+  "description": "Tiered golden replay suite using existing deterministic tests as executable references.",
+  "tiers": {
+    "mini": 12,
+    "macro": 8,
+    "mega": 4
+  },
+  "profiles": {
+    "quick": [
+      "mini_chem_tick_nominal",
+      "mini_chem_clamp_edges",
+      "mini_chem_budget_mismatch_negative",
+      "mini_chem_placeholder_invariance",
+      "mini_struct_single_operator_apply",
+      "mini_struct_single_operator_noop"
+    ],
+    "standard": [
+      "mini_chem_tick_nominal",
+      "mini_chem_clamp_edges",
+      "mini_chem_budget_mismatch_negative",
+      "mini_chem_placeholder_invariance",
+      "mini_struct_single_operator_apply",
+      "mini_struct_single_operator_noop",
+      "mini_struct_budget_mismatch_negative",
+      "mini_struct_canonical_order_invariance",
+      "mini_recomb_full_match",
+      "mini_recomb_unmatched_sorted",
+      "mini_recomb_budget_mismatch_negative",
+      "mini_recomb_parent_permutation_invariance",
+      "macro_chem_maintenance_delayed_effect",
+      "macro_chem_maintenance_diminishing_returns",
+      "macro_chem_coupling_action_cost",
+      "macro_chem_ablation_signal_shift"
+    ],
+    "nightly": [
+      "mini_chem_tick_nominal",
+      "mini_chem_clamp_edges",
+      "mini_chem_budget_mismatch_negative",
+      "mini_chem_placeholder_invariance",
+      "mini_struct_single_operator_apply",
+      "mini_struct_single_operator_noop",
+      "mini_struct_budget_mismatch_negative",
+      "mini_struct_canonical_order_invariance",
+      "mini_recomb_full_match",
+      "mini_recomb_unmatched_sorted",
+      "mini_recomb_budget_mismatch_negative",
+      "mini_recomb_parent_permutation_invariance",
+      "macro_chem_maintenance_delayed_effect",
+      "macro_chem_maintenance_diminishing_returns",
+      "macro_chem_coupling_action_cost",
+      "macro_chem_ablation_signal_shift",
+      "macro_b1_mixed_legacy_v1_stability",
+      "macro_b2_global_soup_prevented",
+      "macro_checkpoint_roundtrip_maintenance_parity",
+      "macro_short_horizon_fresh_resume_a3",
+      "mega_c1_checkpoint_resume_parity",
+      "mega_c2_fresh_resume_parity",
+      "mega_b3_fresh_resume_parity",
+      "mega_p0e_budget_replay_parity"
+    ]
+  },
+  "cases": [
+    {
+      "id": "mini_chem_tick_nominal",
+      "tier": "mini",
+      "topic": "chemistry single tick nominal",
+      "nodeid": "tests/evolvability/phase_a/test_p1a_chemistry_foundation.py::test_p1a_chemistry_tick_deterministic_for_fixed_snapshot"
+    },
+    {
+      "id": "mini_chem_clamp_edges",
+      "tier": "mini",
+      "topic": "chemistry clamp-edge tick",
+      "nodeid": "tests/evolvability/phase_a/test_p1a_chemistry_foundation.py::test_p1a_chemistry_clamp_determinism"
+    },
+    {
+      "id": "mini_chem_budget_mismatch_negative",
+      "tier": "mini",
+      "topic": "chemistry budget mismatch negative",
+      "nodeid": "tests/evolvability/phase_a/test_p1a_chemistry_foundation.py::test_p1a_chemistry_budget_expected_and_mismatch_strict"
+    },
+    {
+      "id": "mini_chem_placeholder_invariance",
+      "tier": "mini",
+      "topic": "chemistry placeholder draw invariance",
+      "nodeid": "tests/evolvability/phase_a/test_p1a_chemistry_foundation.py::test_p1a_chemistry_placeholder_draw_invariance"
+    },
+    {
+      "id": "mini_struct_single_operator_apply",
+      "tier": "mini",
+      "topic": "structure single operator apply",
+      "nodeid": "tests/evolvability/phase_c/test_c1_operator_framework_budgets.py::test_c1_unit_operator_pipeline_determinism_for_fixed_seed"
+    },
+    {
+      "id": "mini_struct_single_operator_noop",
+      "tier": "mini",
+      "topic": "structure single operator no-op path",
+      "nodeid": "tests/evolvability/phase_c/test_c1_operator_framework_budgets.py::test_c1_unit_per_operator_draw_count_invariant_active_vs_noop"
+    },
+    {
+      "id": "mini_struct_budget_mismatch_negative",
+      "tier": "mini",
+      "topic": "structure operator budget mismatch negative",
+      "nodeid": "tests/evolvability/phase_c/test_c1_operator_framework_budgets.py::test_c1_unit_strict_budget_mismatch_fails"
+    },
+    {
+      "id": "mini_struct_canonical_order_invariance",
+      "tier": "mini",
+      "topic": "structure canonical-order invariance",
+      "nodeid": "tests/evolvability/phase_b/test_b2_module_interfaces_budgets.py::test_b2_canonical_ordering_stable_after_repair"
+    },
+    {
+      "id": "mini_recomb_full_match",
+      "tier": "mini",
+      "topic": "recombination full lineage match",
+      "nodeid": "tests/evolvability/phase_c/test_c2_deterministic_recombination_lineage.py::test_c2_integration_canonical_hash_stability_after_recombination"
+    },
+    {
+      "id": "mini_recomb_unmatched_sorted",
+      "tier": "mini",
+      "topic": "recombination unmatched keep-all-sorted",
+      "nodeid": "tests/evolvability/phase_c/test_c2_deterministic_recombination_lineage.py::test_c2_unit_unmatched_resolution_keep_all_sorted"
+    },
+    {
+      "id": "mini_recomb_budget_mismatch_negative",
+      "tier": "mini",
+      "topic": "recombination budget mismatch negative",
+      "nodeid": "tests/evolvability/phase_c/test_c2_deterministic_recombination_lineage.py::test_c2_unit_budget_mismatch_strict_fails"
+    },
+    {
+      "id": "mini_recomb_parent_permutation_invariance",
+      "tier": "mini",
+      "topic": "recombination parent permutation invariance",
+      "nodeid": "tests/evolvability/phase_c/test_c2_deterministic_recombination_lineage.py::test_c2_unit_alignment_deterministic_under_parent_permutations"
+    },
+    {
+      "id": "macro_chem_maintenance_delayed_effect",
+      "tier": "macro",
+      "topic": "chemistry+maintenance delayed-effect semantics",
+      "nodeid": "tests/evolvability/phase_a/test_p1a2_maintenance_delayed_process.py::test_p1a2_delayed_effect_applies_only_after_delay"
+    },
+    {
+      "id": "macro_chem_maintenance_diminishing_returns",
+      "tier": "macro",
+      "topic": "chemistry+maintenance diminishing returns",
+      "nodeid": "tests/evolvability/phase_a/test_p1a2_maintenance_delayed_process.py::test_p1a2_diminishing_returns_monotonicity"
+    },
+    {
+      "id": "macro_chem_coupling_action_cost",
+      "tier": "macro",
+      "topic": "chemistry coupling action cost impact",
+      "nodeid": "tests/evolvability/phase_a/test_p1a3_chemistry_functional_coupling.py::test_p1a3_integration_action_cost_coupling_affects_env_boundary"
+    },
+    {
+      "id": "macro_chem_ablation_signal_shift",
+      "tier": "macro",
+      "topic": "chemistry ablation contrast signal shift",
+      "nodeid": "tests/evolvability/phase_a/test_p1a3_chemistry_functional_coupling.py::test_p1a3_functional_chemistry_ablation_weakens_competence_signal"
+    },
+    {
+      "id": "macro_b1_mixed_legacy_v1_stability",
+      "tier": "macro",
+      "topic": "B1 mixed legacy/v1 canonical stability",
+      "nodeid": "tests/evolvability/phase_b/test_b1_modular_genome_canonicalization.py::test_b1_mixed_legacy_v1_payloads_have_stable_canonical_hashes"
+    },
+    {
+      "id": "macro_b2_global_soup_prevented",
+      "tier": "macro",
+      "topic": "B2 global soup prevention by caps",
+      "nodeid": "tests/evolvability/phase_b/test_b2_module_interfaces_budgets.py::test_b2_global_soup_wiring_prevented_by_caps"
+    },
+    {
+      "id": "macro_checkpoint_roundtrip_maintenance_parity",
+      "tier": "macro",
+      "topic": "checkpoint roundtrip maintenance parity",
+      "nodeid": "tests/evolvability/phase_a/test_p1a2_maintenance_delayed_process.py::test_p1a2_integration_checkpoint_roundtrip_restores_maintenance"
+    },
+    {
+      "id": "macro_short_horizon_fresh_resume_a3",
+      "tier": "macro",
+      "topic": "short-horizon fresh-vs-resume parity with A3",
+      "nodeid": "tests/evolvability/phase_a/test_p1a3_chemistry_functional_coupling.py::test_p1a3_functional_fresh_vs_resume_parity_strict_with_a3"
+    },
+    {
+      "id": "mega_c1_checkpoint_resume_parity",
+      "tier": "mega",
+      "topic": "C1 checkpoint/resume operator pipeline parity",
+      "nodeid": "tests/evolvability/phase_c/test_c1_operator_framework_budgets.py::test_c1_integration_checkpoint_resume_parity_operator_pipeline"
+    },
+    {
+      "id": "mega_c2_fresh_resume_parity",
+      "tier": "mega",
+      "topic": "C2 fresh-vs-resume parity",
+      "nodeid": "tests/evolvability/phase_c/test_c2_deterministic_recombination_lineage.py::test_c2_functional_fresh_vs_resume_parity_with_c2_enabled"
+    },
+    {
+      "id": "mega_b3_fresh_resume_parity",
+      "tier": "mega",
+      "topic": "B3 fresh-vs-resume parity",
+      "nodeid": "tests/evolvability/phase_b/test_b3_locality_constraints.py::test_b3_fresh_vs_resume_parity_with_b3_enabled"
+    },
+    {
+      "id": "mega_p0e_budget_replay_parity",
+      "tier": "mega",
+      "topic": "P0E budget replay parity",
+      "nodeid": "tests/determinism/p0/test_p0e_rng_budget_enforcement.py::test_p0e_replay_parity_for_budget_deltas"
+    }
+  ]
+}

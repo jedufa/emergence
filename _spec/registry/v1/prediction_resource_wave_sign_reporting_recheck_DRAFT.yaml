@@ -1,0 +1,264 @@
+harness_api: 1
+version: 1
+name: prediction_resource_wave_sign_reporting_recheck_DRAFT
+description: "DRAFT_NOT_EXECUTED design registry for one bounded Track C prediction resource-wave sign-reporting recheck."
+draft: true
+execution_status: DRAFT_NOT_EXECUTED
+intent:
+  question: "If the C4 same-substrate resource-wave probe is repeated with C6 compact sign-conditioned summaries enabled, do boom-versus-bust sign/window action summaries explain Decision C through wrong-sign movement, late timing, mixed boom/bust cancellation, or cost/life-history tradeoff?"
+  boundary: "DRAFT_NOT_EXECUTED. Design-only registry. Do not execute without a separate future prompt."
+  axes:
+    - prediction_condition:
+        - prediction_normal
+        - prediction_ablated
+    - demand_context:
+        - prediction_demand_enabled
+        - prediction_demand_disabled_matched_control
+    - init_arm:
+        - init_legacy
+        - init_founder_balanced
+    - substrate_variant:
+        - resource_boom_bust_mixed
+matrix_order:
+  - prediction_condition
+  - demand_context
+  - init_arm
+  - substrate_variant
+  - seed
+axes:
+  prediction_condition:
+    values:
+      - prediction_normal
+      - prediction_ablated
+    flags:
+      prediction_normal:
+        - --knob
+        - sim_cfg.force_prediction_disabled=false
+        - --knob
+        - sim_cfg.force_prediction_frozen=false
+        - --knob
+        - sim_cfg.force_prediction_zero_lr=false
+        - --knob
+        - sim_cfg.reset_prediction_each_tick=false
+        - --knob
+        - sim_cfg.prediction_pressure_scenario=true
+        - --knob
+        - sim_cfg.prediction_pressure_type=variable_delay_resource_wave
+        - --knob
+        - sim_cfg.prediction_demand_action_context_prediction_arm=prediction_normal
+      prediction_ablated:
+        - --knob
+        - sim_cfg.force_prediction_disabled=false
+        - --knob
+        - sim_cfg.force_prediction_frozen=false
+        - --knob
+        - sim_cfg.force_prediction_zero_lr=true
+        - --knob
+        - sim_cfg.reset_prediction_each_tick=true
+        - --knob
+        - sim_cfg.prediction_pressure_scenario=true
+        - --knob
+        - sim_cfg.prediction_pressure_type=variable_delay_resource_wave
+        - --knob
+        - sim_cfg.prediction_demand_action_context_prediction_arm=prediction_ablated
+  demand_context:
+    values:
+      - prediction_demand_enabled
+      - prediction_demand_disabled_matched_control
+    flags:
+      prediction_demand_enabled:
+        - --knob
+        - env_cfg.patch_world_enable=true
+        - --knob
+        - env_cfg.patch_world_observation_enable=true
+        - --knob
+        - env_cfg.prediction_demand_enable=true
+        - --knob
+        - env_cfg.prediction_demand_observation_enable=true
+        - --knob
+        - env_cfg.prediction_demand_resource_consequence_enable=true
+        - --knob
+        - env_cfg.prediction_demand_deterministic_schedule_enable=true
+      prediction_demand_disabled_matched_control:
+        - --knob
+        - env_cfg.patch_world_enable=true
+        - --knob
+        - env_cfg.patch_world_observation_enable=true
+        - --knob
+        - env_cfg.prediction_demand_enable=false
+        - --knob
+        - env_cfg.prediction_demand_observation_enable=false
+        - --knob
+        - env_cfg.prediction_demand_resource_consequence_enable=true
+        - --knob
+        - env_cfg.prediction_demand_deterministic_schedule_enable=true
+  init_arm:
+    values:
+      - init_legacy
+      - init_founder_balanced
+    flags:
+      init_legacy:
+        - --knob
+        - sim_cfg.lineage_founder_balance_enable=false
+        - --knob
+        - sim_cfg.prediction_demand_action_context_init_arm=init_legacy
+      init_founder_balanced:
+        - --knob
+        - sim_cfg.lineage_founder_balance_enable=true
+        - --knob
+        - sim_cfg.lineage_founder_group_count=8
+        - --knob
+        - sim_cfg.lineage_founder_min_agents_per_group=8
+        - --knob
+        - sim_cfg.lineage_founder_assignment_mode=deterministic_round_robin
+        - --knob
+        - sim_cfg.lineage_founder_balance_schema_version=1
+        - --knob
+        - sim_cfg.prediction_demand_action_context_init_arm=init_founder_balanced
+  substrate_variant:
+    values:
+      - resource_boom_bust_mixed
+    flags:
+      resource_boom_bust_mixed:
+        - --knob
+        - env_cfg.prediction_demand_schema_version=1
+        - --knob
+        - env_cfg.prediction_demand_cycle_mode=variable_delay_resource_wave
+        - --knob
+        - env_cfg.prediction_demand_delay_min=4
+        - --knob
+        - env_cfg.prediction_demand_delay_max=10
+        - --knob
+        - env_cfg.prediction_demand_cue_noise=0.25
+        - --knob
+        - env_cfg.prediction_demand_transition_strength=0.35
+        - --knob
+        - env_cfg.prediction_demand_active_duration=4
+        - --knob
+        - env_cfg.prediction_demand_event_period_steps=18
+        - --knob
+        - env_cfg.prediction_demand_radius=1
+seeds:
+  - 101
+  - 202
+  - 303
+  - 404
+  - 505
+cli_defaults:
+  - - --generations
+    - "36"
+  - - --steps
+    - "80"
+  - - --pop
+    - "64"
+  - - --grid_size
+    - "16"
+  - - --policy_tick_stride
+    - "1"
+  - - --device
+    - cuda
+  - - --bank_device
+    - cuda
+  - - --knob
+    - sim_cfg.device=cuda
+  - - --knob
+    - sim_cfg.bank_device=cuda
+  - - --knob
+    - sim_cfg.policy_deterministic_actions=true
+  - - --knob
+    - sim_cfg.behavior_log_enable=true
+  - - --knob
+    - sim_cfg.phase_e_e1_enable=false
+  - - --knob
+    - sim_cfg.enable_cognitive_trait_registry=true
+  - - --knob
+    - sim_cfg.enable_cognitive_status_metrics=true
+  - - --knob
+    - sim_cfg.enable_cognitive_budget_ledger=true
+  - - --knob
+    - sim_cfg.enable_evolvable_sensor_channel_mask=true
+  - - --knob
+    - sim_cfg.enable_evolvable_sensor_radius=false
+  - - --knob
+    - sim_cfg.force_default_sensor_radius=true
+  - - --knob
+    - sim_cfg.force_memory_disabled=false
+  - - --knob
+    - sim_cfg.reset_memory_each_tick=false
+  - - --knob
+    - sim_cfg.memory_pressure_scenario=false
+  - - --knob
+    - sim_cfg.enable_experimental_prediction_cost_charging=true
+  - - --knob
+    - sim_cfg.prediction_cost_base=0.0005
+  - - --knob
+    - sim_cfg.prediction_cost_per_lr=0.001
+  - - --knob
+    - sim_cfg.prediction_state_cost=0.0001
+  - - --knob
+    - sim_cfg.disable_prediction_error_selection_pressure=true
+  - - --knob
+    - sim_cfg.episode0_fitness_weight=0.0
+  - - --knob
+    - sim_cfg.episode0_pred_err_fitness_weight=0.0
+  - - --knob
+    - sim_cfg.episode0_thrashing_fitness_weight=0.0
+  - - --knob
+    - sim_cfg.episode0_drive_jitter_fitness_weight=0.0
+  - - --knob
+    - sim_cfg.episode0_selfharm_fitness_weight=0.0
+  - - --knob
+    - sim_cfg.late_pred_cost_enable=false
+  - - --knob
+    - sim_cfg.late_coherence_eff_enable=false
+  - - --knob
+    - sim_cfg.adult_move_penalty_enable=false
+  - - --knob
+    - sim_cfg.identity_drift_enable=false
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_enable=true
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_write_events=false
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_window_radius=1
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_include_lineage=true
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_sign_summary_enable=true
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_sign_summary_include_windows=true
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_sign_summary_write_jsonl=true
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_sign_summary_write_compact_csv=false
+  - - --knob
+    - sim_cfg.prediction_demand_action_context_sign_summary_max_events_per_run=0
+  - - --knob
+    - sim_cfg.lineage_observability_enable=true
+  - - --knob
+    - env_cfg.lineage_diversity_reporting_enable=true
+  - - --knob
+    - env_cfg.wdl_delayed_hazard_enable=false
+  - - --knob
+    - env_cfg.wdl_delayed_hazard_observation_enable=false
+  - - --knob
+    - sim_cfg.checkpoint_bundle_v2_period_gen=1
+expected_artifacts:
+  - manifest.json
+  - run_config.csv
+  - config.json
+  - metrics.csv
+  - prediction_demand_action_context/prediction_demand_action_context_schema.json
+  - prediction_demand_action_context/prediction_demand_action_context_generation_summary.jsonl
+  - prediction_demand_action_context/prediction_demand_action_context_run_summary.json
+  - prediction_demand_action_context/prediction_demand_action_context_sign_summary.json
+  - prediction_demand_action_context/prediction_demand_action_context_sign_window_summary.jsonl
+  - prediction_demand_action_context/prediction_demand_action_context_sign_generation_summary.jsonl
+naming:
+  run_tag_prefix: prediction_resource_wave_sign_reporting_recheck_DRAFT
+  run_id_format: "prediction_resource_wave_sign_recheck_DRAFT__pred_{prediction_condition}__demand_{demand_context}__init_{init_arm}__variant_{substrate_variant}__seed{seed:06d}"
+  run_tag_format: "prediction_resource_wave_sign_recheck_DRAFT__pred_{prediction_condition}__demand_{demand_context}__init_{init_arm}__variant_{substrate_variant}"
+preflight_required:
+  - dry_run_matrix
+  - tiny_prediction_demand_enabled_metrics_nonzero
+  - c6_sign_summary_reporting_fixture

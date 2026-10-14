@@ -1,0 +1,90 @@
+# Synthetic compile-only fixture: artifact locators are intentionally unavailable.
+schema_version: eiel_campaign_v1
+campaign_id: patch-fixed-g14-irregular
+description: Awkward-value fixed-policy architecture proof.
+no_claims: Bounded mechanical campaign only; no intelligence, emergence, consciousness, or broad cognition claim.
+world:
+  base: patch
+  overlays: []
+policy:
+  family: fixed_mlp
+selection:
+  mode: standard
+parameters:
+  patch.grid_size: 16
+  patch.initial_population: 64
+  patch.capacity: 256
+matrix:
+  dimensions:
+    - id: ecology_seed
+      description: Independent ecological source seed.
+      values: [101, 202, 303, 404, 505, 606, 707]
+    - id: task_seed
+      description: Independent task seed.
+      values: [9101]
+    - id: founder_mode
+      description: Founder placement treatment.
+      values: [balanced, legacy, round_robin]
+  parameter_bindings:
+    founder_mode: patch.founder_placement
+  seed_bindings:
+    ecology_seed: ecology
+    task_seed: task
+  include: []
+  exclude: []
+  expected_cells: 21
+  max_cells: 100
+execution:
+  backend: cuda_resident
+  generations: 14
+  ticks_per_generation: 80
+  batch:
+    mode: bounded
+    maximum: 2
+  budgets:
+    vram_bytes: 2000000000
+    disk_bytes: 100000000000
+    wall_seconds: 86400
+  cancellation: false
+checkpoints:
+  milestones: [7, 14]
+  digest_every_generation: true
+comparisons:
+  fresh_repeats: 2
+  continuation_splits: [7]
+artifacts:
+  cuda_extension:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/eiel_cuda_architecture_b_flattened_wdl_controller_v2.so
+    sha256: 79f0701fbacdc8738e358cf1f269e542fbbf757feb5bd3adc16aeff0098b2dd8
+    kind: cuda_extension
+    abi: architecture_b_patch_p2_stage3_v2
+  extension_manifest:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/eiel_cuda_architecture_b_flattened_wdl_controller_v2.so.manifest.json
+    sha256: df222cfcd5be54ed28cef3f3bc228a7818cc81639d9d989a65a02010b758583d
+    kind: extension_manifest
+    abi: architecture_b_patch_p2_stage3_v2
+  qualification_receipt:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/receipts/patch_fixed_mlp_native_binding_v1/qualification.json
+    sha256: c5d53736a1ce6b3a84d532d945d83ceee9a896e6dbe03e3ba039cd9717b918a9
+    kind: qualification_receipt
+    abi: architecture_b_patch_p2_stage3_v2
+  reporting_receipt:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/receipts/patch_fixed_mlp_native_binding_v1/reporting.json
+    sha256: 3b7c5b59589128c613d399bbe8b81d77ea5dcce274b04181c7e42148d679fa31
+    kind: reporting_receipt
+    abi: architecture_b_patch_p2_stage3_v2
+analysis:
+  required_metrics: [population.alive]
+  optional_metrics: [lineage.active]
+  rules:
+    - id: population-present
+      metric: population.alive
+      aggregate: mean
+      group_by: [founder_mode]
+      pair_by: [ecology_seed]
+      operator: ">="
+      threshold: 0
+      minimum_coverage: 1.0
+output:
+  runtime_root: /tmp/emergence-fixture/runtime/campaigns/patch-fixed-g14-irregular-f860b922
+  reporting_profile: compact

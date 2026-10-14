@@ -1,0 +1,106 @@
+{
+  "schema": "eiel_modular_recurrent_cpu_oracle_shared_build_manifest_v1",
+  "schema_version": 1,
+  "runtime_jit": false,
+  "production_routing_qualified": false,
+  "publication_qualified": false,
+  "target": {
+    "platform": "linux",
+    "architecture": "x86_64",
+    "abi": "LP64",
+    "endianness": "little",
+    "cxx_standard": "c++17"
+  },
+  "toolchain": {
+    "compiler": "g++",
+    "identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0"
+  },
+  "sources": [
+    {
+      "path": "engine/perf/native/recurrent/modular_recurrent_cpu_oracle_c_api_v1.h",
+      "sha256": "d0dfadd9e5dcbc2e6a472051de428fcf8c0b47753011f40afa9a240bdf5f8c79"
+    },
+    {
+      "path": "engine/perf/native/recurrent/modular_recurrent_cpu_oracle_c_api_v1.cpp",
+      "sha256": "a4e7ad44cdde35cba070b50c31aa2ba92a394232a68d32c0d37ae0213c6b16ad"
+    }
+  ],
+  "build": {
+    "compiler_identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+    "environment": {
+      "LC_ALL": "C",
+      "SOURCE_DATE_EPOCH": "0"
+    },
+    "command": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Wconversion",
+      "-Wsign-conversion",
+      "-Wshadow",
+      "-Werror",
+      "-pedantic",
+      "-fno-exceptions",
+      "-fno-rtti",
+      "-fvisibility=hidden",
+      "-fno-ident",
+      "-ffp-contract=off",
+      "-frandom-seed=eiel-modular-recurrent-cpu-oracle-v1",
+      "-Wl,--build-id=none",
+      "-Wl,-z,defs",
+      "-Wl,-z,relro,-z,now",
+      "engine/perf/native/recurrent/modular_recurrent_cpu_oracle_c_api_v1.cpp",
+      "-o",
+      "{artifact}"
+    ]
+  },
+  "artifact": {
+    "file_name": "libeiel_modular_recurrent_cpu_oracle_v1.so",
+    "size_bytes": 43816,
+    "sha256": "2abc1b53689acf8814ef874d3464a60ae7cb20b5bcb91bbca9d5bd90929b310e"
+  },
+  "c_abi": {
+    "version": 1,
+    "version_function": "eiel_modular_recurrent_cpu_oracle_abi_version_v1",
+    "row_size": 4936,
+    "plane_count": 57,
+    "exported_symbols": [
+      "eiel_modular_recurrent_checkpoint_project_v1",
+      "eiel_modular_recurrent_checkpoint_restore_v1",
+      "eiel_modular_recurrent_cost_capacity_v1",
+      "eiel_modular_recurrent_cpu_oracle_abi_version_v1",
+      "eiel_modular_recurrent_cpu_oracle_plane_count_v1",
+      "eiel_modular_recurrent_cpu_oracle_row_size_v1",
+      "eiel_modular_recurrent_canonical_receipt_sha256_v1",
+      "eiel_modular_recurrent_death_cleanup_v1",
+      "eiel_modular_recurrent_founder_init_v1",
+      "eiel_modular_recurrent_newborn_inherit_v1",
+      "eiel_modular_recurrent_newborn_inherit_with_canonical_receipt_v1",
+      "eiel_modular_recurrent_newborn_inherit_with_receipt_v1",
+      "eiel_modular_recurrent_row_structural_payload_sha256_v1",
+      "eiel_modular_recurrent_same_slot_reuse_v1",
+      "eiel_modular_recurrent_same_slot_reuse_with_canonical_receipt_v1",
+      "eiel_modular_recurrent_same_slot_reuse_with_receipt_v1",
+      "eiel_modular_recurrent_tick_v1",
+      "eiel_modular_recurrent_validate_v1"
+    ]
+  },
+  "qualification": {
+    "scope": "standalone framework-free modular recurrent CPU oracle only",
+    "requires_source_hash_match": true,
+    "requires_artifact_hash_match": true,
+    "requires_two_build_byte_identity": true,
+    "does_not_authorize": [
+      "production routing",
+      "capability publication",
+      "resident production ownership",
+      "CUDA",
+      "runtime JIT",
+      "campaign execution"
+    ]
+  }
+}

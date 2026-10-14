@@ -1,0 +1,28 @@
+{
+  "schema_version": "eiel_librarian_controlled_vocabularies_v1",
+  "identity_policy": {
+    "prefixes": {
+      "artifact": "eiel-art-",
+      "authority": "eiel-auth-",
+      "claim": "eiel-claim-",
+      "issue": "eiel-issue-",
+      "raw_asset": "eiel-raw-",
+      "record": "eiel-rec-"
+    },
+    "rule": "IDs are never reused and are not derived solely from mutable path or filename."
+  },
+  "authority_confidence": [
+    "explicit",
+    "unknown"
+  ],
+  "status_axes": [
+    "scientific_decision_status",
+    "authority_currentness_status",
+    "integrity_status",
+    "completeness_status",
+    "raw_asset_availability_status",
+    "reproducibility_status",
+    "publication_release_status",
+    "retention_status"
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "assignment_id": "ASSIGN-EXAMPLE",
+  "assignment_material_sha256": "56c132eb924d12873e45518164a6324b9f1cc59225f586c654bc1fbae47b425a",
+  "blockers": [],
+  "context_receipt_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+  "execution": {
+    "ended_at_utc": "2026-08-05T00:01:00Z",
+    "exit_code": 0,
+    "started_at_utc": "2026-08-05T00:00:00Z"
+  },
+  "lease_id": "LEASE-EXAMPLE",
+  "outcome": "CHECKPOINTED",
+  "repository": {
+    "branch": "main",
+    "commit_created": false,
+    "head_after": "ffffffffffffffffffffffffffffffffffffffff",
+    "head_before": "ffffffffffffffffffffffffffffffffffffffff",
+    "working_directory": "/repo"
+  },
+  "schema_version": "eiel_worker_result_v1",
+  "session": {
+    "record_sha256_after": "2222222222222222222222222222222222222222222222222222222222222222",
+    "revision_after": 2,
+    "session_outcome": null,
+    "status_after": "PAUSED"
+  },
+  "session_id": "SES-EXAMPLE",
+  "validation": {
+    "commands": [],
+    "report_paths": [],
+    "status": "NOT_RUN"
+  },
+  "work_id": "WORK-EXAMPLE",
+  "worker_identity": {
+    "kind": "fake",
+    "worker_id": "fake-example",
+    "pid": null,
+    "process_start_identity": null,
+    "thread_id": "FAKE-THREAD-EXAMPLE"
+  }
+}

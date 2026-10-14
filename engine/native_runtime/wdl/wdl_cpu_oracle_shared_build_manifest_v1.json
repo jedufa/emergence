@@ -1,0 +1,146 @@
+{
+  "schema": "eiel_wdl_cpu_oracle_shared_build_manifest_v1",
+  "schema_version": 1,
+  "purpose": "Reproducible CPU-only shared library exposing the standalone WDL CPU oracle C ABI",
+  "runtime_jit": false,
+  "production_routing_qualified": false,
+  "target": {
+    "platform": "linux",
+    "architecture": "x86_64",
+    "abi": "LP64",
+    "endianness": "little",
+    "cxx_standard": "c++17"
+  },
+  "toolchain": {
+    "compiler": {
+      "executable": "g++",
+      "identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0"
+    }
+  },
+  "sources": [
+    {
+      "path": "experiments/projects/emergence/engine/native_runtime/wdl/wdl_native_contract.hpp",
+      "sha256": "d30ef271f6329f9a03c69d0791bf64b986f5b2f0ded71c7b92394e199a195b27"
+    },
+    {
+      "path": "experiments/projects/emergence/engine/native_runtime/wdl/wdl_native_contract.cpp",
+      "sha256": "a9ec5f58b5570e13defdd818ad9cb31fe6c3800f4a1eec3b35a9f036fa8bfb79"
+    },
+    {
+      "path": "experiments/projects/emergence/engine/native_runtime/wdl/wdl_cpu_oracle.hpp",
+      "sha256": "bda86d0a4dc64fa0ace0e2fe3d327ad4161f00855a4441dad1fe0192cd9e25cf"
+    },
+    {
+      "path": "experiments/projects/emergence/engine/native_runtime/wdl/wdl_cpu_oracle.cpp",
+      "sha256": "c1e58cae73553449b1083207a6e1c7919af1f8530ebe81f40b360e3a8d86c4fa"
+    },
+    {
+      "path": "experiments/projects/emergence/engine/native_runtime/wdl/wdl_cpu_oracle_c_api.h",
+      "sha256": "111551b0b7b0ad604bd3042612b6c3290b718f500b86ed39338224791fbf7ab6"
+    },
+    {
+      "path": "experiments/projects/emergence/engine/native_runtime/wdl/wdl_cpu_oracle_c_api.cpp",
+      "sha256": "60b2a11feed5e0c4fc8a9f0eb0ce47e97c74e4739b4ea1079c9035f34124afd4"
+    }
+  ],
+  "build": {
+    "working_directory": "repository_root",
+    "environment": {
+      "LC_ALL": "C",
+      "SOURCE_DATE_EPOCH": "0"
+    },
+    "command": [
+      "g++",
+      "-std=c++17",
+      "-O2",
+      "-fPIC",
+      "-shared",
+      "-Wall",
+      "-Wextra",
+      "-Werror",
+      "-pedantic",
+      "-fno-ident",
+      "-frandom-seed=eiel-wdl-cpu-oracle-shared-v1",
+      "-Wl,--build-id=none",
+      "-Wl,-z,defs",
+      "-Wl,-z,relro,-z,now",
+      "experiments/projects/emergence/engine/native_runtime/wdl/wdl_native_contract.cpp",
+      "experiments/projects/emergence/engine/native_runtime/wdl/wdl_cpu_oracle.cpp",
+      "experiments/projects/emergence/engine/native_runtime/wdl/wdl_cpu_oracle_c_api.cpp",
+      "-o",
+      "{output}/libeiel_wdl_cpu_oracle_v1.so"
+    ],
+    "executed_builds": [
+      {
+        "output": "/tmp/eiel-wdl-shared-final.RvtTYU/build1/libeiel_wdl_cpu_oracle_v1.so",
+        "size_bytes": 72584,
+        "sha256": "7520cd0d58c8eeca3c313b25e8f097e42c8670a3715eae29f8350143fff05c93"
+      },
+      {
+        "output": "/tmp/eiel-wdl-shared-final.RvtTYU/build2/libeiel_wdl_cpu_oracle_v1.so",
+        "size_bytes": 72584,
+        "sha256": "7520cd0d58c8eeca3c313b25e8f097e42c8670a3715eae29f8350143fff05c93"
+      }
+    ],
+    "byte_identity_command": [
+      "cmp",
+      "{build1}/libeiel_wdl_cpu_oracle_v1.so",
+      "{build2}/libeiel_wdl_cpu_oracle_v1.so"
+    ],
+    "byte_identical": true
+  },
+  "artifact": {
+    "kind": "deterministic_shared_library",
+    "file_name": "libeiel_wdl_cpu_oracle_v1.so",
+    "size_bytes": 72584,
+    "sha256": "7520cd0d58c8eeca3c313b25e8f097e42c8670a3715eae29f8350143fff05c93"
+  },
+  "c_abi": {
+    "version_macro": "EIEL_WDL_CPU_ORACLE_ABI_VERSION_V1",
+    "version": 1,
+    "version_function": "eiel_wdl_cpu_oracle_abi_version_v1",
+    "symbol_inspection_command": [
+      "nm",
+      "-D",
+      "--defined-only",
+      "{artifact}"
+    ],
+    "exported_symbol_prefix": "eiel_wdl_",
+    "exported_symbol_count": 21,
+    "exported_symbols": [
+      "eiel_wdl_cpu_oracle_abi_version_v1",
+      "eiel_wdl_cpu_oracle_begin_generation_v1",
+      "eiel_wdl_cpu_oracle_checkpoint_size_v1",
+      "eiel_wdl_cpu_oracle_copy_agents_v1",
+      "eiel_wdl_cpu_oracle_copy_damage_events_v1",
+      "eiel_wdl_cpu_oracle_copy_observation_agent_ids_v1",
+      "eiel_wdl_cpu_oracle_copy_observation_v1",
+      "eiel_wdl_cpu_oracle_copy_scheduled_events_v1",
+      "eiel_wdl_cpu_oracle_copy_state_field_v1",
+      "eiel_wdl_cpu_oracle_create_v1",
+      "eiel_wdl_cpu_oracle_damage_event_count_v1",
+      "eiel_wdl_cpu_oracle_destroy_v1",
+      "eiel_wdl_cpu_oracle_generation_summary_v1",
+      "eiel_wdl_cpu_oracle_observation_count_v1",
+      "eiel_wdl_cpu_oracle_observation_row_count_v1",
+      "eiel_wdl_cpu_oracle_restore_checkpoint_v1",
+      "eiel_wdl_cpu_oracle_scheduled_event_count_v1",
+      "eiel_wdl_cpu_oracle_set_agents_v1",
+      "eiel_wdl_cpu_oracle_state_field_bytes_v1",
+      "eiel_wdl_cpu_oracle_step_v1",
+      "eiel_wdl_cpu_oracle_write_checkpoint_v1"
+    ]
+  },
+  "qualification": {
+    "scope": "standalone CPU oracle C ABI build reproducibility only",
+    "requires_source_hash_match": true,
+    "requires_artifact_hash_match": true,
+    "requires_two_build_byte_identity": true,
+    "does_not_authorize": [
+      "production routing",
+      "CUDA capability publication",
+      "runtime JIT",
+      "Phase 1 integration"
+    ]
+  }
+}

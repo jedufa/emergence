@@ -1,0 +1,23 @@
+{
+  "schema_version": "tw_rngv2_dea1_graph_fusion_contract_v1",
+  "status": "FROZEN_FOR_QUALPREP_DEFAULT_OFF_NOT_AUTHORIZED_FOR_Q6",
+  "route_id": "tensor_world_c0_c7_rngv2_graph_fusion_v1",
+  "parent_qualified_route": "tensor_world_c0_c7_rngv2_v1@7a6614d2b7851d85",
+  "parent_qualified_contract_hash": "7a6614d2b7851d8557d0c5bf0fce82919182cd925eeb4aacae7f27984e55d958",
+  "rng_semantics_version": 2,
+  "default_activation": false,
+  "live_graph": "R11 composed resident C0-C7",
+  "live_batch": 48,
+  "graph_window_ticks": 5,
+  "mutation_birth": "fused device Philox/TWDMATH; tape_capacity=0; no host refill",
+  "action_environment": "preserved V1 PCG64 replay streams",
+  "checkpoint": "tensor_world_c6_checkpoint_rngv2_v1 semantic frontier plus existing R11 graph checkpoint",
+  "exclusions": [
+    "action RNG migration",
+    "environment RNG migration",
+    "default activation",
+    "V1 retirement",
+    "science",
+    "formal Q6 in this QualPrep"
+  ]
+}

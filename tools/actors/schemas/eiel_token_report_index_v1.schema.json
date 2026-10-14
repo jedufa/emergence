@@ -1,0 +1,36 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_token_report_index_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "generated_at_utc": {
+      "type": "string"
+    },
+    "report_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_token_report_index_v1"
+    },
+    "work_item_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "work_items": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "generated_at_utc",
+    "work_item_count",
+    "work_items",
+    "report_sha256"
+  ],
+  "title": "EIEL WRA-1 token report index",
+  "type": "object"
+}

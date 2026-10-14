@@ -1,0 +1,161 @@
+{
+  "composition": {
+    "stack_rule": "multiply",
+    "min_regrowth_mult": 0.0,
+    "min_spawn_mult": 0.0,
+    "allow_gt1": false
+  },
+  "dynamics": {
+    "ramp_shape": "linear",
+    "production_only": true
+  },
+  "regions": [
+    {
+      "id": "center_refuge",
+      "bounds": {
+        "x0": 12,
+        "x1": 20,
+        "y0": 12,
+        "y1": 20
+      },
+      "affects": [
+        "regrowth",
+        "spawn"
+      ],
+      "target_mult": {
+        "regrowth": 0.2,
+        "spawn": 0.2
+      },
+      "timing": {
+        "ramp_steps": 10,
+        "duration_steps": 120,
+        "recovery_steps": 20
+      }
+    }
+  ],
+  "schedule": {
+    "mode": "explicit",
+    "explicit": [
+      {
+        "region_id": "center_refuge",
+        "start_step": 50
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 1550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 3050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 4550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 6050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 7550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 9050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 10550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 12050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 13550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 15050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 16550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 18050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 19550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 21050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 22550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 24050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 25550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 27050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 28550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 30050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 31550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 33050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 34550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 36050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 37550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 39050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 40550
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 42050
+      },
+      {
+        "region_id": "center_refuge",
+        "start_step": 43550
+      }
+    ]
+  }
+}

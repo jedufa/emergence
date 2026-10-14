@@ -1,0 +1,24 @@
+{
+  "$id": "eiel_estimator_approval_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "receipt_id": {
+      "type": "string"
+    },
+    "receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_estimator_approval_receipt_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "receipt_id",
+    "receipt_sha256"
+  ],
+  "title": "EIEL estimator approval receipt v1",
+  "type": "object"
+}

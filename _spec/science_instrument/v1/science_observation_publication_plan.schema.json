@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-observation-publication-plan",
+  "title": "EIEL Science Observation Publication Plan V1",
+  "description": "Effect-free canonical publication instructions derived from a frozen observation profile and its route-bound resource envelope.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "instrument_manifest_sha256",
+    "science_semantic_acquisition_sha256",
+    "observation_abi_version",
+    "profile_id",
+    "absolute_tick_start",
+    "absolute_tick_end",
+    "partition_span_ticks",
+    "expected_start_world_local_sequence",
+    "required_record_kinds",
+    "required_nonempty_record_kinds",
+    "producer_phase_registry_ordinals",
+    "resource_envelope"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_observation_publication_plan_v1"},
+    "instrument_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "science_semantic_acquisition_sha256": {"$ref": "#/$defs/digest"},
+    "observation_abi_version": {"const": "eiel_science_observation_abi_v1"},
+    "profile_id": {"$ref": "#/$defs/profile"},
+    "absolute_tick_start": {"type": "integer", "minimum": 0},
+    "absolute_tick_end": {"type": "integer", "minimum": 1},
+    "partition_span_ticks": {"type": "integer", "minimum": 1},
+    "expected_start_world_local_sequence": {"type": "integer", "minimum": 0},
+    "required_record_kinds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/record_kind"}
+    },
+    "required_nonempty_record_kinds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/record_kind"}
+    },
+    "producer_phase_registry_ordinals": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/token"},
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "resource_envelope": {
+      "$ref": "urn:eiel:science-instrument:v1:science-profile-resource-envelope"
+    }
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "profile": {
+      "enum": ["SCIENCE_MINIMAL_V1", "SCIENCE_STANDARD_V1", "SCIENCE_FORENSIC_V1"]
+    },
+    "record_kind": {
+      "enum": [
+        "agent_state_snapshot",
+        "birth_attempt",
+        "birth_committed",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "decision_action",
+        "ecological_transaction",
+        "environment_transition",
+        "mutation_outcome",
+        "reproduction_opportunity",
+        "world_completion",
+        "world_state_snapshot"
+      ]
+    }
+  }
+}

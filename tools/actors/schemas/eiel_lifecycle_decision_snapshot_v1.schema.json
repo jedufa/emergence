@@ -1,0 +1,64 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_lifecycle_decision_snapshot_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Documented EIEL contract for eiel_lifecycle_decision_snapshot_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "delivery_commit": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "implementation": {
+      "oneOf": [
+        {
+          "$ref": "eiel_actor_record_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review": {
+      "oneOf": [
+        {
+          "$ref": "eiel_actor_record_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_lifecycle_decision_snapshot_v1"
+    },
+    "session": {
+      "$ref": "eiel_actor_record_ref_v1.schema.json"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "work": {
+      "$ref": "eiel_actor_record_ref_v1.schema.json"
+    }
+  },
+  "required": [
+    "schema_version",
+    "work",
+    "session",
+    "snapshot_sha256"
+  ],
+  "title": "EIEL Lifecycle Decision Snapshot V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.lifecycle_policy",
+  "x-eiel-persistence-class": "embedded_durable_decision_snapshot"
+}

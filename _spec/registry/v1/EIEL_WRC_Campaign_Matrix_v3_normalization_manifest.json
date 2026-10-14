@@ -1,0 +1,575 @@
+{
+  "canonical": {
+    "path": "EIEL_WRC_Campaign_Matrix_v3_canonical.csv",
+    "rows": 95,
+    "sha256": "93a3829bd12dd4bc4111aec2571d3a5dd101cc15b7fb1d5b38d8fdab21d9f43e"
+  },
+  "corrections": [
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P011",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P012",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P013",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P014",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P015",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P016",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P017",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P018",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P019",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P020",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P021",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"eed_resource_impact\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "This primitive is admitted by the EED resource-impact route; the source Atlas omitted its required route overlay.",
+      "row_id": "P027",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"eed_resource_impact\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "This primitive is admitted by the EED resource-impact route; the source Atlas omitted its required route overlay.",
+      "row_id": "P029",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"eed_resource_impact\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "This primitive is admitted by the EED resource-impact route; the source Atlas omitted its required route overlay.",
+      "row_id": "P034",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P035",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P036",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P037",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P038",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P039",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P040",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P041",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P042",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P043",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P044",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P045",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P046",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P047",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P048",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P049",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P050",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P051",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P052",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P053",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P054",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P062",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P063",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P064",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P065",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"jungle\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "Jungle primitive requires the declared Jungle route capability; the source Atlas omitted its route overlay.",
+      "row_id": "P066",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"wdl_delayed_hazard\"]",
+      "old_value": "[\"wdl\"]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "The source Atlas uses the WDL shorthand; the production route identifier is wdl_delayed_hazard.",
+      "row_id": "P067",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"wdl_delayed_hazard\"]",
+      "old_value": "[\"wdl\"]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "The source Atlas uses the WDL shorthand; the production route identifier is wdl_delayed_hazard.",
+      "row_id": "P068",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"wdl_delayed_hazard\"]",
+      "old_value": "[\"wdl\"]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "The source Atlas uses the WDL shorthand; the production route identifier is wdl_delayed_hazard.",
+      "row_id": "P069",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    },
+    {
+      "evidence": {
+        "kind": "authoritative_route_capability_declaration",
+        "reference": "engine/campaigns/production_control_path_v1.py"
+      },
+      "field": "World overlays JSON",
+      "new_value": "[\"eed_resource_impact\"]",
+      "old_value": "[]",
+      "proving_test": "tests/test_eiel_wrc_atlas_v3.py::test_canonical_route_metadata_requests_declared_capabilities_only",
+      "reason": "This primitive is admitted by the EED resource-impact route; the source Atlas omitted its required route overlay.",
+      "row_id": "P079",
+      "source_atlas_sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+    }
+  ],
+  "normalization_authority": "Authoritative production parameter contracts and route-capability declarations only; Atlas metadata requests those capabilities and cannot expand them.",
+  "schema_version": "eiel_wrc_atlas_normalization_manifest_v1",
+  "source": {
+    "path": "EIEL_WRC_Campaign_Matrix_v3_source.csv",
+    "rows": 95,
+    "sha256": "46b65cdd2ff744bc0f2cda2acd05a032a0ec3f24bad478e9691e6092e984838f"
+  }
+}

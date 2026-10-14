@@ -1,0 +1,5 @@
+{
+  "exit_code": 3,
+  "reason_codes": ["SOURCE_NOT_TERMINAL", "HELPER_STILL_RUNNING"],
+  "state": "NOT_READY"
+}

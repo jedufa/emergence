@@ -1,0 +1,38 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_resource_admission_recommendation_v1_2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_resource_admission_recommendation_v1_2. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "blockers": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "confidence": {
+      "type": "string"
+    },
+    "generated_at_utc": {
+      "type": "string"
+    },
+    "recommendation": {
+      "type": "string"
+    },
+    "resource_demand": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_resource_admission_recommendation_v1_2"
+    }
+  },
+  "required": [
+    "schema_version",
+    "recommendation",
+    "resource_demand"
+  ],
+  "title": "EIEL Resource Admission Recommendation V1.2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.resource_manager",
+  "x-eiel-persistence-class": "durable_advisory_payload"
+}

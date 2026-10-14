@@ -1,0 +1,141 @@
+{
+  "authority_documents": [
+    {
+      "exists": true,
+      "path": "AGENTS.md",
+      "scope": "repository",
+      "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+    }
+  ],
+  "context_health": {
+    "broad_output_events": 0,
+    "budget": {
+      "context_health_policy": "advisory",
+      "expected_duration_minutes": 60,
+      "expected_tool_calls": 25,
+      "handoff_recommended_after_tool_calls": 50,
+      "maximum_compactions": 1
+    },
+    "compaction_count": 0,
+    "handoff_recommended": false,
+    "observed_at_utc": "2026-08-04T00:05:00Z",
+    "policy": "advisory",
+    "reasons": [
+      "observed context remains inside advisory package budget"
+    ],
+    "shell_output_tokens": 900,
+    "source": "manual",
+    "status": "HEALTHY",
+    "tool_call_count": 6
+  },
+  "critical_files": [
+    {
+      "exists": true,
+      "path": "tools/actors/context_receipt.py",
+      "scope": "entry_file",
+      "sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+    }
+  ],
+  "execution_budget": {
+    "context_health_policy": "advisory",
+    "expected_duration_minutes": 60,
+    "expected_tool_calls": 25,
+    "handoff_recommended_after_tool_calls": 50,
+    "maximum_compactions": 1
+  },
+  "generated_at_utc": "2026-08-04T00:05:00Z",
+  "output_policy": {
+    "default_output_mode": "compact",
+    "git_output": "short_status_or_stat",
+    "json_output": "selected_fields",
+    "log_output": "tail_only",
+    "maximum_display_lines": 120,
+    "recursive_output_requires_reason": true,
+    "test_output": "failures_and_summary"
+  },
+  "progress": {
+    "completed_steps": [
+      "schema extension"
+    ],
+    "current_stage": "implementation",
+    "current_step": "receipt validation",
+    "interrupted_step": null,
+    "next_action": "Add stale-receipt tests.",
+    "next_command": "python -m pytest -q tests/test_eiel_context_efficiency_v1_9.py",
+    "unresolved_blockers": []
+  },
+  "receipt_id": "CTX-2BB828643222",
+  "receipt_sha256": "e62c38a21ee82ed2912a5a8cab16639be1a1f13d6d0f541f7ea7299028ac5241",
+  "repository": {
+    "branch": "work/context-hardening",
+    "commit": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "root": "/repo/emergence",
+    "worktree": "/repo/emergence"
+  },
+  "schema_version": "eiel_context_receipt_v1",
+  "scope": {
+    "broad_search_allowed": false,
+    "entry_files": [
+      "tools/actors/context_receipt.py"
+    ],
+    "excluded_roots": [
+      "evidences"
+    ],
+    "forbidden_paths": [
+      "engine/**"
+    ],
+    "known_symbols": [
+      "build_context_receipt"
+    ],
+    "maximum_initial_files": 12,
+    "owned_paths": [
+      "tools/actors/context_receipt.py"
+    ],
+    "required_documents": [
+      "tools/actors/CONTEXT_EPOCH_POLICY.md"
+    ],
+    "search_roots": [
+      "tools/actors",
+      "tests"
+    ]
+  },
+  "session": {
+    "authority_role": "IMPLEMENTATION_AUTHORITY",
+    "current_codex_id": "codex-context-1",
+    "epoch": {
+      "authority_phase": "implementation",
+      "boundary_reason": null,
+      "ended_at_utc": null,
+      "epoch_id": "EPOCH-CONTEXT19",
+      "started_at_utc": "2026-08-04T00:00:00Z"
+    },
+    "session_id": "SES-CONTEXT19",
+    "status": "ACTIVE"
+  },
+  "source_bindings": {
+    "bootstrap_record_id": "BST-EXAMPLE",
+    "package_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "session_context_sha256": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "work_record_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+  },
+  "validation": {
+    "artifact_paths": [],
+    "evidence_produced": [],
+    "implementation_commit": null,
+    "qualification_records": [],
+    "report_paths": [],
+    "review_state": null,
+    "tests_completed": []
+  },
+  "work": {
+    "authority_role": "IMPLEMENTATION_AUTHORITY",
+    "objective": "Implement context-efficiency hardening.",
+    "package_digest": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "package_path": "work_packages/WORK-CONTEXT-19.yaml",
+    "package_version": 1,
+    "recommended_model": "GPT-5.3 Spark High",
+    "status": "ACTIVE",
+    "uncertainty_class": "U2",
+    "work_id": "WORK-CONTEXT-19"
+  }
+}

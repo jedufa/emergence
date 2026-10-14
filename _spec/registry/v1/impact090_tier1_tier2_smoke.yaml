@@ -1,0 +1,131 @@
+harness_api: 1
+version: 1
+name: impact090_tier1_tier2
+description: ">-\n  Smoke-scale Phase I (mechanics & signal) for Tier 1 + Tier 2.\n\
+  \  Proves gradients exist, drought ramps/logs, and Tier1\xD7Tier2 composes multiplicatively.\n"
+intent:
+  question: Do Tier 1 static maps and Tier 2 drought multipliers create real, logged
+    spatial gradients (not decorative noise)?
+  axes:
+  - condition:
+    - I1_T1_uniform__T2_none
+    - I1_T1_lowhazard__T2_none
+    - I2_T1_uniform__T2_singleNW
+    - I3_T1_med__T2_singleNW
+matrix_order:
+- condition
+- seed
+axes:
+  condition:
+    values:
+    - I1_T1_uniform__T2_none
+    - I1_T1_lowhazard__T2_none
+    - I2_T1_uniform__T2_singleNW
+    - I3_T1_med__T2_singleNW
+    flags:
+      I1_T1_uniform__T2_none:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__none.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      I1_T1_lowhazard__T2_none:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__none.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      I2_T1_uniform__T2_singleNW:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_NW_severe.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+      I3_T1_med__T2_singleNW:
+      - --grid_size
+      - '32'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json'
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_NW_severe.json'
+      - --spatial_droughts_log_timeseries_every
+      - '1'
+      - --spatial_droughts_log_periodic_every
+      - '50'
+seeds:
+- 42
+cli_defaults:
+- - --generations
+  - '2'
+- - --steps
+  - '120'
+- - --pop
+  - '0'
+expected_artifacts:
+- manifest.json
+- maps/resource_regrowth_map.npy
+- maps/resource_spawn_density_map.npy
+- maps/hazard_rate_map.npy
+- droughts/README.txt
+- droughts/drought_intensity_timeseries.csv
+- droughts/drought_stats_periodic.csv
+- droughts/regions/drought_region_id_map.npy
+naming:
+  run_tag_prefix: impact090_smoke
+  run_id_format: '{name}__cond_{condition}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__cond_{condition}'

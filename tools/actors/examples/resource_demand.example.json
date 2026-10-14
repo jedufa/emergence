@@ -1,0 +1,12 @@
+{
+  "device": "cuda",
+  "exclusive_gpu": true,
+  "gpu_admission_mode": "exclusive",
+  "expected_duration_minutes": 420,
+  "minimum_ram_available_gib": 6,
+  "minimum_storage_available_gib": 20,
+  "minimum_vram_available_gib": 4,
+  "peak_vram_gib": 4.0,
+  "schema_version": "eiel_resource_demand_v1",
+  "workload_class": "bounded_cuda_campaign"
+}

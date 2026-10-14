@@ -1,0 +1,47 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_repository_truth_artifact_ref_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "artifact_schema_version": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "canonical_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_repository_truth_artifact_ref_v1"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "state_root_locator": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "artifact_schema_version",
+    "path",
+    "state_root_locator",
+    "sha256",
+    "canonical_sha256"
+  ],
+  "title": "EIEL content-addressed repository-truth artifact reference",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.repository_truth",
+  "x-eiel-persistence-class": "embedded_immutable_artifact_reference"
+}

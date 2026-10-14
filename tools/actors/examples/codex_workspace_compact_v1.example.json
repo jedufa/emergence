@@ -1,0 +1,143 @@
+{
+  "guidance_schema_version": "eiel_codex_guidance_v1",
+  "status": "WORKSPACE_READY",
+  "reason_codes": [
+    "workspace_ready"
+  ],
+  "problems": [],
+  "warnings": [],
+  "next_actions": [
+    {
+      "action": "resume_selected_session",
+      "description": "Continue the exact bound Session.",
+      "command": "python -m tools.eiel sessionManager inspect SES-EXAMPLE"
+    }
+  ],
+  "related_records": [
+    {
+      "record_id": "BST-EXAMPLE"
+    },
+    {
+      "record_id": "WORK-EXAMPLE"
+    },
+    {
+      "record_id": "SES-EXAMPLE"
+    }
+  ],
+  "ok": true,
+  "execution_blocked": false,
+  "workflow_administration_required": false,
+  "workspace": {
+    "schema_version": "eiel_codex_workspace_compact_v1",
+    "tooling_version": "1.16.0",
+    "repository": {
+      "root": "/repo/emergence",
+      "branch": "main",
+      "head": "0123456789abcdef0123456789abcdef01234567",
+      "dirty": false
+    },
+    "bootstrap": {
+      "record_id": "BST-EXAMPLE",
+      "status": "READY",
+      "age_hours": 0.2
+    },
+    "portfolio": {
+      "open_work_count": 1,
+      "resumable_session_count": 1
+    },
+    "work": {
+      "work_id": "WORK-EXAMPLE",
+      "status": "ACTIVE",
+      "derived_status": "ACTIVE",
+      "title": "Bounded implementation",
+      "package": {
+        "path": "work_packages/WORK-EXAMPLE.yaml",
+        "package_version": 1,
+        "sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+        "recommended_authority": "IMPLEMENTATION_AUTHORITY",
+        "recommended_model": "GPT-5.3 Spark High",
+        "uncertainty_class": "U2"
+      }
+    },
+    "session": {
+      "session_id": "SES-EXAMPLE",
+      "status": "ACTIVE",
+      "work_id": "WORK-EXAMPLE",
+      "role": "IMPLEMENTATION_AUTHORITY",
+      "current_step": "Implement the bounded package.",
+      "next_action": "Run focused validation."
+    },
+    "task_context": {
+      "task_class": "implementation",
+      "required_authority_domain": "implementation",
+      "required_session_role": "IMPLEMENTATION_AUTHORITY",
+      "qualification_required": false,
+      "qualification_status": "UNKNOWN"
+    },
+    "initial_context": {
+      "entry_files": [
+        "tools/component.py",
+        "tests/test_component.py"
+      ],
+      "required_documents": [
+        "docs/component_contract.md"
+      ],
+      "search_roots": [
+        "tools",
+        "tests"
+      ],
+      "excluded_roots": [
+        "evidences"
+      ],
+      "known_symbols": [
+        "component_entry"
+      ],
+      "maximum_initial_files": 8,
+      "broad_search_allowed": false
+    },
+    "initial_context_metrics": {
+      "status": "WITHIN_ADVISORY_RANGE",
+      "file_count": 3,
+      "existing_file_count": 3,
+      "total_bytes": 4096,
+      "total_lines": 120,
+      "largest_files": [
+        {
+          "path": "docs/component_contract.md",
+          "bytes": 2048
+        }
+      ]
+    },
+    "output_policy": {
+      "default_output_mode": "compact",
+      "maximum_display_lines": 120,
+      "test_output": "failures_and_summary",
+      "git_output": "short_status_or_stat",
+      "json_output": "selected_fields",
+      "log_output": "tail_only"
+    },
+    "context_health": {
+      "status": "HEALTHY",
+      "handoff_recommended": false
+    },
+    "context_receipt": {
+      "receipt_id": "CTX-EXAMPLE",
+      "receipt_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "valid": true
+    },
+    "workflow_administration": {
+      "required_for_operator_authorized_execution": false,
+      "obligations": []
+    },
+    "references": {
+      "full_view_command": "python -m tools.eiel workspace open --full --work-id WORK-EXAMPLE --session-id SES-EXAMPLE"
+    },
+    "execution_budget": {
+      "expected_tool_calls": 25,
+      "handoff_recommended_after_tool_calls": 50,
+      "maximum_compactions": 1,
+      "expected_duration_minutes": 60,
+      "context_health_policy": "advisory"
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "authority_context": {
+    "active_goal": null,
+    "approved_work_package": null,
+    "authorization_basis": null,
+    "operator_instruction_ref": null,
+    "preflight": null,
+    "preflight_exemption": null,
+    "preflight_fail_closed_acknowledged": false,
+    "repository_fallback_reason": null,
+    "schema_version": "eiel_mission_authority_context_v1"
+  },
+  "claim_ceiling": "A bounded WDL-specific memory confirmation only.",
+  "controls": [
+    "memory normal",
+    "memory ablated",
+    "WDL enabled and disabled matched controls"
+  ],
+  "decision_rule": "Apply the versioned lineage-aware confirmation rule.",
+  "decision_to_enable": "Retain or close the bounded WDL-specific memory result.",
+  "failure_criteria": [
+    "the confirmation rule does not pass or integrity is invalid"
+  ],
+  "mission_type": "CONFIRMATION",
+  "out_of_scope": [
+    "hazard tuning",
+    "prediction selection",
+    "general memory evolution claims"
+  ],
+  "qualification_request": {
+    "track_label": "b48w16p64c128gNt160gpu"
+  },
+  "question": "Does the prior WDL-specific memory result reproduce at the declared longer horizon?",
+  "references": {
+    "campaign_output_paths": [],
+    "campaign_spec_paths": [],
+    "evidence_assessment_ids": [],
+    "implementation_report_refs": [],
+    "librarian_document_ids": [],
+    "qualification_record_ids": [],
+    "resource_record_ids": []
+  },
+  "required_closeout_refs": [
+    "evidence_refs",
+    "qualification_refs",
+    "resource_refs",
+    "report_refs",
+    "campaign_output_refs",
+    "source_identity",
+    "librarian_document_ids"
+  ],
+  "required_evidence": [
+    "complete paired outputs",
+    "reward-leakage audit",
+    "lineage forensics",
+    "technical integrity record"
+  ],
+  "resource_demand": {
+    "device": "cuda",
+    "exclusive_gpu": true,
+    "minimum_ram_available_gib": 6,
+    "minimum_vram_available_gib": 4
+  },
+  "schema_version": "eiel_mission_specification_v2",
+  "scope": [
+    "one preregistered longer-horizon confirmation matrix"
+  ],
+  "stopping_rules": [
+    "stop after the fixed confirmation campaign",
+    "accept a negative result without rescue tuning"
+  ],
+  "success_criteria": [
+    "the predeclared confirmation rule passes"
+  ],
+  "tasks": [
+    "check route",
+    "assess resources",
+    "execute fixed confirmation externally",
+    "assess evidence",
+    "close mission"
+  ],
+  "technical_qualification_requirements": [
+    "current admitted WDL route"
+  ],
+  "title": "Confirm the bounded WDL memory signal"
+}

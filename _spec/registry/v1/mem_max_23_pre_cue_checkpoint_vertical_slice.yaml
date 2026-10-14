@@ -1,0 +1,17 @@
+id: mem_max_23_pre_cue_checkpoint_vertical_slice
+title: MEM-MAX-23 Pre-Cue Checkpoint Implementation Vertical Slice
+status: implemented
+owner: codex
+created: 2026-07-10
+decision: MEM-MAX-23C
+report: docs/400_implementation-engineering/410_implementation-reports/100_engine-route-qualification/EIEL-DOC-000473--eiel-mem-max-23-pre-cue-checkpoint-implementation-vertical-slice-2026-07-10.md
+evidence: evidences/04-theme-4-cognition/108-mem-max-23-pre-cue-checkpoint-implementation-vertical-slice.md
+outputs: docs/900_lifecycle/940_incoming/mem_max_23_pre_cue_checkpoint_vertical_slice/
+runner: tools/bin/mem_max_23_pre_cue_checkpoint_package.py
+default_off: true
+claims:
+  intelligence: false
+  emergence: false
+  consciousness: false
+  broad_cognition: false
+  mem_evo_a: false

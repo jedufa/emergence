@@ -1,0 +1,39 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_mission_workflow_state_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented contract for eiel_mission_workflow_state_v2; runtime validators remain authoritative.",
+  "properties": {
+    "blocked_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_step": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "phase": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_mission_workflow_state_v2"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "EIEL Mission Workflow State V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.mission_planner",
+  "x-eiel-persistence-class": "embedded_durable_workflow_state"
+}

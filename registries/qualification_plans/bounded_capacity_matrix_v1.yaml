@@ -1,0 +1,25 @@
+schema_version: eiel_qualification_matrix_v1
+plan_id: bounded-capacity-matrix-v1
+description: Declarative bounded batch and horizon matrix; no execution authority.
+capability_requirements:
+  - qualified-chunk-composition
+case_id_prefix: bounded-case
+max_cases: 16
+dimensions:
+  - id: batch_cells
+    values: [1, 4]
+  - id: generation_count
+    values: [2, 8, 32]
+include: []
+exclude:
+  - batch_cells: 4
+    generation_count: 32
+templates:
+  - selector:
+      generation_count: 8
+    capability_requirements:
+      - medium-horizon
+  - selector:
+      generation_count: 32
+    capability_requirements:
+      - long-horizon

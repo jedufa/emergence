@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_mission_specification_v1.schema.json",
+  "title": "EIEL Mission Specification V1",
+  "type": "object",
+  "additionalProperties": true,
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 1}
+    },
+    "stringArray": {
+      "type": "array",
+      "items": {"type": "string"}
+    },
+    "references": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "qualification_record_ids": {"$ref": "#/$defs/stringArray"},
+        "resource_record_ids": {"$ref": "#/$defs/stringArray"},
+        "evidence_assessment_ids": {"$ref": "#/$defs/stringArray"},
+        "campaign_output_paths": {"$ref": "#/$defs/stringArray"},
+        "implementation_report_refs": {"$ref": "#/$defs/stringArray"},
+        "librarian_document_ids": {"$ref": "#/$defs/stringArray"}
+      },
+      "required": [
+        "qualification_record_ids",
+        "resource_record_ids",
+        "evidence_assessment_ids",
+        "campaign_output_paths",
+        "implementation_report_refs",
+        "librarian_document_ids"
+      ]
+    }
+  },
+  "properties": {
+    "schema_version": {"const": "eiel_mission_specification_v1"},
+    "mission_id": {"type": "string", "pattern": "^MIS-[A-Z0-9-]+$"},
+    "title": {"type": "string", "minLength": 1},
+    "mission_type": {
+      "enum": [
+        "IMPLEMENTATION_VALIDATION",
+        "TECHNICAL_QUALIFICATION",
+        "BASELINE",
+        "SMOKE",
+        "REHEARSAL",
+        "SCIENTIFIC_PROBE",
+        "CONFIRMATION",
+        "ROBUSTNESS_BATTERY",
+        "ABLATION",
+        "SENSITIVITY",
+        "PERFORMANCE",
+        "FORENSICS",
+        "BRANCH_REPLAY",
+        "CLOSURE"
+      ]
+    },
+    "parent_mission_ids": {"$ref": "#/$defs/stringArray"},
+    "question": {"type": "string", "minLength": 1},
+    "decision_to_enable": {"type": "string", "minLength": 1},
+    "scope": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "out_of_scope": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "controls": {"$ref": "#/$defs/stringArray"},
+    "success_criteria": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "failure_criteria": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "stopping_rules": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "decision_rule": {"type": "string", "minLength": 1},
+    "claim_ceiling": {"type": "string", "minLength": 1},
+    "required_evidence": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "technical_qualification_requirements": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "qualification_request": {"type": "object"},
+    "resource_demand": {"type": "object"},
+    "tasks": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "references": {"$ref": "#/$defs/references"},
+    "source_identity": {
+      "type": "object",
+      "additionalProperties": true,
+      "properties": {
+        "source_commit": {"type": "string"},
+        "snapshot_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "required_closeout_refs": {"$ref": "#/$defs/stringArray"},
+    "execution_authority": {"const": "external_codex_only"},
+    "planner_authority": {"const": "planning_tracking_history_only_no_execution"},
+    "closeout": {"type": "object"}
+  },
+  "required": [
+    "schema_version",
+    "mission_id",
+    "title",
+    "mission_type",
+    "question",
+    "decision_to_enable",
+    "scope",
+    "out_of_scope",
+    "controls",
+    "success_criteria",
+    "failure_criteria",
+    "stopping_rules",
+    "decision_rule",
+    "claim_ceiling",
+    "required_evidence",
+    "technical_qualification_requirements",
+    "qualification_request",
+    "resource_demand",
+    "tasks",
+    "references",
+    "source_identity",
+    "required_closeout_refs",
+    "execution_authority",
+    "planner_authority"
+  ]
+}

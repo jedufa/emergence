@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:contracts:component_descriptor_v1",
+  "title": "EIEL Component Descriptor v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "component_id",
+    "module_id",
+    "semantic_contract_version",
+    "implementation_version",
+    "capabilities",
+    "parameter_schema_ref",
+    "state_schema_refs",
+    "observation_schema_refs",
+    "action_schema_refs",
+    "native_binding_ids",
+    "compatibility"
+  ],
+  "properties": {
+    "schema_version": {"const": "component_descriptor_v1"},
+    "component_id": {"$ref": "#/$defs/opaqueValue"},
+    "module_id": {"$ref": "#/$defs/opaqueValue"},
+    "semantic_contract_version": {"$ref": "#/$defs/versionToken"},
+    "implementation_version": {"$ref": "#/$defs/versionToken"},
+    "capabilities": {"$ref": "#/$defs/sortedUniqueStrings"},
+    "parameter_schema_ref": {
+      "oneOf": [{"$ref": "#/$defs/opaqueValue"}, {"type": "null"}]
+    },
+    "state_schema_refs": {"$ref": "#/$defs/sortedUniqueStrings"},
+    "observation_schema_refs": {"$ref": "#/$defs/sortedUniqueStrings"},
+    "action_schema_refs": {"$ref": "#/$defs/sortedUniqueStrings"},
+    "native_binding_ids": {"$ref": "#/$defs/sortedUniqueStrings"},
+    "compatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_contract_versions",
+        "state_schema_versions",
+        "artifact_schema_versions"
+      ],
+      "properties": {
+        "semantic_contract_versions": {"$ref": "#/$defs/sortedUniqueVersions"},
+        "state_schema_versions": {"$ref": "#/$defs/sortedUniqueVersions"},
+        "artifact_schema_versions": {"$ref": "#/$defs/sortedUniqueVersions"}
+      }
+    }
+  },
+  "$defs": {
+    "opaqueValue": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!\\s)[^\\u0000-\\u001F\\u007F]*\\S$"
+    },
+    "versionToken": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+    },
+    "sortedUniqueStrings": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/opaqueValue"},
+      "uniqueItems": true
+    },
+    "sortedUniqueVersions": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/versionToken"},
+      "uniqueItems": true
+    }
+  }
+}

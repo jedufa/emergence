@@ -1,0 +1,60 @@
+harness_api: 1
+version: 1
+name: validation_family_late_life_coherence
+description: Smoke family validation for late life coherence (aggregated per knob).
+intent:
+  question: Are knobs in family 'late_life_coherence' traceably applied, and do they
+    produce a detectable signal?
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - genome_late_life_start_frac__baseline
+    - genome_late_life_start_frac__variant
+    - genome_late_life_window_frac__baseline
+    - genome_late_life_window_frac__variant
+    - sim_cfg_late_pred_cost_enable__baseline
+    - sim_cfg_late_pred_cost_enable__variant
+    - sim_cfg_late_pred_cost_weight__baseline
+    - sim_cfg_late_pred_cost_weight__variant
+    flags:
+      genome_late_life_start_frac__baseline: []
+      genome_late_life_start_frac__variant:
+      - --knob
+      - genome.late_life_start_frac=true
+      genome_late_life_window_frac__baseline: []
+      genome_late_life_window_frac__variant:
+      - --knob
+      - genome.late_life_window_frac=true
+      sim_cfg_late_pred_cost_enable__baseline: []
+      sim_cfg_late_pred_cost_enable__variant:
+      - --knob
+      - sim_cfg.late_pred_cost_enable=True
+      sim_cfg_late_pred_cost_weight__baseline: []
+      sim_cfg_late_pred_cost_weight__variant:
+      - --knob
+      - sim_cfg.late_pred_cost_weight=0.02
+seeds:
+- 42
+cli_defaults:
+- - --generations
+  - '1'
+- - --steps
+  - '60'
+- - --pop
+  - '64'
+- - --policy_tick_stride
+  - '1'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: val_family_smoke
+  run_id_format: '{name}__{case}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__{case}'

@@ -1,0 +1,235 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_mission_authority_context_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "active_goal": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "path_kind": {
+          "enum": [
+            "repository_relative",
+            "absolute"
+          ]
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "path_kind",
+        "sha256"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "approved_work_package": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "type": "string"
+        },
+        "path_kind": {
+          "enum": [
+            "repository_relative",
+            "absolute"
+          ]
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        }
+      },
+      "required": [
+        "path",
+        "path_kind",
+        "sha256"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "authorization_basis": {
+      "enum": [
+        "operator_instruction",
+        "approved_work_package",
+        "active_goal",
+        "mechanical_preflight_exemption"
+      ]
+    },
+    "operator_instruction_ref": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "preflight": {
+      "additionalProperties": true,
+      "properties": {
+        "applicable_dossiers": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "artifact_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "authority_assertion_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "authority_domain_filter": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authority_domains": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "authority_resolution_state": {
+          "type": "string"
+        },
+        "catalog_build_id": {
+          "type": "string"
+        },
+        "claim_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "collection": {
+          "enum": [
+            "evidence",
+            "documents",
+            "all"
+          ]
+        },
+        "document_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "evidence_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "fail_closed": {
+          "type": "boolean"
+        },
+        "fallback_repository_search_allowed": {
+          "type": "boolean"
+        },
+        "limitation_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "maintained_source_digest": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "next_step": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "raw_asset_ids": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "receipt_path": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "receipt_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "schema_version": {
+          "const": "eiel_actor_preflight_binding_v1"
+        },
+        "topic": {
+          "type": "string"
+        },
+        "unknown_authority_gaps": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "schema_version",
+        "receipt_sha256",
+        "topic",
+        "catalog_build_id",
+        "maintained_source_digest",
+        "authority_resolution_state",
+        "fail_closed",
+        "fallback_repository_search_allowed"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "preflight_exemption": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "preflight_fail_closed_acknowledged": {
+      "type": "boolean"
+    },
+    "preflight_override_acknowledged": {
+      "deprecated": true,
+      "description": "Legacy V1.1 input only; current writers omit this field.",
+      "type": "boolean"
+    },
+    "repository_fallback_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_mission_authority_context_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "authorization_basis",
+    "preflight_fail_closed_acknowledged"
+  ],
+  "title": "EIEL Mission Authority Context V1",
+  "type": "object"
+}

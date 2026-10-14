@@ -1,0 +1,116 @@
+{
+  "schema_version": "eiel_science_request_v1",
+  "campaign_id": "EIEL-RELEASE-USAGE-20261012",
+  "test": "RELEASE_ENGINEERING_USAGE_V1",
+  "question": {
+    "description": "Bounded real reproduction, hereditary variation and paired resource-control usage validation. No scientific superiority claim; evaluate a valid negative without retuning.",
+    "no_claims": true
+  },
+  "world": {
+    "width": 32,
+    "height": 32,
+    "population": 256,
+    "capacity": 512
+  },
+  "run": {
+    "ticks": 1024,
+    "batch": 4,
+    "checkpoint_ticks": [
+      512,
+      1024
+    ]
+  },
+  "dimensions": {
+    "resource_growth": [
+      2,
+      3
+    ],
+    "replicate": [
+      1
+    ],
+    "seed": [
+      1103,
+      2207
+    ]
+  },
+  "world_template": {
+    "initialization": {
+      "initial_population": 256,
+      "initial_live_count": 256,
+      "founder_profiles": [
+        "native-broad-diverse-a-v1"
+      ],
+      "exact_founder_composition": [
+        {
+          "founder_profile_id": "native-broad-diverse-a-v1",
+          "count": 256
+        }
+      ],
+      "spatial_placement_profile": "deterministic_seeded_shuffle_v1",
+      "standing_variation_profile": "broad-standing-variation-v1"
+    },
+    "controls": {
+      "mutation.enabled": true,
+      "environment.resource.growth_base": "${resource_growth}",
+      "mutation.rate": 0.125,
+      "mutation.step": 2,
+      "reproduction.enabled": true,
+      "recombination.enabled": true
+    },
+    "seeds": {
+      "ecology": "${seed}",
+      "founder": "${seed}",
+      "policy": "${seed}",
+      "mutation": "${seed}",
+      "task_environment": "${seed}",
+      "initialization": "${seed}",
+      "intervention": "${replicate}"
+    }
+  },
+  "replicate_dimension": "replicate",
+  "observe": {
+    "profile": "SCIENCE_STANDARD_V1",
+    "events": [
+      "birth",
+      "birth_parentage",
+      "death",
+      "mutation",
+      "mutation_provenance"
+    ],
+    "state": [
+      "compact.state_snapshots",
+      "genome_identity",
+      "population_count"
+    ],
+    "runtime_counters": [
+      "birth_count",
+      "mutation_count"
+    ],
+    "snapshot_ticks": [
+      0,
+      512,
+      1024
+    ]
+  },
+  "reduce": {
+    "reducer": "science.compact.world_atlas.v1",
+    "configuration": {
+      "analysis_dimensions": [
+        "resource_growth",
+        "replicate",
+        "seed"
+      ],
+      "axis_a": "seed",
+      "axis_b": "resource_growth",
+      "decision_family": "RELEASE_ENGINEERING",
+      "reporting_group": "RELEASE_ENGINEERING",
+      "tracked_policy_loci": [
+        0
+      ],
+      "tracked_trait_loci": [
+        1
+      ]
+    }
+  },
+  "expect_worlds": 4
+}

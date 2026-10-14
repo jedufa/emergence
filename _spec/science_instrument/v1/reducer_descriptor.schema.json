@@ -1,0 +1,68 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:reducer-descriptor",
+  "title": "EIEL Science Reducer Descriptor V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "reducer_id",
+    "contract_version",
+    "implementation_sha256",
+    "configuration_schema_sha256",
+    "required_observation_capability_ids",
+    "output_contract_id",
+    "purity_declarations"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_reducer_descriptor_v1"},
+    "reducer_id": {"$ref": "#/$defs/token"},
+    "contract_version": {"$ref": "#/$defs/token"},
+    "implementation_sha256": {"$ref": "#/$defs/digest"},
+    "configuration_schema_sha256": {"$ref": "#/$defs/digest"},
+    "required_observation_capability_ids": {"$ref": "#/$defs/token_array"},
+    "output_contract_id": {"$ref": "#/$defs/token"},
+    "purity_declarations": {
+      "type": "array",
+      "minItems": 4,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "CONTENT_ADDRESSED_IMPLEMENTATION",
+          "DETERMINISTIC_CANONICAL_OUTPUT",
+          "NO_NETWORK",
+          "NO_SIMULATOR_IMPORT",
+          "NO_TRAJECTORY_MUTATION",
+          "OFFLINE_ONLY"
+        ]
+      },
+      "allOf": [
+        {"contains": {"const": "DETERMINISTIC_CANONICAL_OUTPUT"}},
+        {"contains": {"const": "NO_SIMULATOR_IMPORT"}},
+        {"contains": {"const": "NO_TRAJECTORY_MUTATION"}},
+        {"contains": {"const": "OFFLINE_ONLY"}}
+      ]
+    }
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "token_array": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/token"}
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_issue_v1.schema.json",
+  "title": "EIEL Issue V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "issue_id",
+    "schema_version",
+    "severity",
+    "category",
+    "paths",
+    "evidence",
+    "detection_rule",
+    "first_observed",
+    "last_observed",
+    "owner",
+    "disposition",
+    "exception_expiry",
+    "remediation_state"
+  ],
+  "properties": {
+    "issue_id": { "type": "string", "pattern": "^eiel-issue-[a-z0-9]{16,}$" },
+    "schema_version": { "const": "eiel_issue_v1" },
+    "severity": { "enum": ["critical", "high", "medium", "low", "info"] },
+    "category": { "type": "string", "minLength": 1 },
+    "paths": { "type": "array", "items": { "type": "string" } },
+    "evidence": {},
+    "detection_rule": { "type": "string", "minLength": 1 },
+    "first_observed": { "type": "string" },
+    "last_observed": { "type": "string" },
+    "owner": { "type": "string" },
+    "disposition": { "enum": ["legacy_observed_unresolved", "accepted_exception", "needs_curation", "resolved", "false_positive", "unknown"] },
+    "exception_expiry": { "type": ["string", "null"] },
+    "remediation_state": { "enum": ["not_started", "planned", "in_progress", "resolved", "blocked"] }
+  }
+}

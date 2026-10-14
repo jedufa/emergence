@@ -1,0 +1,70 @@
+harness_api: 1
+version: 1
+status: DRAFT_NOT_EXECUTED
+execution_status: DRAFT_NOT_EXECUTED
+name: lineage_birth_attempt_exposure_eligibility_diagnostic_DRAFT
+description: DRAFT_NOT_EXECUTED blocked design registry for a future lineage birth-attempt exposure and reproduction eligibility diagnostic.
+intent: >
+  Diagnose selected-parent exposure to eligibility, attempt, failure, and success accounting after
+  default-off exposure/eligibility reporting is repaired and tiny-validated. This draft must not be
+  executed as-is.
+blocked_by_reporting_repair: false
+reporting_repair_status: tiny_validated_schema_v3
+reporting_repair_validation_date: 2026-07-06
+blocking_reason: >
+  Event schema v3 reporting repair has tiny validation coverage for selected exposure,
+  eligibility, no-attempt, attempt-recorded, success, and failure rows. This DRAFT remains
+  DRAFT_NOT_EXECUTED and must not be executed until explicitly converted to a ready
+  execution registry.
+required_reporting_before_execution:
+  event_schema_version: 3
+  repaired_event_schema_version: 3
+  required_event_classes:
+    - selected_parent_exposure
+    - selected_parent_eligible
+    - selected_parent_ineligible
+    - selected_parent_no_attempt
+    - birth_attempt_recorded
+    - birth_success
+    - birth_fail_no_space
+    - birth_fail_non_space
+    - birth_fail_unknown
+  tiny_validation_required: true
+  tiny_validation_status: passed
+matrix_order:
+  - funnel_setting
+  - context
+  - init_arm
+  - seed
+axes:
+  funnel_setting:
+    values:
+      - baseline
+      - parent_selection_softness_profile
+  context:
+    values:
+      - tuned_full_jungle
+      - wdl_delayed_hazard
+  init_arm:
+    values:
+      - legacy
+      - founder_balanced
+seeds:
+  - 101
+  - 202
+  - 303
+  - 404
+  - 505
+planned_runs: 40
+required_invariants:
+  - no_memory_prediction_arms
+  - no_cull_refill_intervention
+  - no_founder_spatial_arm
+  - no_mechanics_changes
+  - lineage_reproduction_funnel_reporting_enabled
+  - lineage_reproduction_funnel_event_writing_enabled
+  - checkpoint_bundle_v2_standard
+do_not_execute_without:
+  - default_off_reporting_repair
+  - tiny_deterministic_validation
+  - registry_conversion_to_ready_execution_status

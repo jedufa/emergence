@@ -1,0 +1,43 @@
+harness_api: 1
+version: 1
+name: chaos_week_2_nightly
+description: 'Chaos Week 2 (nightly): full pressure topology mapping set. Longer horizon,
+  5 seeds. Includes 3 targeted ablations (A4/B3/C2).'
+intent:
+  question: Pressure topology mapping for Chaos Week 2 (identity coupling, late-life
+    pressure, developmental lock-in).
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - nightly_A1_identity_gate_soft_action_noise__baseline
+    flags:
+      nightly_A1_identity_gate_soft_action_noise__baseline: []
+      - sim_cfg.dev_no_adult_recovery_start_age_frac=0.66
+seeds:
+- 1
+cli_defaults:
+- - --generations
+  - '30'
+- - --steps
+  - '150'
+- - --grid  
+  - '32'
+- - --pop
+  - '256'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- behaviors.csv
+naming:
+  run_tag_prefix: gen_10000
+  run_id_format: gen1000__{case}__seed{seed:06d}
+  run_tag_format: gen10000__{case}

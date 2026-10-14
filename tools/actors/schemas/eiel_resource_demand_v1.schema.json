@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_resource_demand_v1.schema.json",
+  "title": "EIEL Resource Demand V1",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {"const": "eiel_resource_demand_v1"},
+    "mission_id": {"type": ["string", "null"]},
+    "device": {"enum": ["cpu", "cuda", "either", "none"]},
+    "exclusive_gpu": {"type": "boolean"},
+    "gpu_admission_mode": {"enum": ["shared_functional", "exclusive"]},
+    "peak_vram_gib": {"type": ["number", "null"], "minimum": 0},
+    "minimum_ram_available_gib": {"type": "number", "minimum": 0},
+    "minimum_vram_available_gib": {"type": "number", "minimum": 0},
+    "minimum_storage_available_gib": {"type": "number", "minimum": 0},
+    "cpu_threads": {"type": "number", "minimum": 0},
+    "expected_duration_minutes": {"type": "number", "minimum": 0},
+    "workload_class": {"type": "string", "minLength": 1}
+  },
+  "required": [
+    "schema_version",
+    "device",
+    "exclusive_gpu",
+    "minimum_ram_available_gib",
+    "minimum_vram_available_gib",
+    "minimum_storage_available_gib",
+    "expected_duration_minutes",
+    "workload_class"
+  ]
+}

@@ -1,0 +1,172 @@
+harness_api: 1
+version: 1
+name: mosaic0a_depletion_recovery_control_validation
+description: MOSAIC-0A local depletion/recovery mosaic control-world validation contract; dry-run only in MOSAIC-0A.
+intent:
+  question: Can the local depletion/recovery mosaic scaffold be separated from flat, uniform patch, label-only, budget-uniform, depletion-only, and recovery-only controls before any selection campaign is authorized?
+  safe_claim_boundary: Registry/control design and dry-run readiness only; no intelligence, emergence, cognition, adaptive-memory, prediction-selection, solved lineage-diversity, or open-endedness claim.
+  task_decision_target: MOSAIC-0A-A/B/C/D/E/F/G
+matrix_order:
+- world_family
+- seed
+flag_templates:
+  flat_world: &flat_world
+  - --knob
+  - env_cfg.patch_world_enable=false
+  - --knob
+  - env_cfg.patch_world_observation_enable=false
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=false
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  patch_uniform_world: &patch_uniform_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=patch_uniform
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  label_only_sham_world: &label_only_sham_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=label_only_sham
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  budget_matched_uniform_world: &budget_matched_uniform_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=budget_matched_uniform
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  depletion_only_world: &depletion_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=depletion_only
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  recovery_only_world: &recovery_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=recovery_only
+  - --knob
+  - env_cfg.jungle_ecological_recovery_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  real_mosaic_world: &real_mosaic_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.patch_world_waste_consequence_enable=true
+  - --knob
+  - env_cfg.jungle_ecological_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=real_mosaic
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+axes:
+  world_family:
+    values:
+    - flat
+    - patch_uniform
+    - label_only_sham
+    - budget_matched_uniform
+    - depletion_only
+    - recovery_only
+    - real_mosaic
+    flags:
+      flat: *flat_world
+      patch_uniform: *patch_uniform_world
+      label_only_sham: *label_only_sham_world
+      budget_matched_uniform: *budget_matched_uniform_world
+      depletion_only: *depletion_only_world
+      recovery_only: *recovery_only_world
+      real_mosaic: *real_mosaic_world
+seeds:
+- 101
+- 202
+cli_defaults:
+- - --generations
+  - '12'
+- - --steps
+  - '40'
+- - --pop
+  - '32'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cuda
+- - --bank_device
+  - cuda
+- - --knob
+  - sim_cfg.device=cuda
+- - --knob
+  - sim_cfg.bank_device=cuda
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.campaign_output_profile=compact_default
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+- - --knob
+  - sim_cfg.branch_observability_enable=true
+- - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+naming:
+  run_tag_prefix: mosaic0a_control
+  run_id_format: mosaic0a_control__world_{world_family}__seed{seed:06d}
+expected_controls:
+  required_worlds:
+  - flat
+  - patch_uniform
+  - label_only_sham
+  - budget_matched_uniform
+  - depletion_only
+  - recovery_only
+  - real_mosaic
+  execution_status: not_authorized_by_mosaic0a

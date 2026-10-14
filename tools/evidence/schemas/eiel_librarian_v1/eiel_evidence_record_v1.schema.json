@@ -1,0 +1,148 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_evidence_record_v1.schema.json",
+  "title": "EIEL Evidence Record V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "evidence_id",
+    "schema_version",
+    "title",
+    "record_kind",
+    "scientific_question",
+    "primary_collection",
+    "tags",
+    "canonical_report_ref",
+    "source_state",
+    "claim_ids",
+    "authority_assertion_ids",
+    "artifact_ids",
+    "raw_asset_ids",
+    "derived_from_record_ids",
+    "has_part_record_ids",
+    "supersedes_record_ids",
+    "superseded_by_record_ids",
+    "created_at",
+    "catalogued_at",
+    "curator",
+    "review_state",
+    "retention_state",
+    "status_axes",
+    "notes"
+  ],
+  "properties": {
+    "evidence_id": { "type": "string", "pattern": "^eiel-rec-[a-z0-9][a-z0-9-]{8,}$" },
+    "schema_version": { "const": "eiel_evidence_record_v1" },
+    "title": { "type": "string", "minLength": 1 },
+    "record_kind": {
+      "type": "string",
+      "enum": [
+        "scientific_decision",
+        "qualification_decision",
+        "defect_decision",
+        "implementation_closeout",
+        "design_decision",
+        "theory_decision",
+        "release",
+        "handoff",
+        "legacy_unclassified"
+      ]
+    },
+    "scientific_question": { "type": ["string", "null"] },
+    "operational_question": { "type": ["string", "null"] },
+    "primary_collection": { "type": "string", "minLength": 1 },
+    "tags": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "canonical_report_ref": { "$ref": "#/$defs/ref" },
+    "frozen_report_ref": { "anyOf": [{ "$ref": "#/$defs/ref" }, { "type": "null" }] },
+    "source_state": { "$ref": "#/$defs/source_state" },
+    "decision_rule_ref": { "anyOf": [{ "$ref": "#/$defs/ref" }, { "type": "null" }] },
+    "decision_rule_version": { "type": ["string", "null"] },
+    "claim_ids": { "$ref": "#/$defs/id_array" },
+    "authority_assertion_ids": { "$ref": "#/$defs/id_array" },
+    "artifact_ids": { "$ref": "#/$defs/id_array" },
+    "raw_asset_ids": { "$ref": "#/$defs/id_array" },
+    "derived_from_record_ids": { "$ref": "#/$defs/id_array" },
+    "has_part_record_ids": { "$ref": "#/$defs/id_array" },
+    "supersedes_record_ids": { "$ref": "#/$defs/id_array" },
+    "superseded_by_record_ids": { "$ref": "#/$defs/id_array" },
+    "created_at": { "$ref": "#/$defs/time_observation" },
+    "catalogued_at": { "type": "string", "format": "date-time" },
+    "curator": { "type": "string", "minLength": 1 },
+    "review_state": {
+      "enum": [
+        "unreviewed",
+        "curated",
+        "reviewed",
+        "legacy_imported",
+        "source_explicit_candidate",
+        "curator_proposed",
+        "operator_review_required",
+        "unresolved"
+      ]
+    },
+    "retention_state": { "enum": ["retain", "runtime_external", "cold_storage", "retired", "unknown"] },
+    "status_axes": { "$ref": "#/$defs/status_axes" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "id_array": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["locator", "locator_type"],
+      "properties": {
+        "locator": { "type": "string", "minLength": 1 },
+        "locator_type": { "enum": ["repo_path", "runtime_path", "uri", "archive_member", "unknown"] },
+        "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" }
+      }
+    },
+    "source_state": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["repo_commit", "applicability_envelope"],
+      "properties": {
+        "repo_commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+        "branch": { "type": ["string", "null"] },
+        "worktree": { "type": ["string", "null"] },
+        "provider": { "type": ["string", "null"] },
+        "runtime": { "type": ["string", "null"] },
+        "route_hash": { "type": ["string", "null"] },
+        "applicability_envelope": { "type": "object" }
+      }
+    },
+    "time_observation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["value", "source", "confidence"],
+      "properties": {
+        "value": { "type": ["string", "null"] },
+        "source": { "enum": ["report_text", "filesystem_observation", "git_commit", "operator_statement", "unknown"] },
+        "confidence": { "enum": ["explicit", "observed", "unknown"] }
+      }
+    },
+    "status_axes": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "scientific_decision_status",
+        "authority_currentness_status",
+        "integrity_status",
+        "completeness_status",
+        "raw_asset_availability_status",
+        "reproducibility_status",
+        "publication_release_status",
+        "retention_status"
+      ],
+      "properties": {
+        "scientific_decision_status": { "enum": ["unknown", "supported", "not_supported", "contradicted", "invalidated", "not_applicable"] },
+        "authority_currentness_status": { "enum": ["unknown", "current_explicit", "superseded_explicit", "retired_explicit", "not_authority"] },
+        "integrity_status": { "enum": ["unknown", "valid", "invalid", "unsafe", "in_progress_or_unstable"] },
+        "completeness_status": { "enum": ["unknown", "complete", "partial", "missing_parts"] },
+        "raw_asset_availability_status": { "enum": ["unknown", "available", "missing", "external", "not_required"] },
+        "reproducibility_status": { "enum": ["unknown", "reproduced", "descriptor_only", "not_reproduced"] },
+        "publication_release_status": { "enum": ["unknown", "internal", "release_candidate", "published", "not_publishable"] },
+        "retention_status": { "enum": ["unknown", "retain", "runtime_external", "cold_storage", "retired"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,799 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_work_item_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_evidence": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "acceptance_scope": {
+      "enum": [
+        "UNCONDITIONAL",
+        "WITH_LIMITS",
+        "NOT_APPLICABLE",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "accepted": {
+      "type": "boolean"
+    },
+    "accepted_review_session_id": {
+      "pattern": "^SES-[A-Z0-9-]+$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "administrative_reconciliation": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ],
+      "x-eiel-frozen-by-parent": "eiel_work_item_v1"
+    },
+    "blocked_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "completion_basis": {
+      "enum": [
+        "ACCEPTED_REPOSITORY_DELIVERY",
+        "ADMITTED_TECHNICAL_QUALIFICATION",
+        "RECORD_ONLY_COMPLETION",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "completion_policy": {
+      "enum": [
+        "REPOSITORY_DELIVERY",
+        "QUALIFICATION_DECISION",
+        "RECORD_ONLY"
+      ],
+      "type": "string"
+    },
+    "completion_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "continuation": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "created_order_key": {
+      "type": "string"
+    },
+    "current_stage": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "current_step": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "delivery_components": {
+      "items": {
+        "$ref": "eiel_delivery_component_v1.schema.json"
+      },
+      "type": "array"
+    },
+    "dependency_work_ids": {
+      "items": {
+        "pattern": "^WORK-[A-Z0-9-]+$",
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "evidence_requirement": {
+      "anyOf": [
+        {
+          "$ref": "eiel_work_evidence_requirement_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "hold": {
+      "anyOf": [
+        {
+          "$ref": "eiel_work_hold_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "last_completed_step": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lifecycle_repair": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "mission_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_action": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "next_command": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "package_binding_history": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "changed_material_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "previous_binding": {
+            "additionalProperties": true,
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "reason": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "recorded_at_utc": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "replacement_binding": {
+            "additionalProperties": true,
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "schema_version": {
+            "const": "eiel_work_package_rebind_v1"
+          },
+          "source_transition": {
+            "anyOf": [
+              {
+                "additionalProperties": false,
+                "properties": {
+                  "package_sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "promotion_request_sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "recommended_authority": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "record_sha256": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "requested_uncertainty_class": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  },
+                  "revision": {
+                    "type": [
+                      "integer",
+                      "null"
+                    ]
+                  },
+                  "schema_version": {
+                    "const": "eiel_promotion_source_ref_v1"
+                  },
+                  "session_id": {
+                    "type": [
+                      "string",
+                      "null"
+                    ]
+                  }
+                },
+                "required": [
+                  "schema_version",
+                  "session_id",
+                  "revision",
+                  "record_sha256",
+                  "package_sha256",
+                  "promotion_request_sha256",
+                  "requested_uncertainty_class",
+                  "recommended_authority"
+                ],
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "schema_version",
+          "previous_binding",
+          "replacement_binding",
+          "reason",
+          "source_transition",
+          "changed_material_fields",
+          "recorded_at_utc"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "parent_work_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "preferred_codex_conversation_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "preferred_codex_thread_url": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "priority": {
+      "enum": [
+        "P0",
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ]
+    },
+    "promotion_resolution": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "deciding_authority": {
+              "additionalProperties": false,
+              "properties": {
+                "identity_assurance": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "role": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "identity_assurance",
+                "source"
+              ],
+              "type": "object"
+            },
+            "previous_package_binding": {
+              "additionalProperties": true,
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "reason": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "replacement_package_binding": {
+              "additionalProperties": true,
+              "type": [
+                "object",
+                "null"
+              ]
+            },
+            "resolved_at_utc": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "schema_version": {
+              "const": "eiel_promotion_resolution_v1"
+            },
+            "source_promotion": {
+              "anyOf": [
+                {
+                  "additionalProperties": false,
+                  "properties": {
+                    "package_sha256": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "promotion_request_sha256": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "recommended_authority": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "record_sha256": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "requested_uncertainty_class": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    },
+                    "revision": {
+                      "type": [
+                        "integer",
+                        "null"
+                      ]
+                    },
+                    "schema_version": {
+                      "const": "eiel_promotion_source_ref_v1"
+                    },
+                    "session_id": {
+                      "type": [
+                        "string",
+                        "null"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "schema_version",
+                    "session_id",
+                    "revision",
+                    "record_sha256",
+                    "package_sha256",
+                    "promotion_request_sha256",
+                    "requested_uncertainty_class",
+                    "recommended_authority"
+                  ],
+                  "type": "object"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "schema_version",
+            "source_promotion",
+            "previous_package_binding",
+            "replacement_package_binding",
+            "deciding_authority",
+            "reason",
+            "resolved_at_utc"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "references": {
+      "additionalProperties": {
+        "items": {
+          "type": "string"
+        },
+        "type": "array"
+      },
+      "type": "object"
+    },
+    "repository_integration_receipt": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "resource_accounting": {
+      "additionalProperties": true,
+      "properties": {
+        "artifact": {
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "artifact_history": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "estimate": {
+          "$ref": "eiel_resource_estimate_v1.schema.json"
+        },
+        "estimation_error": {
+          "additionalProperties": false,
+          "properties": {
+            "actual_tokens": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "confidence_was_correct": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            },
+            "expected_tokens": {
+              "minimum": 0,
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "percent_error": {
+              "type": [
+                "number",
+                "null"
+              ]
+            },
+            "token_delta": {
+              "type": [
+                "integer",
+                "null"
+              ]
+            },
+            "within_low_high": {
+              "type": [
+                "boolean",
+                "null"
+              ]
+            }
+          },
+          "required": [
+            "expected_tokens",
+            "actual_tokens",
+            "token_delta",
+            "percent_error",
+            "within_low_high",
+            "confidence_was_correct"
+          ],
+          "type": [
+            "object",
+            "null"
+          ]
+        },
+        "schema_version": {
+          "const": "eiel_work_resource_accounting_v1"
+        }
+      },
+      "required": [
+        "schema_version",
+        "estimate",
+        "artifact",
+        "estimation_error",
+        "artifact_history"
+      ],
+      "type": "object"
+    },
+    "resource_estimate": {
+      "$ref": "eiel_resource_estimate_v1.schema.json"
+    },
+    "schema_version": {
+      "const": "eiel_work_item_v1"
+    },
+    "subsystem": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "storage_evidence_roots": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true,
+      "x-eiel-lifecycle-authority": "explicit-manifest-bound-runtime-root"
+    },
+    "storage_merge_closeout": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ],
+      "x-eiel-lifecycle-authority": "repository-truth-artifact-reference"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "superseded_by_work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tags": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "terminal_decision_receipt": {
+      "anyOf": [
+        {
+          "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "terminal_transition": {
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "action": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "authority": {
+              "additionalProperties": false,
+              "properties": {
+                "actor": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "codex_id": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "identity_assurance": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "role": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "source": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "role",
+                "identity_assurance",
+                "source"
+              ],
+              "type": "object"
+            },
+            "prior_record": {
+              "additionalProperties": false,
+              "properties": {
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "record_sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "revision": {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "schema_version": {
+                  "const": "eiel_actor_record_ref_v1"
+                },
+                "status": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "schema_version",
+                "record_id",
+                "revision",
+                "record_sha256",
+                "status"
+              ],
+              "type": "object"
+            },
+            "reason": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "recorded_at_utc": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "replacement_state": {
+              "additionalProperties": false,
+              "properties": {
+                "payload_sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "record_id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "revision": {
+                  "minimum": 1,
+                  "type": "integer"
+                },
+                "status": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "record_id",
+                "revision",
+                "status",
+                "payload_sha256"
+              ],
+              "type": "object"
+            },
+            "schema_version": {
+              "const": "eiel_terminal_transition_v1"
+            }
+          },
+          "required": [
+            "schema_version",
+            "reason",
+            "authority",
+            "prior_record",
+            "replacement_state",
+            "action",
+            "recorded_at_utc"
+          ],
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "title": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "work_package_binding": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "work_package_chain": {
+      "items": {
+        "additionalProperties": true,
+        "properties": {
+          "binding": {
+            "type": "object"
+          },
+          "requires_intermediate_review": {
+            "type": "boolean"
+          },
+          "sequence": {
+            "minimum": 1,
+            "type": "integer"
+          }
+        },
+        "required": ["binding", "requires_intermediate_review", "sequence"],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "work_type": {
+      "enum": [
+        "ENGINEERING",
+        "SCIENCE",
+        "QUALIFICATION",
+        "INFRASTRUCTURE",
+        "DOCUMENTATION",
+        "EVIDENCE",
+        "OPERATIONS",
+        "RESEARCH",
+        "OTHER"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "work_id",
+    "title",
+    "work_type",
+    "priority",
+    "dependency_work_ids",
+    "tags",
+    "references",
+    "created_order_key",
+    "completion_policy",
+    "completion_basis",
+    "accepted"
+  ],
+  "title": "EIEL durable work item",
+  "type": "object"
+}

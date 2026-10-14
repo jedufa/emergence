@@ -1,0 +1,29 @@
+{
+  "schema_version": "tw_rngv2_full_evolution_domains_v1",
+  "status": "QUALPREP_DEFAULT_OFF_APPEND_ONLY",
+  "parent_qualified_domains": [816, 817, 818],
+  "parent_qualified_contract": "tensor_world_c0_c7_rngv2_v1@7a6614d2b7851d85",
+  "default_activation": false,
+  "registry_rule": "Append-only. Do not reuse 0x0330-0332. Reserved unused IDs keep their names; new IDs are added only for operators not already reserved.",
+  "domains": [
+    {"id": 256, "id_hex": "0100", "name": "ENVIRONMENT_EVENT", "ops": {"food_spawn_attempt": 0}, "subject": "world event", "status": "reserved_now_bound"},
+    {"id": 528, "id_hex": "0210", "name": "AGENT_ACTION_CHOICE", "ops": {"gumbel_action": "0..action_count-1"}, "subject": "entity", "status": "reserved_now_bound"},
+    {"id": 768, "id_hex": "0300", "name": "MATING_CANDIDATE", "ops": {"adjacent_shuffle": "0..n-2"}, "subject": "entity", "status": "reserved_now_bound"},
+    {"id": 784, "id_hex": "0310", "name": "BIRTH_PROPOSAL", "ops": {"diploid_meiosis": "0..9", "diploid_gate": "32+locus", "diploid_homolog": "96+locus", "diploid_delta": "160+locus"}, "subject": "birth proposal rank", "status": "reserved_now_bound"},
+    {"id": 800, "id_hex": "0320", "name": "RECOMBINATION", "ops": {"meiosis_draw": "0..11"}, "subject": "birth proposal rank", "status": "reserved_now_bound"},
+    {"id": 832, "id_hex": "0340", "name": "GV2_Q10_HOMOLOG", "ops": {"locus": "0..59"}, "subject": "birth proposal rank", "status": "new"},
+    {"id": 833, "id_hex": "0341", "name": "GV2_Q10_GATE", "ops": {"locus": "0..59"}, "subject": "birth proposal rank", "status": "new"},
+    {"id": 834, "id_hex": "0342", "name": "GV2_Q10_DELTA", "ops": {"locus": "0..59"}, "subject": "birth proposal rank", "status": "new"},
+    {"id": 864, "id_hex": "0360", "name": "JUNGLE_PREDATOR_HIT", "ops": {"bernoulli": 0}, "subject": "entity", "status": "new"},
+    {"id": 880, "id_hex": "0370", "name": "POLICY_BIRTH_DRAW", "ops": {"element": "append-only"}, "subject": "birth proposal rank", "status": "new"},
+    {"id": 1024, "id_hex": "0400", "name": "LIFECYCLE_TRANSITION", "ops": {"drive_noise": "0..3"}, "subject": "entity", "status": "reserved_now_bound"}
+  ],
+  "not_migrated_because_deterministic": [
+    "wdl_delayed_hazard SHA256 schedule",
+    "eed_resource_impact",
+    "movement occupancy first-wins",
+    "lifecycle death cull",
+    "identity next_id",
+    "linked diploid assembly after donor tape"
+  ]
+}

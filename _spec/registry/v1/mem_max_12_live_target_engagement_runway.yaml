@@ -1,0 +1,182 @@
+harness_api: 1
+version: 1
+name: mem_max_12_live_target_engagement_runway
+description: MEM-MAX-12 compact runway with neutral active-opportunity repair and unchanged consequence.
+intent:
+  question: Does neutral live target-engagement opportunity support cue-dependent choice under unchanged delayed-choice consequence?
+  note: >
+    Live target-engagement runway only. Active opportunity is extended neutrally
+    across all cells; no target-entry reward, correct-choice reward, or
+    consequence increase is used.
+  planned_runs: 5
+matrix_order:
+- runway_cell
+- seed
+axes:
+  runway_cell:
+    values:
+    - useful_normal
+    - useful_ablated
+    - cue_off_normal
+    - consequence_off_normal
+    - flat_normal
+    flags:
+      useful_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=true
+      useful_ablated:
+      - --knob
+      - sim_cfg.force_memory_disabled=true
+      - --knob
+      - sim_cfg.reset_memory_each_tick=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=true
+      cue_off_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=true
+      consequence_off_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=false
+      flat_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=false
+seeds:
+- 101
+cli_defaults:
+- - --generations
+  - "4"
+- - --steps
+  - "48"
+- - --pop
+  - "16"
+- - --grid_size
+  - "7"
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - sim_cfg.policy_weight_mutation_enable=true
+- - --knob
+  - sim_cfg.policy_weight_mutation_std=0.02
+- - --knob
+  - sim_cfg.memory_pressure_scenario=true
+- - --knob
+  - sim_cfg.memory_pressure_type=mem_max_12_live_target_engagement
+- - --knob
+  - sim_cfg.enable_cognitive_status_metrics=true
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+- - --knob
+  - env_cfg.view_radius=1
+- - --knob
+  - env_cfg.patch_world_enable=true
+- - --knob
+  - env_cfg.patch_world_observation_enable=true
+- - --knob
+  - env_cfg.enable_biomes=false
+- - --knob
+  - env_cfg.food_spawn_per_step=0
+- - --knob
+  - env_cfg.max_food=0
+- - --knob
+  - env_cfg.patch_food_amount_initial_empty_cell_value=1.0
+- - --knob
+  - env_cfg.patch_food_regrow_per_step=0.0
+- - --knob
+  - env_cfg.patch_waste_consume_emit=0.0
+- - --knob
+  - env_cfg.patch_waste_presence_emit=0.0
+- - --knob
+  - env_cfg.patch_waste_decay_per_step=0.0
+- - --knob
+  - env_cfg.mem_max_delayed_choice_schema_version=1
+- - --knob
+  - env_cfg.mem_max_delayed_choice_observation_schema_version=2
+- - --knob
+  - env_cfg.mem_max_delayed_choice_navigation_observation_enable=true
+- - --knob
+  - env_cfg.mem_max_delayed_choice_global_cue_observation_enable=true
+- - --knob
+  - env_cfg.mem_max_delayed_choice_cue_steps=1
+- - --knob
+  - env_cfg.mem_max_delayed_choice_hidden_steps=2
+- - --knob
+  - env_cfg.mem_max_delayed_choice_active_steps=6
+- - --knob
+  - env_cfg.mem_max_delayed_choice_event_period_steps=11
+- - --knob
+  - env_cfg.mem_max_delayed_choice_target_geometry=horizontal_symmetric
+- - --knob
+  - env_cfg.mem_max_delayed_choice_target_distance=2
+- - --knob
+  - env_cfg.mem_max_delayed_choice_damage=0.25
+- - --knob
+  - env_cfg.mem_max_delayed_choice_health_damage=0.25
+- - --knob
+  - env_cfg.mem_max_delayed_choice_energy_cost=0.0
+- - --knob
+  - env_cfg.mem_max_delayed_choice_correct_choice_damage_multiplier=0.0
+- - --knob
+  - env_cfg.mem_max_delayed_choice_incorrect_choice_damage_multiplier=1.0
+- - --knob
+  - env_cfg.mem_max_delayed_choice_no_choice_damage_multiplier=1.0
+- - --knob
+  - env_cfg.mem_max_delayed_choice_consequence_once_per_event=true
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: mem_max_12_live_target_engagement_runway
+  run_id_format: mem_max_12__cell_{runway_cell}__seed{seed:06d}
+  run_tag_format: mem_max_12__cell_{runway_cell}
+mem_max_12_status:
+  schema_version: mem_max_12_registry_status_v1
+  status: short_live_engagement_runway
+  caution: no positive interpretation without live target entries, cue-specific correct choice, and valid controls

@@ -1,0 +1,15 @@
+{
+  "$id": "eiel_repository_relocation_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "schema_version": {
+      "const": "eiel_repository_relocation_receipt_v1"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "EIEL repository relocation receipt v1",
+  "type": "object"
+}

@@ -1,0 +1,89 @@
+{
+  "authority_context": {
+    "active_goal": null,
+    "approved_work_package": null,
+    "authorization_basis": null,
+    "operator_instruction_ref": null,
+    "preflight": null,
+    "preflight_exemption": null,
+    "preflight_fail_closed_acknowledged": false,
+    "repository_fallback_reason": null,
+    "schema_version": "eiel_mission_authority_context_v1"
+  },
+  "claim_ceiling": "A bounded WDL-specific robustness conclusion only.",
+  "controls": [
+    "memory normal",
+    "memory ablated"
+  ],
+  "decision_rule": "Apply the preregistered evidence profile without post-hoc widening.",
+  "decision_to_enable": "Close or retain the bounded WDL-specific robustness claim.",
+  "failure_criteria": [
+    "The preregistered robustness decision rule does not pass."
+  ],
+  "mission_type": "ROBUSTNESS_BATTERY",
+  "out_of_scope": [
+    "coefficient tuning",
+    "general cognition claims"
+  ],
+  "qualification_request": {
+    "track_label": "b48w16p64c128gNt160gpu"
+  },
+  "question": "Does the bounded WDL memory signal survive fixed hazard variation?",
+  "references": {
+    "campaign_output_paths": [],
+    "campaign_spec_paths": [],
+    "evidence_assessment_ids": [],
+    "implementation_report_refs": [],
+    "librarian_document_ids": [],
+    "qualification_record_ids": [],
+    "resource_record_ids": []
+  },
+  "required_closeout_refs": [
+    "evidence_refs",
+    "qualification_refs",
+    "resource_refs",
+    "report_refs",
+    "campaign_output_refs",
+    "source_identity",
+    "librarian_document_ids"
+  ],
+  "required_evidence": [
+    "complete paired outputs",
+    "reward-leakage audit",
+    "deterministic evidence decision"
+  ],
+  "resource_demand": {
+    "cpu_threads": 0,
+    "device": "cuda",
+    "exclusive_gpu": true,
+    "expected_duration_minutes": 420,
+    "minimum_ram_available_gib": 6,
+    "minimum_storage_available_gib": 20,
+    "minimum_vram_available_gib": 4,
+    "schema_version": "eiel_resource_demand_v1",
+    "workload_class": "bounded_cuda_campaign"
+  },
+  "schema_version": "eiel_mission_specification_v2",
+  "scope": [
+    "three preregistered delayed-hazard variants"
+  ],
+  "source_identity": {},
+  "stopping_rules": [
+    "Stop after the fixed matrix.",
+    "Do not tune variants to rescue a negative result."
+  ],
+  "success_criteria": [
+    "The preregistered robustness decision rule passes."
+  ],
+  "tasks": [
+    "implement bounded variants",
+    "run focused tests",
+    "run the fixed campaign through existing campaign tooling",
+    "assess outputs with evidenceManager",
+    "close the mission"
+  ],
+  "technical_qualification_requirements": [
+    "current admitted execution route"
+  ],
+  "title": "Bounded memory robustness battery"
+}

@@ -1,0 +1,129 @@
+harness_api: 1
+version: 1
+name: mem_max_13_neutral_engager_runway
+description: MEM-MAX-13 planned neutral engager founder-bank runway contract.
+intent:
+  question: Does a cue-independent neutral engager founder bank permit delayed-choice filtering into cue-dependent behavior?
+  note: >
+    The executable MEM-MAX-13 package applies the deterministic founder bank inside real
+    SimulationRunner cells. This registry records the planned critical cells and flags.
+  planned_runs: 5
+matrix_order:
+- runway_cell
+- seed
+axes:
+  runway_cell:
+    values:
+    - useful_normal
+    - useful_ablated
+    - cue_off_normal
+    - consequence_off_normal
+    - flat_normal
+    flags:
+      useful_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=true
+      useful_ablated:
+      - --knob
+      - sim_cfg.force_memory_disabled=true
+      - --knob
+      - sim_cfg.reset_memory_each_tick=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=true
+      cue_off_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=true
+      consequence_off_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=false
+      flat_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_observation_enable=true
+      - --knob
+      - env_cfg.mem_max_delayed_choice_cue_enable=false
+      - --knob
+      - env_cfg.mem_max_delayed_choice_consequence_enable=false
+seeds:
+- 13013
+cli_defaults:
+- - --generations
+  - "4"
+- - --steps
+  - "48"
+- - --pop
+  - "16"
+- - --grid_size
+  - "7"
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - sim_cfg.policy_weight_mutation_enable=true
+- - --knob
+  - sim_cfg.policy_weight_mutation_std=0.02
+- - --knob
+  - sim_cfg.memory_pressure_scenario=true
+- - --knob
+  - sim_cfg.memory_pressure_type=mem_max_13_neutral_engager_founders
+- - --knob
+  - sim_cfg.enable_cognitive_status_metrics=true
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: mem_max_13_neutral_engager_runway
+  run_id_format: mem_max_13__cell_{runway_cell}__seed{seed:06d}
+  run_tag_format: mem_max_13__cell_{runway_cell}
+mem_max_13_status:
+  schema_version: mem_max_13_registry_status_v1
+  status: founder_bank_harness_contract
+  caution: no positive interpretation without matched bank hash, repeat parity, target engagement, and valid controls

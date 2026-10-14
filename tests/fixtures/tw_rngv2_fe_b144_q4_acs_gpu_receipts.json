@@ -1,0 +1,51 @@
+{
+  "schema_version": "tw_rngv2_fe_b144_q4_acs_gpu_receipt_excerpt_v1",
+  "nvidia_smi_tick_used_bytes": 5704253440,
+  "nvidia_smi_source": "Stage-1 r2 resourceManager inspect during packed ticks (engineering occupancy)",
+  "q4a_acs_batch_manifest": "/tmp/emergence-test/runtime/evidence_raw/tw_rngv2_fe_b144_qual_37a5cfa25_20260819/q4/launchpad-q4a-r1/batches/batch-0000/manifest.json",
+  "q4a_acs_batch_manifest_sha256": "8ab6008a6339f774e4e50ff12102a4e328113c430194faa112ac7f8887b0a71f",
+  "q4a_capture_barrier_gpu_before": {
+    "max_memory_allocated_bytes": 5471468544,
+    "memory_allocated_bytes": 5282722304,
+    "memory_reserved_bytes": 5498732544,
+    "source": "torch_cuda_allocator_counters_no_kernel_no_sync_v1"
+  },
+  "q4a_capture_barrier_host_before": {
+    "pinned_bytes": 0,
+    "pss_bytes": 33515745280,
+    "rss_bytes": 33531830272,
+    "source": "linux_proc_status_and_smaps_rollup_v1"
+  },
+  "q4a_capture_barrier_host_after": {
+    "pinned_bytes": 0,
+    "pss_bytes": 46322813952,
+    "rss_bytes": 46338883584,
+    "source": "linux_proc_status_and_smaps_rollup_v1"
+  },
+  "q4b_acs_batch_manifest": "/tmp/emergence-test/runtime/evidence_raw/tw_rngv2_fe_b144_qual_37a5cfa25_20260819/q4/launchpad-q4b-r1/batches/batch-0000/manifest.json",
+  "q4b_acs_batch_manifest_sha256": "7550aa627e632f358de0ca92b4f0dd622b40b5f3e21ef80e4801f1fead21d3de",
+  "q4b_capture_barrier_gpu_before": {
+    "max_memory_allocated_bytes": 5702117888,
+    "memory_allocated_bytes": 5513371648,
+    "memory_reserved_bytes": 5744099328,
+    "source": "torch_cuda_allocator_counters_no_kernel_no_sync_v1"
+  },
+  "q4b_capture_barrier_host_before": {
+    "pinned_bytes": 0,
+    "pss_bytes": 33541324800,
+    "rss_bytes": 33558192128,
+    "source": "linux_proc_status_and_smaps_rollup_v1"
+  },
+  "q4b_capture_barrier_host_after": {
+    "pinned_bytes": 0,
+    "pss_bytes": 46429115392,
+    "rss_bytes": 46445981696,
+    "source": "linux_proc_status_and_smaps_rollup_v1"
+  },
+  "json_pointer": "/checkpoint/acs_checkpoint_staging/capture_barrier_measurement",
+  "max_memory_reserved_key": "UNINSTRUMENTED_ABSENT",
+  "reporting_comparison_is_post_release": {
+    "q4b_reporting_manifest": "/tmp/emergence-test/runtime/evidence_raw/tw_rngv2_fe_b144_qual_37a5cfa25_20260819/q4/launchpad-q4b-r1/comparisons/reporting-5d44d7638d75dd308a58/manifest.json",
+    "note": "Reporting capture_barrier memory_reserved_bytes ~50 MiB is after GPU release; do not use as ACS occupancy."
+  }
+}

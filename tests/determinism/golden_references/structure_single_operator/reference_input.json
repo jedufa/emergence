@@ -1,0 +1,5 @@
+{
+  "case_id": "golden_structure_single_operator",
+  "schema_version": "golden_reference_input_v1",
+  "description": "Single-operator structural mutation deterministic reference input"
+}

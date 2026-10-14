@@ -1,0 +1,5 @@
+{
+  "case_id": "golden_recombination_single_cross",
+  "schema_version": "golden_reference_expected_output_v1",
+  "note": "Populate with canonical child genome bytes/hash expected output"
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_work_lifecycle_projection_v2.schema.json",
+  "title": "EIEL canonical Work lifecycle projection v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "state", "stored_v1_status",
+    "stored_v1_status_authoritative_for_history", "readiness",
+    "execution_state", "active_session_ids", "resumable_session_ids",
+    "closure_reason", "replacement_work_id", "operator_hold_reason",
+    "planning_fields_authority", "parent_work_id_semantics",
+    "broad_references_semantics", "resource_totals_semantics"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_work_lifecycle_projection_v2"},
+    "state": {"enum": ["OPEN", "BLOCKED", "COMPLETED", "CLOSED"]},
+    "stored_v1_status": {"type": "string", "minLength": 1},
+    "stored_v1_status_authoritative_for_history": {"const": true},
+    "readiness": {"enum": ["OPEN", "READY", "BLOCKED", "NOT_APPLICABLE"]},
+    "execution_state": {"enum": ["IDLE", "ACTIVE", "PAUSED"]},
+    "active_session_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "resumable_session_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "closure_reason": {"type": ["string", "null"]},
+    "replacement_work_id": {"type": ["string", "null"]},
+    "operator_hold_reason": {"type": ["string", "null"]},
+    "planning_fields_authority": {"enum": ["PRE_SESSION_ONLY", "SESSION_DERIVED"]},
+    "parent_work_id_semantics": {"const": "DESCRIPTIVE_ONLY"},
+    "broad_references_semantics": {"const": "NAVIGATION_ONLY"},
+    "resource_totals_semantics": {"const": "DERIVED_FROM_IMMUTABLE_WRA_ARTIFACTS"}
+  }
+}

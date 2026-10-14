@@ -1,0 +1,197 @@
+{
+  "schema_version": "eiel_science_request_v1",
+  "campaign_id": "EIEL-SELECTION-WINDOW-W32-B1024-EXAMPLE-V1",
+  "test": "SELECTION_WINDOW_V1",
+  "question": {
+    "description": "Map how selection-pressure onset and intensity interact with mutation enablement and mutation step across paired seeds in one exact native B1024 W32 campaign.",
+    "no_claims": true
+  },
+  "world": {
+    "width": 32,
+    "height": 32,
+    "population": 256,
+    "capacity": 512
+  },
+  "run": {
+    "ticks": 100000,
+    "batch": {
+      "policy": "exact",
+      "worlds": 1024
+    },
+    "checkpoint_ticks": [
+      25000,
+      50000,
+      75000,
+      100000
+    ]
+  },
+  "dimensions": {
+    "pressure_onset": [
+      0,
+      2500,
+      10000,
+      25000
+    ],
+    "pressure_intensity": [
+      0.0,
+      0.125,
+      0.25,
+      0.5,
+      0.75,
+      1.0,
+      1.25,
+      1.5
+    ],
+    "mutation_enabled": [
+      false,
+      true
+    ],
+    "mutation_step": [
+      1,
+      4
+    ],
+    "seed": [
+      1103,
+      2207,
+      3301,
+      4409,
+      5519,
+      6619,
+      7723,
+      8837
+    ]
+  },
+  "world_template": {
+    "initialization": {
+      "initial_population": 256,
+      "initial_live_count": 256,
+      "founder_profiles": [
+        "native-broad-diverse-a-v1"
+      ],
+      "exact_founder_composition": [
+        {
+          "founder_profile_id": "native-broad-diverse-a-v1",
+          "count": 256
+        }
+      ],
+      "spatial_placement_profile": "deterministic_seeded_shuffle_v1",
+      "standing_variation_profile": "broad-standing-variation-v1"
+    },
+    "controls": {
+      "environment.patch.enabled": true,
+      "environment.jungle.enabled": true,
+      "environment.jungle.damage_threshold": 24,
+      "environment.wdl.enabled": true,
+      "environment.wdl.damage": 1,
+      "environment.eed.enabled": true,
+      "environment.eed.loss_shift": 5,
+      "environment.resource.carrying_base": 64,
+      "environment.resource.carrying_variation": 96,
+      "environment.resource.growth_base": 1,
+      "environment.resource.growth_variation": 3,
+      "environment.resource.multiplier": 0.8,
+      "environment.resource.uptake_base": 8,
+      "environment.movement.cost": 1,
+      "reproduction.enabled": true,
+      "reproduction.energy_threshold": 100,
+      "reproduction.energy_cost": 30,
+      "recombination.enabled": true,
+      "selection.pressure": {
+        "value": "${pressure_intensity}",
+        "schedule": {
+          "kind": "step_absolute_tick",
+          "onset_tick": "${pressure_onset}",
+          "baseline": 0.0
+        }
+      },
+      "mutation.enabled": "${mutation_enabled}",
+      "mutation.rate": 0.03125,
+      "mutation.step": "${mutation_step}"
+    },
+    "seeds": {
+      "ecology": "${seed}",
+      "founder": "${seed}",
+      "policy": "${seed}",
+      "mutation": "${seed}",
+      "task_environment": "${seed}",
+      "initialization": "${seed}",
+      "intervention": "${seed}"
+    }
+  },
+  "replicate_dimension": "seed",
+  "observe": {
+    "profile": "SCIENCE_STANDARD_V1",
+    "events": [
+      "birth",
+      "birth_parentage",
+      "causal_lifecycle",
+      "death",
+      "lineage_ancestry",
+      "mutation",
+      "mutation_provenance"
+    ],
+    "state": [
+      "compact.state_snapshots",
+      "genome_identity",
+      "population_count"
+    ],
+    "runtime_counters": [
+      "birth_count",
+      "compact.agent_lifetime_metrics",
+      "control_readback",
+      "mutation_count"
+    ],
+    "snapshot_ticks": [
+      0,
+      100,
+      250,
+      500,
+      1000,
+      2500,
+      5000,
+      7500,
+      10000,
+      15000,
+      25000,
+      50000,
+      75000,
+      100000
+    ]
+  },
+  "reduce": {
+    "reducer": "science.compact.world_atlas.v1",
+    "configuration": {
+      "analysis_dimensions": [
+        "pressure_onset",
+        "pressure_intensity",
+        "mutation_enabled",
+        "mutation_step",
+        "seed"
+      ],
+      "axis_a": "pressure_onset",
+      "axis_b": "pressure_intensity",
+      "decision_family": "SELECTION_WINDOW",
+      "reporting_group": "SELECTION_WINDOW",
+      "tracked_policy_loci": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        12,
+        19,
+        26,
+        40
+      ],
+      "tracked_trait_loci": [
+        1,
+        2,
+        3,
+        4,
+        6
+      ]
+    }
+  },
+  "expect_worlds": 1024
+}

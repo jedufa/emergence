@@ -1,0 +1,45 @@
+{
+  "schema_version": "eiel_runpod_cuda_application_manifest_v1",
+  "application_id": "emergence_cuda_smoke_v1",
+  "source_include_paths": [
+    "engine"
+  ],
+  "run_argv": [
+    "python",
+    "-m",
+    "engine.main",
+    "--gen",
+    "1",
+    "--steps",
+    "2",
+    "--seed",
+    "7301",
+    "--pop",
+    "6",
+    "--grid_size",
+    "6",
+    "--device",
+    "cuda",
+    "--bank_device",
+    "cuda",
+    "--runs_dir",
+    "$RUN_ROOT/application",
+    "--run_id",
+    "runnode_cuda_smoke_manifest_v1",
+    "--allow_existing_run_dir",
+    "--knob",
+    "env_cfg.patch_world_enable=false"
+  ],
+  "artifacts": [
+    {
+      "id": "application_output",
+      "path": "application",
+      "type": "directory",
+      "required": true
+    }
+  ],
+  "expected_success_marker": "simulation_completed",
+  "local_preflight_command": "python -m engine.main --help",
+  "runtime_profile": "emergence_cuda_v1",
+  "timeout_seconds": 900
+}

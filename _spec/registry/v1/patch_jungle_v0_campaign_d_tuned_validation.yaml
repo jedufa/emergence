@@ -1,0 +1,255 @@
+harness_api: 1
+version: 1
+name: patch_jungle_v0_campaign_d_tuned_validation
+description: 'Campaign D tuned Jungle validation: baseline, Patch observed, default full Jungle, tuned no-recovery, and tuned recovery.'
+intent:
+  question: 'Does the selected Campaign C tuned Jungle configuration remain viable and interpretable over a longer validation horizon?'
+  axes:
+  - scenario:
+    - d00_flat_baseline
+    - d01_patch_observed
+    - d02_full_jungle_default
+    - d03_tuned_full_jungle_no_recovery
+    - d04_tuned_full_jungle_recovery
+matrix_order:
+- scenario
+- seed
+axes:
+  scenario:
+    values:
+    - d00_flat_baseline
+    - d01_patch_observed
+    - d02_full_jungle_default
+    - d03_tuned_full_jungle_no_recovery
+    - d04_tuned_full_jungle_recovery
+    flags:
+      d00_flat_baseline:
+      - --knob
+      - env_cfg.patch_world_enable=false
+      - --knob
+      - env_cfg.patch_world_observation_enable=false
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=false
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=false
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=false
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=false
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=false
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      d01_patch_observed:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=false
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=false
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=false
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=false
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=false
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      d02_full_jungle_default:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      d03_tuned_full_jungle_no_recovery:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=false
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.0
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.05
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.25
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_max=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_max=0.5
+      - --knob
+      - env_cfg.patch_regrowth_min_multiplier=0.1
+      - --knob
+      - env_cfg.jungle_cover_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_shelter_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_terrain_damage_multiplier_min=0.15
+      d04_tuned_full_jungle_recovery:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.0
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.05
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.25
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_max=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_scale=0.5
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_max=0.5
+      - --knob
+      - env_cfg.patch_regrowth_min_multiplier=0.1
+      - --knob
+      - env_cfg.jungle_cover_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_shelter_damage_reduction_weight=0.4
+      - --knob
+      - env_cfg.jungle_terrain_damage_multiplier_min=0.15
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.05
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.1
+      - --knob
+      - env_cfg.jungle_recovery_fertility_enable=false
+      - --knob
+      - env_cfg.jungle_resource_spread_enable=false
+seeds:
+- 101
+- 202
+- 303
+- 404
+- 505
+- 606
+- 707
+- 808
+- 909
+- 1001
+- 1102
+- 1203
+- 1304
+- 1405
+- 1506
+- 1607
+- 1708
+- 1809
+- 19010
+- 20011
+cli_defaults:
+- - --generations
+  - '16'
+- - --steps
+  - '100'
+- - --pop
+  - '48'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: patch_jungle_v0_campaign_d_tuned_validation
+  run_id_format: '{name}__scenario_{scenario}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__scenario_{scenario}'

@@ -1,0 +1,75 @@
+{
+  "binding_keys": [
+    "authoritative_schema_hash",
+    "binary_schema_hash",
+    "checkpoint_schema_hash",
+    "provider_projection_hash"
+  ],
+  "contract_hash": "e72288b8c2876647a49e1bab907d902bf8e0964a07c254fd0ef8fba8ebea005f",
+  "fields": [
+    {
+      "dtype": "string",
+      "field_id": "chronicle.run_id.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "int64",
+      "field_id": "chronicle.generation.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "int64",
+      "field_id": "chronicle.step.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "int32",
+      "field_id": "chronicle.phase_order.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "int64",
+      "field_id": "chronicle.intra_step_sequence.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "string",
+      "field_id": "chronicle.event_type.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "string",
+      "field_id": "chronicle.subject_id.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "string",
+      "field_id": "chronicle.source_component.v1",
+      "required": true,
+      "shape": []
+    }
+  ],
+  "identity_field_ids": [
+    "chronicle.run_id.v1",
+    "chronicle.generation.v1",
+    "chronicle.step.v1",
+    "chronicle.phase_order.v1",
+    "chronicle.intra_step_sequence.v1",
+    "chronicle.event_type.v1",
+    "chronicle.subject_id.v1",
+    "chronicle.source_component.v1"
+  ],
+  "kind": "authoritative_chronicle_schema",
+  "open_namespaces": {
+    "factual_summary_fields": "provenance_required",
+    "measurements": "provenance_required"
+  },
+  "schema_version": "eiel_authoritative_chronicle_schema_v1"
+}

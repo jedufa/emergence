@@ -1,0 +1,165 @@
+{
+  "schema_version": "hapb_frag_rngv2_domain_inventory_v1",
+  "status": "RESOLVED_NO_UNKNOWN",
+  "route": "HAPB-FRAG WDL/Jungle/EED identity-reuse",
+  "baseline_head": "37a5cfa2567bf3af4d8ae6ec822eccc544fc5c96",
+  "frozen_native_source": "50bbbb68c52364434c0d1e0c3756b4e88127a164",
+  "frozen_harness": "2a7266a94e54bec5245d8968a57f7968124aa7a3",
+  "frozen_artifact_sha256": "eb84c986592b2c4edf37cfc446cc58b87d120e89122839522ed935c7791878b7",
+  "working_from": "current_HEAD_ancestor_of_frozen_harness_not_silent_older_substitute",
+  "domains": [
+    {
+      "domain": "ordinary_birth_scalar_mutation",
+      "current_family": "CPython_MT19937_gaussian_tape",
+      "owner": "host_prepare/GPU_consume",
+      "state": "python_random_gauss_primary/secondary_tape",
+      "reached_b48_b130_b160": true,
+      "classification": "MIGRATE_TO_V2",
+      "v2_domain_ids": [816, 817, 818],
+      "notes": "WDL V2 birth already addresses child semantic IDs when rng_semantics_version=2"
+    },
+    {
+      "domain": "diploid_recombination_meiosis",
+      "current_family": "resident_diploid_v1_or_V2",
+      "owner": "GPU",
+      "state": "allele planes + child semantic id",
+      "reached_b48_b130_b160": true,
+      "classification": "MIGRATE_TO_V2",
+      "v2_domain_ids": [784, 800]
+    },
+    {
+      "domain": "birth_proposal_parent_mate",
+      "current_family": "plan_order_plus_PCG_or_V2",
+      "owner": "GPU",
+      "state": "planned parent/mate slots; RNG subject is proposal rank / child id",
+      "reached_b48_b130_b160": true,
+      "classification": "MIGRATE_TO_V2",
+      "v2_domain_ids": [768, 784]
+    },
+    {
+      "domain": "child_identity_allocator",
+      "current_family": "monotonic_uid",
+      "owner": "GPU/host map",
+      "state": "next_entity_uid; never reuse after death",
+      "reached_b48_b130_b160": true,
+      "classification": "DETERMINISTIC_NO_RNG"
+    },
+    {
+      "domain": "policy_newborn_and_window_crossover",
+      "current_family": "Torch_CPU_MT_plus_FRAG_window_tape",
+      "owner": "host refill / FRAG identity reuse",
+      "state": "policy_birth_* tapes; compact width-1 when mutation disabled",
+      "reached_b48_b130_b160": true,
+      "classification": "MIGRATE_TO_V2",
+      "v2_domain_ids": [880, 1536]
+    },
+    {
+      "domain": "policy_mutation",
+      "current_family": "Torch_randn_tape",
+      "owner": "host refill",
+      "state": "policy_birth_delta_tape",
+      "reached_b48_b130_b160": false,
+      "classification": "MIGRATE_TO_V2",
+      "v2_domain_ids": [1537, 1538],
+      "notes": "HAPB FRAG production path keeps mutation disabled/compact; V2 still implements the generator"
+    },
+    {
+      "domain": "action_selection",
+      "current_family": "PCG64_resident_compact",
+      "owner": "GPU",
+      "state": "policy_pcg64_state_words [cells,4]",
+      "reached_b48_b130_b160": true,
+      "classification": "PRESERVE_COMPACT_VALID_DOMAIN",
+      "v2_domain_ids": [512, 528],
+      "notes": "Resident PCG64 [cells,4] remains the live HAPB action stream. Native rng_semantics_version=2 only gates birth/mutation. Not claimed as V2."
+    },
+    {
+      "domain": "jungle_predator_hit",
+      "current_family": "closed_form_risk_no_draw",
+      "owner": "GPU",
+      "state": "none",
+      "reached_b48_b130_b160": false,
+      "classification": "NOT_REACHED_BY_HAPB_FRAG",
+      "v2_domain_ids": [864],
+      "notes": "HAPB Jungle uses closed-form risk/damage. V2 domain 0x0360 is unused on this route."
+    },
+    {
+      "domain": "conception_gestation_scale_gates",
+      "current_family": "runner_PCG64",
+      "owner": "GPU",
+      "state": "injury_repro_* / reproduction_scale_gate",
+      "reached_b48_b130_b160": false,
+      "classification": "NOT_REACHED_BY_HAPB_FRAG",
+      "notes": "Frozen HAPB campaign does not set injury_repro_* or reproduction_scale_gate_active"
+    },
+    {
+      "domain": "food_resource_spawn",
+      "current_family": "environment_event",
+      "owner": "GPU",
+      "state": "persistent_food_spawn",
+      "reached_b48_b130_b160": true,
+      "classification": "PRESERVE_COMPACT_VALID_DOMAIN",
+      "v2_domain_ids": [256],
+      "notes": "Runner PCG64 food spawn remains compact resident RNG. Native V2 flag does not retarget this stream."
+    },
+    {
+      "domain": "lifecycle_drive_noise",
+      "current_family": "numpy_or_resident",
+      "owner": "GPU",
+      "state": "drive noise draws",
+      "reached_b48_b130_b160": true,
+      "classification": "PRESERVE_COMPACT_VALID_DOMAIN",
+      "v2_domain_ids": [1024],
+      "notes": "Population/runner PCG64 drive noise remains compact resident RNG. Native V2 flag does not retarget this stream."
+    },
+    {
+      "domain": "death_cull_turnover_selection",
+      "current_family": "deterministic_rank",
+      "owner": "GPU",
+      "state": "none",
+      "reached_b48_b130_b160": true,
+      "classification": "DETERMINISTIC_NO_RNG"
+    },
+    {
+      "domain": "occupancy_first_wins",
+      "current_family": "deterministic",
+      "owner": "GPU",
+      "state": "none",
+      "reached_b48_b130_b160": true,
+      "classification": "DETERMINISTIC_NO_RNG"
+    },
+    {
+      "domain": "wdl_delayed_hazard_schedule",
+      "current_family": "SHA256_schedule",
+      "owner": "GPU",
+      "state": "digest schedule",
+      "reached_b48_b130_b160": true,
+      "classification": "DETERMINISTIC_NO_RNG"
+    },
+    {
+      "domain": "eed_resource_impact",
+      "current_family": "deterministic_impact",
+      "owner": "GPU",
+      "state": "none",
+      "reached_b48_b130_b160": true,
+      "classification": "DETERMINISTIC_NO_RNG"
+    },
+    {
+      "domain": "legacy_cpython_gaussian_window",
+      "current_family": "CPython_MT_plus_gauss_cache",
+      "owner": "host",
+      "state": "624-word MT + optional gauss next",
+      "reached_b48_b130_b160": true,
+      "classification": "NOT_REACHED_BY_HAPB_FRAG",
+      "notes": "legacy only; V2 route forbids this tape"
+    },
+    {
+      "domain": "option_d_m4_device_policy_refill",
+      "current_family": "compile_flag_off",
+      "owner": "unused",
+      "state": "none",
+      "reached_b48_b130_b160": false,
+      "classification": "NOT_REACHED_BY_HAPB_FRAG"
+    }
+  ]
+}

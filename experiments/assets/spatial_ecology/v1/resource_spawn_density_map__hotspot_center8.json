@@ -1,0 +1,46 @@
+{
+  "name": "resource_spawn_density_map",
+  "params": {
+    "combine": "multiply",
+    "layers": [
+      {
+        "name": "resource_spawn_density_map__bg_noise",
+        "params": {
+          "frequency": 0.08,
+          "normalize": "minmax",
+          "octaves": 4,
+          "value_range": [
+            0.9,
+            1.1
+          ]
+        },
+        "seed": 11,
+        "type": "noise",
+        "version": 1
+      },
+      {
+        "name": "resource_spawn_density_map__hotspot_center",
+        "params": {
+          "base": 1.0,
+          "combine": "last_wins",
+          "regions": [
+            {
+              "id": 1,
+              "value": 2.5,
+              "x0_frac": 0.375,
+              "x1_frac": 0.625,
+              "y0_frac": 0.375,
+              "y1_frac": 0.625
+            }
+          ]
+        },
+        "seed": 0,
+        "type": "regions",
+        "version": 1
+      }
+    ]
+  },
+  "seed": 0,
+  "type": "composite",
+  "version": 1
+}

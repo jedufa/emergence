@@ -1,0 +1,19 @@
+{
+  "enable": true,
+  "capacity_by_region": [
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24,
+    24
+  ],
+  "ema_gamma": 1.0,
+  "scarcity_alpha": 0.8,
+  "yield_floor": 0.15,
+  "hazard_beta": 0.35,
+  "hazard_mult_cap": 3.0
+}

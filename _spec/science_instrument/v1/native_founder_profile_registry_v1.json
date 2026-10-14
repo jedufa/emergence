@@ -1,0 +1,31 @@
+{
+  "schema_version": "eiel_science_native_founder_profile_registry_v1",
+  "profile_shape": {
+    "policy_alleles": 2,
+    "policy_loci": 112,
+    "trait_alleles": 2,
+    "trait_loci": 16
+  },
+  "carrier_preserved_trait_loci": [0],
+  "profiles": [
+    {"profile_id": "native-neutral-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [], "trait_edits": []},
+    {"profile_id": "native-random-baseline-v1", "base": {"kind": "deterministic_random", "seed": 101, "policy_min": -4, "policy_max": 4, "trait_min": -8, "trait_max": 8}, "policy_edits": [], "trait_edits": []},
+    {"profile_id": "native-single-locus-low-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [5], "value": -100}], "trait_edits": []},
+    {"profile_id": "native-single-locus-high-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [5], "value": 100}], "trait_edits": []},
+    {"profile_id": "native-context-hidden-low-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [26, 40], "value": -24}], "trait_edits": []},
+    {"profile_id": "native-context-hidden-high-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [26, 40], "value": 24}], "trait_edits": []},
+    {"profile_id": "native-correlated-package-low-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [5, 12, 19, 26], "value": -18}], "trait_edits": [{"alleles": [0, 1], "loci": [2, 3, 4], "value": -7}]},
+    {"profile_id": "native-correlated-package-high-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [5, 12, 19, 26], "value": 18}], "trait_edits": [{"alleles": [0, 1], "loci": [2, 3, 4], "value": 7}]},
+    {"profile_id": "native-resource-specialist-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [5], "value": 36}, {"alleles": [0, 1], "loci": [0], "value": -8}], "trait_edits": [{"alleles": [0, 1], "loci": [2], "value": 3}]},
+    {"profile_id": "native-movement-specialist-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [1, 2, 3, 4], "value": 24}, {"alleles": [0, 1], "loci": [0], "value": -8}], "trait_edits": [{"alleles": [0, 1], "loci": [1], "value": 2}]},
+    {"profile_id": "native-risk-resistant-v1", "base": {"kind": "constant", "policy": 0, "traits": 0}, "policy_edits": [{"alleles": [0, 1], "loci": [0, 5], "value": 12}], "trait_edits": [{"alleles": [0, 1], "loci": [3, 4, 6], "value": 7}]},
+    {"profile_id": "native-broad-diverse-a-v1", "base": {"kind": "deterministic_random", "seed": 211, "policy_min": -12, "policy_max": 12, "trait_min": -16, "trait_max": 16}, "policy_edits": [], "trait_edits": []},
+    {"profile_id": "native-broad-diverse-b-v1", "base": {"kind": "deterministic_random", "seed": 307, "policy_min": -12, "policy_max": 12, "trait_min": -16, "trait_max": 16}, "policy_edits": [], "trait_edits": []},
+    {"profile_id": "portable-demo-founder-a-v1", "alias_of": "native-random-baseline-v1"},
+    {"profile_id": "portable-demo-founder-b-v1", "alias_of": "native-neutral-v1"},
+    {"profile_id": "founder-neutral-v1", "alias_of": "native-neutral-v1"},
+    {"profile_id": "founder-resource-v1", "alias_of": "native-resource-specialist-v1"},
+    {"profile_id": "founder-movement-v1", "alias_of": "native-movement-specialist-v1"},
+    {"profile_id": "founder-risk-v1", "alias_of": "native-risk-resistant-v1"}
+  ]
+}

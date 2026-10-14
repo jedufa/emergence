@@ -1,0 +1,1788 @@
+{
+  "campaign_id": "theme4_stage10d_transfer_robustness",
+  "campaign_name": "Theme 4 Stage 10D Transfer and Robustness Campaign",
+  "campaign_type": "transfer_robustness",
+  "cost_levels": {
+    "medium": {
+      "config_values": {
+        "env_overrides": {
+          "gru_cost_base": 0.004,
+          "gru_cost_per_dim": 8e-05
+        },
+        "sim_overrides": {
+          "developmental_cognition_cost_base": 0.0005,
+          "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+          "enable_experimental_developmental_cost_charging": true,
+          "enable_experimental_perception_cost_charging": true,
+          "enable_experimental_prediction_cost_charging": true,
+          "enable_experimental_sensor_radius_cost_charging": true,
+          "maturation_cost_per_tick": 0.0005,
+          "prediction_cost_base": 0.0005,
+          "prediction_cost_per_lr": 0.001,
+          "prediction_state_cost": 0.0001,
+          "sensor_channel_cost_per_weight": 0.001,
+          "sensor_radius_cost_base": 0.0005,
+          "sensor_radius_cost_per_cell": 0.0001,
+          "sensor_radius_cost_per_cell_channel": 5e-05
+        }
+      },
+      "description": "Medium explicit cost charging using existing live cost hooks."
+    }
+  },
+  "cost_mode": "medium_from_stage10c",
+  "default_env_overrides": {},
+  "default_pop_overrides": {},
+  "default_sim_overrides": {
+    "bank_device": "cuda",
+    "behavior_log_enable": false,
+    "checkpoint_bundle_v2_period_gen": 0,
+    "developmental_cognition_cost_base": 0.0005,
+    "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+    "device": "cuda",
+    "enable_cognitive_budget_ledger": true,
+    "enable_cognitive_status_metrics": true,
+    "enable_cognitive_trait_registry": true,
+    "enable_experimental_developmental_cost_charging": true,
+    "enable_experimental_perception_cost_charging": true,
+    "enable_experimental_prediction_cost_charging": true,
+    "enable_experimental_sensor_radius_cost_charging": true,
+    "epi_enable": false,
+    "maturation_cost_per_tick": 0.0005,
+    "phase_e_e1_enable": false,
+    "policy_deterministic_actions": true,
+    "policy_tick_stride": 1,
+    "prediction_cost_base": 0.0005,
+    "prediction_cost_per_lr": 0.001,
+    "prediction_state_cost": 0.0001,
+    "sensor_channel_cost_per_weight": 0.001,
+    "sensor_radius_cost_base": 0.0005,
+    "sensor_radius_cost_per_cell": 0.0001,
+    "sensor_radius_cost_per_cell_channel": 5e-05
+  },
+  "description": "Live simulator-backed transfer and robustness check across new seeds and deterministic scenario variants. No new cognition or ecology mechanics are introduced.",
+  "evidence_paths": {
+    "note": "evidences/theme4_stage10d_transfer_robustness_evidence.md",
+    "zip": "evidences/theme4_stage10d_transfer_robustness_evidence.zip"
+  },
+  "horizon": {
+    "generations": 3,
+    "mode": "transfer_robustness",
+    "note": "Matches Stage 10B-3/10C horizon for transfer comparability.",
+    "steps_per_generation": 48,
+    "tick_count": 144
+  },
+  "input_evidence_reference": [
+    "evidences/theme4_stage10b3_nightly_broad_live_ablation_evidence.md",
+    "evidences/theme4_stage10c_targeted_cost_sweep_evidence.md"
+  ],
+  "interpretation_limits": [
+    "No intelligence claim.",
+    "No trait is proven adaptive.",
+    "Transfer is tested across a compact variant set only.",
+    "CUDA is used when available through SimConfig device/bank_device overrides."
+  ],
+  "manifest_version": "theme4_campaign_manifest_v1",
+  "output_directory": "evidences/theme4_stage10d_transfer_robustness",
+  "paired_ablation_groups": [
+    {
+      "ablation_cell_id": "flat_a_memory_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "flat_a_memory_medium_transfer_pair",
+      "normal_cell_id": "flat_a_memory_medium_normal",
+      "primary_trait": "memory",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a"
+    },
+    {
+      "ablation_cell_id": "flat_a_perception_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "flat_a_perception_medium_transfer_pair",
+      "normal_cell_id": "flat_a_perception_medium_normal",
+      "primary_trait": "perception",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a"
+    },
+    {
+      "ablation_cell_id": "flat_a_prediction_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "flat_a_prediction_medium_transfer_pair",
+      "normal_cell_id": "flat_a_prediction_medium_normal",
+      "primary_trait": "prediction",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a"
+    },
+    {
+      "ablation_cell_id": "jungle_a_memory_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "jungle_a_memory_medium_transfer_pair",
+      "normal_cell_id": "jungle_a_memory_medium_normal",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_a"
+    },
+    {
+      "ablation_cell_id": "jungle_a_perception_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "jungle_a_perception_medium_transfer_pair",
+      "normal_cell_id": "jungle_a_perception_medium_normal",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_a"
+    },
+    {
+      "ablation_cell_id": "jungle_b_memory_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "jungle_b_memory_medium_transfer_pair",
+      "normal_cell_id": "jungle_b_memory_medium_normal",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_b"
+    },
+    {
+      "ablation_cell_id": "jungle_b_perception_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "jungle_b_perception_medium_transfer_pair",
+      "normal_cell_id": "jungle_b_perception_medium_normal",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_b"
+    },
+    {
+      "ablation_cell_id": "patch_a_memory_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_a_memory_medium_transfer_pair",
+      "normal_cell_id": "patch_a_memory_medium_normal",
+      "primary_trait": "memory",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a"
+    },
+    {
+      "ablation_cell_id": "patch_a_perception_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_a_perception_medium_transfer_pair",
+      "normal_cell_id": "patch_a_perception_medium_normal",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a"
+    },
+    {
+      "ablation_cell_id": "patch_a_prediction_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_a_prediction_medium_transfer_pair",
+      "normal_cell_id": "patch_a_prediction_medium_normal",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a"
+    },
+    {
+      "ablation_cell_id": "patch_a_sensor_radius_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_a_sensor_radius_medium_transfer_pair",
+      "normal_cell_id": "patch_a_sensor_radius_medium_normal",
+      "primary_trait": "sensor_radius",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a"
+    },
+    {
+      "ablation_cell_id": "patch_b_perception_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_b_perception_medium_transfer_pair",
+      "normal_cell_id": "patch_b_perception_medium_normal",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b"
+    },
+    {
+      "ablation_cell_id": "patch_b_prediction_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_b_prediction_medium_transfer_pair",
+      "normal_cell_id": "patch_b_prediction_medium_normal",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b"
+    },
+    {
+      "ablation_cell_id": "patch_b_sensor_radius_medium_ablation",
+      "cost_level": "medium",
+      "expected_affected_metrics": [
+        "alive",
+        "mean_offspring_total",
+        "lineage_active_count",
+        "cog_cost_mean"
+      ],
+      "group_id": "patch_b_sensor_radius_medium_transfer_pair",
+      "normal_cell_id": "patch_b_sensor_radius_medium_normal",
+      "primary_trait": "sensor_radius",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b"
+    }
+  ],
+  "scenario_cells": [
+    {
+      "cell_id": "development_transfer",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [],
+      "skip_reason": "Developmental cognition did not receive a Stage 10C charged-cost sweep and remains lower priority for this bounded transfer campaign."
+    },
+    {
+      "ablation_flags": {
+        "reset_memory_each_tick": true
+      },
+      "cell_id": "flat_a_memory_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "memory",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "reset_memory_each_tick": true,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "flat_a_memory_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "memory",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "flat_a_perception_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "perception",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_minimal_sensor_channels_enabled": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "flat_a_perception_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "perception",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_prediction_zero_lr": true
+      },
+      "cell_id": "flat_a_prediction_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "prediction_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "prediction",
+        "prediction_costs",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "prediction",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_prediction_zero_lr": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "flat_a_prediction_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "prediction_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "prediction",
+        "prediction_costs",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "prediction",
+      "scenario_group": "flat",
+      "scenario_variant": "flat_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "reset_memory_each_tick": true
+      },
+      "cell_id": "jungle_a_memory_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "reset_memory_each_tick": true,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "jungle_a_memory_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "jungle_a_perception_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_minimal_sensor_channels_enabled": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "jungle_a_perception_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "reset_memory_each_tick": true
+      },
+      "cell_id": "jungle_b_memory_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.35,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "reset_memory_each_tick": true,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "jungle_b_memory_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.35,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "jungle_b_perception_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.35,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_minimal_sensor_channels_enabled": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "jungle_b_perception_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.35,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "scenario_variant": "jungle_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "reset_memory_each_tick": true
+      },
+      "cell_id": "patch_a_memory_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "memory",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "reset_memory_each_tick": true,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_a_memory_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "memory_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "memory",
+        "memory_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "memory",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "patch_a_perception_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_minimal_sensor_channels_enabled": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_a_perception_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_prediction_zero_lr": true
+      },
+      "cell_id": "patch_a_prediction_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "prediction_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "prediction",
+        "prediction_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_prediction_zero_lr": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_a_prediction_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "prediction_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "prediction",
+        "prediction_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_min_sensor_radius": true
+      },
+      "cell_id": "patch_a_sensor_radius_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "sensor_radius_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "sensor_radius",
+        "sensor_radius_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "sensor_radius",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_radius": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_min_sensor_radius": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_a_sensor_radius_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "sensor_radius_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "sensor_radius",
+        "sensor_radius_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "sensor_radius",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_a",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_radius": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "patch_b_perception_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_minimal_sensor_channels_enabled": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_b_perception_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "perception_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "perception",
+        "perception_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_channel_mask": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_prediction_zero_lr": true
+      },
+      "cell_id": "patch_b_prediction_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "prediction_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "prediction",
+        "prediction_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_prediction_zero_lr": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_b_prediction_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "prediction_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "prediction",
+        "prediction_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_min_sensor_radius": true
+      },
+      "cell_id": "patch_b_sensor_radius_medium_ablation",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "sensor_radius_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "sensor_radius",
+        "sensor_radius_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "sensor_radius",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_radius": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "force_min_sensor_radius": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "ablation_flags": {},
+      "cell_id": "patch_b_sensor_radius_medium_normal",
+      "classification": "live",
+      "cost_level": "medium",
+      "env_overrides": {
+        "gru_cost_base": 0.004,
+        "gru_cost_per_dim": 8e-05,
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_cost_behavior": {
+        "metric": "sensor_radius_cost_charged_mean",
+        "mode": "finite"
+      },
+      "expected_metric_families": [
+        "core",
+        "reproduction",
+        "lineage",
+        "sensor_radius",
+        "sensor_radius_costs",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "sensor_radius",
+      "scenario_group": "patch",
+      "scenario_variant": "patch_b",
+      "sim_overrides": {
+        "developmental_cognition_cost_base": 0.0005,
+        "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+        "enable_evolvable_sensor_radius": true,
+        "enable_experimental_developmental_cost_charging": true,
+        "enable_experimental_perception_cost_charging": true,
+        "enable_experimental_prediction_cost_charging": true,
+        "enable_experimental_sensor_radius_cost_charging": true,
+        "maturation_cost_per_tick": 0.0005,
+        "prediction_cost_base": 0.0005,
+        "prediction_cost_per_lr": 0.001,
+        "prediction_state_cost": 0.0001,
+        "sensor_channel_cost_per_weight": 0.001,
+        "sensor_radius_cost_base": 0.0005,
+        "sensor_radius_cost_per_cell": 0.0001,
+        "sensor_radius_cost_per_cell_channel": 5e-05
+      }
+    },
+    {
+      "cell_id": "stage5_introspection_transfer",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [],
+      "skip_reason": "Stage 5 introspection is extraction-surface-only and not wired into live policy input."
+    },
+    {
+      "cell_id": "stage6_self_regulation_transfer",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [],
+      "skip_reason": "Stage 6 self-regulation is scripted/test surface only and not wired into live policy output."
+    },
+    {
+      "cell_id": "stage7_self_modification_transfer",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [],
+      "skip_reason": "Stage 7 self-modification is scripted/test surface only and not applied in the live simulation loop."
+    },
+    {
+      "cell_id": "stage8_directed_inheritance_transfer",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [],
+      "skip_reason": "Stage 8 directed inheritance is scaffold-only and not live-selected through reproduction behavior."
+    }
+  ],
+  "scenario_variants": {
+    "flat_a": {
+      "env": {},
+      "pressure_type": "flat",
+      "scenario_group": "flat"
+    },
+    "jungle_a": {
+      "env": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "pressure_type": "jungle",
+      "scenario_group": "jungle"
+    },
+    "jungle_b": {
+      "env": {
+        "jungle_predator_base_risk": 0.01,
+        "jungle_predator_pressure_enable": true,
+        "jungle_predator_risk_cap": 0.06,
+        "jungle_terrain_protection_enable": true,
+        "patch_cover_default": 0.35,
+        "patch_shelter_default": 0.2,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "pressure_type": "jungle",
+      "scenario_group": "jungle"
+    },
+    "patch_a": {
+      "env": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "pressure_type": "patch",
+      "scenario_group": "patch"
+    },
+    "patch_b": {
+      "env": {
+        "patch_food_regrow_cap_by_fertility": true,
+        "patch_food_regrow_per_step": 0.035,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true,
+        "patch_world_waste_consequence_enable": true
+      },
+      "pressure_type": "patch",
+      "scenario_group": "patch"
+    }
+  },
+  "seed_list": [
+    111,
+    222,
+    333,
+    444,
+    555
+  ],
+  "stage": "10D",
+  "trait_carry_forward_decisions": {
+    "development": {
+      "decision": "deprioritize",
+      "reason": "Skipped for bounded transfer because Stage 10C did not sweep development costs."
+    },
+    "memory": {
+      "decision": "full_transfer",
+      "reason": "Stage 10C marked memory as a weak cost-robust candidate with pressure mean above flat mean; carry into Patch/Jungle transfer variants plus flat control."
+    },
+    "perception": {
+      "decision": "limited_transfer",
+      "reason": "Stage 10C marked perception suspicious because flat-world behavior was stronger than pressure aggregate, but pressure deltas existed; keep a limited transfer check."
+    },
+    "prediction": {
+      "decision": "limited_transfer",
+      "reason": "Stage 10C marked prediction as weak cost-robust but pressure aggregate was negative; test flat plus two Patch variants before any longer carry-forward."
+    },
+    "sensor_radius": {
+      "decision": "limited_transfer",
+      "reason": "Stage 10C marked sensor radius as a weak cost-robust candidate; test two Patch variants where radius should matter most."
+    }
+  },
+  "validation_warnings": [
+    "Perception was carried despite a suspicious Stage 10C flat-world classification, so Stage 10D should treat it as a limited transfer check.",
+    "Medium cost is used for all live cells; this is not a cost sweep."
+  ]
+}

@@ -1,0 +1,51 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_evidence_assessment_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_evidence_assessment_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "artifacts": {
+      "type": "object"
+    },
+    "assessment_id": {
+      "type": "string"
+    },
+    "campaign_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "manifest_path": {
+      "type": "string"
+    },
+    "manifest_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "procedural_decision": {
+      "type": "string"
+    },
+    "procedural_only": {
+      "type": "boolean"
+    },
+    "profile": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_evidence_assessment_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "assessment_id",
+    "profile",
+    "procedural_decision",
+    "manifest_path",
+    "manifest_sha256"
+  ],
+  "title": "EIEL Evidence Assessment V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.evidence_manager",
+  "x-eiel-persistence-class": "durable_actor_payload"
+}

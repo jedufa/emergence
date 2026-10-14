@@ -1,0 +1,103 @@
+harness_api: 1
+version: 1
+name: validation_chemistry_run0_fast_confidence
+description: Harness registry for PIS run-0 chemistry ON/OFF fast-confidence sweep.
+intent:
+  question: Do ON/OFF chemistry coupling runs produce auditable directional chemistry deltas under the run-0 compact profile?
+  axes:
+  - chemistry_mode
+matrix_order:
+- chemistry_mode
+- seed
+axes:
+  chemistry_mode:
+    values:
+    - chemistry_on
+    - chemistry_off
+    flags:
+      chemistry_on:
+      - --knob
+      - sim_cfg.chemistry_functional_coupling_enable=1
+      - --knob
+      - sim_cfg.chemistry_action_cost_coupling_enable=1
+      - --knob
+      - sim_cfg.chemistry_repro_viability_enable=1
+      chemistry_off:
+      - --knob
+      - sim_cfg.chemistry_functional_coupling_enable=0
+      - --knob
+      - sim_cfg.chemistry_action_cost_coupling_enable=0
+      - --knob
+      - sim_cfg.chemistry_repro_viability_enable=0
+seeds:
+- 2201
+- 2202
+- 2203
+cli_defaults:
+- - --generations
+  - '6'
+- - --steps
+  - '8'
+- - --pop
+  - '24'
+- - --policy_tick_stride
+  - '2'
+- - --knob
+  - sim_cfg.selection_forbid_chemistry_scalar=1
+- - --knob
+  - sim_cfg.a3_recovery_taxonomy_enable=1
+- - --knob
+  - env_cfg.width=16
+- - --knob
+  - env_cfg.height=16
+- - --knob
+  - env_cfg.biome_safe_frac=0.55
+- - --knob
+  - env_cfg.biome_wild_hazard_prob=0.03
+- - --knob
+  - env_cfg.biome_wild_hazard_damage=0.50
+- - --knob
+  - env_cfg.biome_wild_hazard_injury_per_damage=0.35
+- - --knob
+  - env_cfg.food_spawn_per_step=8
+- - --knob
+  - env_cfg.max_food=160
+- - --knob
+  - sim_cfg.maintenance_enable=1
+- - --knob
+  - sim_cfg.maintenance_delay_ticks=3
+- - --knob
+  - sim_cfg.maintenance_base_effect=0.14
+- - --knob
+  - sim_cfg.maintenance_diminishing_factor=0.60
+- - --knob
+  - sim_cfg.maintenance_recent_decay=0.92
+- - --knob
+  - sim_cfg.maintenance_energy_cost=0.06
+- - --knob
+  - sim_cfg.maintenance_opportunity_cost_coeff=0.20
+- - --knob
+  - sim_cfg.maintenance_domination_threshold=0.75
+- - --knob
+  - sim_cfg.maintenance_domination_min_ticks=6
+- - --knob
+  - sim_cfg.shock_start_prob=0.08
+- - --knob
+  - sim_cfg.shock_duration_min=2
+- - --knob
+  - sim_cfg.shock_duration_max=4
+- - --knob
+  - sim_cfg.shock_cooldown_min=10
+- - --knob
+  - sim_cfg.shock_cooldown_max=18
+- - --knob
+  - sim_cfg.phase_e_e1_enable=0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: val_chem_run0_quick
+  run_id_format: '{name}__{chemistry_mode}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__{chemistry_mode}'

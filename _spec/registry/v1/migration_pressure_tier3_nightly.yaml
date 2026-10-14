@@ -1,0 +1,53 @@
+harness_api: 1
+version: 1
+name: migration_pressure_tier3
+description: >
+  Nightly-scale Tier 3 migration pressure run.
+  Intended for selection-scale sanity checks across multiple seeds.
+
+intent:
+  question: "Tier 3 at scale: are crossings and movement costs persistently non-zero and stable across seeds?"
+  axes:
+    - scenario: ["baseline", "tier3_full"]
+
+matrix_order: [scenario, seed]
+
+axes:
+  scenario:
+    values: ["baseline", "tier3_full"]
+    flags:
+      baseline:
+        # Baseline uses the same region partition as the Tier 3 variant, but leaves Tier 3 disabled.
+        - "--tier3_regions_spec"
+        - "@experiments/assets/tier3_migration/v1/tier3_regions_2x2.json"
+      tier3_full:
+        - "--migration_pressure_enable"
+        - "--tier3_regions_spec"
+        - "@experiments/assets/tier3_migration/v1/tier3_regions_2x2.json"
+        - "--tier3_regional_carrying_capacity"
+        - "@experiments/assets/tier3_migration/v1/tier3_cc_overcrowd_2x2.json"
+        - "--tier3_movement_cost_map"
+        - "@experiments/assets/tier3_migration/v1/tier3_move_cost_2x2.json"
+        - "--tier3_region_transition_risk"
+        - "@experiments/assets/tier3_migration/v1/tier3_transition_risk_2x2.json"
+
+seeds: [1, 2, 3]
+
+cli_defaults:
+  - ["--generations", "30"]
+  - ["--steps", "150"]
+  - ["--pop", "128"]
+  - ["--policy_tick_stride", "2"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "run_config.csv"
+  - "config.json"
+  - "metrics.csv"
+  - "maps/tier3_region_id.npy"
+  - "maps/tier3_regions_stats.json"
+
+naming:
+  run_tag_prefix: "tier3_nightly"
+  run_id_format: "{name}__scenario_{scenario}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__scenario_{scenario}"

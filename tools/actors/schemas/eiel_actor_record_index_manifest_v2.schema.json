@@ -1,0 +1,20 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_actor_record_index_manifest_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EIEL Actor Record Index Manifest V2",
+  "description": "Constant-size manifest for the sharded, rebuildable actor-record index.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_actor_record_index_manifest_v2"},
+    "namespace": {"type": "string", "minLength": 1},
+    "record_count": {"type": "integer", "minimum": 0},
+    "shard_count": {"const": 256},
+    "row_schema_version": {"const": "eiel_actor_record_index_row_v1"},
+    "layout": {"const": "sha256-prefix-2"},
+    "index_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "required": ["schema_version", "namespace", "record_count", "shard_count", "row_schema_version", "layout", "index_sha256"],
+  "x-eiel-owner": "tools.actors.store",
+  "x-eiel-persistence-class": "durable_derived_index_manifest"
+}

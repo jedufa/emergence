@@ -1,0 +1,61 @@
+{
+  "$id": "eiel_review_progress_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "completed_obligations": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "defer_reason": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "last_finding_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "remaining_obligations": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "resume_condition": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_review_progress_v1"
+    },
+    "state": {
+      "enum": [
+        "NOT_STARTED",
+        "IN_PROGRESS",
+        "DEFERRED",
+        "COMPLETED"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "state",
+    "completed_obligations",
+    "remaining_obligations",
+    "recorded_at_utc"
+  ],
+  "title": "EIEL Review progress v1",
+  "type": "object"
+}

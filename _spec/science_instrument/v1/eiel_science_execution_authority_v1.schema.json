@@ -1,0 +1,138 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_science_execution_authority_v1.schema.json",
+  "title": "EIEL Science Execution Authority V1",
+  "description": "A sealed machine-installed pointer set used by the self-resolving EIEL Science Request V1 front door. Digest and referenced-file verification remain semantic checks in Python.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {},
+    "authority_id": {},
+    "status": {},
+    "world": {},
+    "base_campaign_plan": {},
+    "authority_sha256": {},
+    "authorities": {},
+    "authority_set_sha256": {}
+  },
+  "oneOf": [
+    {
+      "$ref": "#/$defs/authority"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "authorities",
+        "authority_set_sha256"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "eiel_science_execution_authority_set_v1"
+        },
+        "authorities": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/authority"
+          }
+        },
+        "authority_set_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "population",
+        "capacity"
+      ],
+      "properties": {
+        "width": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "population": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "capacity": {
+          "type": "integer",
+          "minimum": 1
+        }
+      }
+    },
+    "base_campaign_plan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "file_sha256",
+        "plan_sha256"
+      ],
+      "properties": {
+        "path": {
+          "type": "string",
+          "minLength": 1
+        },
+        "file_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "plan_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    },
+    "authority": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "authority_id",
+        "status",
+        "world",
+        "base_campaign_plan",
+        "authority_sha256"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "eiel_science_execution_authority_v1"
+        },
+        "authority_id": {
+          "type": "string",
+          "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"
+        },
+        "status": {
+          "enum": [
+            "CURRENT",
+            "RETIRED"
+          ]
+        },
+        "world": {
+          "$ref": "#/$defs/world"
+        },
+        "base_campaign_plan": {
+          "$ref": "#/$defs/base_campaign_plan"
+        },
+        "authority_sha256": {
+          "$ref": "#/$defs/sha256"
+        }
+      }
+    }
+  }
+}

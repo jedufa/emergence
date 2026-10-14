@@ -1,0 +1,22 @@
+{
+  "schema_version": "eiel_qualification_request_v1",
+  "track_label": "b48w16p64c128t1120gpu",
+  "device": "cuda",
+  "grid_width": 16,
+  "grid_height": 16,
+  "initial_population": 64,
+  "resident_capacity": 128,
+  "batch_cells": 48,
+  "execution_route_identity": "tick_native_execution_route_v1",
+  "time_authority": "absolute_tick_v1",
+  "total_ticks": 1120,
+  "start_next_tick": 0,
+  "resident_owner_span_ticks": 1120,
+  "native_dispatch_window_ticks": 1120,
+  "source_window_ticks": 160,
+  "event_window_capacity": 65536,
+  "checkpoint_ticks": [1120],
+  "requested_qualification_dimensions": [
+    "BOUNDED_ROUTE_QUALIFIED"
+  ]
+}

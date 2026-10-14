@@ -1,0 +1,38 @@
+{
+  "$id": "eiel_session_artifact_disposition_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_ref": {
+      "type": "object"
+    },
+    "disposition": {
+      "enum": [
+        "INCLUDED",
+        "RETAINED_REFERENCE",
+        "REJECTED",
+        "DISCARDED"
+      ]
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_session_artifact_disposition_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_ref",
+    "disposition",
+    "reason",
+    "recorded_at_utc"
+  ],
+  "title": "EIEL Session artifact disposition v1",
+  "type": "object"
+}

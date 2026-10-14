@@ -1,0 +1,163 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-host-context-artifact",
+  "title": "EIEL Science Instrument Host Context Artifact V1",
+  "description": "Content-addressed route package consumed by host-only science validation. A new engine integrates by producing this artifact; no engine module, provider hook, mutable path, or branch name is science authority.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "instrument_manifest",
+    "route_binding",
+    "route_adapter",
+    "control_descriptors",
+    "reducer_descriptors",
+    "observation_profile_descriptors",
+    "crca_semantic_binding",
+    "physical_execution_core",
+    "resource_envelope",
+    "compiler_component_sha256",
+    "qualified_envelope",
+    "available_scientific_capability_ids",
+    "available_observation_capability_ids",
+    "machine_profile_sha256",
+    "admission_kernel_receipt_sha256",
+    "context_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_host_context_artifact_v1"},
+    "instrument_manifest": {
+      "$ref": "urn:eiel:science-instrument:v1:instrument-manifest"
+    },
+    "route_binding": {
+      "$ref": "urn:eiel:science-instrument:v1:science-route-binding"
+    },
+    "route_adapter": {
+      "$ref": "urn:eiel:science-instrument:v1:science-qrr-route-adapter"
+    },
+    "control_descriptors": {
+      "type": "array",
+      "items": {"$ref": "urn:eiel:science-instrument:v1:control-descriptor"}
+    },
+    "reducer_descriptors": {
+      "type": "array",
+      "items": {"$ref": "urn:eiel:science-instrument:v1:reducer-descriptor"}
+    },
+    "observation_profile_descriptors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "urn:eiel:science-instrument:v1:science-observation-profile-descriptor"}
+    },
+    "crca_semantic_binding": {"$ref": "#/$defs/crca_semantic_binding"},
+    "physical_execution_core": {"$ref": "#/$defs/canonical_payload"},
+    "resource_envelope": {
+      "$ref": "urn:eiel:science-instrument:v1:science-profile-resource-envelope"
+    },
+    "compiler_component_sha256": {"$ref": "#/$defs/digest"},
+    "qualified_envelope": {"$ref": "#/$defs/qualified_envelope"},
+    "available_scientific_capability_ids": {"$ref": "#/$defs/token_array"},
+    "available_observation_capability_ids": {"$ref": "#/$defs/token_array"},
+    "machine_profile_sha256": {"$ref": "#/$defs/digest"},
+    "admission_kernel_receipt_sha256": {"$ref": "#/$defs/digest"},
+    "context_sha256": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "token_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/token"},
+      "uniqueItems": true
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "canonical_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "payload"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/token"},
+        "payload": true
+      }
+    },
+    "crca_semantic_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "semantic_run_digest",
+        "projection_sha256",
+        "absolute_start_next_tick",
+        "absolute_target_next_tick",
+        "trajectory_checkpoint_ticks",
+        "authority"
+      ],
+      "properties": {
+        "semantic_run_digest": {"$ref": "#/$defs/digest"},
+        "projection_sha256": {"$ref": "#/$defs/digest"},
+        "absolute_start_next_tick": {"type": "integer", "minimum": 0},
+        "absolute_target_next_tick": {"type": "integer", "minimum": 1},
+        "trajectory_checkpoint_ticks": {
+          "type": "array",
+          "items": {"type": "integer", "minimum": 0},
+          "uniqueItems": true
+        },
+        "authority": {"type": "string", "minLength": 1}
+      }
+    },
+    "qualified_domain_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "subject_path",
+        "accepted_values",
+        "envelope_component_id",
+        "evidence_refs"
+      ],
+      "properties": {
+        "schema_version": {"const": "eiel_science_qualified_domain_row_v1"},
+        "subject_path": {"type": "string", "minLength": 1},
+        "accepted_values": {"$ref": "#/$defs/canonical_payload"},
+        "envelope_component_id": {"type": "string", "minLength": 1},
+        "evidence_refs": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1},
+          "uniqueItems": true
+        }
+      }
+    },
+    "qualified_envelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "instrument_manifest_sha256",
+        "route_id",
+        "machine_profile_id",
+        "qualification_authority_sha256",
+        "rows"
+      ],
+      "properties": {
+        "schema_version": {"const": "eiel_science_qualified_envelope_projection_v1"},
+        "instrument_manifest_sha256": {"$ref": "#/$defs/digest"},
+        "route_id": {"$ref": "#/$defs/token"},
+        "machine_profile_id": {"$ref": "#/$defs/token"},
+        "qualification_authority_sha256": {"$ref": "#/$defs/digest"},
+        "rows": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/qualified_domain_row"}
+        }
+      }
+    }
+  }
+}

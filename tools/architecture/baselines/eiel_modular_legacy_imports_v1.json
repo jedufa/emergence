@@ -1,0 +1,1733 @@
+{
+  "audit_roots": [
+    "engine",
+    "tools",
+    "experiments",
+    "experiments_shared",
+    "_runner",
+    "infra",
+    "scripts"
+  ],
+  "baseline_audit": {
+    "legacy_edge_count": 148,
+    "legacy_edges_digest_sha256": "70017255415e00e3aa9b97d0ce60264be12ff4ccb1a3d6b792106d5735f290a5",
+    "legacy_sccs": [
+      [
+        "agents",
+        "authoritative_state",
+        "campaigns",
+        "env",
+        "evolution",
+        "experiments",
+        "infra",
+        "main",
+        "native_runtime",
+        "perf",
+        "qrr",
+        "scripts",
+        "simulation",
+        "tools",
+        "tools.performance",
+        "tools.scripts",
+        "tools.slot_monitor",
+        "tools.visualization"
+      ],
+      [
+        "tools.actors",
+        "tools.scheduler"
+      ]
+    ],
+    "parse_errors": 0,
+    "python_modules_audited": 1408,
+    "resolved_internal_import_statements": 4491
+  },
+  "baseline_commit": "e922b1d54096fb112b2523a8501ef602b69acd64",
+  "classified_debt": [
+    {
+      "owner": "Runtime/Adaptation migration",
+      "reason": "integrated runner and Bundle v2 domain knowledge",
+      "remove_by": "later internal extraction",
+      "source": "simulation",
+      "target": "evolution"
+    },
+    {
+      "owner": "Adaptation migration",
+      "reason": "historical lifecycle and diagnostics coupling",
+      "remove_by": "later internal extraction",
+      "source": "evolution",
+      "target": "simulation"
+    },
+    {
+      "owner": "Runtime backend migration",
+      "reason": "native/optimized path integration",
+      "remove_by": "later runtime backend extraction",
+      "source": "simulation",
+      "target": "perf"
+    },
+    {
+      "owner": "Runtime backend migration",
+      "reason": "fused native lifecycle and checkpoint helpers",
+      "remove_by": "later runtime backend extraction",
+      "source": "perf",
+      "target": "simulation"
+    },
+    {
+      "owner": "Runtime backend migration",
+      "reason": "native provider integration",
+      "remove_by": "later runtime backend extraction",
+      "source": "simulation",
+      "target": "native_runtime"
+    },
+    {
+      "owner": "Runtime backend migration",
+      "reason": "checkpoint and lifecycle integration",
+      "remove_by": "later runtime backend extraction",
+      "source": "native_runtime",
+      "target": "simulation"
+    },
+    {
+      "owner": "AgentKit/Adaptation migration",
+      "reason": "heredity helper leakage",
+      "remove_by": "later domain extraction",
+      "source": "agents",
+      "target": "evolution"
+    },
+    {
+      "owner": "Adaptation/AgentKit migration",
+      "reason": "genome and controller coupling",
+      "remove_by": "later domain extraction",
+      "source": "evolution",
+      "target": "agents"
+    },
+    {
+      "owner": "AgentKit migration",
+      "reason": "diagnostics/lifecycle leakage",
+      "remove_by": "later domain extraction",
+      "source": "agents",
+      "target": "simulation"
+    },
+    {
+      "owner": "WorldKit migration",
+      "reason": "runner leakage",
+      "remove_by": "later domain extraction",
+      "source": "env",
+      "target": "simulation"
+    },
+    {
+      "owner": "WorldKit migration",
+      "reason": "resource capacity coupling",
+      "remove_by": "later Entity/Resource view contract",
+      "source": "env",
+      "target": "agents"
+    },
+    {
+      "owner": "Runtime backend migration",
+      "reason": "lifecycle accounting/adapter coupling",
+      "remove_by": "later runtime backend extraction",
+      "source": "perf",
+      "target": "campaigns"
+    },
+    {
+      "owner": "Runtime backend migration",
+      "reason": "provider/config coupling",
+      "remove_by": "later runtime backend extraction",
+      "source": "native_runtime",
+      "target": "campaigns"
+    },
+    {
+      "owner": "Runtime state migration",
+      "reason": "current ABI observes concrete native owners",
+      "remove_by": "later authoritative-state inversion",
+      "source": "authoritative_state",
+      "target": "perf"
+    },
+    {
+      "owner": "Ops migration",
+      "reason": "optional operator workflow cycle",
+      "remove_by": "later Ops facade",
+      "source": "tools.actors",
+      "target": "tools.scheduler"
+    },
+    {
+      "owner": "Ops migration",
+      "reason": "optional operator workflow cycle",
+      "remove_by": "later Ops facade",
+      "source": "tools.scheduler",
+      "target": "tools.actors"
+    },
+    {
+      "owner": "Assurance/EIEL compatibility",
+      "reason": "QRR envelope/release/CLI and request builder consume legacy campaign contracts",
+      "remove_by": "file-level ownership split; not necessarily family-zero in Phase 2",
+      "source": "qrr",
+      "target": "campaigns"
+    },
+    {
+      "owner": "Lab/EIEL compatibility",
+      "reason": "preflight/orchestration consume canonical QRR request builder",
+      "remove_by": "Phase 2 adapter ownership alignment",
+      "source": "campaigns",
+      "target": "qrr"
+    },
+    {
+      "owner": "legacy runtime state compatibility",
+      "reason": "CompositeRuntimeState uses backend projection digest",
+      "remove_by": "Phase 2 state adapter slice",
+      "source": "qrr",
+      "target": "perf"
+    }
+  ],
+  "legacy_edges": {
+    "_runner -> experiments": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "_runner -> experiments_shared": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "agents -> env": {
+      "ceiling": 5,
+      "ceiling_history": [
+        5
+      ],
+      "initial_ceiling": 5
+    },
+    "agents -> evolution": {
+      "ceiling": 11,
+      "ceiling_history": [
+        11
+      ],
+      "initial_ceiling": 11
+    },
+    "agents -> perf": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "agents -> simulation": {
+      "ceiling": 6,
+      "ceiling_history": [
+        6
+      ],
+      "initial_ceiling": 6
+    },
+    "authoritative_state -> campaigns": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "authoritative_state -> perf": {
+      "ceiling": 17,
+      "ceiling_history": [
+        17
+      ],
+      "initial_ceiling": 17
+    },
+    "campaigns -> agents": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "campaigns -> authoritative_state": {
+      "ceiling": 20,
+      "ceiling_history": [
+        20
+      ],
+      "initial_ceiling": 20
+    },
+    "campaigns -> env": {
+      "ceiling": 7,
+      "ceiling_history": [
+        7
+      ],
+      "initial_ceiling": 7
+    },
+    "campaigns -> evolution": {
+      "ceiling": 42,
+      "ceiling_history": [
+        42
+      ],
+      "initial_ceiling": 42
+    },
+    "campaigns -> monitoring": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "campaigns -> native_runtime": {
+      "ceiling": 18,
+      "ceiling_history": [
+        18
+      ],
+      "initial_ceiling": 18
+    },
+    "campaigns -> perf": {
+      "ceiling": 84,
+      "ceiling_history": [
+        84
+      ],
+      "initial_ceiling": 84
+    },
+    "campaigns -> qrr": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "campaigns -> qualification_plans": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "campaigns -> simulation": {
+      "ceiling": 22,
+      "ceiling_history": [
+        22
+      ],
+      "initial_ceiling": 22
+    },
+    "campaigns -> tools.evidence": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "campaigns -> wrc": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "env -> agents": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "env -> simulation": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "evolution -> agents": {
+      "ceiling": 76,
+      "ceiling_history": [
+        76
+      ],
+      "initial_ceiling": 76
+    },
+    "evolution -> authoritative_state": {
+      "ceiling": 20,
+      "ceiling_history": [
+        20
+      ],
+      "initial_ceiling": 20
+    },
+    "evolution -> campaigns": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "evolution -> env": {
+      "ceiling": 17,
+      "ceiling_history": [
+        17
+      ],
+      "initial_ceiling": 17
+    },
+    "evolution -> knobs_override": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "evolution -> perf": {
+      "ceiling": 7,
+      "ceiling_history": [
+        7
+      ],
+      "initial_ceiling": 7
+    },
+    "evolution -> simulation": {
+      "ceiling": 38,
+      "ceiling_history": [
+        38
+      ],
+      "initial_ceiling": 38
+    },
+    "experiments -> env": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "experiments -> experiments_shared": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "experiments -> scripts": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "infra -> simulation": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "infra -> tools": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "infra -> tools.slot_monitor": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "main -> env": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "main -> evolution": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "main -> knobs_override": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "main -> native_runtime": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "main -> simulation": {
+      "ceiling": 11,
+      "ceiling_history": [
+        11
+      ],
+      "initial_ceiling": 11
+    },
+    "native_runtime -> agents": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "native_runtime -> authoritative_state": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "native_runtime -> campaigns": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "native_runtime -> env": {
+      "ceiling": 5,
+      "ceiling_history": [
+        5
+      ],
+      "initial_ceiling": 5
+    },
+    "native_runtime -> perf": {
+      "ceiling": 25,
+      "ceiling_history": [
+        25
+      ],
+      "initial_ceiling": 25
+    },
+    "native_runtime -> simulation": {
+      "ceiling": 13,
+      "ceiling_history": [
+        13
+      ],
+      "initial_ceiling": 13
+    },
+    "native_runtime -> tools.scripts": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "native_runtime -> tools.visualization": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "perf -> agents": {
+      "ceiling": 26,
+      "ceiling_history": [
+        26
+      ],
+      "initial_ceiling": 26
+    },
+    "perf -> campaigns": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "perf -> env": {
+      "ceiling": 12,
+      "ceiling_history": [
+        12
+      ],
+      "initial_ceiling": 12
+    },
+    "perf -> evolution": {
+      "ceiling": 65,
+      "ceiling_history": [
+        65
+      ],
+      "initial_ceiling": 65
+    },
+    "perf -> native_runtime": {
+      "ceiling": 30,
+      "ceiling_history": [
+        30
+      ],
+      "initial_ceiling": 30
+    },
+    "perf -> qrr": {
+      "ceiling": 0,
+      "ceiling_history": [
+        1,
+        0
+      ],
+      "initial_ceiling": 1
+    },
+    "perf -> simulation": {
+      "ceiling": 18,
+      "ceiling_history": [
+        18
+      ],
+      "initial_ceiling": 18
+    },
+    "perf -> tools.scripts": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "planning_receipts -> artifact_catalog": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "planning_receipts -> capacity_profiles": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "planning_receipts -> device_selection": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "planning_receipts -> dispatch_planning": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "planning_receipts -> qualification_plans": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "qrr -> campaigns": {
+      "ceiling": 16,
+      "ceiling_history": [
+        16
+      ],
+      "initial_ceiling": 16
+    },
+    "qrr -> perf": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "scripts -> campaigns": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "scripts -> experiments": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "scripts -> tools": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "simulation -> agents": {
+      "ceiling": 76,
+      "ceiling_history": [
+        76
+      ],
+      "initial_ceiling": 76
+    },
+    "simulation -> authoritative_state": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "simulation -> env": {
+      "ceiling": 53,
+      "ceiling_history": [
+        53
+      ],
+      "initial_ceiling": 53
+    },
+    "simulation -> evolution": {
+      "ceiling": 48,
+      "ceiling_history": [
+        48
+      ],
+      "initial_ceiling": 48
+    },
+    "simulation -> monitoring": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "simulation -> native_runtime": {
+      "ceiling": 39,
+      "ceiling_history": [
+        39
+      ],
+      "initial_ceiling": 39
+    },
+    "simulation -> perf": {
+      "ceiling": 37,
+      "ceiling_history": [
+        37
+      ],
+      "initial_ceiling": 37
+    },
+    "simulation -> tools.visualization": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools -> evolution": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "tools.actors -> campaigns": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "tools.actors -> qualification_plans": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.actors -> tools": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.actors -> tools.evidence": {
+      "ceiling": 9,
+      "ceiling_history": [
+        9
+      ],
+      "initial_ceiling": 9
+    },
+    "tools.actors -> tools.scheduler": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "tools.analysis -> campaigns": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.benchmark_scientific_chronicle -> env": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.benchmark_scientific_chronicle -> evolution": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.benchmark_scientific_chronicle -> simulation": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "tools.bin -> agents": {
+      "ceiling": 17,
+      "ceiling_history": [
+        17
+      ],
+      "initial_ceiling": 17
+    },
+    "tools.bin -> env": {
+      "ceiling": 53,
+      "ceiling_history": [
+        53
+      ],
+      "initial_ceiling": 53
+    },
+    "tools.bin -> evolution": {
+      "ceiling": 33,
+      "ceiling_history": [
+        33
+      ],
+      "initial_ceiling": 33
+    },
+    "tools.bin -> experiments": {
+      "ceiling": 10,
+      "ceiling_history": [
+        10
+      ],
+      "initial_ceiling": 10
+    },
+    "tools.bin -> knobs_override": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.bin -> simulation": {
+      "ceiling": 86,
+      "ceiling_history": [
+        86
+      ],
+      "initial_ceiling": 86
+    },
+    "tools.bin -> tools": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.bin -> tools.manifest": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.bin -> tools.theme4_campaigns": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.branch_from_checkpoint -> experiments_shared": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.checkpointed_autopilot_influence_phase1_success -> experiments": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.checkpointed_autopilot_influence_phase1_success -> tools.checkpointed_autopilot_influence_phase1": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.chronicle_live1_r1_browser_validation -> infra": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.chronicle_live1_r1_operational_validation -> infra": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.chronicle_live1_r1_operational_validation -> simulation": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.chronicle_valid1 -> simulation": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "tools.chronicle_valid1_comparison_reviews -> simulation": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.chronicle_valid1_finalize -> simulation": {
+      "ceiling": 6,
+      "ceiling_history": [
+        6
+      ],
+      "initial_ceiling": 6
+    },
+    "tools.core -> experiments_shared": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.diagnostics -> experiments_shared": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.eiel -> tools.actors": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.eiel -> tools.scheduler": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.emergence_dev -> runtime_roots": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.emergence_dev -> validation_plans": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.entrypoints -> experiments": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.historical -> agents": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "tools.historical -> campaigns": {
+      "ceiling": 13,
+      "ceiling_history": [
+        13
+      ],
+      "initial_ceiling": 13
+    },
+    "tools.historical -> evolution": {
+      "ceiling": 8,
+      "ceiling_history": [
+        8
+      ],
+      "initial_ceiling": 8
+    },
+    "tools.historical -> native_runtime": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.historical -> simulation": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.joblib -> tools.lib": {
+      "ceiling": 8,
+      "ceiling_history": [
+        8
+      ],
+      "initial_ceiling": 8
+    },
+    "tools.lib -> simulation": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.manifest -> experiments_shared": {
+      "ceiling": 6,
+      "ceiling_history": [
+        6
+      ],
+      "initial_ceiling": 6
+    },
+    "tools.manifest -> tools": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.manifest -> tools.core": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.performance -> native_runtime": {
+      "ceiling": 4,
+      "ceiling_history": [
+        4
+      ],
+      "initial_ceiling": 4
+    },
+    "tools.run_chronicle_valid1_parity -> simulation": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.run_chronicle_valid1_storage -> simulation": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "tools.run_job -> tools.core": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.scheduler -> tools.actors": {
+      "ceiling": 27,
+      "ceiling_history": [
+        27
+      ],
+      "initial_ceiling": 27
+    },
+    "tools.scientific_chronicle -> simulation": {
+      "ceiling": 14,
+      "ceiling_history": [
+        14
+      ],
+      "initial_ceiling": 14
+    },
+    "tools.scripts -> agents": {
+      "ceiling": 59,
+      "ceiling_history": [
+        59
+      ],
+      "initial_ceiling": 59
+    },
+    "tools.scripts -> authoritative_state": {
+      "ceiling": 24,
+      "ceiling_history": [
+        24
+      ],
+      "initial_ceiling": 24
+    },
+    "tools.scripts -> campaigns": {
+      "ceiling": 136,
+      "ceiling_history": [
+        136
+      ],
+      "initial_ceiling": 136
+    },
+    "tools.scripts -> env": {
+      "ceiling": 58,
+      "ceiling_history": [
+        58
+      ],
+      "initial_ceiling": 58
+    },
+    "tools.scripts -> evolution": {
+      "ceiling": 186,
+      "ceiling_history": [
+        186
+      ],
+      "initial_ceiling": 186
+    },
+    "tools.scripts -> main": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "tools.scripts -> native_runtime": {
+      "ceiling": 129,
+      "ceiling_history": [
+        129
+      ],
+      "initial_ceiling": 129
+    },
+    "tools.scripts -> perf": {
+      "ceiling": 299,
+      "ceiling_history": [
+        299
+      ],
+      "initial_ceiling": 299
+    },
+    "tools.scripts -> qrr": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "tools.scripts -> qualification_plans": {
+      "ceiling": 2,
+      "ceiling_history": [
+        2
+      ],
+      "initial_ceiling": 2
+    },
+    "tools.scripts -> simulation": {
+      "ceiling": 236,
+      "ceiling_history": [
+        236
+      ],
+      "initial_ceiling": 236
+    },
+    "tools.scripts -> tools": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "tools.scripts -> tools.performance": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.scripts -> tools.slot_monitor": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.scripts -> validation_plans": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.scripts -> wrc": {
+      "ceiling": 6,
+      "ceiling_history": [
+        6
+      ],
+      "initial_ceiling": 6
+    },
+    "tools.slot_monitor -> experiments": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.slot_monitor -> monitoring": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.theme4_campaigns -> env": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.theme4_campaigns -> evolution": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.theme4_campaigns -> simulation": {
+      "ceiling": 3,
+      "ceiling_history": [
+        3
+      ],
+      "initial_ceiling": 3
+    },
+    "tools.verify -> experiments_shared": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.verify_determinism_fingerprint -> experiments_shared": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    },
+    "tools.visualization -> infra": {
+      "ceiling": 1,
+      "ceiling_history": [
+        1
+      ],
+      "initial_ceiling": 1
+    }
+  },
+  "crca_closeout": {
+    "ceiling_changes": false,
+    "closed_gate": "CRCA-G9",
+    "disposition_only": true,
+    "programme_id": "CRCA-END-TO-END-20260823",
+    "superseded_exception_records": 27
+  },
+  "ratchet_revision": "P2-M-1-CRCA-G9-CLOSEOUT-TW-ACS-INTEGRATION",
+  "schema_version": "eiel_modular_legacy_import_ratchet_v1",
+  "source_inventory": "UNREGISTERED--eiel-modular-phase2-live-import-edges-e922b1d5.csv",
+  "source_inventory_sha256": "b503747061a1a736fce80487f851535141ceda280b845e6cf363998d51070901",
+  "target_allowed_dependencies": {
+    "eiel_composition": [
+      "emergence_contracts",
+      "emergence_runtime",
+      "emergence_worldkit",
+      "emergence_agentkit",
+      "emergence_adaptation",
+      "emergence_lab",
+      "emergence_evidence",
+      "emergence_assurance",
+      "emergence_ops",
+      "legacy_eiel"
+    ],
+    "emergence_adaptation": [
+      "emergence_contracts"
+    ],
+    "emergence_agentkit": [
+      "emergence_contracts"
+    ],
+    "emergence_assurance": [
+      "emergence_contracts",
+      "emergence_lab",
+      "emergence_evidence"
+    ],
+    "emergence_contracts": [],
+    "emergence_evidence": [
+      "emergence_contracts"
+    ],
+    "emergence_lab": [
+      "emergence_contracts",
+      "emergence_runtime"
+    ],
+    "emergence_ops": [
+      "emergence_contracts",
+      "emergence_lab",
+      "emergence_assurance"
+    ],
+    "emergence_runtime": [
+      "emergence_contracts"
+    ],
+    "emergence_worldkit": [
+      "emergence_contracts"
+    ]
+  },
+  "temporary_exceptions": [
+    {
+      "ceiling": 86,
+      "expires_after_slice": "P3 campaigns/runtime ownership extraction",
+      "owner": "Runtime/Lab integration",
+      "path": "engine/campaigns/wrc_adaptive_rebinding.py",
+      "reason": "Current main adds two adapter-like projections of authoritative resident state required by the already-valid adaptive checkpoint-rebinding capability; moving this owner during P2-M would alter a qualification-sensitive state seam.",
+      "source": "campaigns",
+      "target": "perf",
+      "validation_obligation": "Adaptive rebinding, composite-state, checkpoint/restore, and direct-vs-contract parity tests must remain green; no target-package dependency may be added.",
+      "validation_status": "PASS: adaptive, composite-state, checkpoint/restore, and modular parity matrix"
+    },
+    {
+      "ceiling": 160,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Lab/Ops integration",
+      "path": "tools/scripts/eiel_wrc_adaptive_rebinding_qualification.py",
+      "reason": "Current main adds command-line orchestration for its adaptive campaign and delta-qualification workflow; these are composition-root consumers of the existing campaign API, not new semantic owners.",
+      "source": "tools.scripts",
+      "target": "campaigns",
+      "validation_obligation": "All adaptive CLI, campaign, qualification-plan, and modular Lab adapter tests must remain green; the exception must not authorize imports from target packages.",
+      "validation_status": "PASS: adaptive CLI/campaign/qualification-plan and modular Lab matrix"
+    },
+    {
+      "ceiling": 7,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Lab/Ops integration",
+      "path": "tools/scripts/eiel_wrc_b48_adaptive_analyze.py",
+      "reason": "Current main adds one read-only WRC reducer import for adaptive campaign analysis at an operational composition root.",
+      "source": "tools.scripts",
+      "target": "wrc",
+      "validation_obligation": "Adaptive analysis and WRC reducer tests must remain green; the dependency remains read-only and outside the contract kernel.",
+      "validation_status": "PASS: adaptive analysis and WRC tests"
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_DEMONSTRATED_EXISTING_EXPERIMENTAL_CONSUMER",
+      "expires_after_slice": "future separately authorized RNGV2 promotion or retirement slice",
+      "owner": "Tensor World/HAPB experimental route",
+      "path": "engine/campaigns/patch_runner_factory.py",
+      "reason": "The post-baseline default-off HAPB RNGV2 runner factory remains experimental and is not production or qualification authority.",
+      "source": "campaigns",
+      "target": "hapb_rngv2",
+      "validation_obligation": "The import guard, Tensor World/HAPB focused tests, and default-off rollback sentinel must remain green; G9 must remove or explicitly supersede this exception."
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_DEMONSTRATED_EXISTING_EXPERIMENTAL_CONSUMER",
+      "expires_after_slice": "future separately authorized RNGV2 promotion or retirement slice",
+      "owner": "Tensor World/HAPB experimental route",
+      "path": "engine/hapb_rngv2/contract.py",
+      "reason": "The experimental HAPB contract references Tensor World state while the physical ownership boundary remains unresolved.",
+      "source": "hapb_rngv2",
+      "target": "tensor_world",
+      "validation_obligation": "The import guard and HAPB contract/checkpoint tests must remain green; no Resident qualification is inherited."
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_DEMONSTRATED_EXISTING_EXPERIMENTAL_CONSUMER",
+      "expires_after_slice": "future separately authorized RNGV2 promotion or retirement slice",
+      "owner": "Tensor World/RNGV2 experimental route",
+      "path": "engine/perf/cuda_architecture_b_direct_resident_source_allocator_v1.py",
+      "reason": "The default-off native allocation experiment consumes the RNGV2 protocol without granting it production authority.",
+      "source": "perf",
+      "target": "tw_rngv2",
+      "validation_obligation": "Native allocator, RNGV2 protocol, import guard, and V1 rollback tests must remain green."
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_NO_DEMONSTRATED_NEW_EXTRACTION_CONSUMER",
+      "expires_after_slice": "future separately authorized physical extraction or retirement slice",
+      "owner": "Tensor World package migration",
+      "path": "engine/tensor_world/c5_rngv2_fullroute.py",
+      "reason": "The bounded Tensor World full-route experiment still consumes one legacy agent helper pending a demonstrated extraction consumer.",
+      "source": "tensor_world",
+      "target": "agents",
+      "validation_obligation": "Tensor World full-route, import guard, and modular boundary tests must remain green."
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "PRESERVED_UNCHANGED_COMPATIBILITY_EDGE",
+      "expires_after_slice": "future owner-approved shared-admission compatibility retirement slice",
+      "owner": "Ops/Lab execution integration",
+      "path": "tools/execution_cli.py",
+      "reason": "The execution composition CLI is an allowed operational consumer of the legacy campaign front door until shared admission converges.",
+      "source": "tools.execution_cli",
+      "target": "campaigns",
+      "validation_obligation": "Execution CLI, Launchpad, shared-admission parity, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 1,
+      "expires_after_slice": "next RunPod CLI consolidation",
+      "owner": "Ops RunPod integration",
+      "path": "tools/runpod_cuda_cli.py",
+      "reason": "The thin RunPod CLI delegates to the existing runner implementation and introduces no new execution authority.",
+      "source": "tools.runpod_cuda_cli",
+      "target": "tools.runpod_cuda_runner",
+      "validation_obligation": "RunPod CLI/runner tests and the import guard must remain green; the CLI must stay a thin adapter."
+    },
+    {
+      "ceiling": 12,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_DEMONSTRATED_EXISTING_EXPERIMENTAL_CONSUMER",
+      "expires_after_slice": "future separately authorized RNGV2 promotion or retirement slice",
+      "owner": "Tensor World/HAPB experimental route",
+      "path": "engine/perf/cuda_architecture_b_direct_resident_source_allocator_v1.py",
+      "reason": "The native performance implementation contains default-off HAPB experimental integration that is not interchangeable with Resident.",
+      "source": "perf",
+      "target": "hapb_rngv2",
+      "validation_obligation": "Matched HAPB/Resident exactness, economics, V1 rollback, native allocator, and import guard sentinels must remain green."
+    },
+    {
+      "ceiling": 15,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_DEMONSTRATED_EXISTING_EXPERIMENTAL_CONSUMER",
+      "expires_after_slice": "future separately authorized RNGV2 promotion or retirement slice",
+      "owner": "Tensor World/HAPB experimental route",
+      "path": "engine/hapb_rngv2/checkpoint.py",
+      "reason": "The experimental HAPB checkpoint layer consumes RNGV2 state while both capabilities remain default-off and separately unqualified.",
+      "source": "hapb_rngv2",
+      "target": "tw_rngv2",
+      "validation_obligation": "HAPB checkpoint, RNGV2 continuation, V1 rollback, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 2,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Adaptation/WorldKit migration",
+      "path": "engine/evolution/reproduction.py",
+      "reason": "Reproduction currently consumes Tensor World compatibility helpers across the legacy adaptation/world boundary.",
+      "source": "evolution",
+      "target": "tensor_world",
+      "validation_obligation": "Reproduction, Tensor World mechanics, import guard, and selected extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 2,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_RETAINED_OPTION_D_ONLY",
+      "expires_after_slice": "future separately authorized Option D execution or retirement slice",
+      "owner": "Tensor World Option D experiment",
+      "path": "engine/option_d/benchmark.py",
+      "reason": "The retained Option D benchmark is an experimental composition consumer of the physical performance implementation.",
+      "source": "option_d",
+      "target": "perf",
+      "validation_obligation": "Option D benchmark remains isolated, default-off, and covered by import and route-identity tests."
+    },
+    {
+      "ceiling": 2,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_RETAINED_OPTION_D_ONLY",
+      "expires_after_slice": "future separately authorized Option D execution or retirement slice",
+      "owner": "Tensor World Option D experiment",
+      "path": "engine/option_d/benchmark.py",
+      "reason": "The retained Option D benchmark composes Tensor World only as a bounded experimental consumer.",
+      "source": "option_d",
+      "target": "tensor_world",
+      "validation_obligation": "Option D benchmark remains isolated, default-off, and covered by import and route-identity tests."
+    },
+    {
+      "ceiling": 2,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Runtime/Lab integration",
+      "path": "engine/simulation/metrics_pkg/lineage_reproduction_funnel.py",
+      "reason": "A simulation-side metrics projection consumes campaign result contracts pending the selected ownership inversion.",
+      "source": "simulation",
+      "target": "campaigns",
+      "validation_obligation": "Lineage metrics, campaign result, import guard, and extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 2,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "WorldKit/Adaptation migration",
+      "path": "engine/tensor_world/c5_rngv2_fullroute.py",
+      "reason": "Tensor World full-route compatibility code consumes legacy reproduction mechanics pending an owned contract extraction.",
+      "source": "tensor_world",
+      "target": "evolution",
+      "validation_obligation": "Tensor World full-route, reproduction, import guard, and extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 2,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Ops observability integration",
+      "path": "tools/scripts/eiel_b48_wdl_jungle_eed_hapb_h4_continuation_v1.py",
+      "reason": "Bounded operational scripts consume the read-only resource monitor at a composition root.",
+      "source": "tools.scripts",
+      "target": "tools.resource_monitor",
+      "validation_obligation": "Resource monitoring stays read-only and all script/import guard tests remain green."
+    },
+    {
+      "ceiling": 20,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Ops/Tensor World integration",
+      "path": "tools/scripts/build_tensor_world_c2_policy_parallel_r12_extension.py",
+      "reason": "Build, audit, and campaign scripts are composition-root consumers of Tensor World implementation APIs.",
+      "source": "tools.scripts",
+      "target": "tensor_world",
+      "validation_obligation": "Tensor World script, build, route, and import guard tests must remain green; scripts gain no semantic ownership."
+    },
+    {
+      "ceiling": 22,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "DEFAULT_OFF_NOT_STARTED_DEMONSTRATED_EXISTING_EXPERIMENTAL_CONSUMER",
+      "expires_after_slice": "future separately authorized RNGV2 promotion or retirement slice",
+      "owner": "Tensor World/RNGV2 experimental route",
+      "path": "engine/tensor_world/c5_rngv2_checkpoint.py",
+      "reason": "Tensor World checkpoint/full-route experiments consume the default-off RNGV2 implementation pending a promotion decision.",
+      "source": "tensor_world",
+      "target": "tw_rngv2",
+      "validation_obligation": "RNGV2 address, checkpoint, branch, V1 rollback, and import guard sentinels must remain green."
+    },
+    {
+      "ceiling": 3,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Tensor World/runtime migration",
+      "path": "engine/tensor_world/c4_resident_birth.py",
+      "reason": "Tensor World resident-birth integration consumes legacy physical runtime helpers pending a narrow extraction.",
+      "source": "tensor_world",
+      "target": "perf",
+      "validation_obligation": "Resident birth, physical runtime, import guard, and extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 3,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "G8_SHADOW_ONLY_NO_AUTHORITY_OR_FURTHER_EXTRACTION",
+      "expires_after_slice": "future authority-bound integration or owned extraction slice",
+      "owner": "Assurance/Ops integration",
+      "path": "tools/qualification_review/__main__.py",
+      "reason": "The qualification-review composition CLI consumes actor records to project current review state without owning Work lifecycle.",
+      "source": "tools.qualification_review",
+      "target": "tools.actors",
+      "validation_obligation": "Qualification review, actor ownership, impact shadow, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 5,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Lab/Tensor World integration",
+      "path": "engine/campaigns/execution_front_door_v1.py",
+      "reason": "The campaign front door composes Tensor World route contracts introduced after the frozen modular baseline.",
+      "source": "campaigns",
+      "target": "tensor_world",
+      "validation_obligation": "Launchpad, Tensor World route, import guard, and selected extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 4,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "PRESERVED_UNCHANGED_COMPATIBILITY_EDGE",
+      "expires_after_slice": "future owner-approved shared-admission compatibility retirement slice",
+      "owner": "Runtime/Lab integration",
+      "path": "engine/native_runtime/cuda_architecture_b_backend_factory.py",
+      "reason": "Native backend construction consumes campaign contracts across a legacy integration seam that shared admission must narrow.",
+      "source": "native_runtime",
+      "target": "campaigns",
+      "validation_obligation": "Native backend, campaign provider, shared-admission parity, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 132,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Ops/native runtime integration",
+      "path": "tools/scripts/cuda_architecture_b_compact_summary_boundary_v1_probe.py",
+      "reason": "Post-baseline native probes and build scripts remain operational composition consumers rather than runtime authorities.",
+      "source": "tools.scripts",
+      "target": "native_runtime",
+      "validation_obligation": "Native probes/builds and the import guard must remain green; no script becomes an execution front door."
+    },
+    {
+      "ceiling": 210,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Lab/Ops campaign integration",
+      "path": "tools/scripts/b48_independent_terminal_join_audit_v1.py",
+      "reason": "Post-baseline campaign audit, validation, and orchestration scripts remain composition-root consumers of canonical campaign APIs.",
+      "source": "tools.scripts",
+      "target": "campaigns",
+      "validation_obligation": "Campaign CLI/script and import guard tests must remain green; canonical Launchpad routing remains mandatory."
+    },
+    {
+      "ceiling": 34,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "PRESERVED_UNCHANGED_COMPATIBILITY_EDGE",
+      "expires_after_slice": "future owner-approved shared-admission compatibility retirement slice",
+      "owner": "Assurance/Lab integration",
+      "path": "engine/qrr/cli.py",
+      "reason": "QRR consumes campaign compiler/front-door contracts while the shared pure admission seam is not yet extracted.",
+      "source": "qrr",
+      "target": "campaigns",
+      "validation_obligation": "QRR frozen-release, representability, shared-admission parity, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 33,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "PRESERVED_UNCHANGED_COMPATIBILITY_EDGE",
+      "expires_after_slice": "future owner-approved shared-admission compatibility retirement slice",
+      "owner": "Lab/runtime integration",
+      "path": "engine/campaigns/acs_direct_resident_field_manifest_v1.py",
+      "reason": "Campaign route/provider integration consumes native runtime contracts across the legacy execution seam.",
+      "source": "campaigns",
+      "target": "native_runtime",
+      "validation_obligation": "Campaign/native provider, shared-admission parity, route identity, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 4,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "PRESERVED_UNCHANGED_COMPATIBILITY_EDGE",
+      "expires_after_slice": "future owner-approved shared-admission compatibility retirement slice",
+      "owner": "Runtime/Lab integration",
+      "path": "engine/perf/cuda_architecture_b_cross_path_resident_overlay_v1.py",
+      "reason": "Physical runtime overlays consume campaign contract definitions pending shared admission and ownership inversion.",
+      "source": "perf",
+      "target": "campaigns",
+      "validation_obligation": "Physical overlay, campaign, shared-admission parity, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 23,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Lab/runtime migration",
+      "path": "engine/campaigns/acs_direct_resident_physical_settlement_v1.py",
+      "reason": "One post-baseline campaign settlement path consumes simulation state pending the selected contract extraction.",
+      "source": "campaigns",
+      "target": "simulation",
+      "validation_obligation": "Settlement, simulation state, import guard, and extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 339,
+      "expires_after_slice": "P3 Lab/Ops command extraction",
+      "owner": "Ops/physical runtime integration",
+      "path": "tools/scripts/build_eiel_cuda_architecture_b_extension.py",
+      "reason": "Native build, probe, comparison, and qualification scripts remain composition-root consumers of physical runtime APIs.",
+      "source": "tools.scripts",
+      "target": "perf",
+      "validation_obligation": "Native build/probe, qualification routing, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 6,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "PRESERVED_UNCHANGED_COMPATIBILITY_EDGE",
+      "expires_after_slice": "future owner-approved shared-admission compatibility retirement slice",
+      "owner": "Ops/Assurance integration",
+      "path": "tools/scripts/eiel_campaign.py",
+      "reason": "Campaign operations scripts consume QRR contracts while canonical ordinary and qualification admission paths remain distinct.",
+      "source": "tools.scripts",
+      "target": "qrr",
+      "validation_obligation": "QRR/campaign CLI, shared-admission parity, and import guard tests must remain green."
+    },
+    {
+      "ceiling": 31,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Runtime backend migration",
+      "path": "engine/perf/cuda_architecture_b_boundary.py",
+      "reason": "One post-baseline physical boundary dependency crosses into native runtime pending a selected contract inversion.",
+      "source": "perf",
+      "target": "native_runtime",
+      "validation_obligation": "Physical boundary, native runtime, import guard, and extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 44,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "NOT_SELECTED_IN_SINGLE_G7_SLICE_PRESERVED_FOR_FUTURE_OWNER",
+      "expires_after_slice": "future bounded owned extraction or compatibility retirement slice",
+      "owner": "Lab/Adaptation migration",
+      "path": "engine/campaigns/analysis_extensions.py",
+      "reason": "Post-baseline campaign analysis and execution paths retain two additional adaptation imports pending ownership extraction.",
+      "source": "campaigns",
+      "target": "evolution",
+      "validation_obligation": "Campaign analysis, adaptation mechanics, import guard, and extraction parity tests must remain green."
+    },
+    {
+      "ceiling": 110,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "G8_SHADOW_ONLY_NO_AUTHORITY_OR_FURTHER_EXTRACTION",
+      "expires_after_slice": "future authority-bound integration or owned extraction slice",
+      "owner": "Lab/runtime integration",
+      "path": "engine/campaigns/acs_direct_resident_field_manifest_v1.py",
+      "reason": "CRCA-G7 extracted the shared direct-resident field-name surface into the dependency-free contract kernel, lowering this bounded legacy integration edge by one statement while the remaining Campaign/runtime ownership seams await later slices.",
+      "source": "campaigns",
+      "target": "perf",
+      "validation_obligation": "Campaign/provider and physical-runtime field tuples must remain byte-for-byte compatible; import timing must not regress materially; the modular import guard must observe campaigns -> perf at 110 with no target SCC."
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "G7_ACCEPTED_CONTRACT_MIGRATION_EDGE_NOT_OPTIONAL_EXPERIMENT",
+      "expires_after_slice": "future legacy-to-contract ratchet rebase after compatibility retirement",
+      "owner": "Lab/modular-contract migration",
+      "path": "engine/campaigns/acs_direct_resident_field_manifest_v1.py",
+      "reason": "CRCA-G7 replaces one Campaign dependency on the physical runtime with a one-way dependency on the frozen, dependency-free direct-resident field-label contract.",
+      "source": "campaigns",
+      "target": "emergence_contracts",
+      "validation_obligation": "The extracted tuple surface must retain exact order, digest, and Campaign manifest parity; the target DAG must remain acyclic."
+    },
+    {
+      "ceiling": 1,
+      "crca_closeout_gate": "CRCA-G9",
+      "crca_closeout_disposition": "G7_ACCEPTED_CONTRACT_MIGRATION_EDGE_NOT_OPTIONAL_EXPERIMENT",
+      "expires_after_slice": "future legacy-to-contract ratchet rebase after compatibility retirement",
+      "owner": "Runtime/modular-contract migration",
+      "path": "engine/perf/cuda_architecture_b_direct_resident_preparation_v1.py",
+      "reason": "CRCA-G7 gives the physical runtime the same one-way frozen field-label contract consumed by Campaign while retaining its existing public compatibility names.",
+      "source": "perf",
+      "target": "emergence_contracts",
+      "validation_obligation": "Preparation and source-allocation exports must remain object-identical to the frozen contract; runtime behavior and the target DAG must remain unchanged."
+    },
+    {
+      "ceiling": 112,
+      "crca_integration_disposition": "OWNED_EXPIRING_EXCEPTION",
+      "expires_after_slice": "future Campaign/runtime contract extraction after TW ACS physical qualification",
+      "owner": "Tensor World ACS physical execution integration",
+      "path": "engine/campaigns/providers.py",
+      "reason": "The active post-CRCA ACS continuation adds two lazy provider construction imports across the existing Campaign/runtime seam; the canonical Launchpad remains the only execution authority.",
+      "source": "campaigns",
+      "target": "perf",
+      "validation_obligation": "CRCA modular tests, import guard, physical provider construction, absolute-tick checkpoint occurrence, and ACS route tests must remain green."
+    },
+    {
+      "ceiling": 2,
+      "crca_integration_disposition": "OWNED_EXPIRING_EXCEPTION",
+      "expires_after_slice": "future RNGV2 identity contract extraction after TW ACS physical qualification",
+      "owner": "Tensor World ACS physical settlement",
+      "path": "engine/campaigns/acs_direct_resident_physical_settlement_v1.py",
+      "reason": "Detached physical settlement validates restored RNGV2 logical-world identity through the current experimental Tensor World RNGV2 package without granting it new production or qualification authority.",
+      "source": "campaigns",
+      "target": "tw_rngv2",
+      "validation_obligation": "CRCA import guard, RNGV2 world-identity, detached settlement, restore exactness, and V1 rollback sentinels must remain green."
+    },
+    {
+      "ceiling": 2,
+      "crca_integration_disposition": "OWNED_EXPIRING_EXCEPTION",
+      "expires_after_slice": "future RNGV2 identity contract extraction after TW ACS physical qualification",
+      "owner": "Tensor World direct-resident source allocation",
+      "path": "engine/perf/cuda_architecture_b_direct_resident_source_allocator_v1.py",
+      "reason": "The direct-resident allocator binds both the RNGV2 namespace and stable logical-world identity derivation for the active default-off RNGV2 route; no new route authority is granted.",
+      "source": "perf",
+      "target": "tw_rngv2",
+      "validation_obligation": "CRCA import guard, native allocator, RNGV2 identity/addressing, checkpoint restore, and V1 rollback sentinels must remain green."
+    }
+  ]
+}

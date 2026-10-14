@@ -1,0 +1,135 @@
+{
+  "anchors": [
+    {
+      "anchor_id": "synthetic-w16-t80",
+      "config": {
+        "grid_height": 16,
+        "grid_width": 16,
+        "execution_route_sha256": "route-synthetic-patch-v1",
+        "provider_id": "eiel-production-provider-v1",
+        "runtime_id": "eiel-production-runtime-v1",
+        "ticks_per_generation": 80,
+        "world_family": "patch"
+      },
+      "decision": "QUALIFIED",
+      "evidence": [
+        {
+          "evidence_id": "synthetic-route-receipt",
+          "kind": "synthetic_fixture",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000001",
+          "uri": "synthetic://qf1/w16-t80"
+        }
+      ],
+      "execution_route_sha256": "route-synthetic-patch-v1",
+      "provider_id": "eiel-production-provider-v1",
+      "runtime_id": "eiel-production-runtime-v1",
+      "scope": "CONFIGURATION_OPERATING_ENVELOPE",
+      "source_commit": "e8ddd045791313f5cffbc4f61330274b248b88ac"
+    }
+  ],
+  "envelopes": [
+    {
+      "accepted_points": [
+        {
+          "grid_height": 16,
+          "grid_width": 16,
+          "ticks_per_generation": 80
+        },
+        {
+          "grid_height": 32,
+          "grid_width": 32,
+          "ticks_per_generation": 80
+        },
+        {
+          "grid_height": 32,
+          "grid_width": 32,
+          "ticks_per_generation": 160
+        }
+      ],
+      "anchor_ids": [
+        "synthetic-w16-t80",
+        "synthetic-w32-t80",
+        "synthetic-w32-t160"
+      ],
+      "axes": [
+        {
+          "maximum": 32,
+          "minimum": 16,
+          "name": "grid_width"
+        },
+        {
+          "maximum": 32,
+          "minimum": 16,
+          "name": "grid_height"
+        },
+        {
+          "maximum": 160,
+          "minimum": 80,
+          "name": "ticks_per_generation"
+        }
+      ],
+      "categorical_invariants": {
+        "provider_id": "eiel-production-provider-v1",
+        "runtime_id": "eiel-production-runtime-v1",
+        "world_family": "patch"
+      },
+      "decision": "QUALIFIED",
+      "envelope_id": "synthetic-w16-w32-t80-t160-candidate",
+      "evidence": [
+        {
+          "evidence_id": "synthetic-envelope-record",
+          "kind": "synthetic_fixture",
+          "sha256": "0000000000000000000000000000000000000000000000000000000000000002",
+          "uri": "synthetic://qf1/envelope"
+        }
+      ],
+      "execution_route_sha256": "route-synthetic-patch-v1",
+      "interpolation_policy": "explicit_corners_edges_and_interactions_v1",
+      "required_corners": [
+        {
+          "grid_height": 16,
+          "grid_width": 16,
+          "ticks_per_generation": 80
+        },
+        {
+          "grid_height": 16,
+          "grid_width": 16,
+          "ticks_per_generation": 160
+        },
+        {
+          "grid_height": 32,
+          "grid_width": 16,
+          "ticks_per_generation": 80
+        },
+        {
+          "grid_height": 32,
+          "grid_width": 16,
+          "ticks_per_generation": 160
+        },
+        {
+          "grid_height": 16,
+          "grid_width": 32,
+          "ticks_per_generation": 80
+        },
+        {
+          "grid_height": 16,
+          "grid_width": 32,
+          "ticks_per_generation": 160
+        },
+        {
+          "grid_height": 32,
+          "grid_width": 32,
+          "ticks_per_generation": 80
+        },
+        {
+          "grid_height": 32,
+          "grid_width": 32,
+          "ticks_per_generation": 160
+        }
+      ],
+      "source_commit": "e8ddd045791313f5cffbc4f61330274b248b88ac",
+      "scope": "CONFIGURATION_OPERATING_ENVELOPE"
+    }
+  ],
+  "schema_version": "eiel_qualification_framework_v1"
+}

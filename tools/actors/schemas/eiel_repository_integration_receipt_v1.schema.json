@@ -1,0 +1,80 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_repository_integration_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "integration_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "relation": {
+      "enum": [
+        "EXACT_COMMIT",
+        "DESCENDANT_INTEGRATION",
+        "CONTENT_EQUIVALENT_REWRITE"
+      ]
+    },
+    "review_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reviewed_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "reviewed_delivery_proof": {
+      "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+    },
+    "schema_version": {
+      "const": "eiel_repository_integration_receipt_v1"
+    },
+    "verified_paths": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "work_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "work_id",
+    "review_session_id",
+    "reviewed_delivery_proof",
+    "reviewed_commit",
+    "integration_commit",
+    "relation",
+    "verified_paths",
+    "note",
+    "recorded_at_utc",
+    "artifact_sha256"
+  ],
+  "title": "EIEL accepted-delivery integration receipt",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.repository_truth",
+  "x-eiel-persistence-class": "immutable_durable_integration_evidence"
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_codex_guidance_v1.schema.json",
+  "title": "EIEL Codex Guidance V1",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "guidance_schema_version": {"const": "eiel_codex_guidance_v1"},
+    "status": {"type": "string", "minLength": 1},
+    "reason_codes": {"type": "array", "items": {"type": "string"}},
+    "problems": {"type": "array", "items": {"type": "string"}},
+    "warnings": {"type": "array", "items": {"type": "string"}},
+    "next_actions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "action": {"type": "string"},
+          "description": {"type": "string", "minLength": 1},
+          "command": {"type": "string", "minLength": 1}
+        },
+        "required": ["description"]
+      }
+    },
+    "related_records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": true,
+        "properties": {
+          "record_id": {"type": "string"},
+          "kind": {"type": "string"}
+        }
+      }
+    }
+  },
+  "required": [
+    "guidance_schema_version",
+    "status",
+    "reason_codes",
+    "problems",
+    "warnings",
+    "next_actions",
+    "related_records"
+  ]
+}

@@ -1,0 +1,425 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_worker_assignment_v1.schema.json",
+  "title": "EIEL immutable Worker Assignment payload",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "eiel_worker_assignment_v1"
+    },
+    "material": {
+      "anyOf": [
+        {
+          "type": "null"
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "properties": {
+            "schema_version": {
+              "const": "eiel_worker_assignment_v1"
+            },
+            "created_at_utc": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "link_intent_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            },
+            "dispatch_request": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "record_id": {
+                  "type": "string",
+                  "pattern": "^DSP-[A-Z0-9-]+$"
+                },
+                "revision": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "record_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                }
+              },
+              "required": [
+                "record_id",
+                "revision",
+                "record_sha256"
+              ]
+            },
+            "work": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "record_id": {
+                  "type": "string",
+                  "pattern": "^WORK-[A-Z0-9-]+$"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "derived_status": {
+                  "type": "string"
+                },
+                "revision": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "record_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "work_package_binding": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              },
+              "required": [
+                "record_id",
+                "status",
+                "derived_status",
+                "revision",
+                "record_sha256",
+                "work_package_binding"
+              ]
+            },
+            "session": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "record_id": {
+                  "type": "string",
+                  "pattern": "^SES-[A-Z0-9-]+$"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "revision": {
+                  "type": "integer",
+                  "minimum": 1
+                },
+                "record_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "action": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "record_id",
+                "status",
+                "revision",
+                "record_sha256",
+                "action"
+              ]
+            },
+            "phase": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "kind": {
+                  "enum": [
+                    "implementation",
+                    "review",
+                    "repair"
+                  ]
+                },
+                "authority_role": {
+                  "enum": [
+                    "IMPLEMENTATION_AUTHORITY",
+                    "REVIEW_AUTHORITY"
+                  ]
+                }
+              },
+              "required": [
+                "kind",
+                "authority_role"
+              ]
+            },
+            "workspace_handoff": {
+              "type": "object"
+            },
+            "bootstrap_expectations": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "record_id": {
+                  "type": "string",
+                  "pattern": "^BST-[A-Z0-9-]+$"
+                },
+                "record_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "expected_repo_root": {
+                  "type": "string"
+                },
+                "expected_head": {
+                  "type": "string"
+                },
+                "expected_branch": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "verify_only": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "record_id",
+                "record_sha256",
+                "expected_repo_root",
+                "expected_head",
+                "expected_branch",
+                "verify_only"
+              ]
+            },
+            "worker_profile": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "profile_id": {
+                  "type": "string"
+                },
+                "launcher_type": {
+                  "enum": [
+                    "fake",
+                    "codex_exec"
+                  ]
+                },
+                "model": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "reasoning_level": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "profile": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "sandbox": {
+                  "enum": [
+                    "read-only",
+                    "workspace-write"
+                  ]
+                },
+                "ephemeral": {
+                  "type": "boolean"
+                },
+                "fake_behavior": {
+                  "type": "string"
+                },
+                "fake_fixture_content": {
+                  "type": "string"
+                },
+                "timeout_seconds": {
+                  "type": "integer",
+                  "minimum": 10
+                },
+                "fake_sleep_seconds": {
+                  "type": "number",
+                  "minimum": 0
+                }
+              },
+              "required": [
+                "profile_id",
+                "launcher_type",
+                "model",
+                "reasoning_level",
+                "profile",
+                "sandbox",
+                "ephemeral",
+                "fake_behavior",
+                "fake_fixture_content"
+              ]
+            },
+            "repository": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "repo_root": {
+                  "type": "string"
+                },
+                "working_directory": {
+                  "type": "string"
+                },
+                "expected_head": {
+                  "type": "string"
+                },
+                "expected_branch": {
+                  "type": [
+                    "string",
+                    "null"
+                  ]
+                },
+                "worktree_action": {
+                  "const": "USE_EXISTING"
+                },
+                "worktree_mutation_allowed": {
+                  "const": false
+                }
+              },
+              "required": [
+                "repo_root",
+                "working_directory",
+                "expected_head",
+                "expected_branch",
+                "worktree_action",
+                "worktree_mutation_allowed"
+              ]
+            },
+            "continuation": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "context_receipt_id": {
+                  "type": "string"
+                },
+                "context_receipt_path": {
+                  "type": "string"
+                },
+                "context_receipt_sha256": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{64}$"
+                },
+                "authority_phase": {
+                  "enum": [
+                    "implementation",
+                    "review",
+                    "repair"
+                  ]
+                }
+              },
+              "required": [
+                "context_receipt_id",
+                "context_receipt_path",
+                "context_receipt_sha256",
+                "authority_phase"
+              ]
+            },
+            "next_safe_action": {
+              "type": "object"
+            },
+            "lease_policy": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "duration_seconds": {
+                  "type": "integer",
+                  "minimum": 30
+                },
+                "heartbeat_interval_seconds": {
+                  "type": "integer",
+                  "minimum": 1
+                }
+              },
+              "required": [
+                "duration_seconds",
+                "heartbeat_interval_seconds"
+              ]
+            },
+            "result_contract": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "schema_version": {
+                  "const": "eiel_worker_result_v1"
+                },
+                "result_path": {
+                  "type": "string"
+                },
+                "prose_parsing_allowed": {
+                  "const": false
+                },
+                "worker_must_not_complete_work": {
+                  "const": true
+                }
+              },
+              "required": [
+                "schema_version",
+                "result_path",
+                "prose_parsing_allowed",
+                "worker_must_not_complete_work"
+              ]
+            }
+          },
+          "required": [
+            "schema_version",
+            "created_at_utc",
+            "dispatch_request",
+            "work",
+            "session",
+            "phase",
+            "workspace_handoff",
+            "bootstrap_expectations",
+            "worker_profile",
+            "repository",
+            "continuation",
+            "next_safe_action",
+            "lease_policy",
+            "result_contract"
+          ]
+        }
+      ]
+    },
+    "assignment_material_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "preparation": {
+      "type": "object"
+    },
+    "operational": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "current_lease_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "result_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "claim_count": {
+          "type": "integer",
+          "minimum": 0
+        }
+      },
+      "required": [
+        "current_lease_id",
+        "result_id",
+        "claim_count"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "material",
+    "assignment_material_sha256",
+    "preparation",
+    "operational"
+  ]
+}

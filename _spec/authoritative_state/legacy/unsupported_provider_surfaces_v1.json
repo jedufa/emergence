@@ -1,0 +1,42 @@
+{
+  "schema_version": "eiel_legacy_authoritative_state_surfaces_v1",
+  "status": "historical_only_no_production_admission",
+  "surfaces": [
+    {
+      "provider_id": "patch-fixed-native-cuda-resident-provider-v1",
+      "reason": "Former Patch fixed execution provider."
+    },
+    {
+      "provider_id": "patch-gmnw-gru-native-cuda-resident-provider-v1",
+      "reason": "Former GMNW execution provider."
+    },
+    {
+      "provider_id": "patch-jungle-fixed-mlp-native-cuda-resident-provider-v1",
+      "reason": "Former Jungle execution provider."
+    },
+    {
+      "provider_id": "patch-stable-gru-native-cuda-resident-provider-v1",
+      "reason": "Former Patch Stable GRU execution provider."
+    },
+    {
+      "provider_id": "patch-wdl-fixed-mlp-native-cuda-resident-provider-v1",
+      "reason": "Former WDL fixed-MLP execution provider."
+    },
+    {
+      "provider_id": "patch-wdl-stable-gru-native-cuda-resident-provider-v1",
+      "reason": "Former WDL Stable GRU execution provider."
+    },
+    {
+      "provider_id": "recomb72-gpu-native-cuda-resident-provider-v1",
+      "reason": "Former RECOMB72 GPU execution provider."
+    },
+    {
+      "provider_id": "recomb72-live-simulation-runner-provider-v1",
+      "reason": "Former RECOMB72 live execution provider."
+    },
+    {
+      "provider_id": "recomb72-neutral-inheritance-provider-v1",
+      "reason": "Former RECOMB72 analysis provider identity."
+    }
+  ]
+}

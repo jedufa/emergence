@@ -1,0 +1,122 @@
+harness_api: 1
+version: 1
+name: identity_gate_plasticity_decay_quick
+description: >
+  Feature quick suite: small multi-seed matrix to confirm Identity Gate and
+  Developmental Plasticity Decay effects are stable (not a one-seed fluke).
+  Includes weak/strong settings plus stress cases.
+intent:
+  question: Validate signal direction and basic stability across 2 seeds.
+  axes:
+    - case
+matrix_order:
+  - case
+  - seed
+axes:
+  case:
+    values:
+      - quick_baseline__gate_off__decay_off
+      - quick_gate_weak__decay_off
+      - quick_gate_strong__decay_off
+      - quick_gate_stress__decay_off
+      - quick_gate_off__decay_weak
+      - quick_gate_off__decay_strong
+      - quick_gate_off__decay_stress
+      - quick_gate_strong__decay_strong
+      - quick_gate_stress__decay_stress
+    flags:
+      quick_baseline__gate_off__decay_off: []
+
+      quick_gate_weak__decay_off:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.25
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+
+      quick_gate_strong__decay_off:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.5
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+
+      quick_gate_stress__decay_off:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.9
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+
+      quick_gate_off__decay_weak:
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=120
+
+      quick_gate_off__decay_strong:
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=60
+
+      quick_gate_off__decay_stress:
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=20
+
+      quick_gate_strong__decay_strong:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.5
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=60
+
+      quick_gate_stress__decay_stress:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.9
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=20
+seeds:
+  - 1
+  - 2
+cli_defaults:
+  - [--generations, '120']
+  - [--steps, '150']
+  - [--pop, '256']
+  - [--policy_tick_stride, '2']
+expected_artifacts:
+  - manifest.json
+  - run_config.csv
+  - config.json
+  - metrics.csv
+  - behaviors.csv
+naming:
+  run_tag_prefix: feat_gate_decay_quick
+  run_id_format: identity_gate_plasticity_decay_quick__{case}__seed{seed:06d}
+  run_tag_format: feat_gate_decay_quick__{case}

@@ -1,0 +1,69 @@
+harness_api: 1
+version: 1
+name: validation_family_episode0_fitness
+description: Nightly family validation for episode0 fitness (aggregated per knob).
+intent:
+  question: Are knobs in family 'episode0_fitness' traceably applied, and do they
+    produce a detectable signal?
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - sim_cfg_episode0_drive_jitter_weight__baseline
+    - sim_cfg_episode0_drive_jitter_weight__variant
+    - sim_cfg_episode0_fitness_weight__baseline
+    - sim_cfg_episode0_fitness_weight__variant
+    - sim_cfg_episode0_pred_err_weight__baseline
+    - sim_cfg_episode0_pred_err_weight__variant
+    - sim_cfg_episode0_selfharm_weight__baseline
+    - sim_cfg_episode0_selfharm_weight__variant
+    - sim_cfg_episode0_thrashing_weight__baseline
+    - sim_cfg_episode0_thrashing_weight__variant
+    flags:
+      sim_cfg_episode0_drive_jitter_weight__baseline: []
+      sim_cfg_episode0_drive_jitter_weight__variant:
+      - --knob
+      - sim_cfg.episode0_drive_jitter_weight=2.0
+      sim_cfg_episode0_fitness_weight__baseline: []
+      sim_cfg_episode0_fitness_weight__variant:
+      - --knob
+      - sim_cfg.episode0_fitness_weight=0.25
+      sim_cfg_episode0_pred_err_weight__baseline: []
+      sim_cfg_episode0_pred_err_weight__variant:
+      - --knob
+      - sim_cfg.episode0_pred_err_weight=2.0
+      sim_cfg_episode0_selfharm_weight__baseline: []
+      sim_cfg_episode0_selfharm_weight__variant:
+      - --knob
+      - sim_cfg.episode0_selfharm_weight=2.0
+      sim_cfg_episode0_thrashing_weight__baseline: []
+      sim_cfg_episode0_thrashing_weight__variant:
+      - --knob
+      - sim_cfg.episode0_thrashing_weight=2.0
+seeds:
+- 1
+- 2
+- 3
+- 4
+cli_defaults:
+- - --generations
+  - '20'
+- - --steps
+  - '150'
+- - --pop
+  - '256'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: val_family_nightly
+  run_id_format: '{name}__{case}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__{case}'

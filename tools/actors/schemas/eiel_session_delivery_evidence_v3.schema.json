@@ -1,0 +1,97 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_delivery_evidence_v3.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "adoption_receipt": {
+      "oneOf": [
+        {
+          "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "base_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "branch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "changed_files": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "delivery_kind": {
+      "enum": [
+        "MANAGED_SESSION_DELIVERY",
+        "EXTERNAL_DELIVERY_ADOPTED"
+      ]
+    },
+    "delivery_proof": {
+      "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+    },
+    "implementation_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "implementation_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "implementation_sufficiency": {
+      "const": "UNASSESSED"
+    },
+    "recorded_at_utc": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "repo_root": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_session_delivery_evidence_v3"
+    },
+    "session_base_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "work_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "worktree_clean": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "implementation_session_id",
+    "base_commit",
+    "implementation_commit",
+    "repo_root",
+    "work_package_sha256",
+    "changed_files",
+    "worktree_clean",
+    "delivery_kind",
+    "implementation_sufficiency",
+    "delivery_proof",
+    "adoption_receipt"
+  ],
+  "title": "EIEL durable repository delivery evidence V3",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.session_manager",
+  "x-eiel-persistence-class": "embedded_durable_delivery_metadata"
+}

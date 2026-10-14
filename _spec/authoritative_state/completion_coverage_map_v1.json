@@ -1,0 +1,374 @@
+{
+  "schema_version": "eiel_authoritative_state_completion_coverage_map_v1",
+  "state_schema_version": "eiel_authoritative_state_v1",
+  "state_schema_sha256": "16f91ec43ca8785590874df9208a73b818d1f2348f248b547c170ff114a279f0",
+  "boundary_profile_coverage": [
+    {
+      "boundary_test_profile": "conditional_world_plane_roundtrip_v1",
+      "evidence_refs": [
+        {
+          "path": "tests/evolvability/world_pressure/test_eed0_rp1_reference_impact.py",
+          "sha256": "cb40ddc9ada39c3c3b7789056d41710e93f6488e1cbf02f0b229cf6df0c206c0",
+          "selectors": [
+            "test_conditional_checkpoint_plane_round_trips_and_continues_exactly",
+            "test_conditional_checkpoint_plane_is_absent_off_and_required_on",
+            "test_checkpoint_bundle_v2_preserves_eed_continuation"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "diploid_state_bank_exact_v1",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_ordinary_turnover_contract_v1.py",
+          "sha256": "9e601df8e0327dfb6c71f6715f24f943c18551f75f1bba204942bf2a2df80878",
+          "selectors": [
+            "test_contracts_close_orders_and_genome_v2_shapes",
+            "test_exact_receipt_rows_reconcile_and_contradictions_fail_closed"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "genome_upgrade_v2_state_bank_exact_v1",
+      "evidence_refs": [
+        {
+          "path": "tests/test_eiel_cuda_architecture_b_direct_resident_source_allocator_v1.py",
+          "sha256": "e3513563c402e41454827166754290c41c42ca3dffbe4a48dda8378beccebd98",
+          "selectors": [
+            "test_genome_v2_checkpoint_authority_binding_is_validated_and_canonical",
+            "test_genome_v2_multicell_checkpoint_sidecars_restore_by_cell_identity",
+            "test_genome_v2_checkpoint_sidecars_repeat_fresh_owner_restore"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "invocation_local",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_outer_output_patch_contract_v1.py",
+          "sha256": "4de850077ba940d633e04b87eaa5096e3b38047feec54e4fcda294ee05ee4422",
+          "selectors": [
+            "test_contract_orders_and_metadata_are_complete",
+            "test_allocator_sentinels_and_physical_widths_are_exact"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "minimum_maximum_sentinel_ragged_roundtrip_v1",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_primitives_v1.py",
+          "sha256": "cf05b2d14f3715484e05ead02afcfca3f9600c7cb773cb189cb71ebad3dcd5c1",
+          "selectors": [
+            "test_checked_int32_accepts_exact_boundaries",
+            "test_founder_id_accepts_sentinel_and_nonnegative_int32",
+            "test_uint64_decimal_json_round_trip_is_lossless",
+            "test_positive_float32_rejects_overflow_and_underflow"
+          ]
+        },
+        {
+          "path": "tests/test_authoritative_state_full_tick_event_contract_v1.py",
+          "sha256": "7276501a76ea060be23d7eb366274aa5e6174ff1457c2bb5a9fb30456a9d9e23",
+          "selectors": [
+            "test_reconciliation_corrects_family_mutability_and_ragged_validity",
+            "test_reconciliation_ignores_declared_stale_tails_beyond_ragged_prefixes",
+            "test_reconciliation_fails_closed_on_event_active_count_overflow"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "post_generation_turnover",
+      "evidence_refs": [
+        {
+          "path": "tests/test_eiel_cuda_architecture_b_direct_resident_settlement_v1.py",
+          "sha256": "0a6917f659b67d5294f79cc8de9a1f84714083678e447006089c446c2bf8d483",
+          "selectors": [
+            "test_terminal_checkpoint_sidecar_captures_live_genome_v2_arrays",
+            "test_v2_settlement_projects_an_exact_completed_prefix",
+            "test_v2_settlement_projects_fresh_absolute_generation_boundary"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "post_tick_or_post_physical_window",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_outer_output_patch_contract_v1.py",
+          "sha256": "4de850077ba940d633e04b87eaa5096e3b38047feec54e4fcda294ee05ee4422",
+          "selectors": [
+            "test_birth_output_contract_matches_real_allocator_dtype_rank_and_shape",
+            "test_outer_contract_reconciles_with_prepared_receipt_fixture"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "pre_dispatch",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_runtime_abi_v1.py",
+          "sha256": "5b661eee40495297beaa556b3a99597d09f1e81c8d1fe00501739b7c961ac138",
+          "selectors": [
+            "test_b3_patch_prepared_owner_emits_deterministic_complete_receipt",
+            "test_production_metadata_drift_fails_before_dispatch"
+          ]
+        },
+        {
+          "path": "tests/test_eiel_authoritative_state_admission_v1.py",
+          "sha256": "4573dfc02801cb0b2080cce09613c270dde9eaf38971867172adcfa5ec84c118",
+          "selectors": [
+            "test_field_manifest_rejects_order_dtype_and_shape_drift",
+            "test_compatibility_matrix_requires_one_exact_hash_tuple"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "pre_dispatch_and_terminal_checkpoint",
+      "evidence_refs": [
+        {
+          "path": "tests/test_eiel_authoritative_state_checkpoint_v1.py",
+          "sha256": "877d525041fff6f9beab0427d7b46dff61e4052851ad95b764fedbe83d7d9e2c",
+          "selectors": [
+            "test_checkpoint_contract_and_envelope_admit_exact_manifest",
+            "test_checkpoint_identity_mismatch_fails_closed_even_outside_strict_mode",
+            "test_restore_revalidates_identity_before_applying_state"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "pre_dispatch_native_abi",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_full_tick_event_contract_v1.py",
+          "sha256": "7276501a76ea060be23d7eb366274aa5e6174ff1457c2bb5a9fb30456a9d9e23",
+          "selectors": [
+            "test_contract_is_exact_complete_and_in_abi_order",
+            "test_reconciliation_fails_closed_on_binding_dtype_mismatch"
+          ]
+        }
+      ]
+    },
+    {
+      "boundary_test_profile": "prepared_owner_pre_dispatch_exact_v1",
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_runtime_abi_v1.py",
+          "sha256": "5b661eee40495297beaa556b3a99597d09f1e81c8d1fe00501739b7c961ac138",
+          "selectors": [
+            "test_all_supported_abi_entries_bind_logical_and_physical_widths",
+            "test_b3_patch_prepared_owner_emits_deterministic_complete_receipt",
+            "test_physical_bool_and_container_width_drift_fails_before_dispatch"
+          ]
+        }
+      ]
+    }
+  ],
+  "conversion_policy_coverage": [
+    {
+      "policy_id": "bool_logical_flag_v1",
+      "physical_types": ["bool"],
+      "signedness": ["not_applicable"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_runtime_abi_v1.py",
+          "sha256": "5b661eee40495297beaa556b3a99597d09f1e81c8d1fe00501739b7c961ac138",
+          "selectors": ["test_all_supported_abi_entries_bind_logical_and_physical_widths"]
+        }
+      ]
+    },
+    {
+      "policy_id": "bool_physical_storage_v1",
+      "physical_types": ["bool"],
+      "signedness": ["unsigned"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_runtime_abi_v1.py",
+          "sha256": "5b661eee40495297beaa556b3a99597d09f1e81c8d1fe00501739b7c961ac138",
+          "selectors": ["test_physical_bool_and_container_width_drift_fails_before_dispatch"]
+        }
+      ]
+    },
+    {
+      "policy_id": "float32_floating_contract_v1",
+      "physical_types": ["float32"],
+      "signedness": ["floating"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_outer_output_patch_contract_v1.py",
+          "sha256": "4de850077ba940d633e04b87eaa5096e3b38047feec54e4fcda294ee05ee4422",
+          "selectors": ["test_birth_output_contract_matches_real_allocator_dtype_rank_and_shape"]
+        }
+      ]
+    },
+    {
+      "policy_id": "float32_ieee754_checked_narrowing_v1",
+      "physical_types": ["float32"],
+      "signedness": ["ieee754"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_primitives_v1.py",
+          "sha256": "cf05b2d14f3715484e05ead02afcfca3f9600c7cb773cb189cb71ebad3dcd5c1",
+          "selectors": [
+            "test_float32_narrowing_returns_exact_binary32_value",
+            "test_positive_float32_rejects_overflow_and_underflow"
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "float64_ieee754_exact_v1",
+      "physical_types": ["float64"],
+      "signedness": ["ieee754"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_runtime_abi_v1.py",
+          "sha256": "5b661eee40495297beaa556b3a99597d09f1e81c8d1fe00501739b7c961ac138",
+          "selectors": ["test_b3_patch_prepared_owner_emits_deterministic_complete_receipt"]
+        }
+      ]
+    },
+    {
+      "policy_id": "int32_checked_signed_v1",
+      "physical_types": ["int32"],
+      "signedness": ["signed"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_primitives_v1.py",
+          "sha256": "cf05b2d14f3715484e05ead02afcfca3f9600c7cb773cb189cb71ebad3dcd5c1",
+          "selectors": [
+            "test_checked_int32_accepts_exact_boundaries",
+            "test_checked_int32_rejects_type_and_range"
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "int64_checked_signed_v1",
+      "physical_types": ["int64"],
+      "signedness": ["signed"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_full_tick_event_contract_v1.py",
+          "sha256": "7276501a76ea060be23d7eb366274aa5e6174ff1457c2bb5a9fb30456a9d9e23",
+          "selectors": [
+            "test_contract_is_exact_complete_and_in_abi_order",
+            "test_reconciliation_fails_closed_on_event_active_count_overflow"
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "int8_checked_signed_v1",
+      "physical_types": ["int8"],
+      "signedness": ["signed"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_full_tick_event_contract_v1.py",
+          "sha256": "7276501a76ea060be23d7eb366274aa5e6174ff1457c2bb5a9fb30456a9d9e23",
+          "selectors": ["test_reconciliation_fails_closed_on_binding_dtype_mismatch"]
+        }
+      ]
+    },
+    {
+      "policy_id": "json_scalar_canonical_projection_v1",
+      "physical_types": ["json_scalar"],
+      "signedness": ["schema_dependent"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_eiel_authoritative_state_projections_v1.py",
+          "sha256": "5a63bf463e22264e8a5749a7bf5bf6d5930e31bcc502c277abb1b92caa589d73",
+          "selectors": [
+            "test_projection_contract_and_envelope_admit_exact_provenance",
+            "test_analysis_projection_fails_closed_for_schema_and_manifest_drift"
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "ordered_tensor_references_exact_container_v1",
+      "physical_types": ["ordered_tensor_references"],
+      "signedness": ["not_applicable"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_outer_output_patch_contract_v1.py",
+          "sha256": "4de850077ba940d633e04b87eaa5096e3b38047feec54e4fcda294ee05ee4422",
+          "selectors": ["test_outer_nested_vectors_are_ordered_container_contracts"]
+        }
+      ]
+    },
+    {
+      "policy_id": "canonical_decimal_string_v1",
+      "physical_types": ["string"],
+      "signedness": ["not_applicable"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_primitives_v1.py",
+          "sha256": "cf05b2d14f3715484e05ead02afcfca3f9600c7cb773cb189cb71ebad3dcd5c1",
+          "selectors": [
+            "test_uint64_decimal_json_round_trip_is_lossless",
+            "test_uint64_json_decoder_rejects_noncanonical_or_out_of_range"
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "typed_scalar_mapping_exact_v1",
+      "physical_types": ["typed_scalar_mapping"],
+      "signedness": ["not_applicable"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_eiel_authoritative_state_projections_v1.py",
+          "sha256": "5a63bf463e22264e8a5749a7bf5bf6d5930e31bcc502c277abb1b92caa589d73",
+          "selectors": ["test_projection_contract_and_envelope_admit_exact_provenance"]
+        }
+      ]
+    },
+    {
+      "policy_id": "uint32_checked_unsigned_v1",
+      "physical_types": ["uint32"],
+      "signedness": ["unsigned"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_full_tick_event_contract_v1.py",
+          "sha256": "7276501a76ea060be23d7eb366274aa5e6174ff1457c2bb5a9fb30456a9d9e23",
+          "selectors": ["test_contract_is_exact_complete_and_in_abi_order"]
+        }
+      ]
+    },
+    {
+      "policy_id": "uint64_checked_unsigned_v1",
+      "physical_types": ["uint64"],
+      "signedness": ["unsigned"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_primitives_v1.py",
+          "sha256": "cf05b2d14f3715484e05ead02afcfca3f9600c7cb773cb189cb71ebad3dcd5c1",
+          "selectors": [
+            "test_checked_uint64_rejects_non_uint64_values",
+            "test_uint64_decimal_json_round_trip_is_lossless"
+          ]
+        }
+      ]
+    },
+    {
+      "policy_id": "uint8_checked_unsigned_storage_v1",
+      "physical_types": ["uint8"],
+      "signedness": ["unsigned"],
+      "evidence_refs": [
+        {
+          "path": "tests/test_authoritative_state_outer_output_patch_contract_v1.py",
+          "sha256": "4de850077ba940d633e04b87eaa5096e3b38047feec54e4fcda294ee05ee4422",
+          "selectors": ["test_allocator_sentinels_and_physical_widths_are_exact"]
+        }
+      ]
+    }
+  ]
+}

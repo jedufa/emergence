@@ -1,0 +1,71 @@
+{
+  "authority_context": {
+    "active_goal": null,
+    "approved_work_package": null,
+    "authorization_basis": null,
+    "operator_instruction_ref": null,
+    "preflight": null,
+    "preflight_exemption": null,
+    "preflight_fail_closed_acknowledged": false,
+    "repository_fallback_reason": null,
+    "schema_version": "eiel_mission_authority_context_v1"
+  },
+  "claim_ceiling": "Closure of the named topic only.",
+  "controls": [
+    "latest accepted decision record",
+    "superseded records kept as history"
+  ],
+  "decision_rule": "Close when the latest accepted bounded decision and required records are complete.",
+  "decision_to_enable": "Close the topic or identify one concrete missing record.",
+  "failure_criteria": [
+    "a required evidence or report reference is missing"
+  ],
+  "mission_type": "CLOSURE",
+  "out_of_scope": [
+    "new simulation",
+    "new implementation",
+    "attempting to reverse a negative result"
+  ],
+  "qualification_request": {},
+  "question": "Is the named thread complete under its last accepted decision and anti-treadmill rule?",
+  "references": {
+    "campaign_output_paths": [],
+    "campaign_spec_paths": [],
+    "evidence_assessment_ids": [],
+    "implementation_report_refs": [],
+    "librarian_document_ids": [],
+    "qualification_record_ids": [],
+    "resource_record_ids": []
+  },
+  "required_closeout_refs": [
+    "evidence_refs",
+    "report_refs",
+    "librarian_document_ids"
+  ],
+  "required_evidence": [
+    "latest evidence assessment",
+    "closure report"
+  ],
+  "resource_demand": {
+    "device": "none"
+  },
+  "schema_version": "eiel_mission_specification_v2",
+  "scope": [
+    "review current decision and durable records"
+  ],
+  "stopping_rules": [
+    "stop after one closure audit"
+  ],
+  "success_criteria": [
+    "all required closure records are linked and no authorized next campaign remains"
+  ],
+  "tasks": [
+    "inspect latest decision",
+    "link records",
+    "write closure outcome"
+  ],
+  "technical_qualification_requirements": [
+    "no new execution route required"
+  ],
+  "title": "Close one completed scientific thread"
+}

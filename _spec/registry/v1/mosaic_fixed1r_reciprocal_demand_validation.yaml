@@ -1,0 +1,285 @@
+harness_api: 1
+version: 1
+name: mosaic_fixed1r_reciprocal_demand_validation
+description: MOSAIC-FIXED-1R reciprocal ecological demand revalidation across unchanged MOSAIC-0A control worlds.
+intent:
+  question: Does the unchanged MOSAIC-0A world give exploit_move a burst/depletion advantage and recovery_conservative a renewal/recovery advantage with reproductive coupling and clean controls?
+  safe_claim_boundary: Fixed reactive world-demand substrate validation only; no intelligence, emergence, cognition, adaptive-memory, prediction-selection, solved lineage-diversity, or open-endedness claim.
+  task_decision_target: MOSAIC-FIXED-1R-A/B/C/D/E
+matrix_order:
+- world_family
+- probe_arm
+- seed
+flag_templates:
+  flat_world: &flat_world
+  - --knob
+  - env_cfg.patch_world_enable=false
+  - --knob
+  - env_cfg.patch_world_observation_enable=false
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=false
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  patch_uniform_world: &patch_uniform_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=patch_uniform
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  label_only_sham_world: &label_only_sham_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=label_only_sham
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  budget_matched_uniform_world: &budget_matched_uniform_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=budget_matched_uniform
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  depletion_only_world: &depletion_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=depletion_only
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  recovery_only_world: &recovery_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=recovery_only
+  - --knob
+  - env_cfg.jungle_ecological_recovery_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  real_mosaic_world: &real_mosaic_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.patch_world_waste_consequence_enable=true
+  - --knob
+  - env_cfg.jungle_ecological_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_depletion_recovery_enable=true
+  - --knob
+  - env_cfg.mosaic0a_control_mode=real_mosaic
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.roz2a_patch_niche_enable=false
+  exploit_move_probe: &exploit_move_probe
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_enable=true
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_schema_version=1
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_arm=exploit_move
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_controller_version=mosaic_fixed1_reactive_v1
+  - --knob
+  - sim_cfg.mosaic_fixed1r_telemetry_enable=true
+  - --knob
+  - sim_cfg.mosaic_fixed1r_telemetry_schema_version=1
+  - --knob
+  - sim_cfg.lineage_reproduction_funnel_reporting_enable=true
+  - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_events=false
+  - --knob
+  - genome.mutation_rate=0.0
+  balanced_generalist_probe: &balanced_generalist_probe
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_enable=true
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_schema_version=1
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_arm=balanced_generalist
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_controller_version=mosaic_fixed1_reactive_v1
+  - --knob
+  - sim_cfg.mosaic_fixed1r_telemetry_enable=true
+  - --knob
+  - sim_cfg.mosaic_fixed1r_telemetry_schema_version=1
+  - --knob
+  - sim_cfg.lineage_reproduction_funnel_reporting_enable=true
+  - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_events=false
+  - --knob
+  - genome.mutation_rate=0.0
+  recovery_conservative_probe: &recovery_conservative_probe
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_enable=true
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_schema_version=1
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_arm=recovery_conservative
+  - --knob
+  - sim_cfg.mosaic_fixed1_probe_controller_version=mosaic_fixed1_reactive_v1
+  - --knob
+  - sim_cfg.mosaic_fixed1r_telemetry_enable=true
+  - --knob
+  - sim_cfg.mosaic_fixed1r_telemetry_schema_version=1
+  - --knob
+  - sim_cfg.lineage_reproduction_funnel_reporting_enable=true
+  - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_events=false
+  - --knob
+  - genome.mutation_rate=0.0
+axes:
+  world_family:
+    values:
+    - flat
+    - patch_uniform
+    - label_only_sham
+    - budget_matched_uniform
+    - depletion_only
+    - recovery_only
+    - real_mosaic
+    flags:
+      flat: *flat_world
+      patch_uniform: *patch_uniform_world
+      label_only_sham: *label_only_sham_world
+      budget_matched_uniform: *budget_matched_uniform_world
+      depletion_only: *depletion_only_world
+      recovery_only: *recovery_only_world
+      real_mosaic: *real_mosaic_world
+  probe_arm:
+    values:
+    - exploit_move
+    - balanced_generalist
+    - recovery_conservative
+    flags:
+      exploit_move: *exploit_move_probe
+      balanced_generalist: *balanced_generalist_probe
+      recovery_conservative: *recovery_conservative_probe
+seeds:
+- 101
+- 202
+- 303
+- 404
+cli_defaults:
+- - --generations
+  - '12'
+- - --steps
+  - '40'
+- - --pop
+  - '32'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cuda
+- - --bank_device
+  - cuda
+- - --knob
+  - sim_cfg.device=cuda
+- - --knob
+  - sim_cfg.bank_device=cuda
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.campaign_output_profile=compact_default
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+- - --knob
+  - sim_cfg.lineage_qd_archive_enable=false
+- - --knob
+  - sim_cfg.lineage_founder_balance_enable=false
+- - --knob
+  - sim_cfg.lro1_reproductive_opportunity_enable=false
+- - --knob
+  - sim_cfg.lro4_offspring_dispersal_enable=false
+- - --knob
+  - sim_cfg.pressure_autopilot_enable=false
+- - --knob
+  - sim_cfg.pressure_autopilot_hold=true
+- - --knob
+  - sim_cfg.pressure_autopilot_suggestion_only=true
+- - --knob
+  - sim_cfg.force_memory_disabled=true
+- - --knob
+  - sim_cfg.force_prediction_disabled=true
+- - --knob
+  - sim_cfg.disable_prediction_error_selection_pressure=true
+- - --knob
+  - env_cfg.prediction_demand_enable=false
+- - --knob
+  - env_cfg.wdl_delayed_hazard_enable=false
+- - --knob
+  - env_cfg.delayed_resource_depletion_enable=false
+- - --knob
+  - env_cfg.delayed_crowding_waste_enable=false
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- metrics/mosaic_fixed1_generation_summary.csv
+- metrics/mosaic_fixed1_controller_contract.json
+- metrics/mosaic_fixed1r_generation_summary.csv
+- metrics/mosaic_fixed1r_telemetry_contract.json
+- metrics/lineage_reproduction_funnel_generation_summary.csv
+- metrics/lineage_reproduction_funnel_run_summary.json
+naming:
+  run_tag_prefix: mosaic_fixed1r
+  run_id_format: mosaic_fixed1r__world_{world_family}__arm_{probe_arm}__seed{seed:06d}
+  run_tag_format: mosaic_fixed1r__world_{world_family}__arm_{probe_arm}
+expected_controls:
+  required_worlds:
+  - flat
+  - patch_uniform
+  - label_only_sham
+  - budget_matched_uniform
+  - depletion_only
+  - recovery_only
+  - real_mosaic
+  required_probe_arms:
+  - exploit_move
+  - balanced_generalist
+  - recovery_conservative
+  required_seeds:
+  - 101
+  - 202
+  - 303
+  - 404

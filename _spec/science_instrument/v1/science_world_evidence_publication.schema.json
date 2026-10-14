@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-world-evidence-publication",
+  "title": "EIEL Science World Evidence Publication Receipt V1",
+  "description": "Content-addressed summary of canonical per-world evidence publication. Physical chunk and route identities are deliberately excluded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "publication_plan_sha256",
+    "world_uid",
+    "record_count",
+    "canonical_record_stream_sha256",
+    "evidence_manifest_sha256",
+    "partition_count",
+    "zero_row_partition_count",
+    "partitions",
+    "effects_performed",
+    "publication_receipt_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_world_evidence_publication_v1"},
+    "publication_plan_sha256": {"$ref": "#/$defs/digest"},
+    "world_uid": {"$ref": "#/$defs/digest"},
+    "record_count": {"type": "integer", "minimum": 1},
+    "canonical_record_stream_sha256": {"$ref": "#/$defs/digest"},
+    "evidence_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "partition_count": {"type": "integer", "minimum": 1},
+    "zero_row_partition_count": {"type": "integer", "minimum": 0},
+    "partitions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/partition_summary"}
+    },
+    "effects_performed": {"const": false},
+    "publication_receipt_sha256": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "record_kind": {
+      "enum": [
+        "agent_state_snapshot",
+        "birth_attempt",
+        "birth_committed",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "decision_action",
+        "ecological_transaction",
+        "environment_transition",
+        "mutation_outcome",
+        "reproduction_opportunity",
+        "world_completion",
+        "world_state_snapshot"
+      ]
+    },
+    "partition_summary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "world_uid",
+        "record_kind",
+        "absolute_tick_start",
+        "absolute_tick_end",
+        "row_count",
+        "partition_sha256"
+      ],
+      "properties": {
+        "world_uid": {"$ref": "#/$defs/digest"},
+        "record_kind": {"$ref": "#/$defs/record_kind"},
+        "absolute_tick_start": {"type": "integer", "minimum": 0},
+        "absolute_tick_end": {"type": "integer", "minimum": 1},
+        "row_count": {"type": "integer", "minimum": 0},
+        "partition_sha256": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

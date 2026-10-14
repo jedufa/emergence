@@ -1,0 +1,30 @@
+{
+  "cold_diagnostic_profile_assets": {
+    "admission_policy": "explicit_manifest_selected_only",
+    "max_aggregate_bytes": 21474836480,
+    "max_object_bytes": 536870912
+  },
+  "filesystem_root": "${EIEL_RUNTIME_ROOT}",
+  "permanent_evidence_capsules": {
+    "max_capsule_bytes": 262144,
+    "max_total_bytes": 536870912,
+    "root": "${EIEL_RUNTIME_ROOT}/.permanent-evidence"
+  },
+  "policy_id": "EIEL_DATA2_STORAGE_AVAILABILITY_V1",
+  "policy_sha256": "16090286cab0d487228b6771eaf8822918c94471c8369839f245911c12105124",
+  "policy_version": 1,
+  "protected_free_floor": {
+    "minimum_bytes": 0,
+    "minimum_fraction_denominator": 1,
+    "minimum_fraction_numerator": 0
+  },
+  "reserve_model": {
+    "filesystem_reserve_bytes": 4294967296,
+    "max_uncertainty_bytes": 8589934592,
+    "mode": "measured_execution_envelope_v1",
+    "schema_version": "eiel_evidence_backed_reserve_model_v1",
+    "uncertainty_margin_denominator": 20,
+    "uncertainty_margin_numerator": 1
+  },
+  "schema_version": "eiel_storage_availability_policy_v1"
+}

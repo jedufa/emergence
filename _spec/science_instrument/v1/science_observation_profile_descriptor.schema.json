@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-observation-profile-descriptor",
+  "title": "EIEL Science Observation Profile Descriptor V1",
+  "description": "Route-neutral mapping from one qualified observation profile to canonical record kinds, completeness obligations, capabilities, producer phases, and default partitioning.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "observation_abi_version",
+    "record_kinds",
+    "required_nonempty_record_kinds",
+    "capability_ids",
+    "producer_phase_registry_ordinals",
+    "default_partition_span_ticks"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_observation_profile_descriptor_v1"},
+    "profile_id": {"$ref": "#/$defs/profile"},
+    "observation_abi_version": {"const": "eiel_science_observation_abi_v1"},
+    "record_kinds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/record_kind"}
+    },
+    "required_nonempty_record_kinds": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/record_kind"}
+    },
+    "capability_ids": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/token"}
+    },
+    "producer_phase_registry_ordinals": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/token"},
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    },
+    "default_partition_span_ticks": {"type": "integer", "minimum": 1}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "profile": {
+      "enum": ["SCIENCE_MINIMAL_V1", "SCIENCE_STANDARD_V1", "SCIENCE_FORENSIC_V1"]
+    },
+    "record_kind": {
+      "enum": [
+        "agent_state_snapshot",
+        "birth_attempt",
+        "birth_committed",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "decision_action",
+        "ecological_transaction",
+        "environment_transition",
+        "mutation_outcome",
+        "reproduction_opportunity",
+        "world_completion",
+        "world_state_snapshot"
+      ]
+    }
+  }
+}

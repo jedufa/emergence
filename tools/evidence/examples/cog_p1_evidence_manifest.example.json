@@ -1,0 +1,64 @@
+{
+  "branch": "example/cog-p1",
+  "campaign_id": "phaseIV_cog_p1_perception_selection_probe",
+  "completed_run_count": 0,
+  "config_files": [],
+  "config_glob": "**/config.json",
+  "device": "cuda",
+  "failed_run_count": 0,
+  "generations": 16,
+  "git_commit": "0000000000000000000000000000000000000000",
+  "grid_size": 16,
+  "harness_manifest_paths": [],
+  "harness_summary_paths": [],
+  "metrics_glob": "**/metrics.csv",
+  "output_paths": [
+    "/tmp/emergence-example/user/emergence/evidences/phaseIV_cog_p1_perception_selection_probe_evidence.zip"
+  ],
+  "planned_run_count": 120,
+  "population_size": 64,
+  "profile": "COG-P1",
+  "registry_path": "../../../_spec/registry/v1/phaseIV_cog_p1_perception_selection_probe.yaml",
+  "run_root": "/tmp/emergence_phaseIV_cog_p1_perception_selection_probe",
+  "scenario_matrix": {
+    "dimensions": [
+      {
+        "name": "ecology_context",
+        "values": [
+          "cogp1_flat_control_clean",
+          "cogp1_tuned_full_jungle_recovery",
+          "cogp1_theme12_clean_pressure"
+        ]
+      },
+      {
+        "name": "init_arm",
+        "values": [
+          "init_legacy",
+          "init_founder_balanced"
+        ]
+      },
+      {
+        "name": "perception_condition",
+        "values": [
+          "perception_normal",
+          "perception_ablated"
+        ]
+      }
+    ]
+  },
+  "seed_list": [
+    101,
+    202,
+    303,
+    404,
+    505,
+    606,
+    707,
+    808,
+    909,
+    1001
+  ],
+  "steps_per_generation": 80,
+  "timestamp_utc": "2026-07-02T00:00:00Z",
+  "worktree": "../../../"
+}

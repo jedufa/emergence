@@ -1,0 +1,7 @@
+{
+  "mode": "grid",
+  "grid": {
+    "region_rows": 3,
+    "region_cols": 3
+  }
+}

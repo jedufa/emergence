@@ -1,0 +1,9 @@
+cell_id,event_sequence,generation,lineage_founder_id,parent_id,mate_parent_id,child_id
+cell_alpha,1,1,100,-1,-1,1001
+cell_alpha,2,1,100,1001,-1,1002
+cell_alpha,3,2,100,1002,1001,1003
+cell_beta,4,1,200,-1,-1,2001
+cell_beta,5,2,200,2001,-1,2002
+cell_beta,6,3,200,2002,2001,2003
+cell_gamma,7,1,300,-1,-1,3001
+cell_gamma,8,2,300,3001,-1,3002

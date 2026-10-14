@@ -1,0 +1,79 @@
+harness_api: 1
+version: 1
+name: spatial_ecology_tier1
+description: >
+  Quick-scale Tier 1 spatial ecology validation. Adds a hazard stripe scenario in addition
+  to the spawn hotspot scenario.
+
+intent:
+  question: "Do Tier 1 spatial ecology maps affect spawn-density and hazard-rate fields as specified (static, pre-declared, seed-controlled)?"
+  axes:
+    - scenario: ["uniform", "spawn_hotspot", "hazard_stripe"]
+
+matrix_order: [scenario, seed]
+
+axes:
+  scenario:
+    values: ["uniform", "spawn_hotspot", "hazard_stripe"]
+    flags:
+      uniform:
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json"
+      spawn_hotspot:
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json"
+      hazard_stripe:
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json"
+
+seeds: [42, 43]
+
+cli_defaults:
+  - ["--generations", "5"]
+  - ["--steps", "120"]
+  - ["--pop", "128"]
+  - ["--policy_tick_stride", "2"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "run_config.csv"
+  - "config.json"
+  - "metrics.csv"
+  - "maps/spec.json"
+  - "maps/summary.json"
+  - "maps/maps_readme.md"
+  - "maps/resource_regrowth_map.npy"
+  - "maps/resource_spawn_density_map.npy"
+  - "maps/hazard_rate_map.npy"
+
+naming:
+  run_tag_prefix: "spat1_quick"
+  run_id_format: "{name}__scenario_{scenario}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__scenario_{scenario}"

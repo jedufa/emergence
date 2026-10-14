@@ -1,0 +1,99 @@
+{
+  "schema": "eiel_wdl_cpu_oracle_build_manifest_v1",
+  "schema_version": 1,
+  "contract_schema": "eiel_wdl_native_manifest_v1",
+  "contract_schema_version": 1,
+  "purpose": "Reproducible CPU-only static oracle artifact for WDL contract validation and later prebuilt Architecture B linkage",
+  "runtime_jit": false,
+  "production_routing_qualified": false,
+  "target": {
+    "platform": "linux",
+    "architecture": "x86_64",
+    "abi": "LP64",
+    "endianness": "little",
+    "cxx_standard": "c++17"
+  },
+  "toolchain": {
+    "compiler": {
+      "executable": "g++",
+      "identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0"
+    },
+    "archiver": {
+      "executable": "ar",
+      "identity": "GNU ar (GNU Binutils for Ubuntu) 2.46",
+      "deterministic_mode": true
+    }
+  },
+  "sources": [
+    {
+      "path": "engine/native_runtime/wdl/wdl_native_contract.hpp",
+      "sha256": "d30ef271f6329f9a03c69d0791bf64b986f5b2f0ded71c7b92394e199a195b27"
+    },
+    {
+      "path": "engine/native_runtime/wdl/wdl_native_contract.cpp",
+      "sha256": "8d149abbec0c5f1318c4f41369c41205593ac773391af77856dac73bf82a68b7"
+    }
+  ],
+  "abi_layout": {
+    "Config": 48,
+    "StateView": 64,
+    "ConstStateView": 64,
+    "ScheduleState": 16,
+    "EventCoordinate": 16,
+    "TickMetrics": 56,
+    "ScheduledEventRow": 40,
+    "AgentStateView": 48,
+    "DamageMetrics": 40,
+    "Descriptor": 24
+  },
+  "build": {
+    "working_directory": "repository_root",
+    "environment": {
+      "LC_ALL": "C",
+      "SOURCE_DATE_EPOCH": "0"
+    },
+    "commands": [
+      [
+        "{compiler}",
+        "-std=c++17",
+        "-O2",
+        "-fPIC",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-pedantic",
+        "-fno-ident",
+        "-frandom-seed=eiel-wdl-native-contract-v1",
+        "-c",
+        "engine/native_runtime/wdl/wdl_native_contract.cpp",
+        "-o",
+        "{object}"
+      ],
+      [
+        "{archiver}",
+        "crD",
+        "{artifact}",
+        "{object}"
+      ]
+    ]
+  },
+  "artifact": {
+    "kind": "deterministic_static_library",
+    "file_name": "libeiel_wdl_native_contract_v1.a",
+    "object_name": "wdl_native_contract.o",
+    "size_bytes": 20174,
+    "sha256": "e5d76eeec8000ea681107d9aec6f7010dcbfc3009edc884ea0e3c94eca622f0b"
+  },
+  "qualification": {
+    "scope": "CPU oracle contract only",
+    "requires_source_hash_match": true,
+    "requires_artifact_hash_match": true,
+    "requires_two_build_byte_identity": true,
+    "does_not_authorize": [
+      "production routing",
+      "CUDA capability publication",
+      "runtime JIT",
+      "Phase 1 integration"
+    ]
+  }
+}

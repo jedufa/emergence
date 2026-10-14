@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "campaign_evidence_manifest.schema.json",
+  "title": "campaign_evidence_manifest",
+  "type": "object",
+  "required": [
+    "campaign_id",
+    "profile",
+    "git_commit",
+    "branch",
+    "worktree",
+    "run_root",
+    "registry_path",
+    "scenario_matrix",
+    "seed_list",
+    "generations",
+    "steps_per_generation",
+    "population_size",
+    "grid_size",
+    "device",
+    "planned_run_count",
+    "completed_run_count",
+    "failed_run_count",
+    "config_files",
+    "output_paths",
+    "metrics_glob",
+    "config_glob",
+    "harness_manifest_paths",
+    "harness_summary_paths",
+    "timestamp_utc"
+  ],
+  "properties": {
+    "campaign_id": {"type": "string"},
+    "profile": {"type": "string"},
+    "git_commit": {"type": "string"},
+    "branch": {"type": "string"},
+    "worktree": {"type": "string"},
+    "run_root": {"type": "string"},
+    "registry_path": {"type": "string"},
+    "scenario_matrix": {
+      "type": "object",
+      "required": ["dimensions"],
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "values"],
+            "properties": {
+              "name": {"type": "string"},
+              "values": {"type": "array", "minItems": 1}
+            }
+          }
+        }
+      }
+    },
+    "seed_list": {"type": "array", "items": {"type": "integer"}},
+    "generations": {"type": "integer", "minimum": 0},
+    "steps_per_generation": {"type": "integer", "minimum": 0},
+    "population_size": {"type": "integer", "minimum": 0},
+    "grid_size": {"type": "integer", "minimum": 0},
+    "device": {"type": "string"},
+    "planned_run_count": {"type": "integer", "minimum": 0},
+    "completed_run_count": {"type": "integer", "minimum": 0},
+    "failed_run_count": {"type": "integer", "minimum": 0},
+    "config_files": {"type": "array", "items": {"type": "string"}},
+    "output_paths": {"type": "array", "items": {"type": "string"}},
+    "metrics_glob": {"type": "string"},
+    "config_glob": {"type": "string"},
+    "harness_manifest_paths": {"type": "array", "items": {"type": "string"}},
+    "harness_summary_paths": {"type": "array", "items": {"type": "string"}},
+    "timestamp_utc": {"type": "string"}
+  },
+  "additionalProperties": true
+}

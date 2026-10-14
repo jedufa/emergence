@@ -1,0 +1,36 @@
+{
+  "schema_version": "tw_rngv2_dea1_production_route_contract_v1",
+  "status": "FROZEN_FOR_QUALPREP_DEFAULT_OFF_NOT_AUTHORIZED_FOR_Q6",
+  "route_id": "tensor_world_c0_c7_rngv2_v1",
+  "rng_semantics_version": 2,
+  "semantic_name": "TW-RNGV2-DEA1",
+  "parent_prototype_identity": "TW-RNGV2-DEA1-PROTO-1@99b023cd881e1a28",
+  "parent_prototype_hash": "99b023cd881e1a28ca1786bb477bb382b997e73f8d09fc063e5e02670ebfa7e3",
+  "default_activation": false,
+  "v1_coexistence": "V1 remains default route tensor_world_c0_c7_v3. Selecting rng_semantics_version=2 is explicit.",
+  "fail_closed_mixing": true,
+  "no_host_tapes": true,
+  "no_host_rng_authority_in_steady_state": true,
+  "consumer_mapping": {
+    "mutation_bernoulli_domain": 816,
+    "mutation_normal_pair_domain": 817,
+    "mutation_discrete_domain": 818,
+    "birth_proposal_subject": "directed birth_proposal_rank of (parent_uid, mate_uid, occurrence) within world/tick; parent order is not sorted",
+    "gene_operation_id": "field index 0..7",
+    "rate_operation_id": 8,
+    "normal_component": "z0; z1 discarded without affecting later addresses"
+  },
+  "checkpoint": {
+    "schema": "tensor_world_c6_checkpoint_rngv2_v1",
+    "stores": [
+      "rng_semantics_version",
+      "contract hash",
+      "namespace key",
+      "semantic epoch",
+      "world uids",
+      "absolute tick",
+      "next entity uid"
+    ],
+    "forbids": ["MT words", "gaussian tapes", "draw cursors", "V1 cache"]
+  }
+}

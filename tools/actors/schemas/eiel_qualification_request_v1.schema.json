@@ -1,0 +1,232 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_qualification_request_v1.schema.json",
+  "title": "EIEL Technical Qualification Request V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version"],
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_request_v1"},
+    "track_label": {"type": "string", "minLength": 1},
+    "world": {"type": "string"},
+    "world_family": {"type": "string"},
+    "grid_width": {"type": "integer", "minimum": 1},
+    "grid_height": {"type": "integer", "minimum": 1},
+    "initial_population": {"type": "integer", "minimum": 1},
+    "population": {"type": "integer", "minimum": 1},
+    "resident_capacity": {"type": "integer", "minimum": 1},
+    "device": {"enum": ["cpu", "cuda", "gpu"]},
+    "batch_cells": {"type": "integer", "minimum": 1},
+    "batch_size": {"type": "integer", "minimum": 1},
+    "backend": {"type": "string"},
+    "provider_id": {"type": "string"},
+    "runtime_id": {"type": "string"},
+    "route_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_route_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+    "build_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "execution_route_identity": {
+      "enum": ["legacy_generation_route_v1", "tick_native_execution_route_v1"]
+    },
+    "time_authority": {"enum": ["absolute_tick_v1", "legacy_generation_v1"]},
+    "total_ticks": {"type": "integer", "minimum": 1},
+    "start_next_tick": {"type": "integer", "minimum": 0},
+    "resident_owner_span_ticks": {"type": "integer", "minimum": 1},
+    "native_dispatch_window_ticks": {"type": "integer", "minimum": 1},
+    "source_window_ticks": {"type": "integer", "minimum": 1},
+    "event_window_capacity": {"type": "integer", "minimum": 1},
+    "checkpoint_ticks": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "integer", "minimum": 0}
+    },
+    "generations": {"type": "integer", "minimum": 1, "deprecated": true},
+    "ticks_per_generation": {"type": "integer", "minimum": 1, "deprecated": true},
+    "requested_qualification_dimensions": {
+      "$ref": "#/$defs/qualificationDimensions"
+    },
+    "evidence_bindings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/evidenceBinding"}
+    }
+  },
+  "oneOf": [
+    {
+      "title": "Active tick-native qualification request",
+      "required": [
+        "execution_route_identity",
+        "time_authority",
+        "total_ticks",
+        "resident_owner_span_ticks",
+        "native_dispatch_window_ticks",
+        "source_window_ticks",
+        "event_window_capacity",
+        "requested_qualification_dimensions"
+      ],
+      "properties": {
+        "execution_route_identity": {"const": "tick_native_execution_route_v1"},
+        "time_authority": {"const": "absolute_tick_v1"}
+      },
+      "not": {
+        "anyOf": [
+          {"required": ["generations"]},
+          {"required": ["ticks_per_generation"]}
+        ]
+      }
+    },
+    {
+      "title": "Explicit legacy generation compatibility request",
+      "required": [
+        "execution_route_identity",
+        "time_authority",
+        "generations",
+        "ticks_per_generation",
+        "requested_qualification_dimensions"
+      ],
+      "properties": {
+        "execution_route_identity": {"const": "legacy_generation_route_v1"},
+        "time_authority": {"const": "legacy_generation_v1"},
+        "requested_qualification_dimensions": {
+          "items": {"const": "BOUNDED_ROUTE_QUALIFIED"}
+        }
+      },
+      "not": {
+        "anyOf": [
+          {"required": ["total_ticks"]},
+          {"required": ["resident_owner_span_ticks"]},
+          {"required": ["native_dispatch_window_ticks"]},
+          {"required": ["source_window_ticks"]},
+          {"required": ["event_window_capacity"]}
+        ]
+      }
+    },
+    {
+      "title": "Identity-only historical reference",
+      "anyOf": [
+        {"required": ["execution_route_sha256"]},
+        {"required": ["route_hash"]}
+      ],
+      "not": {
+        "anyOf": [
+          {"required": ["execution_route_identity"]},
+          {"required": ["generations"]},
+          {"required": ["ticks_per_generation"]},
+          {"required": ["total_ticks"]}
+        ]
+      }
+    }
+  ],
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "requested_qualification_dimensions": {
+            "contains": {
+              "enum": [
+                "LONG_HORIZON_RUNABILITY_QUALIFIED",
+                "SCIENCE_ROUTE_QUALIFIED"
+              ]
+            }
+          }
+        },
+        "required": ["requested_qualification_dimensions"]
+      },
+      "then": {
+        "required": ["evidence_bindings"],
+        "properties": {
+          "total_ticks": {"minimum": 5000},
+          "evidence_bindings": {"minItems": 1}
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "requested_qualification_dimensions": {
+            "contains": {"const": "LONG_HORIZON_RUNABILITY_QUALIFIED"}
+          }
+        },
+        "required": ["requested_qualification_dimensions"]
+      },
+      "then": {
+        "properties": {
+          "evidence_bindings": {
+            "contains": {
+              "properties": {
+                "supports_dimensions": {
+                  "contains": {"const": "LONG_HORIZON_RUNABILITY_QUALIFIED"}
+                }
+              },
+              "required": ["supports_dimensions"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "requested_qualification_dimensions": {
+            "contains": {"const": "SCIENCE_ROUTE_QUALIFIED"}
+          }
+        },
+        "required": ["requested_qualification_dimensions"]
+      },
+      "then": {
+        "properties": {
+          "evidence_bindings": {
+            "contains": {
+              "properties": {
+                "supports_dimensions": {
+                  "contains": {"const": "SCIENCE_ROUTE_QUALIFIED"}
+                }
+              },
+              "required": ["supports_dimensions"]
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "qualificationDimensions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "BOUNDED_ROUTE_QUALIFIED",
+          "LONG_HORIZON_RUNABILITY_QUALIFIED",
+          "SCIENCE_ROUTE_QUALIFIED"
+        ]
+      }
+    },
+    "evidenceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding_id", "kind", "sha256", "supports_dimensions"],
+      "properties": {
+        "binding_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+        "kind": {
+          "enum": [
+            "bounded_route_receipt",
+            "long_horizon_run_receipt",
+            "checkpoint_restore_receipt",
+            "resource_safety_receipt",
+            "canonical_full_route_receipt"
+          ]
+        },
+        "uri": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+        "supports_dimensions": {"$ref": "#/$defs/qualificationDimensions"},
+        "total_ticks": {"type": "integer", "minimum": 1},
+        "batch_cells": {"type": "integer", "minimum": 1},
+        "grid_width": {"type": "integer", "minimum": 1},
+        "initial_population": {"type": "integer", "minimum": 1},
+        "resident_capacity": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

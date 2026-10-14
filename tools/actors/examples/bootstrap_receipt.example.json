@@ -1,0 +1,30 @@
+{
+  "schema_version": "eiel_repository_bootstrap_v1",
+  "bootstrap_id": "BST-EXAMPLE",
+  "readiness": "READY_WITH_WARNINGS",
+  "generated_at_utc": "2026-08-04T00:00:00Z",
+  "task": {
+    "mode": "implementation",
+    "topic": "W32 qualification repair",
+    "operator_instruction_ref": "operator prompt 2026-08-04",
+    "operator_instruction_binding": {
+      "schema_version": "eiel_operator_instruction_binding_v1",
+      "binding_kind": "PROVENANCE_ONLY_LABEL",
+      "digest_kind": "canonical_json_ascii_sorted_compact_v1+sha256",
+      "label": "example operator instruction",
+      "execution_authority": false
+    },
+    "edit_authorized": true,
+    "campaign_authorized": false,
+    "gpu_required": false,
+    "write_scope": [{"path": "tools/actors", "exists": true, "kind": "directory"}],
+    "expected_validation": ["pytest -q tests/test_eiel_work_manager_v1_4.py"]
+  },
+  "repository": {"root": "/tmp/emergence-example/user/emergence", "head": "0123456789abcdef", "branch": "main", "dirty": false},
+  "environment": {"python": "/tmp/emergence-example/user/emergence/.venv/bin/python", "source": "repository_venv", "probe": {}},
+  "authority": {"preflight": {}, "preflight_receipt_path": "/tmp/emergence-example/user/.local/state/eiel/actors/authority/preflights/example.json"},
+  "checks": [{"name": "git_worktree", "status": "PASS", "message": "Git worktree confirmed.", "details": {}}],
+  "blocked_check_names": [],
+  "warning_check_names": ["dirty_state"],
+  "non_goals": ["no_environment_creation", "no_package_installation", "no_source_edit", "no_campaign_launch", "no_process_control", "no_guessing"]
+}

@@ -1,0 +1,947 @@
+manifest_version: r3_branch_replay_manifest_set_v1
+manifest_id: r3_branch_replay_smoke_9e989fe5f98058f2
+source_campaign_id: integrated_r2_lineage_collapse_forensics
+source_output_root: /tmp/emergence_integrated_r2_lineage_collapse_forensics
+replay_mode: manifest_only_validation
+candidates:
+- manifest_version: r3_branch_replay_manifest_v1
+  manifest_id: r3_dominant_r2_03_tuned_full_jungle_recovery_000101_L00000027_0
+  source_campaign_id: integrated_r2_lineage_collapse_forensics
+  source_output_root: /tmp/emergence_integrated_r2_lineage_collapse_forensics
+  source_run_id: r0031_70e25e0c
+  source_scenario_id: r2_03_tuned_full_jungle_recovery
+  source_seed: 101
+  source_device: cuda
+  source_generation: 0
+  source_step_or_tick:
+    status: missing_optional
+    field: source_step_or_tick
+    reason: R2 branch candidate artifacts are generation-level
+  source_checkpoint_path:
+    status: missing_required
+    field: source_checkpoint_path
+    reason: source run has no checkpoint_bundles_v2 directory
+  source_config_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c/config.json
+  source_metrics_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c/metrics.csv
+  candidate_lineage_id: L00000027
+  candidate_biological_lineage_id: L00000027
+  candidate_category: dominant_lineage
+  candidate_generation_emitted: 0
+  candidate_alive_share_at_emission: 0.06306306306306306
+  candidate_birth_share_at_emission: 0.056074766355140186
+  candidate_descriptor_snapshot:
+    branch_candidate:
+      behavioral_descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 0.6942857887063708
+        mean_memory_dim: 6.285714285714286
+        mean_offspring_count: 1.2857142857142858
+        mean_prediction_error: 6.333435314620587
+        mean_survival_steps: 62.357142857142854
+      candidate_score: 0.08082
+      candidate_type: high_cognition_viable
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000027
+      lineage_role: general_agent
+      persistence_steps: 1
+      population_share: 0.06306306306306306
+      reasons:
+      - cognition or memory complexity proxy is above population median while lineage
+        remains viable
+      reproduction_share: 0.056074766355140186
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_branch_candidates_v1
+      supporting_metrics:
+        cognition_interest_score: 0.08082
+        descriptor_distance_from_dominant: 0.0
+        descriptor_distance_from_population_median: 0.131951
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.5982142857142858
+        mean_health: 8.858571325029645
+        mean_injury: 0.6942857887063708
+        mean_memory_dim: 6.285714285714286
+        mean_offspring_count: 1.2857142857142858
+        mean_survival_steps: 62.357142857142854
+        persistence_steps: 1
+        population_share: 0.06306306306306306
+        reproduction_share: 0.056074766355140186
+      warning_flags: []
+    archive_entry:
+      archive_entry_id: t5qd_09d8b0698c36558b3d9b
+      archive_policy_version: theme5_qd_archive_policy_v1
+      candidate_rank: 6
+      candidate_reasons:
+      - low cognitive cost with survival or reproduction at/above population median
+      candidate_score: 0.795238
+      candidate_type: low_cognition_strong_baseline
+      candidate_types:
+      - low_cognition_strong_baseline
+      checkpoint_reference: null
+      config_hash: null
+      created_by: theme5_quality_diversity_archive
+      descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 0.5645967938246266
+        mean_memory_dim: 0.0
+        mean_offspring_count: 1.7741935483870968
+        mean_prediction_error: 6.471023154348698
+        mean_survival_steps: 79.6774193548387
+      ecological_role: general_agent
+      generation: 6
+      lineage_id: L00000027
+      lineage_role: general_agent
+      population_share: 0.29523809523809524
+      representative_agent_ids:
+      - 590
+      - 683
+      - 685
+      representative_genome_hashes:
+      - c0704bce08ee076ea2ecaeff44f2a7bbc892097c7a32be616441c94bda253919
+      - fe019491629794057111d95ce11f4b33b68e1618ab9dfe68e4245d62cd2eeffa
+      - aad0f71687283a8364eb88a86f638327a12746749e2ca25f7289b574949ee145
+      reproduction_share: 0.2879581151832461
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_lineage_qd_archive_entry_v1
+      source_run_dir: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c
+      supporting_metrics:
+        baseline_strength_score: 0.795238
+        descriptor_distance_from_dominant: 0.0
+        descriptor_distance_from_population_median: 0.048524
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.5
+        mean_health: 9.45419345363494
+        mean_injury: 0.5645967938246266
+        mean_memory_dim: 0.0
+        mean_offspring_count: 1.7741935483870968
+        mean_survival_steps: 79.6774193548387
+        persistence_steps: 7
+        population_share: 0.29523809523809524
+        reproduction_share: 0.2879581151832461
+      world_context_summary: null
+      _archive_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c/archives/lineage_qd/entries/t5qd_09d8b0698c36558b3d9b.json
+    lineage_descriptor:
+      cognitive_profile:
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.5982142857142858
+        mean_drive_jitter: 8.796218632554103
+        mean_identity_drift: 0.0
+        mean_memory_dim: 6.285714285714286
+        mean_prediction_error: 6.333435314620587
+      dominant_role_share: 1.0
+      ecological_role: general_agent
+      ecology_patch_profile:
+        disease_survival_proxy: null
+        patch_habitat_profile: null
+        patch_use_profile: null
+        predator_death_rate: null
+        predator_exposure_rate: null
+        shelter_use_rate: null
+        waste_tolerance_proxy: null
+      energy_strategy:
+        mean_energy: 134.4993081979903
+        mean_energy_collected: 188.57142857142858
+      genome_behavior_profile:
+        mean_aggression_bias: -0.02498446285714286
+        mean_exploration_bias: -0.08292321357142858
+      gru_fraction: 1.0
+      lineage_id: L00000027
+      lineage_role: general_agent
+      mean_aggression_bias: -0.02498446285714286
+      mean_cognition_complexity_proxy: 1.5982142857142858
+      mean_drive_jitter: 8.796218632554103
+      mean_energy: 134.4993081979903
+      mean_energy_collected: 188.57142857142858
+      mean_exploration_bias: -0.08292321357142858
+      mean_fear_drive: 0.13344783282705716
+      mean_first_reproduction_step: 12.363636363636363
+      mean_health: 8.858571325029645
+      mean_hunger_drive: 0.6448371495519366
+      mean_identity_drift: 0.0
+      mean_injury: 0.6942857887063708
+      mean_memory_dim: 6.285714285714286
+      mean_offspring_count: 1.2857142857142858
+      mean_prediction_error: 6.333435314620587
+      mean_survival_steps: 62.357142857142854
+      mobility_action_profile:
+        attack_rate: null
+        exploration_rate: null
+        gather_rate: null
+        movement_rate: null
+        reproduction_action_rate: null
+        rest_rate: null
+      population_count: 14
+      population_share: 0.06306306306306306
+      reproduction_strategy:
+        mean_first_reproduction_step: 12.363636363636363
+        mean_offspring_count: 1.2857142857142858
+      risk_stress_profile:
+        mean_fear_drive: 0.13344783282705716
+        mean_health: 8.858571325029645
+        mean_hunger_drive: 0.6448371495519366
+        mean_injury: 0.6942857887063708
+      role_confidence: null
+      role_counts:
+        general_agent: 14
+      role_source: default
+      strategy_descriptor_schema_version: theme5_lineage_descriptors_v1
+      survival_strategy:
+        mean_first_reproduction_step: 12.363636363636363
+        mean_survival_steps: 62.357142857142854
+  candidate_archive_entry_id: t5qd_09d8b0698c36558b3d9b
+  replay_mode: manifest_only_validation
+  replay_start_generation: 0
+  replay_generations: 4
+  replay_steps_per_generation: 60
+  population_handling_mode: restore_from_checkpoint_without_population_modification
+  allowed_mutation_policy: source_config_only_no_override
+  allowed_selection_policy: source_config_only_no_override
+  expected_flags:
+    patch_world_enable: true
+    patch_world_observation_enable: true
+    patch_world_waste_consequence_enable: true
+    jungle_predator_pressure_enable: true
+    jungle_reproduction_emissions_enable: true
+    jungle_terrain_protection_enable: true
+    jungle_ecological_recovery_enable: true
+  expected_tuned_overrides:
+    jungle_predator_base_risk: 0.0
+    jungle_predator_scent_weight: 0.02
+    jungle_predator_waste_weight: 0.02
+    jungle_predator_density_weight: 0.02
+    jungle_predator_visibility_weight: 0.02
+    jungle_predator_risk_cap: 0.05
+    jungle_predator_health_damage: 0.25
+    patch_waste_regrowth_penalty_scale: 0.5
+    patch_waste_regrowth_penalty_max: 0.5
+    patch_density_regrowth_penalty_scale: 0.5
+    patch_density_regrowth_penalty_max: 0.5
+    patch_regrowth_min_multiplier: 0.1
+    jungle_cover_damage_reduction_weight: 0.4
+    jungle_shelter_damage_reduction_weight: 0.4
+    jungle_terrain_damage_multiplier_min: 0.15
+    jungle_recovery_regrowth_boost_scale: 0.05
+    jungle_recovery_regrowth_boost_max: 0.1
+  expected_theme4_disabled_status:
+    phase_e_e1_enable: true
+    enable_developmental_cognition: true
+    enable_introspection_channels: true
+    enable_introspection_policy_input: true
+    enable_self_regulation: true
+    enable_self_regulation_surface: true
+    enable_self_regulation_policy_output: true
+    enable_self_modification: true
+    enable_self_modification_policy_output: true
+    enable_directed_inheritance: true
+    enable_directed_inheritance_surface: true
+    enable_directed_inheritance_policy_output: true
+  expected_theme5_reporting_status:
+    lineage_qd_archive_enable: true
+    lineage_qd_archive_top_n: 8
+    lineage_qd_archive_min_score: 0.25
+    lineage_qd_archive_cooldown_generations: 0
+  output_root: /tmp/emergence_integrated_r3_branch_replay_readiness/replays/r3_dominant_r2_03_tuned_full_jungle_recovery_000101_L00000027_0
+- manifest_version: r3_branch_replay_manifest_v1
+  manifest_id: r3_non_dominant_tuned_recovery_r2_03_tuned_full_jungle_recovery_000101_L00000059_0
+  source_campaign_id: integrated_r2_lineage_collapse_forensics
+  source_output_root: /tmp/emergence_integrated_r2_lineage_collapse_forensics
+  source_run_id: r0031_70e25e0c
+  source_scenario_id: r2_03_tuned_full_jungle_recovery
+  source_seed: 101
+  source_device: cuda
+  source_generation: 0
+  source_step_or_tick:
+    status: missing_optional
+    field: source_step_or_tick
+    reason: R2 branch candidate artifacts are generation-level
+  source_checkpoint_path:
+    status: missing_required
+    field: source_checkpoint_path
+    reason: source run has no checkpoint_bundles_v2 directory
+  source_config_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c/config.json
+  source_metrics_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c/metrics.csv
+  candidate_lineage_id: L00000059
+  candidate_biological_lineage_id: L00000059
+  candidate_category: survival_specialist
+  candidate_generation_emitted: 0
+  candidate_alive_share_at_emission: 0.0045045045045045045
+  candidate_birth_share_at_emission: 0.009345794392523364
+  candidate_descriptor_snapshot:
+    branch_candidate:
+      behavioral_descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_prediction_error: 5.9645752103866565
+        mean_survival_steps: 120.0
+      candidate_score: 0.814375
+      candidate_type: survival_specialist
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      persistence_steps: 1
+      population_share: 0.0045045045045045045
+      reasons:
+      - survival or age proxy is above population median
+      reproduction_share: 0.009345794392523364
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_branch_candidates_v1
+      supporting_metrics:
+        descriptor_distance_from_dominant: 0.285398
+        descriptor_distance_from_population_median: 0.324236
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_health: 1.9499998092651367
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_survival_steps: 120.0
+        persistence_steps: 1
+        population_share: 0.0045045045045045045
+        reproduction_share: 0.009345794392523364
+        survival_score: 0.814375
+      warning_flags: []
+    archive_entry:
+      archive_entry_id: t5qd_74a616d6d7d3327991ac
+      archive_policy_version: theme5_qd_archive_policy_v1
+      candidate_rank: 1
+      candidate_reasons:
+      - survival or age proxy is above population median
+      candidate_score: 0.814375
+      candidate_type: survival_specialist
+      candidate_types:
+      - survival_specialist
+      checkpoint_reference: null
+      config_hash: null
+      created_by: theme5_quality_diversity_archive
+      descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_prediction_error: 5.9645752103866565
+        mean_survival_steps: 120.0
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      population_share: 0.0045045045045045045
+      representative_agent_ids:
+      - 59
+      representative_genome_hashes:
+      - 09985c4fb1cb017abe50301f2da2476236e22ac22e9a93cdc4eed9384411035a
+      reproduction_share: 0.009345794392523364
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_lineage_qd_archive_entry_v1
+      source_run_dir: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c
+      supporting_metrics:
+        descriptor_distance_from_dominant: 0.285398
+        descriptor_distance_from_population_median: 0.324236
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_health: 1.9499998092651367
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_survival_steps: 120.0
+        persistence_steps: 1
+        population_share: 0.0045045045045045045
+        reproduction_share: 0.009345794392523364
+        survival_score: 0.814375
+      world_context_summary: null
+      _archive_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0031_70e25e0c/archives/lineage_qd/entries/t5qd_74a616d6d7d3327991ac.json
+    lineage_descriptor:
+      cognitive_profile:
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_drive_jitter: 17.25245308689773
+        mean_identity_drift: 0.0
+        mean_memory_dim: 8.0
+        mean_prediction_error: 5.9645752103866565
+      dominant_role_share: 1.0
+      ecological_role: general_agent
+      ecology_patch_profile:
+        disease_survival_proxy: null
+        patch_habitat_profile: null
+        patch_use_profile: null
+        predator_death_rate: null
+        predator_exposure_rate: null
+        shelter_use_rate: null
+        waste_tolerance_proxy: null
+      energy_strategy:
+        mean_energy: 135.88955688476562
+        mean_energy_collected: 480.0
+      genome_behavior_profile:
+        mean_aggression_bias: -0.36604118
+        mean_exploration_bias: 0.30334455
+      gru_fraction: 1.0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      mean_aggression_bias: -0.36604118
+      mean_cognition_complexity_proxy: 1.625
+      mean_drive_jitter: 17.25245308689773
+      mean_energy: 135.88955688476562
+      mean_energy_collected: 480.0
+      mean_exploration_bias: 0.30334455
+      mean_fear_drive: 0.06790447980165482
+      mean_first_reproduction_step: 3.0
+      mean_health: 1.9499998092651367
+      mean_hunger_drive: 0.6972403526306152
+      mean_identity_drift: 0.0
+      mean_injury: 2.4300003051757812
+      mean_memory_dim: 8.0
+      mean_offspring_count: 3.0
+      mean_prediction_error: 5.9645752103866565
+      mean_survival_steps: 120.0
+      mobility_action_profile:
+        attack_rate: null
+        exploration_rate: null
+        gather_rate: null
+        movement_rate: null
+        reproduction_action_rate: null
+        rest_rate: null
+      population_count: 1
+      population_share: 0.0045045045045045045
+      reproduction_strategy:
+        mean_first_reproduction_step: 3.0
+        mean_offspring_count: 3.0
+      risk_stress_profile:
+        mean_fear_drive: 0.06790447980165482
+        mean_health: 1.9499998092651367
+        mean_hunger_drive: 0.6972403526306152
+        mean_injury: 2.4300003051757812
+      role_confidence: null
+      role_counts:
+        general_agent: 1
+      role_source: default
+      strategy_descriptor_schema_version: theme5_lineage_descriptors_v1
+      survival_strategy:
+        mean_first_reproduction_step: 3.0
+        mean_survival_steps: 120.0
+  candidate_archive_entry_id: t5qd_74a616d6d7d3327991ac
+  replay_mode: manifest_only_validation
+  replay_start_generation: 0
+  replay_generations: 4
+  replay_steps_per_generation: 60
+  population_handling_mode: restore_from_checkpoint_without_population_modification
+  allowed_mutation_policy: source_config_only_no_override
+  allowed_selection_policy: source_config_only_no_override
+  expected_flags:
+    patch_world_enable: true
+    patch_world_observation_enable: true
+    patch_world_waste_consequence_enable: true
+    jungle_predator_pressure_enable: true
+    jungle_reproduction_emissions_enable: true
+    jungle_terrain_protection_enable: true
+    jungle_ecological_recovery_enable: true
+  expected_tuned_overrides:
+    jungle_predator_base_risk: 0.0
+    jungle_predator_scent_weight: 0.02
+    jungle_predator_waste_weight: 0.02
+    jungle_predator_density_weight: 0.02
+    jungle_predator_visibility_weight: 0.02
+    jungle_predator_risk_cap: 0.05
+    jungle_predator_health_damage: 0.25
+    patch_waste_regrowth_penalty_scale: 0.5
+    patch_waste_regrowth_penalty_max: 0.5
+    patch_density_regrowth_penalty_scale: 0.5
+    patch_density_regrowth_penalty_max: 0.5
+    patch_regrowth_min_multiplier: 0.1
+    jungle_cover_damage_reduction_weight: 0.4
+    jungle_shelter_damage_reduction_weight: 0.4
+    jungle_terrain_damage_multiplier_min: 0.15
+    jungle_recovery_regrowth_boost_scale: 0.05
+    jungle_recovery_regrowth_boost_max: 0.1
+  expected_theme4_disabled_status:
+    phase_e_e1_enable: true
+    enable_developmental_cognition: true
+    enable_introspection_channels: true
+    enable_introspection_policy_input: true
+    enable_self_regulation: true
+    enable_self_regulation_surface: true
+    enable_self_regulation_policy_output: true
+    enable_self_modification: true
+    enable_self_modification_policy_output: true
+    enable_directed_inheritance: true
+    enable_directed_inheritance_surface: true
+    enable_directed_inheritance_policy_output: true
+  expected_theme5_reporting_status:
+    lineage_qd_archive_enable: true
+    lineage_qd_archive_top_n: 8
+    lineage_qd_archive_min_score: 0.25
+    lineage_qd_archive_cooldown_generations: 0
+  output_root: /tmp/emergence_integrated_r3_branch_replay_readiness/replays/r3_non_dominant_tuned_recovery_r2_03_tuned_full_jungle_recovery_000101_L00000059_0
+- manifest_version: r3_branch_replay_manifest_v1
+  manifest_id: r3_non_dominant_default_full_jungle_r2_01_default_full_jungle_000101_L00000059_0
+  source_campaign_id: integrated_r2_lineage_collapse_forensics
+  source_output_root: /tmp/emergence_integrated_r2_lineage_collapse_forensics
+  source_run_id: r0011_be25338c
+  source_scenario_id: r2_01_default_full_jungle
+  source_seed: 101
+  source_device: cuda
+  source_generation: 0
+  source_step_or_tick:
+    status: missing_optional
+    field: source_step_or_tick
+    reason: R2 branch candidate artifacts are generation-level
+  source_checkpoint_path:
+    status: missing_required
+    field: source_checkpoint_path
+    reason: source run has no checkpoint_bundles_v2 directory
+  source_config_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0011_be25338c/config.json
+  source_metrics_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0011_be25338c/metrics.csv
+  candidate_lineage_id: L00000059
+  candidate_biological_lineage_id: L00000059
+  candidate_category: survival_specialist
+  candidate_generation_emitted: 0
+  candidate_alive_share_at_emission: 0.004651162790697674
+  candidate_birth_share_at_emission: 0.00974025974025974
+  candidate_descriptor_snapshot:
+    branch_candidate:
+      behavioral_descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_prediction_error: 6.0835236429996
+        mean_survival_steps: 120.0
+      candidate_score: 0.818999
+      candidate_type: survival_specialist
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      persistence_steps: 1
+      population_share: 0.004651162790697674
+      reasons:
+      - survival or age proxy is above population median
+      reproduction_share: 0.00974025974025974
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_branch_candidates_v1
+      supporting_metrics:
+        descriptor_distance_from_dominant: 0.314598
+        descriptor_distance_from_population_median: 0.327545
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_health: 1.649998664855957
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_survival_steps: 120.0
+        persistence_steps: 1
+        population_share: 0.004651162790697674
+        reproduction_share: 0.00974025974025974
+        survival_score: 0.818999
+      warning_flags: []
+    archive_entry:
+      archive_entry_id: t5qd_b14bab92659547c4bb6b
+      archive_policy_version: theme5_qd_archive_policy_v1
+      candidate_rank: 1
+      candidate_reasons:
+      - survival or age proxy is above population median
+      candidate_score: 0.818999
+      candidate_type: survival_specialist
+      candidate_types:
+      - survival_specialist
+      checkpoint_reference: null
+      config_hash: null
+      created_by: theme5_quality_diversity_archive
+      descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_prediction_error: 6.0835236429996
+        mean_survival_steps: 120.0
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      population_share: 0.004651162790697674
+      representative_agent_ids:
+      - 59
+      representative_genome_hashes:
+      - 09985c4fb1cb017abe50301f2da2476236e22ac22e9a93cdc4eed9384411035a
+      reproduction_share: 0.00974025974025974
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_lineage_qd_archive_entry_v1
+      source_run_dir: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0011_be25338c
+      supporting_metrics:
+        descriptor_distance_from_dominant: 0.314598
+        descriptor_distance_from_population_median: 0.327545
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_health: 1.649998664855957
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_survival_steps: 120.0
+        persistence_steps: 1
+        population_share: 0.004651162790697674
+        reproduction_share: 0.00974025974025974
+        survival_score: 0.818999
+      world_context_summary: null
+      _archive_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0011_be25338c/archives/lineage_qd/entries/t5qd_b14bab92659547c4bb6b.json
+    lineage_descriptor:
+      cognitive_profile:
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_drive_jitter: 17.305218448862433
+        mean_identity_drift: 0.0
+        mean_memory_dim: 8.0
+        mean_prediction_error: 6.0835236429996
+      dominant_role_share: 1.0
+      ecological_role: general_agent
+      ecology_patch_profile:
+        disease_survival_proxy: null
+        patch_habitat_profile: null
+        patch_use_profile: null
+        predator_death_rate: null
+        predator_exposure_rate: null
+        shelter_use_rate: null
+        waste_tolerance_proxy: null
+      energy_strategy:
+        mean_energy: 137.01464857313368
+        mean_energy_collected: 460.0
+      genome_behavior_profile:
+        mean_aggression_bias: -0.36604118
+        mean_exploration_bias: 0.30334455
+      gru_fraction: 1.0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      mean_aggression_bias: -0.36604118
+      mean_cognition_complexity_proxy: 1.625
+      mean_drive_jitter: 17.305218448862433
+      mean_energy: 137.01464857313368
+      mean_energy_collected: 460.0
+      mean_exploration_bias: 0.30334455
+      mean_fear_drive: 0.11334585398435593
+      mean_first_reproduction_step: 3.0
+      mean_health: 1.649998664855957
+      mean_hunger_drive: 0.2551906406879425
+      mean_identity_drift: 0.0
+      mean_injury: 2.4300003051757812
+      mean_memory_dim: 8.0
+      mean_offspring_count: 3.0
+      mean_prediction_error: 6.0835236429996
+      mean_survival_steps: 120.0
+      mobility_action_profile:
+        attack_rate: null
+        exploration_rate: null
+        gather_rate: null
+        movement_rate: null
+        reproduction_action_rate: null
+        rest_rate: null
+      population_count: 1
+      population_share: 0.004651162790697674
+      reproduction_strategy:
+        mean_first_reproduction_step: 3.0
+        mean_offspring_count: 3.0
+      risk_stress_profile:
+        mean_fear_drive: 0.11334585398435593
+        mean_health: 1.649998664855957
+        mean_hunger_drive: 0.2551906406879425
+        mean_injury: 2.4300003051757812
+      role_confidence: null
+      role_counts:
+        general_agent: 1
+      role_source: default
+      strategy_descriptor_schema_version: theme5_lineage_descriptors_v1
+      survival_strategy:
+        mean_first_reproduction_step: 3.0
+        mean_survival_steps: 120.0
+  candidate_archive_entry_id: t5qd_b14bab92659547c4bb6b
+  replay_mode: manifest_only_validation
+  replay_start_generation: 0
+  replay_generations: 4
+  replay_steps_per_generation: 60
+  population_handling_mode: restore_from_checkpoint_without_population_modification
+  allowed_mutation_policy: source_config_only_no_override
+  allowed_selection_policy: source_config_only_no_override
+  expected_flags:
+    patch_world_enable: true
+    patch_world_observation_enable: true
+    patch_world_waste_consequence_enable: true
+    jungle_predator_pressure_enable: true
+    jungle_reproduction_emissions_enable: true
+    jungle_terrain_protection_enable: true
+    jungle_ecological_recovery_enable: true
+  expected_tuned_overrides:
+    jungle_predator_base_risk: 0.0
+    jungle_predator_scent_weight: 0.02
+    jungle_predator_waste_weight: 0.02
+    jungle_predator_density_weight: 0.02
+    jungle_predator_visibility_weight: 0.02
+    jungle_predator_risk_cap: 0.05
+    jungle_predator_health_damage: 0.25
+    patch_waste_regrowth_penalty_scale: 0.5
+    patch_waste_regrowth_penalty_max: 0.5
+    patch_density_regrowth_penalty_scale: 0.5
+    patch_density_regrowth_penalty_max: 0.5
+    patch_regrowth_min_multiplier: 0.1
+    jungle_cover_damage_reduction_weight: 0.25
+    jungle_shelter_damage_reduction_weight: 0.25
+    jungle_terrain_damage_multiplier_min: 0.25
+    jungle_recovery_regrowth_boost_scale: 0.1
+    jungle_recovery_regrowth_boost_max: 0.25
+  expected_theme4_disabled_status:
+    phase_e_e1_enable: true
+    enable_developmental_cognition: true
+    enable_introspection_channels: true
+    enable_introspection_policy_input: true
+    enable_self_regulation: true
+    enable_self_regulation_surface: true
+    enable_self_regulation_policy_output: true
+    enable_self_modification: true
+    enable_self_modification_policy_output: true
+    enable_directed_inheritance: true
+    enable_directed_inheritance_surface: true
+    enable_directed_inheritance_policy_output: true
+  expected_theme5_reporting_status:
+    lineage_qd_archive_enable: true
+    lineage_qd_archive_top_n: 8
+    lineage_qd_archive_min_score: 0.25
+    lineage_qd_archive_cooldown_generations: 0
+  output_root: /tmp/emergence_integrated_r3_branch_replay_readiness/replays/r3_non_dominant_default_full_jungle_r2_01_default_full_jungle_000101_L00000059_0
+- manifest_version: r3_branch_replay_manifest_v1
+  manifest_id: r3_non_dominant_theme12_clean_pressure_r2_04_theme12_clean_pressure_reference_000101_L00000059_0
+  source_campaign_id: integrated_r2_lineage_collapse_forensics
+  source_output_root: /tmp/emergence_integrated_r2_lineage_collapse_forensics
+  source_run_id: r0041_761ab015
+  source_scenario_id: r2_04_theme12_clean_pressure_reference
+  source_seed: 101
+  source_device: cuda
+  source_generation: 0
+  source_step_or_tick:
+    status: missing_optional
+    field: source_step_or_tick
+    reason: R2 branch candidate artifacts are generation-level
+  source_checkpoint_path:
+    status: missing_required
+    field: source_checkpoint_path
+    reason: source run has no checkpoint_bundles_v2 directory
+  source_config_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0041_761ab015/config.json
+  source_metrics_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0041_761ab015/metrics.csv
+  candidate_lineage_id: L00000059
+  candidate_biological_lineage_id: L00000059
+  candidate_category: survival_specialist
+  candidate_generation_emitted: 0
+  candidate_alive_share_at_emission: 0.0045045045045045045
+  candidate_birth_share_at_emission: 0.009345794392523364
+  candidate_descriptor_snapshot:
+    branch_candidate:
+      behavioral_descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_prediction_error: 5.964570034095787
+        mean_survival_steps: 120.0
+      candidate_score: 0.814375
+      candidate_type: survival_specialist
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      persistence_steps: 1
+      population_share: 0.0045045045045045045
+      reasons:
+      - survival or age proxy is above population median
+      reproduction_share: 0.009345794392523364
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_branch_candidates_v1
+      supporting_metrics:
+        descriptor_distance_from_dominant: 0.284544
+        descriptor_distance_from_population_median: 0.323436
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_health: 2.010000228881836
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_survival_steps: 120.0
+        persistence_steps: 1
+        population_share: 0.0045045045045045045
+        reproduction_share: 0.009345794392523364
+        survival_score: 0.814375
+      warning_flags: []
+    archive_entry:
+      archive_entry_id: t5qd_69601cc2424fbebcc48b
+      archive_policy_version: theme5_qd_archive_policy_v1
+      candidate_rank: 1
+      candidate_reasons:
+      - survival or age proxy is above population median
+      candidate_score: 0.814375
+      candidate_type: survival_specialist
+      candidate_types:
+      - survival_specialist
+      checkpoint_reference: null
+      config_hash: null
+      created_by: theme5_quality_diversity_archive
+      descriptor_summary:
+        gru_fraction: 1.0
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_prediction_error: 5.964570034095787
+        mean_survival_steps: 120.0
+      ecological_role: general_agent
+      generation: 0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      population_share: 0.0045045045045045045
+      representative_agent_ids:
+      - 59
+      representative_genome_hashes:
+      - 09985c4fb1cb017abe50301f2da2476236e22ac22e9a93cdc4eed9384411035a
+      reproduction_share: 0.009345794392523364
+      role_confidence: null
+      role_source: default
+      schema_version: theme5_lineage_qd_archive_entry_v1
+      source_run_dir: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0041_761ab015
+      supporting_metrics:
+        descriptor_distance_from_dominant: 0.284544
+        descriptor_distance_from_population_median: 0.323436
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_health: 2.010000228881836
+        mean_injury: 2.4300003051757812
+        mean_memory_dim: 8.0
+        mean_offspring_count: 3.0
+        mean_survival_steps: 120.0
+        persistence_steps: 1
+        population_share: 0.0045045045045045045
+        reproduction_share: 0.009345794392523364
+        survival_score: 0.814375
+      world_context_summary: null
+      _archive_path: /tmp/emergence_integrated_r2_lineage_collapse_forensics/e/9a8fa7ec939d/b20260702_103550_5192_t2b5747/r/r0041_761ab015/archives/lineage_qd/entries/t5qd_69601cc2424fbebcc48b.json
+    lineage_descriptor:
+      cognitive_profile:
+        gru_fraction: 1.0
+        mean_cognition_complexity_proxy: 1.625
+        mean_drive_jitter: 17.25272991321981
+        mean_identity_drift: 0.0
+        mean_memory_dim: 8.0
+        mean_prediction_error: 5.964570034095787
+      dominant_role_share: 1.0
+      ecological_role: general_agent
+      ecology_patch_profile:
+        disease_survival_proxy: null
+        patch_habitat_profile: null
+        patch_use_profile: null
+        predator_death_rate: null
+        predator_exposure_rate: null
+        shelter_use_rate: null
+        waste_tolerance_proxy: null
+      energy_strategy:
+        mean_energy: 135.88980102539062
+        mean_energy_collected: 480.0
+      genome_behavior_profile:
+        mean_aggression_bias: -0.36604118
+        mean_exploration_bias: 0.30334455
+      gru_fraction: 1.0
+      lineage_id: L00000059
+      lineage_role: general_agent
+      mean_aggression_bias: -0.36604118
+      mean_cognition_complexity_proxy: 1.625
+      mean_drive_jitter: 17.25272991321981
+      mean_energy: 135.88980102539062
+      mean_energy_collected: 480.0
+      mean_exploration_bias: 0.30334455
+      mean_fear_drive: 0.06585812568664551
+      mean_first_reproduction_step: 3.0
+      mean_health: 2.010000228881836
+      mean_hunger_drive: 0.6972402334213257
+      mean_identity_drift: 0.0
+      mean_injury: 2.4300003051757812
+      mean_memory_dim: 8.0
+      mean_offspring_count: 3.0
+      mean_prediction_error: 5.964570034095787
+      mean_survival_steps: 120.0
+      mobility_action_profile:
+        attack_rate: null
+        exploration_rate: null
+        gather_rate: null
+        movement_rate: null
+        reproduction_action_rate: null
+        rest_rate: null
+      population_count: 1
+      population_share: 0.0045045045045045045
+      reproduction_strategy:
+        mean_first_reproduction_step: 3.0
+        mean_offspring_count: 3.0
+      risk_stress_profile:
+        mean_fear_drive: 0.06585812568664551
+        mean_health: 2.010000228881836
+        mean_hunger_drive: 0.6972402334213257
+        mean_injury: 2.4300003051757812
+      role_confidence: null
+      role_counts:
+        general_agent: 1
+      role_source: default
+      strategy_descriptor_schema_version: theme5_lineage_descriptors_v1
+      survival_strategy:
+        mean_first_reproduction_step: 3.0
+        mean_survival_steps: 120.0
+  candidate_archive_entry_id: t5qd_69601cc2424fbebcc48b
+  replay_mode: manifest_only_validation
+  replay_start_generation: 0
+  replay_generations: 4
+  replay_steps_per_generation: 60
+  population_handling_mode: restore_from_checkpoint_without_population_modification
+  allowed_mutation_policy: source_config_only_no_override
+  allowed_selection_policy: source_config_only_no_override
+  expected_flags:
+    patch_world_enable: true
+    patch_world_observation_enable: true
+    patch_world_waste_consequence_enable: true
+    jungle_predator_pressure_enable: true
+    jungle_reproduction_emissions_enable: true
+    jungle_terrain_protection_enable: true
+    jungle_ecological_recovery_enable: true
+  expected_tuned_overrides:
+    jungle_predator_base_risk: 0.0
+    jungle_predator_scent_weight: 0.02
+    jungle_predator_waste_weight: 0.02
+    jungle_predator_density_weight: 0.02
+    jungle_predator_visibility_weight: 0.02
+    jungle_predator_risk_cap: 0.045
+    jungle_predator_health_damage: 0.22
+    patch_waste_regrowth_penalty_scale: 0.35
+    patch_waste_regrowth_penalty_max: 0.5
+    patch_density_regrowth_penalty_scale: 0.35
+    patch_density_regrowth_penalty_max: 0.5
+    patch_regrowth_min_multiplier: 0.1
+    jungle_cover_damage_reduction_weight: 0.25
+    jungle_shelter_damage_reduction_weight: 0.25
+    jungle_terrain_damage_multiplier_min: 0.25
+    jungle_recovery_regrowth_boost_scale: 0.08
+    jungle_recovery_regrowth_boost_max: 0.25
+  expected_theme4_disabled_status:
+    phase_e_e1_enable: true
+    enable_developmental_cognition: true
+    enable_introspection_channels: true
+    enable_introspection_policy_input: true
+    enable_self_regulation: true
+    enable_self_regulation_surface: true
+    enable_self_regulation_policy_output: true
+    enable_self_modification: true
+    enable_self_modification_policy_output: true
+    enable_directed_inheritance: true
+    enable_directed_inheritance_surface: true
+    enable_directed_inheritance_policy_output: true
+  expected_theme5_reporting_status:
+    lineage_qd_archive_enable: true
+    lineage_qd_archive_top_n: 8
+    lineage_qd_archive_min_score: 0.25
+    lineage_qd_archive_cooldown_generations: 0
+  output_root: /tmp/emergence_integrated_r3_branch_replay_readiness/replays/r3_non_dominant_theme12_clean_pressure_r2_04_theme12_clean_pressure_reference_000101_L00000059_0

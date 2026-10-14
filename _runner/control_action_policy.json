@@ -1,0 +1,12 @@
+{
+  "actions": {
+    "graceful_stop": {
+      "note": "default operator stop path",
+      "policy_state": "enabled",
+      "rollout_state": "live"
+    }
+  },
+  "policy_hash": "sha256:1e87bad5324917931eb453c6e8c779843e27a99b2d73c39f706669468fc6c0a2",
+  "project_id": "emergence",
+  "schema_version": "control_action_policy_v1"
+}

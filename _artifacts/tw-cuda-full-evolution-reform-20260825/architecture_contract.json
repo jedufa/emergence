@@ -1,0 +1,349 @@
+{
+  "schema_version": "tw_cuda_full_evolution_architecture_contract_v1",
+  "programme_id": "TW-CUDA-FULL-EVOLUTION-REFORM-20260825",
+  "architecture_amendments": [
+    {
+      "date": "2026-08-25",
+      "reason": "Independent G1 completeness review before native compilation",
+      "changes": [
+        "Made terrain and absolute birth tick explicit canonical fields",
+        "Froze the 48-byte lifecycle event row and injective event ID codec",
+        "Bound deterministic controller selection and biological-UID movement priority",
+        "Separated the authoritative packed-rate denominator from the world-rate denominator"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "reason": "Operator clarified that B136 supplies the qualified comparison rather than constraining the winning throughput configuration",
+      "changes": [
+        "Made world-ticks per second at any exact admitted B the performance closure authority",
+        "Retained B136 as a comparison and memory sentinel",
+        "Kept packed-tick targets explicitly B136-specific"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "reason": "Independent source-freeze review found mutable authority, self-attested event acknowledgement, and unsealed checkpoint defects",
+      "changes": [
+        "Made resident state, native module, and event staging private with validated detached-copy projections",
+        "Required an exact-content external sink receipt before advancing the acknowledged host tick frontier",
+        "Sealed checkpoints as immutable canonical CPU bytes with content, layout, metadata, world UID, RNG, artifact, and event-frontier identity"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "reason": "The operator authorized parallel micro and science-workhorse profiles plus a 4x through 100x mechanical versatility envelope",
+      "changes": [
+        "Preserved the measured W32 monolith as the isolated micro and exact 100x comparison profile",
+        "Made eager monolith and a genuine one-node monolith CUDA Graph the only truthful micro execution modes",
+        "Added a separately identified uint32 multi-CTA workhorse profile with compile-time rectangular shapes and O(S+C) scratch",
+        "Classified all larger-shape probes as TECHNICAL_ONLY mechanical evidence rather than scientific adequacy"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "reason": "Independent review proved the first B1/K1 workhorse was parameter enlargement rather than a correct or performant large-shape engine; the operator required proper specialization for every shape",
+      "changes": [
+        "Rejected every retained B1/K1 large-shape row as correctness, performance, workhorse, qualification, or science evidence",
+        "Separated the shape-independent semantic transition hash from backend topology and per-shape execution identity",
+        "Required a distinct compile-time profile and artifact for each exact 4x, 10x, 25x, 50x, and 100x shape",
+        "Required both a real batched phase-graph candidate and a fused CTA temporal candidate to be built and tuned independently per shape",
+        "Required same-shape GPU reference parity, paired causal ablations, arbitrary slot-reuse restore, trusted event-sink acknowledgement, and authoritative runtime receipts before any workhorse PASS"
+      ]
+    },
+    {
+      "date": "2026-08-26",
+      "reason": "Science-instrument and canonical-execution review required atomic semantic evidence, truthful negative Attempts, and continuation-complete checkpoint identity before physical workhorse execution",
+      "changes": [
+        "Split the semantic gate into twenty-four fresh ExecutionRequestV2 and Scheduler Attempts with a GPU-free sealed aggregate over the exact twenty-nine datasets and supplemental reused-buffer witness",
+        "Required expected semantic negatives to terminalize the Scheduler Attempt as FAILED at their exact causal frontier before request-level VALID_NEGATIVE publication",
+        "Added a Workhorse-specific CRCA checkpoint occurrence and fresh-child-Run restore path without changing CRCA V1 wire contracts",
+        "Bound checkpoint state to the canonical event acknowledgement, source artifact, science consumer contract, continuation and observation adapter identities while observation remains OFF",
+        "Made the exact ten-field live device identity, including CUDA runtime, part of calibration and execution admission"
+      ]
+    }
+  ],
+  "identity": {
+    "public_semantic_contract": "EIEL_FULL_EVOLUTION_CUDA_NATIVE_V2",
+    "profile_id": "eiel_full_evolution_cuda_native_v2",
+    "transition_semantics_id": "eiel_full_evolution_transition_v2",
+    "route_id": "tensor_world_cuda_full_evolution_v2",
+    "runtime_profile_id": "eiel-full-evolution-cuda-native-runtime-v1",
+    "provider_id": "eiel-full-evolution-cuda-native-provider-v1",
+    "native_abi": "eiel_full_evolution_cuda_native_abi_v1",
+    "checkpoint_schema": "tensor_world_cuda_full_evolution_checkpoint_v2",
+    "time_authority": "absolute_tick_v1",
+    "compatibility_with_v1_transition_or_checkpoint": "FORBIDDEN",
+    "profile_role": "W32_P256_C512_MICRO_V1"
+  },
+  "geometry": {
+    "world_width": 32,
+    "world_height": 32,
+    "site_count": 1024,
+    "initial_population": 256,
+    "resident_capacity": 512,
+    "physical_batch": "device-concretized before Attempt identity",
+    "b136": "qualified-baseline comparison and memory sentinel; not the required winning batch",
+    "temporal_k": "private trajectory-invariant dispatch tuning"
+  },
+  "capabilities": [
+    {
+      "id": "patch",
+      "causal_law": "site fertility, resource renewal, emissions, and movement cost alter later agent and ecology state"
+    },
+    {
+      "id": "wdl_delayed_hazard",
+      "causal_law": "absolute-tick cue scheduling precedes a hidden delay and later active damage interval"
+    },
+    {
+      "id": "jungle",
+      "causal_law": "local ecology and counter RNG produce pre-policy survival pressure and movement cost"
+    },
+    {
+      "id": "eed",
+      "causal_law": "heritable resource handling alters gather return and resource-specific impact load, suppressing later renewal"
+    },
+    {
+      "id": "genome_v2_ordinary_birth",
+      "causal_law": "surviving REST and energy-eligible agents select the minimum-biological-UID opposite-sex cardinal neighbor; mutual pairs arbitrate their minimum adjacent empty spawn site by leader UID and accepted pairs receive biological-UID rank plus ascending free-slot rank"
+    },
+    {
+      "id": "genome_v2_mutation",
+      "causal_law": "counter-addressed per-allele gates and bounded integer deltas alter expressed child controller or traits"
+    },
+    {
+      "id": "recombination_profile",
+      "causal_law": "sixteen linked blocks select parental homolog material and alter the child genotype"
+    }
+  ],
+  "trajectory_numeric_contract": {
+    "integer_or_fixed_point_only": true,
+    "floating_point_atomic_semantics": false,
+    "undefined_signed_overflow": false,
+    "maximum_total_ticks": "floor((2^63 - 1) / 65536) so worst-case capability counters cannot overflow",
+    "fast_math": false,
+    "policy": {
+      "id": "diploid_linear16x7_i8_dp4a_v1",
+      "features": 16,
+      "actions": 7,
+      "expressed_weights_per_slot": 112,
+      "evaluation": "four signed-byte DP4A operations per action plus fixed-point trait biases"
+    },
+    "genome": {
+      "linked_blocks": 16,
+      "policy_loci_per_homolog": 112,
+      "trait_loci_per_homolog": 16,
+      "policy_allele_dtype": "int8",
+      "trait_allele_dtype": "int16"
+    }
+  },
+  "rng_contract": {
+    "model": "counter_addressed_event_rng",
+    "semantic_epoch": 3,
+    "generator": "philox4x32_10",
+    "composition": "arx_folded_full_u64_counter_address_v3",
+    "arithmetic": "integer_only",
+    "address_fields": [
+      "rng_key",
+      "rng_semantic_epoch",
+      "world_uid",
+      "absolute_tick",
+      "domain",
+      "persistent_subject_or_site_token",
+      "operation",
+      "draw"
+    ],
+    "site_bundle": {
+      "domain": "site_environment",
+      "subject": "canonical_site_index",
+      "outputs": [
+        "patch_carrying",
+        "patch_growth",
+        "wdl_schedule",
+        "jungle_transition"
+      ]
+    },
+    "child_genome_bundle": {
+      "persistent_subject": "child biological UID",
+      "recombination": "one Philox block per linked block with parent biological UIDs in operation and draw",
+      "mutation": "one Philox block per linked locus producing both allele draws",
+      "forbidden_subject": "canonical agent slot"
+    },
+    "forbidden_address_fields": [
+      "slot_for_persistent_identity",
+      "physical_batch_index",
+      "cta",
+      "warp",
+      "lane",
+      "launch_order",
+      "generation"
+    ],
+    "stateful_rng_tape": false,
+    "host_rng_in_transition": false
+  },
+  "kernel_topology": {
+    "golden": "golden_serial_kernel<<<B,1>>> for tiny semantic fixtures only",
+    "source_freeze_slice": "full_evolution_block_v2<<<B,256,shared_bytes>>> is the initial GPU parity instrument, not the final performance topology",
+    "optimized": "one 256-thread CTA-per-world monolith launched eagerly or as one genuine CUDA Graph kernel node",
+    "optimized_contract": "performance_restructure_contract.json",
+    "optimized_implementation_status": "MICRO_MONOLITH_MEASURED_GRAPH_RUNTIME_IN_PROGRESS",
+    "temporal_blocking": "each CTA advances K absolute ticks with block-local barriers; no grid-wide barrier",
+    "target_minimum_blocks_per_sm": 2,
+    "device_or_tensor_hot_path_allocations": 0,
+    "python_pending_dispatch_control_objects_per_launch": 1,
+    "host_hot_path_transfers": 0,
+    "micro_execution_modes": [
+      "eager_monolith",
+      "cuda_graph_monolith"
+    ],
+    "micro_graph_contract": {
+      "real_kernel_nodes": 1,
+      "dependency_edges": 0,
+      "wrapper_or_noop_nodes": "FORBIDDEN",
+      "graph_declaration_as_runtime_evidence": "FORBIDDEN"
+    },
+    "workhorse_topology": {
+      "profile_family": "EIEL_FULL_EVOLUTION_CUDA_WORKHORSE_V2",
+      "profile_id_family": "eiel_full_evolution_cuda_workhorse_v2",
+      "per_shape_profile_id": "eiel_full_evolution_cuda_workhorse_v2__{shape_id}",
+      "per_shape_route_id": "tensor_world_cuda_full_evolution_workhorse_v2__{shape_id}",
+      "native_abi": "eiel_full_evolution_cuda_workhorse_abi_v2",
+      "event_abi": "eiel_full_evolution_workhorse_sparse_lifecycle_event_v3",
+      "checkpoint_schema": "eiel_full_evolution_cuda_workhorse_checkpoint_v2",
+      "semantic_transition_id": "eiel_full_evolution_workhorse_transition_v2",
+      "semantic_identity_rule": "semantic_transition_sha256 binds only the seven capability laws and order, absolute-tick RNG, event law, checkpoint/frontier law, and deterministic ordering; it excludes CUDA topology, B, K, W, H, P, and C",
+      "artifact_identity_rule": "each artifact separately binds exact shape, per-shape profile, semantic hash, backend ID, backend topology hash, compile geometry, toolchain, and target SM",
+      "attempt_identity_rule": "each admitted attempt additionally binds immutable B, K, the exact ten-field live device identity including CUDA runtime, live VRAM observation, reserve, and headroom decision",
+      "normative_contract": "engine/perf/cuda_full_evolution_v2/workhorse/contract.py",
+      "normative_layout": "engine/perf/cuda_full_evolution_v2/workhorse/layout.py",
+      "reference_backend": "reference_phased_v2",
+      "performance_backends": {
+        "phase_graph_v2": "real CUDA Graph over the batched grid.y multi-CTA phase DAG",
+        "fused_cta_temporal_v2": "one CTA per world advances immutable K absolute ticks with block barriers"
+      },
+      "shape_specialization": "build and tune both performance backends independently for every exact requested shape; no generic enlarged binary or copied tuning result can satisfy a shape",
+      "global_scratch_complexity": "O(S+C) plus bounded scalar control",
+      "quadratic_birth_ranking": "FORBIDDEN",
+      "S_or_C_sized_shared_arrays": "FORBIDDEN",
+      "acceptance_order": "paired causal gates and same-shape reference parity before B/K tuning; exact B/K partition invariance before performance acceptance",
+      "semantic_evidence_route": {
+        "atomic_operation": "SEMANTIC_EVIDENCE_CASE",
+        "case_count_per_aggregate": 24,
+        "dataset_count": 29,
+        "request_and_attempt_cardinality": "one fresh ExecutionRequestV2, Run and Scheduler Attempt per atomic case",
+        "expected_negative_law": "Attempt remains truthfully FAILED at the exact case-law frontier; VALID_NEGATIVE is request-level only after terminal receipt, explicit R3 lifecycle binding and terminal commit",
+        "offline_aggregate": "GPU-free exact streaming derivation over twenty-four terminal receipts",
+        "cross_backend_reference_inheritance": "only the three same-shape reference cases under byte-identical reference artifact, case-table K, semantic transition and device identity",
+        "cross_shape_or_device_inheritance": "FORBIDDEN"
+      }
+    },
+    "tick_phases": [
+      "Patch/EED field settlement, emissions decay, WDL schedule advance, scratch clear",
+      "Jungle pressure, feature formation, deterministic fixed-point policy action, movement proposals",
+      "stable biological-UID movement winner commit",
+      "gather/EED, rest, attack accumulation, Patch emissions",
+      "physiology, deaths, occupancy release",
+      "mutual mate selection",
+      "spawn-site proposals",
+      "deterministic accepted-birth and free-slot ranking",
+      "birth commit, recombination, mutation, expressed genome, counters, publish next_absolute_tick"
+    ],
+    "transaction_rule": "next_absolute_tick publishes last; any device status failure rejects the dispatch"
+  },
+  "state_contract": {
+    "canonical": [
+      "world UID, next absolute tick, next biological ID, RNG namespace, capability counters",
+      "site resource, scent, waste, EED impact/pending, terrain, Jungle and WDL schedule state",
+      "sole site occupancy authority",
+      "live slot identity, parents, absolute birth tick, age, physiology and life history",
+      "two parental homologs for all policy and trait loci"
+    ],
+    "reconstructible": [
+      "expressed controller and traits",
+      "agent position inverse from occupancy when the selected layout omits a duplicate position plane",
+      "active/free lists and UID index",
+      "observations, logits, actions, proposals, winners and deltas",
+      "GPU pointers and graph objects"
+    ],
+    "checkpoint_boundary": "between temporal dispatches and only after exact-content external event-sink receipt acknowledgement",
+    "checkpoint_identity": "absolute checkpoint_at_tick equal to canonical next_absolute_tick",
+    "checkpoint_seal": "immutable CPU canonical bytes plus content, layout, metadata, world UID, RNG, artifact, and last sink-receipt digests",
+    "workhorse_science_continuation": "Attempt-independent base identity binds source artifact, canonical state, world and RNG identities, absolute event frontier, canonically reopened sink acknowledgement, science consumer contract, checkpoint/restore/route/continuation/observation adapter schemas; observation remains OFF and no science authority is granted",
+    "workhorse_restore_authority": "a Workhorse-specific CRCA occurrence descriptor and commit authorize a fresh child Run; same-Run retry semantics and legacy physical checkpoint formats are forbidden",
+    "generation_fields_allowed": false
+  },
+  "memory_contract": {
+    "measured_authority": "process and device peak under the exact built artifact",
+    "design_upper_bound_b136_bytes": 1073741824,
+    "stretch_upper_bound_b136_bytes": 536870912,
+    "minimum_headroom_fraction": 0.25,
+    "horizon_dependent_resident_bytes": 0,
+    "per_agent_9991_float_policy_rows": 0,
+    "bounded_dispatch_events": {
+      "capacity": "exactly one 2*C-row sparse page per world, independent of K and total horizon",
+      "resident_capacity_c": "the exact compile-time C of each specialized shape",
+      "row_bytes": 48,
+      "identity": "world_uid + absolute_tick + event_kind + canonical_slot_ordinal",
+      "canonical_order": "world_uid, absolute_tick, event_kind, canonical_slot_ordinal",
+      "page_order": "stable death slots then stable birth slots for each physical replay segment",
+      "status": "active prefix only; no resident dense inactive rows",
+      "reserved": 0,
+      "rng_address": false,
+      "overflow_law": "required count continues beyond capacity without out-of-bounds writes; exact pre-state rollback and left-to-right binary K splitting recover the full requested dispatch; K1 overflow fails closed",
+      "selection_law": "any dispatch requiring overflow recovery makes that requested K non-selectable for performance",
+      "frontier_commit": "immutable exact sparse-content external sink receipt v3",
+      "drained_content_mutation": "readback or rehash mismatch restores pre-state, poisons the owner, and forbids frontier commit"
+    },
+    "reference_scratch": "allocated only for tiny golden comparisons and excluded from production owner",
+    "checkpoint_staging": "two bounded causal slabs; persistence latency reported outside simulation timing",
+    "workhorse": {
+      "site_and_slot_index_dtype": "u32",
+      "byte_offset_and_vram_arithmetic": "checked signed int64",
+      "horizon_dependent_resident_bytes": 0,
+      "largest_requested_shape": "W320xH320/P25600/C51200",
+      "event_staging": "exactly B*2*C*48 bytes plus B signed-64 counts for every immutable admitted B/K attempt; K-independent",
+      "rejected_b1k1_reference_core_bytes_at_largest_shape": 73699008,
+      "rejected_b1k1_reference_core_bytes_claim_boundary": "diagnostic estimate only; the replacement topology must produce its own exact ledger and measured peak"
+    }
+  },
+  "performance_contract": {
+    "qualified_v1_world_ticks_per_second": 4467.193115159868,
+    "qualified_v1_packed_ticks_per_second": 32.847008199704916,
+    "literal_factor": 100,
+    "required_winning_world_ticks_per_second": 446719.3115159868,
+    "winning_batch": "any exact admitted B; maximize committed world-ticks per second",
+    "b136_comparison_packed_ticks_per_second": 3284.7008199704916,
+    "b136_comparison_packed_tick_milliseconds": 0.30444172995,
+    "timing_scope": "CUDA simulation transition only",
+    "closure_statistic": "p10 committed world-ticks per second across valid repeats",
+    "metric_integrity": [
+      "B136 is reported as the qualified-baseline comparison sentinel, but another admitted B may close the world-ticks-per-second goal",
+      "all seven counters must be nonzero on the causal performance fixture",
+      "P256 and full C512 occupancy are reported separately",
+      "checkpoint, reporting, lifecycle, and slow-tier times are separate",
+      "no extinction, no-op, omitted component, or reduced work may count as closure"
+    ]
+  },
+  "scaling_contract": {
+    "compile": "logical worlds plus bounded B and K candidate envelopes",
+    "concretize": "select B and K from live device memory, SM count, artifact resource use, reserve, and qualified envelope before CRCA Attempt identity",
+    "attempt": "never resize B or change K semantics inside an Attempt",
+    "larger_gpu": "increase resident world CTAs and/or concurrent logical shards by immutable world UID",
+    "multi_gpu": "world-UID sharding only; no cross-world semantic dependency",
+    "new_device_rule": "inside the qualified device/toolchain envelope scales automatically; outside it requires targeted device-envelope delta qualification",
+    "dual_profiles": {
+      "micro": "W32/P256/C512 remains the exact comparison and fast-test specialization",
+      "workhorse": "compile-time 4x, 10x, 25x, 50x and 100x shape specializations; each has a distinct profile/artifact and independently tuned reference, phase-graph, and fused-temporal topology identities",
+      "single_gpu_execution": "exclusive for timing and decision-bearing runs",
+      "multi_gpu_execution": "profiles may run concurrently only on distinct admitted devices"
+    }
+  },
+  "first_slice": [
+    "host contract, byte layout, estimator and absolute-tick validation",
+    "receipt-bound raw CUDA artifact and strict loader",
+    "GPU initializer, tiny serial golden transition and optimized B1 CTA transition",
+    "one complete seven-capability vertical tick",
+    "byte-exact T1/T2/T7 and K-decomposition parity",
+    "forced causal sentinels and state-clone checkpoint continuation"
+  ]
+}

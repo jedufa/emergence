@@ -1,0 +1,207 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_review_evidence_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_criteria_reviewed": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "acceptance_scope": {
+      "enum": [
+        "UNCONDITIONAL",
+        "WITH_LIMITS",
+        null
+      ],
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "decision_snapshot": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "evidence_reviewed": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "findings": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "identity_separation_assurance": {
+      "enum": [
+        "DECLARED",
+        "SCHEDULER_BOUND"
+      ],
+      "type": "string"
+    },
+    "implementation_model_assignment": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "implementation_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "implementation_sufficiency": {
+      "enum": [
+        "SUFFICIENT",
+        "INSUFFICIENT",
+        "UNASSESSED"
+      ],
+      "type": "string"
+    },
+    "implementing_codex_identities": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "implementing_identity_assurance": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "known_limitations": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "obligation_proof": {
+      "oneOf": [
+        {
+          "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "repair_disposition": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "review_authority": {
+      "const": "REVIEW_AUTHORITY",
+      "type": "string"
+    },
+    "review_model_assignment": {
+      "additionalProperties": true,
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "review_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reviewed_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reviewed_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "reviewed_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "reviewed_package_version": {
+      "minimum": 1,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "reviewing_codex_identities": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "reviewing_identity_assurance": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_review_evidence_v2"
+    },
+    "supersedes_review": {
+      "oneOf": [
+        {
+          "$ref": "eiel_actor_record_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "tests_reviewed": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "implementation_session_id",
+    "review_session_id",
+    "implementing_codex_identities",
+    "reviewing_codex_identities",
+    "implementing_identity_assurance",
+    "reviewing_identity_assurance",
+    "identity_separation_assurance",
+    "review_authority",
+    "reviewed_commit",
+    "reviewed_package_sha256",
+    "reviewed_package_version",
+    "tests_reviewed",
+    "evidence_reviewed",
+    "acceptance_criteria_reviewed",
+    "known_limitations",
+    "findings",
+    "repair_disposition",
+    "obligation_proof",
+    "implementation_sufficiency",
+    "acceptance_scope",
+    "supersedes_review",
+    "implementation_model_assignment",
+    "review_model_assignment",
+    "decision_snapshot",
+    "reviewed_at_utc"
+  ],
+  "title": "EIEL evidence-entailing Review Authority decision",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.session_manager",
+  "x-eiel-persistence-class": "embedded_durable_review_metadata"
+}

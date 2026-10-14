@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_cli_compatibility_manifest_v1.schema.json",
+  "title": "EIEL CLI compatibility manifest V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "tool", "commands", "removed_commands"],
+  "properties": {
+    "schema_version": {"const": "eiel_cli_compatibility_manifest_v1"},
+    "tool": {"type": "string", "minLength": 1},
+    "commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["canonical_command", "aliases", "operation", "deprecated_since", "replacement", "warning_period", "removal_not_before"],
+        "properties": {
+          "canonical_command": {"type": "string", "minLength": 1},
+          "aliases": {"type": "array", "items": {"type": "string", "minLength": 1}, "uniqueItems": true},
+          "operation": {"enum": ["INSPECTION_ONLY", "READ_ONLY_EXPORT"]},
+          "deprecated_since": {"type": ["string", "null"]},
+          "replacement": {"type": ["string", "null"]},
+          "warning_period": {"type": ["string", "null"]},
+          "removal_not_before": {"type": ["string", "null"]}
+        }
+      }
+    },
+    "removed_commands": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["command", "removed_since", "replacement", "reason"],
+        "properties": {
+          "command": {"type": "string", "minLength": 1},
+          "removed_since": {"type": "string", "minLength": 1},
+          "replacement": {"type": "string", "minLength": 1},
+          "reason": {"type": "string", "minLength": 1}
+        }
+      }
+    }
+  },
+  "x-eiel-owner": "tools.eiel",
+  "x-eiel-persistence-class": "versioned_cli_contract"
+}

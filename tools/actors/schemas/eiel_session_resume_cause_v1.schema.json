@@ -1,0 +1,18 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_resume_cause_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documentation schema for retained EIEL runtime contract eiel_session_resume_cause_v1. It closes the schema-documentation gap while preserving the owning runtime loader as the semantic authority.",
+  "properties": {
+    "schema_version": {
+      "const": "eiel_session_resume_cause_v1"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "eiel_session_resume_cause_v1",
+  "type": "object",
+  "x-eiel-contract-class": "retained_runtime_contract",
+  "x-eiel-semantic-validator": "owning runtime loader/validator"
+}

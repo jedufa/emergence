@@ -1,0 +1,128 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_delivery_evidence_v4.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adoption_receipt": {
+      "oneOf": [
+        {
+          "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "base_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "branch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "changed_files": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "decision_snapshot": {
+      "oneOf": [
+        {
+          "$ref": "eiel_lifecycle_decision_snapshot_v2.schema.json"
+        },
+        {
+          "$ref": "eiel_lifecycle_decision_snapshot_v1.schema.json"
+        },
+        {
+          "type": "null"
+        }
+      ]
+    },
+    "delivery_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "delivery_kind": {
+      "enum": [
+        "MANAGED_SESSION_DELIVERY",
+        "EXTERNAL_DELIVERY_ADOPTED"
+      ]
+    },
+    "delivery_proof": {
+      "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+    },
+    "delivery_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "delivery_sufficiency": {
+      "const": "UNASSESSED"
+    },
+    "recorded_at_utc": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "repo_root": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_session_delivery_evidence_v4"
+    },
+    "session_base_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "unrelated_dirty_paths": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "work_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "work_package_version": {
+      "minimum": 1,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "worktree_clean": {
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "delivery_session_id",
+    "base_commit",
+    "delivery_commit",
+    "repo_root",
+    "work_package_sha256",
+    "changed_files",
+    "worktree_clean",
+    "delivery_kind",
+    "delivery_sufficiency",
+    "delivery_proof",
+    "adoption_receipt"
+  ],
+  "title": "EIEL generic durable repository delivery evidence V4",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.session_manager",
+  "x-eiel-persistence-class": "embedded_durable_delivery_metadata"
+}

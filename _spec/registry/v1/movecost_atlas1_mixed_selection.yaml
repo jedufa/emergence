@@ -1,0 +1,23 @@
+name: movecost_atlas1_mixed_selection
+panels:
+  - food_seeking_enriched
+  - movement_cost_sensitive_enriched
+  - balanced_diverse
+  - hard_negative_diverse
+worlds:
+  - movecost_tradeoff
+  - uncorrelated_food_cost
+  - budget_matched_uniform
+  - inverted_food_cost
+seeds:
+  - 505
+  - 606
+  - 707
+  - 808
+  - 909
+  - 1001
+  - 1102
+  - 1203
+cells: 128
+workers: 1
+mutation: disabled

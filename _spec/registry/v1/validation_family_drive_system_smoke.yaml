@@ -1,0 +1,72 @@
+harness_api: 1
+version: 1
+name: validation_family_drive_system
+description: Smoke family validation for drive system (aggregated per knob).
+intent:
+  question: Are knobs in family 'drive_system' traceably applied, and do they produce
+    a detectable signal?
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - genome_drive_birth_noise__baseline
+    - genome_drive_birth_noise__variant
+    - genome_drive_inertia__baseline
+    - genome_drive_inertia__variant
+    - genome_drive_jitter__baseline
+    - genome_drive_jitter__variant
+    - genome_drive_noise__baseline
+    - genome_drive_noise__variant
+    - genome_drive_smooth_tau__baseline
+    - genome_drive_smooth_tau__variant
+    - genome_drive_update_rate__baseline
+    - genome_drive_update_rate__variant
+    flags:
+      genome_drive_birth_noise__baseline: []
+      genome_drive_birth_noise__variant:
+      - --knob
+      - genome.drive_birth_noise=0.15
+      genome_drive_inertia__baseline: []
+      genome_drive_inertia__variant:
+      - --knob
+      - genome.drive_inertia=0.9
+      genome_drive_jitter__baseline: []
+      genome_drive_jitter__variant:
+      - --knob
+      - genome.drive_jitter=true
+      genome_drive_noise__baseline: []
+      genome_drive_noise__variant:
+      - --knob
+      - genome.drive_noise=0.08
+      genome_drive_smooth_tau__baseline: []
+      genome_drive_smooth_tau__variant:
+      - --knob
+      - genome.drive_smooth_tau=true
+      genome_drive_update_rate__baseline: []
+      genome_drive_update_rate__variant:
+      - --knob
+      - genome.drive_update_rate=true
+seeds:
+- 42
+cli_defaults:
+- - --generations
+  - '1'
+- - --steps
+  - '60'
+- - --pop
+  - '64'
+- - --policy_tick_stride
+  - '1'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: val_family_smoke
+  run_id_format: '{name}__{case}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__{case}'

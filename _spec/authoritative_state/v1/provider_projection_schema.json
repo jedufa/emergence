@@ -1,0 +1,57 @@
+{
+  "binding_keys": [
+    "authoritative_schema_hash",
+    "binary_schema_hash",
+    "checkpoint_schema_hash",
+    "chronicle_schema_hash"
+  ],
+  "contract_hash": "e59be445587feeff89c10190f1c5a63c7471af6a22bcd5544eb69b0067d09433",
+  "fields": [
+    {
+      "dtype": "int64",
+      "field_id": "provider.reproduction_attempt_index.v1",
+      "required": true,
+      "shape": [],
+      "source_field_ids": [
+        "reproduction.attempt_index.v1"
+      ],
+      "transform": "copied"
+    },
+    {
+      "dtype": "int64",
+      "field_id": "provider.eligible_parent_count.v1",
+      "required": true,
+      "shape": [
+        "parent_role"
+      ],
+      "source_field_ids": [
+        "reproduction.eligible_parent_count.v1"
+      ],
+      "transform": "copied"
+    },
+    {
+      "dtype": "int64",
+      "field_id": "provider.selected_parent_id.v1",
+      "required": true,
+      "shape": [
+        "parent_role"
+      ],
+      "source_field_ids": [
+        "reproduction.selected_parent_id.v1"
+      ],
+      "transform": "copied"
+    },
+    {
+      "dtype": "bool",
+      "field_id": "provider.reproduction_success.v1",
+      "required": true,
+      "shape": [],
+      "source_field_ids": [
+        "reproduction.success.v1"
+      ],
+      "transform": "renamed"
+    }
+  ],
+  "kind": "authoritative_provider_projection",
+  "schema_version": "eiel_authoritative_provider_projection_schema_v1"
+}

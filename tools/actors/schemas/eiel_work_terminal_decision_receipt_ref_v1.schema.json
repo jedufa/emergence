@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_work_terminal_decision_receipt_ref_v1.schema.json",
+  "title": "EIEL Work terminal decision receipt reference",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_work_terminal_decision_receipt_ref_v1"},
+    "artifact_id": {"type": "string", "pattern": "^WORKDEC-[A-Z0-9]+$"},
+    "artifact_schema_version": {"const": "eiel_work_terminal_decision_receipt_v1"},
+    "path": {"type": "string", "minLength": 1},
+    "state_root_locator": {"type": "string", "minLength": 1},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "canonical_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "required": ["schema_version", "artifact_id", "artifact_schema_version", "path", "state_root_locator", "sha256", "canonical_sha256"]
+}

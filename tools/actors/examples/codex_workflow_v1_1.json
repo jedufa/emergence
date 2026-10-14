@@ -1,0 +1,6 @@
+{
+  "reason": "V1.2 adds mandatory Librarian preflight, authority binding, campaign-tool delegation, and Librarian closeout identity.",
+  "schema_version": "eiel_codex_actor_workflow_redirect_v1",
+  "status": "SUPERSEDED",
+  "superseded_by": "tools/actors/examples/codex_workflow_v1_2.json"
+}

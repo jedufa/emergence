@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:causyl:eiel:artifact-catalog:v1",
+  "title": "EIEL artifact catalog v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "artifacts"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "eiel_artifact_catalog_v1"
+    },
+    "artifacts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/artifact"
+      }
+    }
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]{0,127}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^(?!/)(?!.*//)(?!.*\\\\)(?!.*(?:^|/)\\.\\.?(?:/|$)).+$"
+    },
+    "qualification": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "envelope_id",
+        "receipt_sha256",
+        "capabilities"
+      ],
+      "properties": {
+        "schema_version": {
+          "$ref": "#/$defs/token"
+        },
+        "envelope_id": {
+          "$ref": "#/$defs/token"
+        },
+        "receipt_sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "capabilities": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "$ref": "#/$defs/token"
+          }
+        }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "artifact_id",
+        "kind",
+        "abi",
+        "architecture",
+        "build_identity",
+        "status",
+        "relative_path",
+        "sha256",
+        "qualification"
+      ],
+      "properties": {
+        "artifact_id": {
+          "$ref": "#/$defs/token"
+        },
+        "kind": {
+          "$ref": "#/$defs/token"
+        },
+        "abi": {
+          "$ref": "#/$defs/token"
+        },
+        "architecture": {
+          "$ref": "#/$defs/token"
+        },
+        "build_identity": {
+          "$ref": "#/$defs/token"
+        },
+        "status": {
+          "enum": [
+            "candidate",
+            "qualified",
+            "deprecated",
+            "quarantined",
+            "retired"
+          ]
+        },
+        "relative_path": {
+          "$ref": "#/$defs/relativePath"
+        },
+        "sha256": {
+          "$ref": "#/$defs/sha256"
+        },
+        "qualification": {
+          "$ref": "#/$defs/qualification"
+        }
+      }
+    }
+  }
+}

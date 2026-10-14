@@ -1,0 +1,144 @@
+{
+  "schema_version": "eiel_release_source_to_module_v1",
+  "baseline_commit": "fb00e803ee0603b1645ba72de197008511193e3d",
+  "overlap_rule": "narrower paths take precedence; shared physical engines are not duplicate owners",
+  "modules": [
+    {
+      "module": "Contracts",
+      "owner": "emergence_contracts",
+      "source_paths": [
+        "emergence_contracts/"
+      ],
+      "allowed_target_dependencies": [],
+      "scope": "versioned schemas, immutable identities and packaged normative data"
+    },
+    {
+      "module": "Runtime",
+      "owner": "shared runtime owner",
+      "source_paths": [
+        "engine/native_runtime/",
+        "engine/authoritative_state/",
+        "engine/simulation/",
+        "engine/perf/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts"
+      ],
+      "scope": "native execution, checkpoint and RNG ownership; not physically extracted"
+    },
+    {
+      "module": "WorldKit",
+      "owner": "emergence_worldkit",
+      "source_paths": [
+        "emergence_worldkit/",
+        "engine/env/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts"
+      ],
+      "scope": "configuration extracted; ecological mechanics remain shared"
+    },
+    {
+      "module": "AgentKit",
+      "owner": "emergence_agentkit",
+      "source_paths": [
+        "emergence_agentkit/",
+        "engine/agents/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts"
+      ],
+      "scope": "MLP implementation extracted; genome and native policies remain shared"
+    },
+    {
+      "module": "Adaptation",
+      "owner": "shared inheritance owner",
+      "source_paths": [
+        "engine/evolution/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts"
+      ],
+      "scope": "mutation, recombination, reproduction and selection unchanged"
+    },
+    {
+      "module": "Lab",
+      "owner": "emergence_lab",
+      "source_paths": [
+        "emergence_lab/",
+        "experiments/",
+        "experiments_shared/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts",
+        "emergence_runtime"
+      ],
+      "scope": "registry implementation extracted; execution requires Composition"
+    },
+    {
+      "module": "Evidence",
+      "owner": "emergence_evidence",
+      "source_paths": [
+        "emergence_evidence/",
+        "tools/evidence/",
+        "tools/visualization/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts"
+      ],
+      "scope": "read-only compact reducers and observation projection; private Librarian remains Ops integration"
+    },
+    {
+      "module": "Assurance",
+      "owner": "shared verification tooling",
+      "source_paths": [
+        "tools/architecture/",
+        "tools/verification/",
+        "tools/qualification_review/",
+        "tests/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts",
+        "emergence_lab",
+        "emergence_evidence"
+      ],
+      "scope": "existing guards, regressions and qualification review; no new authority"
+    },
+    {
+      "module": "Ops",
+      "owner": "shared operations tooling",
+      "source_paths": [
+        "tools/actors/",
+        "tools/eiel.py",
+        "engine/campaigns/artifact_lifecycle.py"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts",
+        "emergence_lab",
+        "emergence_assurance"
+      ],
+      "scope": "existing admission, storage and operator interfaces; private deployments"
+    },
+    {
+      "module": "Composition",
+      "owner": "eiel_composition",
+      "source_paths": [
+        "eiel_composition/",
+        "engine/campaigns/"
+      ],
+      "allowed_target_dependencies": [
+        "emergence_contracts",
+        "emergence_runtime",
+        "emergence_worldkit",
+        "emergence_agentkit",
+        "emergence_adaptation",
+        "emergence_lab",
+        "emergence_evidence",
+        "emergence_assurance",
+        "emergence_ops",
+        "legacy_eiel"
+      ],
+      "scope": "one integration authority; legacy campaign machinery retained"
+    }
+  ]
+}

@@ -1,0 +1,202 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_qualification_decision_import_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EIEL technical qualification decision import V2",
+  "type": "object",
+  "additionalProperties": true,
+  "x-eiel-owner": "engine.campaigns.qualification_decisions",
+  "x-eiel-persistence-class": "embedded_durable_technical_decision",
+  "required": [
+    "schema_version",
+    "ok",
+    "decision",
+    "accepted_for_envelope_expansion",
+    "authority_grant"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_decision_import_v2"},
+    "ok": {"type": "boolean"},
+    "decision": {"type": "string", "minLength": 1},
+    "decision_status": {"type": "string", "minLength": 1},
+    "accepted_for_envelope_expansion": {"type": "boolean"},
+    "authority_grant": {
+      "enum": [
+        "NONE",
+        "BOUNDED_ROUTE_QUALIFIED",
+        "LONG_HORIZON_RUNABILITY_QUALIFIED",
+        "SCIENCE_ROUTE_QUALIFIED"
+      ]
+    },
+    "qualification_dimensions": {"$ref": "#/$defs/dimensionDecisions"},
+    "evidence_bindings": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/evidenceBinding"}
+    },
+    "legacy_compatibility": {"const": true},
+    "limitations": {
+      "type": "array",
+      "items": {"type": "string", "minLength": 1}
+    },
+    "plan_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "required_obligations_sha256": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "source_commit": {
+      "type": ["string", "null"],
+      "pattern": "^[0-9a-f]{40,64}$"
+    }
+  },
+  "oneOf": [
+    {
+      "title": "Current evidence-bound qualification decision",
+      "required": ["qualification_dimensions", "evidence_bindings"],
+      "not": {"required": ["legacy_compatibility"]}
+    },
+    {
+      "title": "Explicit legacy bounded decision import",
+      "required": ["legacy_compatibility", "limitations"],
+      "properties": {
+        "authority_grant": {"const": "NONE"},
+        "accepted_for_envelope_expansion": {"const": false},
+        "limitations": {"minItems": 1}
+      },
+      "not": {"required": ["qualification_dimensions"]}
+    }
+  ],
+  "allOf": [
+    {
+      "if": {"properties": {"authority_grant": {"const": "BOUNDED_ROUTE_QUALIFIED"}}},
+      "then": {
+        "properties": {
+          "qualification_dimensions": {
+            "properties": {"BOUNDED_ROUTE_QUALIFIED": {"const": "PASS"}}
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"authority_grant": {"const": "LONG_HORIZON_RUNABILITY_QUALIFIED"}}},
+      "then": {
+        "properties": {
+          "qualification_dimensions": {
+            "properties": {
+              "BOUNDED_ROUTE_QUALIFIED": {"const": "PASS"},
+              "LONG_HORIZON_RUNABILITY_QUALIFIED": {"const": "PASS"}
+            }
+          },
+          "evidence_bindings": {
+            "contains": {
+              "properties": {
+                "supports_dimensions": {
+                  "contains": {"const": "LONG_HORIZON_RUNABILITY_QUALIFIED"}
+                }
+              },
+              "required": ["supports_dimensions"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"authority_grant": {"const": "SCIENCE_ROUTE_QUALIFIED"}}},
+      "then": {
+        "properties": {
+          "qualification_dimensions": {
+            "properties": {
+              "BOUNDED_ROUTE_QUALIFIED": {"const": "PASS"},
+              "LONG_HORIZON_RUNABILITY_QUALIFIED": {"const": "PASS"},
+              "SCIENCE_ROUTE_QUALIFIED": {"const": "PASS"}
+            }
+          },
+          "evidence_bindings": {
+            "contains": {
+              "properties": {
+                "supports_dimensions": {
+                  "contains": {"const": "SCIENCE_ROUTE_QUALIFIED"}
+                }
+              },
+              "required": ["supports_dimensions"]
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {"properties": {"accepted_for_envelope_expansion": {"const": true}}},
+      "then": {
+        "not": {"properties": {"authority_grant": {"const": "NONE"}}}
+      }
+    }
+  ],
+  "$defs": {
+    "dimensionDecisions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "BOUNDED_ROUTE_QUALIFIED",
+        "LONG_HORIZON_RUNABILITY_QUALIFIED",
+        "SCIENCE_ROUTE_QUALIFIED"
+      ],
+      "properties": {
+        "BOUNDED_ROUTE_QUALIFIED": {"$ref": "#/$defs/dimensionStatus"},
+        "LONG_HORIZON_RUNABILITY_QUALIFIED": {"$ref": "#/$defs/dimensionStatus"},
+        "SCIENCE_ROUTE_QUALIFIED": {"$ref": "#/$defs/dimensionStatus"}
+      }
+    },
+    "dimensionStatus": {
+      "enum": ["PASS", "FAIL", "NOT_EVALUATED"]
+    },
+    "qualificationDimensions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "BOUNDED_ROUTE_QUALIFIED",
+          "LONG_HORIZON_RUNABILITY_QUALIFIED",
+          "SCIENCE_ROUTE_QUALIFIED"
+        ]
+      }
+    },
+    "evidenceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "binding_id",
+        "kind",
+        "sha256",
+        "supports_dimensions",
+        "execution_route_identity",
+        "total_ticks"
+      ],
+      "properties": {
+        "binding_id": {"type": "string", "pattern": "^[a-z][a-z0-9_-]+$"},
+        "kind": {
+          "enum": [
+            "bounded_route_receipt",
+            "long_horizon_run_receipt",
+            "checkpoint_restore_receipt",
+            "resource_safety_receipt",
+            "canonical_full_route_receipt"
+          ]
+        },
+        "uri": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+        "supports_dimensions": {"$ref": "#/$defs/qualificationDimensions"},
+        "execution_route_identity": {"const": "tick_native_execution_route_v1"},
+        "total_ticks": {"type": "integer", "minimum": 1},
+        "batch_cells": {"type": "integer", "minimum": 1},
+        "grid_width": {"type": "integer", "minimum": 1},
+        "initial_population": {"type": "integer", "minimum": 1},
+        "resident_capacity": {"type": "integer", "minimum": 1}
+      }
+    }
+  }
+}

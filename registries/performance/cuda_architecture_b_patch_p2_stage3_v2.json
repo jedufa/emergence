@@ -1,0 +1,47 @@
+{
+  "schema_version": "eiel_cuda_architecture_b_patch_p2_stage3_qualification_v2",
+  "status": "exact_qualified_not_promoted",
+  "production_promotion": false,
+  "artifact_sha256": "667aade97242a8b349537618c825bb7cbf8682ec979e6406e6fd8d44adb1035b",
+  "manifest_sha256": "d28c13b50834a0385a66a0c5488db0209b0f69152b86dff4b1cae1d6711d6f92",
+  "qualification_receipt_sha256": "315deaa1e913525b3a7eaa01e0031d2b6b8215f06fd751e1897e7f50a1b00873",
+  "reporting_receipt_sha256": "c3beed5a555fa1b48b55971687c35accaaef7ae69efb6ccc2abf7882fc7ac301",
+  "minimum_free_vram_bytes": 1073741824,
+  "qualification_decision": "CUDA-STAGE3-PATCH-P2-REUSABLE-G2-WINDOW/CLOSED",
+  "required_claims": [
+    "direct_cpp_window_core_dispatch_qualified",
+    "resident_g2_g2_state_continuation_exact",
+    "terminal_authoritative_and_canonical_checkpoint_exact",
+    "native_run_control_v2_completion_exact"
+  ],
+  "required_entrypoints": [
+    "eiel_cuda_architecture_b_flattened_controller_v1",
+    "eiel_cuda_architecture_b_flattened_controller_resource_receipt_v1",
+    "eiel_cuda_architecture_b_flattened_generation_count_capability_v1",
+    "eiel_cuda_architecture_b_execute_direct_resident_windows_v1",
+    "eiel_cuda_architecture_b_execute_direct_resident_windows_v2"
+  ],
+  "required_attributes": [
+    "RunControlV2"
+  ],
+  "performance_decision": "unmeasured",
+  "performance_decision_measured": false,
+  "automatic_backend": "cpp_cpu",
+  "envelope": {
+    "world": "patch",
+    "profile": "P2",
+    "population": 64,
+    "grid": [
+      16,
+      16
+    ],
+    "policy_family": "stochastic_fixed_mlp",
+    "generation_count": 4,
+    "max_births_per_tick": 64,
+    "batch_cells": 1,
+    "ticks_per_generation": 80,
+    "physical_window_generations": 2,
+    "checkpoint_schedule": "terminal_only",
+    "output_schema": "eiel_patch_p2_production_compact_summary_v1"
+  }
+}

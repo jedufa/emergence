@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-profile-resource-envelope",
+  "title": "EIEL Science Profile Resource Envelope V1",
+  "description": "Route-bound, horizon-independent capacity envelope for canonical observation publication.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "profile_id",
+    "max_records_per_tick_per_world_by_kind",
+    "max_record_bytes_by_kind",
+    "chunk_max_records",
+    "chunk_max_bytes",
+    "max_in_flight_chunks",
+    "fixed_buffer_bytes",
+    "per_world_cursor_bytes",
+    "per_resident_agent_observation_state_bytes",
+    "logical_world_count",
+    "resident_capacity",
+    "max_resident_observation_bytes"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_profile_resource_envelope_v1"},
+    "profile_id": {"$ref": "#/$defs/profile"},
+    "max_records_per_tick_per_world_by_kind": {"$ref": "#/$defs/capacity_table"},
+    "max_record_bytes_by_kind": {"$ref": "#/$defs/capacity_table"},
+    "chunk_max_records": {"type": "integer", "minimum": 1},
+    "chunk_max_bytes": {"type": "integer", "minimum": 1},
+    "max_in_flight_chunks": {"type": "integer", "minimum": 0},
+    "fixed_buffer_bytes": {"type": "integer", "minimum": 0},
+    "per_world_cursor_bytes": {"type": "integer", "minimum": 0},
+    "per_resident_agent_observation_state_bytes": {"type": "integer", "minimum": 0},
+    "logical_world_count": {"type": "integer", "minimum": 0},
+    "resident_capacity": {"type": "integer", "minimum": 0},
+    "max_resident_observation_bytes": {"type": "integer", "minimum": 0}
+  },
+  "$defs": {
+    "profile": {
+      "enum": ["SCIENCE_MINIMAL_V1", "SCIENCE_STANDARD_V1", "SCIENCE_FORENSIC_V1"]
+    },
+    "record_kind": {
+      "enum": [
+        "agent_state_snapshot",
+        "birth_attempt",
+        "birth_committed",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "decision_action",
+        "ecological_transaction",
+        "environment_transition",
+        "mutation_outcome",
+        "reproduction_opportunity",
+        "world_completion",
+        "world_state_snapshot"
+      ]
+    },
+    "capacity_table": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/record_kind"},
+      "additionalProperties": {"type": "integer", "minimum": 0}
+    }
+  }
+}

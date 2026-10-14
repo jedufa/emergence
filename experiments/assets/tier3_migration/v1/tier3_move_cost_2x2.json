@@ -1,0 +1,12 @@
+{
+  "apply_on": "successful_move",
+  "base_move_cost": 1.0,
+  "cost_by_region": [
+    1.0,
+    1.5,
+    2.0,
+    1.0
+  ],
+  "enable": true,
+  "lookup": "destination_region"
+}

@@ -1,0 +1,175 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eiel_qualification_review_spec_v1.schema.json",
+  "title": "EIEL qualification mechanical review specification v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "review_id", "rules_version", "freshness_contract"],
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_review_spec_v1"},
+    "review_id": {"type": "string", "minLength": 1},
+    "rules_version": {"const": "eiel_qualification_review_risk_rules_v1"},
+    "freshness_contract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["reusable"],
+      "properties": {"reusable": {"type": "boolean"}}
+    },
+    "packet_validations": {"type": "array", "items": {"$ref": "#/$defs/packet"}, "default": []},
+    "hash_graphs": {"type": "array", "items": {"$ref": "#/$defs/hashGraph"}, "default": []},
+    "json_assertions": {"type": "array", "items": {"$ref": "#/$defs/fileAssertion"}, "default": []},
+    "inventories": {"type": "array", "items": {"$ref": "#/$defs/inventory"}, "default": []},
+    "freshness_checks": {"type": "array", "items": {"$ref": "#/$defs/freshness"}, "default": []},
+    "authority_transitions": {"type": "array", "items": {"$ref": "#/$defs/authority"}, "default": []},
+    "expected_negative_receipts": {"type": "array", "items": {"$ref": "#/$defs/expectedNegative"}, "default": []},
+    "process_convergence": {"type": "array", "items": {"$ref": "#/$defs/process"}, "default": []}
+  },
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]*$"},
+    "path": {"type": "string", "minLength": 1},
+    "pointer": {"type": "string", "pattern": "^(|/.*)$"},
+    "assertion": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["pointer", "operator"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "path": {"$ref": "#/$defs/path"},
+        "pointer": {"$ref": "#/$defs/pointer"},
+        "operator": {"enum": ["equals", "not_equals", "in", "contains", "exists"]},
+        "expected": {}
+      }
+    },
+    "fileAssertion": {
+      "allOf": [
+        {"$ref": "#/$defs/assertion"},
+        {"type": "object", "required": ["id", "path"]}
+      ]
+    },
+    "packet": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "path", "schema_path"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "path": {"$ref": "#/$defs/path"},
+        "schema_path": {"$ref": "#/$defs/path"}
+      }
+    },
+    "hashNode": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "sha256"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "path": {"$ref": "#/$defs/path"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "hashEdge": {
+      "type": "object", "additionalProperties": false,
+      "required": ["from", "to", "json_pointer"],
+      "properties": {
+        "from": {"$ref": "#/$defs/id"}, "to": {"$ref": "#/$defs/id"},
+        "json_pointer": {"$ref": "#/$defs/pointer"}
+      }
+    },
+    "hashGraph": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "nodes"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "nodes": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/hashNode"}},
+        "edges": {"type": "array", "items": {"$ref": "#/$defs/hashEdge"}, "default": []},
+        "require_acyclic": {"type": "boolean", "default": true}
+      }
+    },
+    "inventory": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "root", "expected_paths"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "root": {"$ref": "#/$defs/path"},
+        "expected_paths": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/path"}},
+        "expected_sha256": {"type": "object", "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}
+      }
+    },
+    "freshness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "max_age_seconds", "timestamp_source"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "path": {"$ref": "#/$defs/path"},
+        "timestamp_source": {"enum": ["json", "mtime"]},
+        "timestamp_pointer": {"$ref": "#/$defs/pointer"},
+        "max_age_seconds": {"type": "integer", "minimum": 1},
+        "future_tolerance_seconds": {"type": "integer", "minimum": 0, "default": 0}
+      },
+      "allOf": [{"if": {"properties": {"timestamp_source": {"const": "json"}}}, "then": {"required": ["timestamp_pointer"]}}]
+    },
+    "precondition": {
+      "allOf": [
+        {"$ref": "#/$defs/assertion"},
+        {"type": "object", "required": ["id", "path"]}
+      ]
+    },
+    "inheritanceBoundary": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_pointer", "dependency_changed"],
+      "properties": {"evidence_pointer": {"type": "string", "minLength": 1}, "dependency_changed": {"type": "boolean"}}
+    },
+    "evidenceCondition": {
+      "type": "object", "additionalProperties": false,
+      "required": ["evidence_pointer", "status"],
+      "properties": {
+        "evidence_pointer": {"type": "string", "minLength": 1},
+        "status": {"enum": ["COMPLETE", "CONTRADICTORY", "INCOMPLETE", "ANOMALOUS", "WARNING"]}
+      }
+    },
+    "authority": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "current_authority", "proposed_authority"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "current_authority": {"type": "string"}, "proposed_authority": {"type": "string"},
+        "preconditions": {"type": "array", "items": {"$ref": "#/$defs/precondition"}},
+        "changed_runtime_dependencies": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "inherited_evidence_boundaries": {"type": "array", "items": {"$ref": "#/$defs/inheritanceBoundary"}},
+        "evidence_conditions": {"type": "array", "items": {"$ref": "#/$defs/evidenceCondition"}},
+        "limitations": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "no_claims": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "evidence_pointers": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "decision": {
+          "type": "object", "additionalProperties": false,
+          "required": ["kind", "irreversible"],
+          "properties": {
+            "kind": {"enum": ["publication", "integration", "acceptance", "none"]},
+            "irreversible": {"type": "boolean"},
+            "evidence_pointers": {"type": "array", "uniqueItems": true, "items": {"type": "string", "minLength": 1}}
+          }
+        }
+      }
+    },
+    "expectedNegative": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "expected_exit_code", "expected_reasons"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "path": {"$ref": "#/$defs/path"},
+        "exit_code_pointer": {"$ref": "#/$defs/pointer"}, "expected_exit_code": {"type": "integer", "minimum": 1, "maximum": 255},
+        "reasons_pointer": {"$ref": "#/$defs/pointer"},
+        "expected_reasons": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "ordered_reasons": {"type": "boolean", "default": true},
+        "state_assertions": {"type": "array", "items": {"$ref": "#/$defs/assertion"}}
+      }
+    },
+    "process": {
+      "type": "object", "additionalProperties": false,
+      "required": ["id", "path", "owner_id", "expected_pids", "terminal_source_states"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"}, "path": {"$ref": "#/$defs/path"},
+        "owner_id": {"type": "string", "minLength": 1},
+        "expected_pids": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "integer", "minimum": 1}},
+        "terminal_source_states": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"type": "string", "minLength": 1}},
+        "snapshots_pointer": {"$ref": "#/$defs/pointer"}, "source_state_pointer": {"$ref": "#/$defs/pointer"},
+        "processes_pointer": {"$ref": "#/$defs/pointer"}, "pid_field": {"type": "string", "minLength": 1},
+        "owner_field": {"type": "string", "minLength": 1}
+      }
+    }
+  }
+}

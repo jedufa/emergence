@@ -1,0 +1,21 @@
+{
+  "schema_version": "eiel_science_route_neutral_compilation_golden_v1",
+  "fixture_id": "route-neutral-composition",
+  "campaign_spec_sha256": {"algorithm": "sha256", "hex": "0e898e737099f452fcdaca91a7d8ff792486b28c87e3f21242b920a51aca6ddc"},
+  "instrument_manifest_sha256": {"algorithm": "sha256", "hex": "9d0dca7d069db5679f355bf83a617dfb7d1b769aaeccb66c2adb8b726bf599f9"},
+  "route_binding_sha256": {"algorithm": "sha256", "hex": "ac17cbe609717f8cbaa207607c41c2e4f710e8180531d775a3cac27ea97fc0f9"},
+  "crca_semantic_run_digest": {"algorithm": "sha256", "hex": "5460c851184f5f3e595502988a5c6515bb1b5421ef4900923f65dda7ecf53cba"},
+  "crca_projection_sha256": {"algorithm": "sha256", "hex": "4b0bf40bbbc08571a910b92b0370d9f487d1d02c3f780c3ad9c449cce49c6415"},
+  "science_semantic_acquisition_sha256": {"algorithm": "sha256", "hex": "229f67d3bd5b5a8bc8ae500def282f58a5ae3ed6928cd112da571ed496f1e83f"},
+  "physical_execution_plan_sha256": {"algorithm": "sha256", "hex": "01b96cd6bd3d42090392714772380cf5479f8e2dc2f783168079e994b0fa4a8a"},
+  "science_execution_plan_sha256": {"algorithm": "sha256", "hex": "d1a8a698160a05b5edf3098f22785bd96de9661d66c3d4fa6616d0ee4e85ed95"},
+  "reduction_plan_sha256": {"algorithm": "sha256", "hex": "c706fab4198c998cb12c84a9b57adf9cdcfed7a654199b9f5f3c3b6e22857e9d"},
+  "compilation_bundle_sha256": {"algorithm": "sha256", "hex": "66e5fed548e21d46725005195d3f683666afbac1fe4e96073ce3b6d0e22da7ae"},
+  "semantic_cell_ids": [
+    "cell-504ea6daea4df539931e87cc",
+    "cell-c27f87bf2952971030519e9c",
+    "cell-d836759664fcbebde5fd2d51",
+    "cell-e13daed97485d4aefa6b3396"
+  ],
+  "claim_boundary": "Host-only deterministic identity vector; no execution or qualification authority."
+}

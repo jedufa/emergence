@@ -1,0 +1,65 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_wra_capture_close_intent_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boundary_action": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "boundary_record": {
+      "type": "object"
+    },
+    "capture_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "codex_thread_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context_epoch_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "intent_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "intent_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_wra_capture_close_intent_v1"
+    },
+    "session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "work_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "intent_id",
+    "work_id",
+    "session_id",
+    "capture_id",
+    "context_epoch_id",
+    "codex_thread_id",
+    "boundary_action",
+    "boundary_record",
+    "intent_sha256"
+  ],
+  "title": "EIEL WRA immutable capture-close intent",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.resource_accounting",
+  "x-eiel-persistence-class": "immutable_wal_intent"
+}

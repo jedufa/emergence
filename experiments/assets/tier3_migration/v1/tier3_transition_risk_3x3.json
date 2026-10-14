@@ -1,0 +1,6 @@
+{
+  "enable": true,
+  "crossing_risk_base": 0.03,
+  "crossing_damage": 0.1,
+  "transition_risk_matrix": null
+}

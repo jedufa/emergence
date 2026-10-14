@@ -1,0 +1,13 @@
+{
+  "name": "resource_regrowth_map",
+  "params": {
+    "sites": 10,
+    "value_range": [
+      0.6,
+      1.6
+    ]
+  },
+  "seed": 21,
+  "type": "voronoi",
+  "version": 1
+}

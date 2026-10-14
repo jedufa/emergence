@@ -1,0 +1,27 @@
+id: mem_max_27_module_mutation_action_family
+title: MEM-MAX-27 Module Mutation And Action Family Gate
+status: completed_diagnostic
+owner: codex
+created: 2026-07-10
+decision: MEM-MAX-27D
+report: docs/500_campaigns-decisions-closeouts/520_campaign-reports/200_genome-inheritance/EIEL-DOC-000477--eiel-mem-max-27-module-mutation-and-action-family-gate-2026-07-10.md
+evidence: evidences/04-theme-4-cognition/112-mem-max-27-module-mutation-and-action-family-gate.md
+outputs: docs/900_lifecycle/940_incoming/mem_max_27_module_mutation_action_family/
+runner: tools/bin/mem_max_27_module_mutation_action_family_package.py
+base_decision: MEM-MAX-26B
+default_off: true
+mutation_candidates:
+  - whole_policy_sparse
+  - action_head_sparse
+  - recurrent_core_sparse
+  - one_module_per_child
+mutation:
+  rate: 0.05
+  std: 0.02
+  perturbations_per_candidate: 256
+claims:
+  intelligence: false
+  emergence: false
+  consciousness: false
+  broad_cognition: false
+  mem_evo_a: false

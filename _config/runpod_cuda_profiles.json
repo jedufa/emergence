@@ -1,0 +1,100 @@
+{
+  "schema_version": "eiel_runpod_cuda_profiles_v1",
+  "default_variant": "auto",
+  "auto_order": [
+    "lowest",
+    "normal"
+  ],
+  "runtime_profiles": {
+    "emergence_cuda_v1": {
+      "runtime_mode": "base_image_plus_setup",
+      "setup_command": "python -m pip install --break-system-packages --no-cache-dir --only-binary=:all: --quiet llvmlite==0.46.0 numba==0.63.1 numpy==2.3.5 PyYAML==6.0.3 && python -c 'import importlib.metadata as m, numba, numpy, torch, yaml; assert numpy.__version__ == \"2.3.5\"; assert numba.__version__ == \"0.63.1\"; assert m.version(\"PyYAML\") == \"6.0.3\"; assert torch.__version__.startswith(\"2.9.1\"); print(\"APPLICATION_RUNTIME_OK\")'",
+      "image_name": "runpod/pytorch:1.0.3-dev-dj-new-pytorch-cu1281-torch291-ubuntu2404",
+      "image_reference": "runpod/pytorch@sha256:517c88bc0264c688b3bf83f9d684cc0236b160f708a78de2804f26da91280eae",
+      "image_digest": "sha256:517c88bc0264c688b3bf83f9d684cc0236b160f708a78de2804f26da91280eae",
+      "base_image": "published RunPod/NVIDIA PyTorch image; upstream base digest not exposed",
+      "linux_distribution": "Ubuntu 24.04",
+      "python_version": "3.12",
+      "pytorch_version": "2.9.1+cu128",
+      "pytorch_cuda_version": "12.8",
+      "cuda_version": "12.8.1",
+      "dependency_lock_sha256": "102d262aadf5f491b80c6df9867e80dc9faa7e6e9f38a716fa409c523c152288",
+      "build_date_utc": "2025-12-13T01:11:33Z",
+      "compressed_size_bytes": 10686741878,
+      "definition_sha256": "2c3abc6ab32b559aef17b032c0e334263dd55160b5c007e51261b7bb8c77fb0f",
+      "admission_mode": "torch_cuda_tensor_v1",
+      "required_commands": [
+        "nvidia-smi"
+      ],
+      "required_python_modules": [
+        "torch"
+      ],
+      "require_cuda_toolkit": false
+    }
+  },
+  "variants": {
+    "lowest": {
+      "gpu_type_ids": [
+        "NVIDIA RTX A5000",
+        "NVIDIA RTX A4000",
+        "NVIDIA RTX 4000 Ada Generation"
+      ],
+      "cloud_type": "COMMUNITY",
+      "image_name": "runpod/pytorch:1.0.3-dev-dj-new-pytorch-cu1281-torch291-ubuntu2404",
+      "runtime_profile": "emergence_cuda_v1",
+      "min_cuda_version": "12.8",
+      "container_disk_gb": 40,
+      "timeout_seconds": 1800,
+      "poll_seconds": 20,
+      "gpu_metrics_interval_seconds": 5,
+      "ssh_ready_timeout_seconds": 600
+    },
+    "normal": {
+      "gpu_type_ids": [
+        "NVIDIA GeForce RTX 3090",
+        "NVIDIA GeForce RTX 4090",
+        "NVIDIA GeForce RTX 5090"
+      ],
+      "cloud_type": "COMMUNITY",
+      "image_name": "runpod/pytorch:1.0.3-dev-dj-new-pytorch-cu1281-torch291-ubuntu2404",
+      "runtime_profile": "emergence_cuda_v1",
+      "min_cuda_version": "12.8",
+      "container_disk_gb": 60,
+      "timeout_seconds": 3600,
+      "poll_seconds": 20,
+      "gpu_metrics_interval_seconds": 5,
+      "ssh_ready_timeout_seconds": 600
+    },
+    "large": {
+      "gpu_type_ids": [
+        "NVIDIA A40",
+        "NVIDIA RTX A6000",
+        "NVIDIA A100 80GB PCIe"
+      ],
+      "cloud_type": "SECURE",
+      "image_name": "runpod/pytorch:1.0.3-dev-dj-new-pytorch-cu1281-torch291-ubuntu2404",
+      "runtime_profile": "emergence_cuda_v1",
+      "min_cuda_version": "12.8",
+      "container_disk_gb": 100,
+      "timeout_seconds": 7200,
+      "poll_seconds": 30,
+      "gpu_metrics_interval_seconds": 10,
+      "ssh_ready_timeout_seconds": 900
+    }
+  },
+  "source_snapshot": {
+    "max_source_bytes": 2147483648,
+    "max_external_bytes": 2147483648,
+    "exclude_directories": [
+      ".git",
+      ".mypy_cache",
+      ".pytest_cache",
+      ".ruff_cache",
+      ".tmp",
+      ".venv",
+      "__pycache__",
+      "_artifacts",
+      "runs"
+    ]
+  }
+}

@@ -1,0 +1,72 @@
+harness_api: 1
+version: 1
+name: validation_knob_env_cfg_spatial_droughts_spec_nightly
+description: Per-knob A/B validation for env_cfg.spatial_droughts_spec. Baseline vs
+  variant differ only by this knob (or required enabling context).
+intent:
+  question: Is knob env_cfg.spatial_droughts_spec traceably applied (config + required
+    artifacts) in an A/B run pair?
+  axes:
+  - ab
+matrix_order:
+- ab
+- seed
+axes:
+  ab:
+    values:
+    - baseline
+    - variant
+    flags:
+      baseline:
+      - --spatial_droughts_enable
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_NW_severe_early.json'
+      variant:
+      - --spatial_droughts_enable
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/impact090/drought_spec__single_SE_severe.json'
+seeds:
+- 1
+- 2
+- 3
+cli_defaults:
+- - --generations
+  - '200'
+- - --steps
+  - '150'
+- - --policy_tick_stride
+  - '2'
+- - --pop
+  - '256'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- droughts/drought_events.jsonl
+naming:
+  run_tag_prefix: valknob_nightly
+  run_id_format: validation_knob_env_cfg_spatial_droughts_spec_nightly__ab_{ab}__seed{seed:06d}
+  run_tag_format: valknob_nightly__ab_{ab}

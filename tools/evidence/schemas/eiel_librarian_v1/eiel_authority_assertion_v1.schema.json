@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_authority_assertion_v1.schema.json",
+  "title": "EIEL Authority Assertion V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "authority_assertion_id",
+    "schema_version",
+    "authority_domain",
+    "asserted_status",
+    "authority_granting_ref",
+    "effective_from",
+    "effective_until",
+    "scope_envelope",
+    "source_commit_or_register_version",
+    "supersession",
+    "curator",
+    "reviewer",
+    "confidence"
+  ],
+  "properties": {
+    "authority_assertion_id": { "type": "string", "pattern": "^eiel-auth-[a-z0-9][a-z0-9-]{8,}$" },
+    "schema_version": { "const": "eiel_authority_assertion_v1" },
+    "authority_domain": { "enum": ["scientific_decision", "execution_provider", "runtime", "qualification_envelope", "architecture_doctrine", "roadmap", "release", "unknown"] },
+    "asserted_status": { "type": "string", "minLength": 1 },
+    "authority_granting_ref": { "type": ["string", "null"] },
+    "effective_from": { "type": ["string", "null"] },
+    "effective_until": { "type": ["string", "null"] },
+    "scope_envelope": { "type": "object" },
+    "source_commit_or_register_version": { "type": ["string", "null"] },
+    "observed_at_repo_commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+    "authority_granting_commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{40}$" },
+    "authority_register_version": { "type": ["string", "null"] },
+    "authority_source_sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "supersession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supersedes_authority_assertion_ids", "superseded_by_authority_assertion_ids"],
+      "properties": {
+        "supersedes_authority_assertion_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+        "superseded_by_authority_assertion_ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      }
+    },
+    "curator": { "type": "string" },
+    "reviewer": { "type": ["string", "null"] },
+    "confidence": { "enum": ["explicit", "unknown"] }
+  }
+}

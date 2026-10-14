@@ -1,0 +1,67 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_repository_adoption_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "adopted_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "adopting_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "artifact_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "authority_effect": {
+      "const": "EXPLICIT_RECONCILIATION_ONLY"
+    },
+    "external_producer": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "performed_by_adopting_session": {
+      "const": false
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_repository_adoption_receipt_v1"
+    },
+    "work_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "work_id",
+    "adopting_session_id",
+    "adopted_commit",
+    "external_producer",
+    "reason",
+    "performed_by_adopting_session",
+    "authority_effect",
+    "recorded_at_utc",
+    "artifact_sha256"
+  ],
+  "title": "EIEL explicit external-delivery adoption receipt",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.repository_truth",
+  "x-eiel-persistence-class": "immutable_durable_reconciliation_evidence"
+}

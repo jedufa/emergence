@@ -1,0 +1,15 @@
+{
+  "mem1_final": {"label": "MEM-1-B"},
+  "mem1_p2": {"decision": {"label": "MEM1-P2-B"}, "source_method": {"registry_limitation": "fixture only"}},
+  "smoke_decision": {"decision": "PATH1-DRH0-SMOKE-A"},
+  "smoke_runner": {"cells": [{"cell": "drh0_full_cue_refuge_consequence", "metrics": {"path1_drh0_damage_prevented_by_refuge": 0.2}}]},
+  "matrix0_decision": {"decision": "PATH1-DRH0-MATRIX0-A"},
+  "matrix0_validation": {"checks": {"fixture_checks_passed": true}},
+  "matrix0_cells": {"cells": [{"cell": "drh0_full_cue_refuge_consequence", "metrics": {"path1_drh0_cue_visible_steps": 1, "path1_drh0_hidden_window_steps": 2, "path1_drh0_pre_consequence_refuge_arrival_rate": 1.0, "path1_drh0_outcome_delta_vs_disabled_controls": 0.2, "path1_drh0_refuge_reachability_success_rate": 1.0}}]},
+  "matrix1_decision": {"decision": "PATH1-DRH0-MATRIX1-A"},
+  "matrix1_validation": {"checks": {"fixture_checks_passed": true}},
+  "matrix1_controls": {"passed": true},
+  "matrix1_repeat": {"passed": true},
+  "matrix1_static": {"passed": true},
+  "matrix1_boundary": {"passed": true}
+}

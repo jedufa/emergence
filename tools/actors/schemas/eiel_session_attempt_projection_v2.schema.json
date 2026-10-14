@@ -1,0 +1,58 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_session_attempt_projection_v2.schema.json",
+  "title": "EIEL canonical Session attempt projection v2",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version", "state", "stored_v1_status",
+    "stored_v1_status_authoritative_for_history", "pause_kind",
+    "closure_reason", "review_verdict", "legacy_blocked_review_verdict",
+    "mission_id", "title", "mission_and_title_source",
+    "current_codex_id", "original_codex_id", "participant_count",
+    "preferred_continuation_identity_semantics", "bootstrap_semantics",
+    "progress_semantics", "scheduler_origin", "wra_refs", "context_semantics"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_session_attempt_projection_v2"},
+    "state": {"enum": ["ACTIVE", "PAUSED", "BLOCKED", "COMPLETED", "CLOSED"]},
+    "stored_v1_status": {"type": "string", "minLength": 1},
+    "stored_v1_status_authoritative_for_history": {"const": true},
+    "pause_kind": {"type": ["string", "null"]},
+    "closure_reason": {"type": ["string", "null"]},
+    "review_verdict": {"type": ["string", "null"]},
+    "legacy_blocked_review_verdict": {"type": "boolean"},
+    "mission_id": {"type": ["string", "null"]},
+    "title": {"type": ["string", "null"]},
+    "mission_and_title_source": {"enum": ["WORK_RECORD", "LEGACY_SESSION_COPY"]},
+    "current_codex_id": {"type": ["string", "null"]},
+    "original_codex_id": {"type": ["string", "null"]},
+    "participant_count": {"type": "integer", "minimum": 0},
+    "preferred_continuation_identity_semantics": {"const": "DERIVED_FROM_PARTICIPANTS_AND_POLICY"},
+    "bootstrap_semantics": {"const": "TRANSITION_VALIDATION_SNAPSHOT"},
+    "progress_semantics": {"const": "CURRENT_STEP_PLUS_TYPED_CHECKPOINT_EVIDENCE"},
+    "scheduler_origin": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assignment_id", "assignment_material_sha256", "lease_id", "worker_id", "semantics"],
+      "properties": {
+        "assignment_id": {"type": ["string", "null"]},
+        "assignment_material_sha256": {"type": ["string", "null"]},
+        "lease_id": {"type": ["string", "null"]},
+        "worker_id": {"type": ["string", "null"]},
+        "semantics": {"const": "IMMUTABLE_ORIGIN_REFERENCES_ONLY"}
+      }
+    },
+    "wra_refs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["active_capture_id", "latest_usage_artifact", "semantics"],
+      "properties": {
+        "active_capture_id": {"type": ["string", "null"]},
+        "latest_usage_artifact": {"type": ["object", "null"]},
+        "semantics": {"const": "ARTIFACT_REFERENCES_ONLY_IN_CANONICAL_PROJECTION"}
+      }
+    },
+    "context_semantics": {"const": "BOUNDED_CONTINUATION_PROJECTION"}
+  }
+}

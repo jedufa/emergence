@@ -1,0 +1,55 @@
+harness_api: 1
+version: 1
+uid: exploration_chaos_week_quick
+name: exploration_chaos_week_quick
+description: Chaos Week exploration pack (quick). 12 experiments, each an A/B pair
+  (baseline vs variant). Variant applies exactly 1 primary knob + 1 helper knob via
+  --knob. Exploratory diagnostics (NOT validations). + Follow-up pack appended (6
+  experiments; each A/B).
+intent:
+  question: Where does the weirdness live? Map which pressures move (or fail to move)
+    population dynamics, timing, and late-life signals under tightly controlled 1-primary
+    + 1-helper perturbations.
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - forbidden_scalar_late_pred_cost__baseline
+    flags:
+      forbidden_scalar_late_pred_cost__baseline:
+      - --knob
+      - sim_cfg.epi_enable=true
+      - --knob
+      - sim_cfg.epi_print_each_gen=true
+      - --knob
+      - sim_cfg.epi_timeseries_enable=true
+seeds:
+- 1
+cli_defaults:
+- - --generations
+  - '12'
+- - --steps
+  - '150'
+- - --pop
+  - '128'
+- - --policy_tick_stride
+  - '2'
+- - --grid_size
+  - '32'
+- - --checkpoint_period_gen
+  - '50'
+- - --checkpoint_rotate
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: exploration_chaos_week_quick
+  run_id_format: '{run_tag_prefix}__{case}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__{case}'

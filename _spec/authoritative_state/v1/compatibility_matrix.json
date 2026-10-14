@@ -1,0 +1,15 @@
+{
+  "compatible_sets": [
+    {
+      "bindings": {
+        "analysis_projection": "893d1aa492d7edb16abe7d41fe1d2a9ade3a7bd399fde786e568194417d1a6c1",
+        "checkpoint": "3227e67e69245d7e7a409b6fa5f4a30986039a9bb666811dd50681b011ee954e",
+        "chronicle": "e72288b8c2876647a49e1bab907d902bf8e0964a07c254fd0ef8fba8ebea005f",
+        "provider_projection": "e59be445587feeff89c10190f1c5a63c7471af6a22bcd5544eb69b0067d09433"
+      },
+      "compatibility_id": "eiel_authoritative_state_components_v1"
+    }
+  ],
+  "contract_hash": "5e75d8bf569249cc057563357bfbe3a210848dd90fbbe8e3d283d854d7275cfb",
+  "schema_version": "eiel_authoritative_state_compatibility_matrix_v1"
+}

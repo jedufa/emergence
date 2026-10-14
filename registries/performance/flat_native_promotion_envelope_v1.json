@@ -1,0 +1,424 @@
+{
+  "schema_version": "eiel_flat_native_promotion_envelope_v1",
+  "contract_id": "flat_native_promotion_envelope_v1",
+  "contract_version": 1,
+  "supported_profile": {
+    "world": "flat",
+    "world_aliases_allowed": [],
+    "policy": {
+      "family": "mlp",
+      "selection": "fixed",
+      "resident_gru_allowed": false
+    },
+    "device": {
+      "simulation": "cpu",
+      "tensor_bank": "cpu",
+      "cuda_allowed": false
+    },
+    "lifecycle": {
+      "branch": "flat_generation_birth_commit",
+      "reproduction": "asexual_resident_birth_commit",
+      "general_lifecycle_allowed": false
+    },
+    "chemistry": {
+      "mode": "disabled",
+      "functional_coupling_allowed": false,
+      "maintenance_allowed": false
+    },
+    "structural_operators": {
+      "c1_mode": "disabled",
+      "c2_mode": "disabled"
+    },
+    "checkpoint": {
+      "modes": [
+        {
+          "name": "off",
+          "supported": true,
+          "qualification": "exact_no_checkpoint"
+        },
+        {
+          "name": "complete_generation_write",
+          "supported": true,
+          "qualification": "exact_atomic_generation_boundary_v2"
+        },
+        {
+          "name": "native_save_resume",
+          "supported": true,
+          "qualification": "exact_generation_boundary_v2"
+        },
+        {
+          "name": "reference_to_native",
+          "supported": true,
+          "qualification": "exact_four_way_interchange"
+        },
+        {
+          "name": "native_to_reference",
+          "supported": true,
+          "qualification": "exact_four_way_interchange"
+        },
+        {
+          "name": "native_to_reference_to_native",
+          "supported": true,
+          "qualification": "exact_four_way_interchange"
+        },
+        {
+          "name": "partial_generation",
+          "supported": false,
+          "qualification": "unsupported"
+        }
+      ]
+    },
+    "reporting": {
+      "schema_version": "eiel_flat_native_reporting_v1",
+      "profile": "compact_route_neutral_exact",
+      "qualification": "route_neutral_exact",
+      "schemas": {
+        "population": "flat_population_reporting_v1",
+        "lineage": "eiel_native_lineage_metrics_input_v1",
+        "typed_lifecycle": "eiel_typed_lifecycle_event_v1",
+        "interchange": "eiel_reference_native_interchange_projection_v1"
+      },
+      "metrics_csv_exact": true,
+      "behaviors_exact": true,
+      "lineage_exact": true,
+      "typed_lifecycle_exact": true,
+      "stale_python_agent_population_source_allowed": false,
+      "missing_resident_field_allowed": false,
+      "native_owner_provenance_required": true,
+      "finalization_required": true
+    },
+    "output": {
+      "campaign_profile": "compact_default",
+      "profile_id": "compact_route_neutral_exact",
+      "required_files": [
+        "metrics.csv",
+        "behaviors.csv",
+        "metrics/lineage_descriptors.jsonl",
+        "metrics/lineage_summary.csv",
+        "metrics/typed_lifecycle_events.csv",
+        "metrics/typed_lifecycle_events.jsonl",
+        "viz/metrics_summary.csv"
+      ],
+      "byte_exact_files": [
+        "behaviors.csv",
+        "metrics/lineage_descriptors.jsonl",
+        "metrics/lineage_summary.csv",
+        "metrics/typed_lifecycle_events.csv",
+        "metrics/typed_lifecycle_events.jsonl"
+      ],
+      "semantic_exact_files": [
+        "metrics.csv",
+        "viz/metrics_summary.csv"
+      ],
+      "same_filenames_required": true,
+      "same_checkpoint_cadence_required": true,
+      "complete_flush_required": true,
+      "route_only_diagnostics_allowed": false,
+      "partial_outputs_promotion_eligible": false
+    }
+  },
+  "disallowed_features": [
+    "patch_world",
+    "jungle_predator_mechanics",
+    "wdl_delayed_world_mechanics",
+    "gru_resident_hidden_memory",
+    "prediction_or_coherence_mode",
+    "cuda_or_non_cpu_device",
+    "maintenance",
+    "non_disabled_chemistry",
+    "non_disabled_c1",
+    "non_disabled_c2",
+    "general_lifecycle_branch",
+    "unsupported_diagnostics_or_output_profile",
+    "partial_generation_checkpoint",
+    "unsupported_policy_family",
+    "world_alias",
+    "mate_required_reproduction",
+    "stochastic_shock",
+    "periodic_shock",
+    "pulsed_shock",
+    "restored_active_shock_state",
+    "shock_alias_or_override_activation",
+    "evolvable_cognition_surfaces",
+    "runtime_jit"
+  ],
+  "binary_contract": {
+    "runtime_schema_version": "eiel_native_runtime_v1",
+    "extension_abi_version": "eiel_native_runtime_abi_v1",
+    "extension_version": "eiel_native_runtime_flat_v1",
+    "prebuilt_extension_required": true,
+    "runtime_jit_allowed": false,
+    "extension_sha256_required": true,
+    "worker_homogeneity_required": true,
+    "worker_identity_fields": [
+      "extension_path",
+      "extension_sha256",
+      "extension_abi_version",
+      "extension_version",
+      "runtime_jit",
+      "native_owner_active",
+      "comparator_source_commit"
+    ],
+    "stale_comparator_allowed": false,
+    "mixed_ownership_allowed": false
+  },
+  "evidence_requirements": {
+    "required_artifacts": [
+      "candidate_release_commit",
+      "flat_owned_clean_source_manifest",
+      "final_extension_build_manifest",
+      "full_regression",
+      "representative_g2_parity",
+      "representative_g4_parity",
+      "representative_g8_parity",
+      "production_checkpoint_four_way",
+      "long_horizon_a",
+      "long_horizon_b",
+      "long_horizon_c",
+      "long_horizon_d",
+      "four_cell_output_fairness",
+      "authoritative_five_arm_benchmark",
+      "promotion_certificate",
+      "post_promotion_routing_matrix"
+    ],
+    "required_provenance_fields": [
+      "candidate_release_commit_sha",
+      "flat_owned_source_clean",
+      "extension_sha256",
+      "extension_abi_version",
+      "extension_version",
+      "cpp_source_sha256",
+      "binding_source_sha256",
+      "build_command",
+      "compiler_environment",
+      "regression_log_sha256",
+      "parity_result_sha256",
+      "fairness_result_sha256",
+      "benchmark_manifest_sha256",
+      "benchmark_result_sha256",
+      "long_horizon_result_sha256"
+    ],
+    "certificate_required_fields": [
+      "supported_envelope",
+      "candidate_release_commit_sha",
+      "extension_sha256",
+      "extension_abi_version",
+      "extension_version",
+      "reporting_schema_version",
+      "checkpoint_qualification",
+      "parity_evidence_version",
+      "g2_result_sha256",
+      "g4_result_sha256",
+      "g8_result_sha256",
+      "checkpoint_result_sha256",
+      "long_horizon_a_result_sha256",
+      "long_horizon_b_result_sha256",
+      "long_horizon_c_result_sha256",
+      "long_horizon_d_result_sha256",
+      "full_regression_sha256",
+      "output_fairness_result_sha256",
+      "output_fairness_ratio",
+      "benchmark_result_sha256",
+      "current_reference_w1_median_wall_s",
+      "current_native_w1_median_wall_s",
+      "w1_native_speedup",
+      "current_reference_w6_median_wall_s",
+      "current_native_w6_median_wall_s",
+      "w6_native_speedup",
+      "measured_arm_coefficients_of_variation",
+      "peak_memory_result",
+      "hidden_fallback_false",
+      "mixed_ownership_false",
+      "runtime_jit_false",
+      "decision_timestamp"
+    ],
+    "all_results_from_committed_source": true,
+    "uncommitted_implementation_allowed": false,
+    "hash_algorithm": "sha256",
+    "certificate_schema_version": "flat_native_promotion_certificate_v1",
+    "certificate_sha256_required": true,
+    "promotion_constants_must_reference_certificate": true
+  },
+  "failure_semantics": {
+    "routing_rules": [
+      {
+        "trigger": "unsupported_or_unqualified_request",
+        "phase": "before_native_selection",
+        "auto_behavior": "route_reference_with_structured_reason",
+        "explicit_native_behavior": "fail_closed_no_reference_execution"
+      },
+      {
+        "trigger": "missing_extension",
+        "phase": "before_native_selection",
+        "auto_behavior": "route_reference_with_structured_reason",
+        "explicit_native_behavior": "fail_closed_no_reference_execution"
+      },
+      {
+        "trigger": "abi_mismatch",
+        "phase": "before_native_selection",
+        "auto_behavior": "route_reference_with_structured_reason",
+        "explicit_native_behavior": "fail_closed_no_reference_execution"
+      },
+      {
+        "trigger": "version_mismatch",
+        "phase": "before_native_selection",
+        "auto_behavior": "route_reference_with_structured_reason",
+        "explicit_native_behavior": "fail_closed_no_reference_execution"
+      },
+      {
+        "trigger": "extension_import_failure",
+        "phase": "before_native_selection",
+        "auto_behavior": "route_reference_with_structured_reason",
+        "explicit_native_behavior": "fail_closed_no_reference_execution"
+      },
+      {
+        "trigger": "extension_load_failure",
+        "phase": "before_native_selection",
+        "auto_behavior": "route_reference_with_structured_reason",
+        "explicit_native_behavior": "fail_closed_no_reference_execution"
+      },
+      {
+        "trigger": "native_runtime_failure",
+        "phase": "after_native_selection",
+        "auto_behavior": "fail_cell_no_fallback",
+        "explicit_native_behavior": "fail_cell_no_fallback"
+      }
+    ],
+    "native_result_rejections": [
+      "ok_false",
+      "status_not_passed",
+      "malformed_capability_response",
+      "incomplete_generation",
+      "missing_finalization",
+      "missing_required_output",
+      "inconsistent_owner_identity",
+      "hidden_fallback",
+      "runtime_jit",
+      "extension_hash_mismatch",
+      "partial_checkpoint",
+      "output_flush_failure",
+      "mixed_ownership",
+      "worker_identity_mismatch",
+      "stale_comparator",
+      "reporting_unqualified",
+      "benchmark_unqualified"
+    ],
+    "rejection_enforcement_scopes": [
+      "runner",
+      "campaign_analyzer",
+      "benchmark_analyzer",
+      "promotion_gate"
+    ],
+    "checkpoint_write_failures": [
+      "serialization_failure",
+      "sidecar_write_failure",
+      "atomic_rename_failure",
+      "fsync_or_flush_failure",
+      "insufficient_space",
+      "permission_failure",
+      "malformed_projection",
+      "digest_failure"
+    ],
+    "checkpoint_write_failure_behavior": "fail_cell_no_success_result",
+    "failure_atomicity": {
+      "success_marker_allowed": false,
+      "promotion_eligible_result_allowed": false,
+      "partial_metrics_accepted": false,
+      "partial_checkpoint_valid": false,
+      "durable_failure_status_required": true,
+      "durable_first_cause_required": true,
+      "mid_cell_fallback_allowed": false,
+      "partial_reference_continuation_allowed": false,
+      "partial_output_handling": "quarantine_or_mark_incomplete",
+      "benchmark_inventory_excludes_failed_or_incomplete": true
+    }
+  },
+  "promotion_thresholds": {
+    "measurement": {
+      "primary_statistic": "median_campaign_wall_s",
+      "w1_repetitions_min": 5,
+      "w6_repetitions_min": 3,
+      "warmup_repetitions": 1
+    },
+    "primary_performance": {
+      "comparison": "current_reference_w1_median_over_current_native_w1_median",
+      "minimum_speedup": 1.5,
+      "inclusive": true
+    },
+    "secondary_performance": {
+      "comparison": "current_reference_w6_median_over_current_native_w6_median",
+      "minimum_speedup": 1.15,
+      "inclusive": true
+    },
+    "historical_performance": {
+      "comparison": "historical_reference_to_current_native",
+      "required_for_promotion": false,
+      "incomparable_contract_fails_promotion": false
+    },
+    "stability": {
+      "statistic": "coefficient_of_variation",
+      "maximum": 0.05,
+      "inclusive": true,
+      "scope": "every_promoted_measured_arm"
+    },
+    "output_fairness": {
+      "statistic": "native_to_reference_output_bytes_ratio",
+      "minimum": 0.8,
+      "maximum": 1.25,
+      "inclusive": true,
+      "scope": "every_measured_pair_and_aggregate"
+    },
+    "memory": {
+      "statistic": "native_peak_rss_over_current_reference_peak_rss_same_cell",
+      "maximum": 1.25,
+      "inclusive": true,
+      "exception_policy": "predeclared_documented_bounded_exception_only",
+      "accepted_exceptions": []
+    },
+    "fairness_requirements": [
+      "exact_scientific_semantics",
+      "exact_public_reporting",
+      "same_filenames",
+      "same_checkpoint_cadence",
+      "complete_output_flush",
+      "failed_or_incomplete_cells_excluded",
+      "w6_worker_extension_identity_homogeneous",
+      "no_hidden_fallback",
+      "no_mixed_ownership",
+      "runtime_jit_false"
+    ]
+  },
+  "post_promotion_proof": {
+    "required": true,
+    "after_atomic_promotion_commit": true,
+    "expected_promotion_state": {
+      "native_safe_default_promotion_accepted": true,
+      "parity_evidence_version_source": "promotion_certificate",
+      "certificate_pointer_required": true
+    },
+    "cases": [
+      "supported_flat_cpu_fixed_mlp_auto_selects_native",
+      "explicit_reference_remains_reference",
+      "supported_explicit_native_selects_native",
+      "unsupported_auto_routes_reference_with_structured_reason",
+      "unsupported_explicit_native_fails_closed",
+      "missing_extension_auto_routes_reference_with_structured_reason",
+      "missing_extension_explicit_native_fails_closed",
+      "abi_or_version_mismatch_distinguishes_auto_and_explicit_native",
+      "failed_native_result_rejected",
+      "checkpoint_write_error_rejected",
+      "all_workers_use_one_extension_identity",
+      "default_native_scientific_smoke_exact"
+    ],
+    "requirements": [
+      "default_native_provenance",
+      "extension_sha256_match",
+      "runtime_jit_false",
+      "hidden_fallback_false",
+      "mixed_ownership_false",
+      "exact_scientific_outputs",
+      "exact_public_outputs",
+      "complete_output_flush"
+    ]
+  }
+}

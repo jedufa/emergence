@@ -1,0 +1,41 @@
+harness_api: 1
+version: 1
+name: validation_knob_pop_cfg_population_size_quick
+description: Per-knob A/B validation for pop_cfg.population_size. Baseline vs variant
+  differ only by this knob (or required enabling context).
+intent:
+  question: Is knob pop_cfg.population_size traceably applied (config + required artifacts)
+    in an A/B run pair?
+  axes:
+  - ab
+matrix_order:
+- ab
+- seed
+axes:
+  ab:
+    values:
+    - baseline
+    - variant
+    flags:
+      baseline: []
+      variant:
+      - --pop
+      - '129'
+seeds:
+- 1
+cli_defaults:
+- - --generations
+  - '1'
+- - --steps
+  - '150'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: valknob_quick
+  run_id_format: validation_knob_pop_cfg_population_size_quick__ab_{ab}__seed{seed:06d}
+  run_tag_format: valknob_quick__ab_{ab}

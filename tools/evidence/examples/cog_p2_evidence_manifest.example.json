@@ -1,0 +1,50 @@
+{
+  "branch": "example/cog-p2-placeholder",
+  "campaign_id": "placeholder_cog_p2_campaign",
+  "completed_run_count": 0,
+  "config_files": [],
+  "config_glob": "**/config.json",
+  "device": "cuda",
+  "example_note": "Placeholder only. This is not a real COG-P2 scientific claim.",
+  "failed_run_count": 0,
+  "generations": 0,
+  "git_commit": "0000000000000000000000000000000000000000",
+  "grid_size": 0,
+  "harness_manifest_paths": [],
+  "harness_summary_paths": [],
+  "metrics_glob": "**/metrics.csv",
+  "output_paths": [],
+  "planned_run_count": 0,
+  "population_size": 0,
+  "profile": "COG-P2",
+  "registry_path": "../../../_spec/registry/v1/placeholder_cog_p2.yaml",
+  "run_root": "/tmp/placeholder_cog_p2_campaign",
+  "scenario_matrix": {
+    "dimensions": [
+      {
+        "name": "ecology_context",
+        "values": [
+          "placeholder_context"
+        ]
+      },
+      {
+        "name": "init_arm",
+        "values": [
+          "placeholder_init"
+        ]
+      },
+      {
+        "name": "cognition_condition",
+        "values": [
+          "placeholder_condition"
+        ]
+      }
+    ]
+  },
+  "seed_list": [
+    0
+  ],
+  "steps_per_generation": 0,
+  "timestamp_utc": "2026-07-02T00:00:00Z",
+  "worktree": "../../../"
+}

@@ -1,0 +1,86 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_dependency_closure_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "closure_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "dependencies": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "acceptance_scope": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "dependency_work_ids": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "limitations": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array"
+          },
+          "record_sha256": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "status": {
+            "type": "string"
+          },
+          "terminal_decision_receipt": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "work_execution_ref": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "work_id": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "work_id",
+          "status",
+          "record_sha256",
+          "work_execution_ref",
+          "acceptance_scope",
+          "limitations",
+          "terminal_decision_receipt",
+          "dependency_work_ids"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "root_work_id": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_dependency_closure_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "root_work_id",
+    "dependencies",
+    "closure_sha256"
+  ],
+  "title": "EIEL dependency closure v1",
+  "type": "object"
+}

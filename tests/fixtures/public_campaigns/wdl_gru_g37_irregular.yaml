@@ -1,0 +1,97 @@
+# Synthetic compile-only fixture: artifact locators are intentionally unavailable.
+schema_version: eiel_campaign_v1
+campaign_id: wdl-gru-g37-irregular
+description: Stateful recurrent arbitrary-generation architecture proof.
+no_claims: Bounded task and continuation campaign only; no broad cognition or emergence claim.
+world:
+  base: patch
+  overlays: [wdl_delayed_hazard]
+policy:
+  family: stable_gru
+selection:
+  mode: standard
+parameters:
+  patch.grid_size: 16
+  patch.initial_population: 64
+  patch.capacity: 256
+  patch.founder_placement: balanced
+  policy.hidden_width: 64
+  policy.reset_hidden_each_tick: false
+  wdl.delay_ticks: 12
+  wdl.cue_duration_ticks: 1
+  wdl.active_duration_ticks: 1
+  wdl.cue_visible_at_decision: false
+matrix:
+  dimensions:
+    - id: ecology_seed
+      description: Independent ecological source seed.
+      values: [101, 202, 303, 404, 505, 606, 707]
+    - id: task_seed
+      description: Independent task seed.
+      values: [9201]
+    - id: hazard_intensity
+      description: Typed WDL treatment value.
+      values: [0.05, 0.1, 0.2]
+  parameter_bindings:
+    hazard_intensity: wdl.intensity
+  seed_bindings:
+    ecology_seed: ecology
+    task_seed: task
+  include: []
+  exclude: []
+  expected_cells: 21
+  max_cells: 100
+execution:
+  backend: cuda_resident
+  generations: 37
+  ticks_per_generation: 80
+  batch:
+    mode: bounded
+    maximum: 11
+  budgets:
+    vram_bytes: 4000000000
+    disk_bytes: 100000000000
+    wall_seconds: 172800
+  cancellation: true
+checkpoints:
+  milestones: [7, 19, 37]
+  digest_every_generation: true
+comparisons:
+  fresh_repeats: 2
+  continuation_splits: [7, 19]
+artifacts:
+  cuda_extension:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/eiel_cuda_architecture_b_flattened_wdl_controller_v2.so
+    sha256: 79f0701fbacdc8738e358cf1f269e542fbbf757feb5bd3adc16aeff0098b2dd8
+    kind: cuda_extension
+    abi: architecture_b_wdl_gru_v3
+  extension_manifest:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/eiel_cuda_architecture_b_flattened_wdl_controller_v2.so.manifest.json
+    sha256: df222cfcd5be54ed28cef3f3bc228a7818cc81639d9d989a65a02010b758583d
+    kind: extension_manifest
+    abi: architecture_b_wdl_gru_v3
+  qualification_receipt:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/receipts/wdl_stable_gru_native_binding_v1/qualification.json
+    sha256: 2670e976d6c9bf6dd631bff00e2482c18530c2c35c5d73752e2fc49a6f697140
+    kind: qualification_receipt
+    abi: architecture_b_wdl_gru_v3
+  reporting_receipt:
+    path: /tmp/emergence-fixture/runtime/artifacts/eiel_unified_production_engine_51effa83b/receipts/wdl_stable_gru_native_binding_v1/reporting.json
+    sha256: e02e3d0a037bbe205f82942a6d2fae225ed4a198a9ffe06bb723a85b2fed5ff7
+    kind: reporting_receipt
+    abi: architecture_b_wdl_gru_v3
+analysis:
+  required_metrics: [policy.task_accuracy, policy.recurrent_cost]
+  optional_metrics: [lineage.active]
+  rules:
+    - id: task-above-chance
+      metric: policy.task_accuracy
+      aggregate: mean
+      group_by: [hazard_intensity]
+      pair_by: [ecology_seed]
+      operator: ">"
+      threshold: 0.25
+      minimum_coverage: 1.0
+output:
+  runtime_root: /tmp/emergence-fixture/runtime/campaigns/wdl-gru-g37-irregular-f860b922
+  reporting_profile: compact

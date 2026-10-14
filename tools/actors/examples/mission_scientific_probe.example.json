@@ -1,0 +1,85 @@
+{
+  "authority_context": {
+    "active_goal": null,
+    "approved_work_package": null,
+    "authorization_basis": null,
+    "operator_instruction_ref": null,
+    "preflight": null,
+    "preflight_exemption": null,
+    "preflight_fail_closed_acknowledged": false,
+    "repository_fallback_reason": null,
+    "schema_version": "eiel_mission_authority_context_v1"
+  },
+  "claim_ceiling": "A bounded perception-probe result under the tested matrix only.",
+  "controls": [
+    "perception normal",
+    "perception ablated",
+    "flat matched control"
+  ],
+  "decision_rule": "Apply the implemented evidence profile exactly as versioned.",
+  "decision_to_enable": "Continue or close the bounded perception hypothesis.",
+  "failure_criteria": [
+    "the profile returns B, C, or D"
+  ],
+  "mission_type": "SCIENTIFIC_PROBE",
+  "out_of_scope": [
+    "coefficient tuning",
+    "general cognition or emergence claims"
+  ],
+  "qualification_request": {
+    "track_label": "b48w16p64c128gNt160gpu"
+  },
+  "question": "Does perception-normal outperform the matched ablation under the declared pressure context?",
+  "references": {
+    "campaign_output_paths": [],
+    "campaign_spec_paths": [],
+    "evidence_assessment_ids": [],
+    "implementation_report_refs": [],
+    "librarian_document_ids": [],
+    "qualification_record_ids": [],
+    "resource_record_ids": []
+  },
+  "required_closeout_refs": [
+    "evidence_refs",
+    "qualification_refs",
+    "resource_refs",
+    "report_refs",
+    "campaign_output_refs",
+    "source_identity",
+    "librarian_document_ids"
+  ],
+  "required_evidence": [
+    "complete paired outputs",
+    "reward-leakage audit",
+    "technical integrity record"
+  ],
+  "resource_demand": {
+    "device": "cuda",
+    "exclusive_gpu": true,
+    "minimum_ram_available_gib": 6,
+    "minimum_vram_available_gib": 4
+  },
+  "schema_version": "eiel_mission_specification_v2",
+  "scope": [
+    "fixed matched matrix",
+    "predeclared seeds and controls"
+  ],
+  "stopping_rules": [
+    "stop after the fixed matrix",
+    "do not tune to rescue a negative result"
+  ],
+  "success_criteria": [
+    "the versioned evidence profile returns its bounded positive criterion"
+  ],
+  "tasks": [
+    "check technical authority",
+    "assess resources",
+    "execute externally",
+    "assess evidence",
+    "close mission"
+  ],
+  "technical_qualification_requirements": [
+    "current admitted execution route"
+  ],
+  "title": "Run one bounded perception probe"
+}

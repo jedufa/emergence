@@ -1,0 +1,20 @@
+schema_version: eiel_capacity_profile_v1
+profile_id: conservative-cpu-v1
+description: Conservative CPU-only defaults for bounded local validation.
+build:
+  max_jobs: 1
+paths:
+  runtime_root: /tmp/eiel-runtime
+validation:
+  max_parallel_steps: 1
+  capture_bytes: 1048576
+  failure_policy: fail_fast
+campaign:
+  workers: 1
+benchmark:
+  batch_cells: 1
+  warmups: 0
+  repetitions: 1
+  device_selector: cpu
+  objective: correctness
+  memory_headroom_bytes: 536870912

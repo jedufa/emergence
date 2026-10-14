@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causyl.local/schemas/eiel_qualification_plan_v1.schema.json",
+  "title": "EIEL Qualification Plan v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan_id", "dimensions", "cases"],
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_plan_v1"},
+    "plan_id": {"$ref": "#/$defs/id"},
+    "description": {"type": "string"},
+    "capability_requirements": {"$ref": "#/$defs/ids"},
+    "qualification_scope": {"$ref": "#/$defs/qualificationScope"},
+    "dimensions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/dimension"}
+    },
+    "cases": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/case"}
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "qualification_scope": {
+            "properties": {
+              "requested_dimensions": {
+                "contains": {
+                  "enum": [
+                    "LONG_HORIZON_RUNABILITY_QUALIFIED",
+                    "SCIENCE_ROUTE_QUALIFIED"
+                  ]
+                }
+              }
+            },
+            "required": ["requested_dimensions"]
+          }
+        },
+        "required": ["qualification_scope"]
+      },
+      "then": {
+        "properties": {
+          "qualification_scope": {
+            "required": ["target", "evidence_bindings"],
+            "properties": {
+              "target": {
+                "properties": {
+                  "total_ticks": {"minimum": 5000}
+                }
+              },
+              "evidence_bindings": {"minItems": 1}
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "qualification_scope": {
+            "properties": {
+              "requested_dimensions": {
+                "contains": {"const": "LONG_HORIZON_RUNABILITY_QUALIFIED"}
+              }
+            },
+            "required": ["requested_dimensions"]
+          }
+        },
+        "required": ["qualification_scope"]
+      },
+      "then": {
+        "properties": {
+          "qualification_scope": {
+            "properties": {
+              "evidence_bindings": {
+                "contains": {
+                  "properties": {
+                    "supports_dimensions": {
+                      "contains": {"const": "LONG_HORIZON_RUNABILITY_QUALIFIED"}
+                    }
+                  },
+                  "required": ["supports_dimensions"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "qualification_scope": {
+            "properties": {
+              "requested_dimensions": {
+                "contains": {"const": "SCIENCE_ROUTE_QUALIFIED"}
+              }
+            },
+            "required": ["requested_dimensions"]
+          }
+        },
+        "required": ["qualification_scope"]
+      },
+      "then": {
+        "properties": {
+          "qualification_scope": {
+            "properties": {
+              "evidence_bindings": {
+                "contains": {
+                  "properties": {
+                    "supports_dimensions": {
+                      "contains": {"const": "SCIENCE_ROUTE_QUALIFIED"}
+                    }
+                  },
+                  "required": ["supports_dimensions"]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {"type": "string", "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$"},
+    "ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/id"}},
+    "scalar": {"type": ["boolean", "integer", "number", "string"]},
+    "qualificationDimensions": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "BOUNDED_ROUTE_QUALIFIED",
+          "LONG_HORIZON_RUNABILITY_QUALIFIED",
+          "SCIENCE_ROUTE_QUALIFIED"
+        ]
+      }
+    },
+    "qualificationTarget": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "execution_route_identity",
+        "time_authority",
+        "total_ticks",
+        "batch_cells",
+        "grid_width",
+        "initial_population",
+        "resident_capacity"
+      ],
+      "properties": {
+        "execution_route_identity": {"const": "tick_native_execution_route_v1"},
+        "time_authority": {"const": "absolute_tick_v1"},
+        "total_ticks": {"type": "integer", "minimum": 1},
+        "batch_cells": {"type": "integer", "minimum": 1},
+        "grid_width": {"type": "integer", "minimum": 1},
+        "initial_population": {"type": "integer", "minimum": 1},
+        "resident_capacity": {"type": "integer", "minimum": 1},
+        "source_commit": {"type": "string", "pattern": "^[0-9a-f]{40,64}$"},
+        "route_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "evidenceBinding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["binding_id", "kind", "sha256", "supports_dimensions"],
+      "properties": {
+        "binding_id": {"$ref": "#/$defs/id"},
+        "kind": {
+          "enum": [
+            "bounded_route_receipt",
+            "long_horizon_run_receipt",
+            "checkpoint_restore_receipt",
+            "resource_safety_receipt",
+            "canonical_full_route_receipt"
+          ]
+        },
+        "uri": {"type": "string", "minLength": 1},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "supports_dimensions": {"$ref": "#/$defs/qualificationDimensions"}
+      }
+    },
+    "qualificationScope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["requested_dimensions"],
+      "properties": {
+        "requested_dimensions": {"$ref": "#/$defs/qualificationDimensions"},
+        "target": {"$ref": "#/$defs/qualificationTarget"},
+        "evidence_bindings": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/evidenceBinding"}
+        },
+        "limitations": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1}
+        }
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "values"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "description": {"type": "string"},
+        "values": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/scalar"}}
+      }
+    },
+    "case": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "assignments"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "description": {"type": "string"},
+        "assignments": {"type": "object", "additionalProperties": {"$ref": "#/$defs/scalar"}},
+        "prerequisites": {"$ref": "#/$defs/ids"},
+        "capability_requirements": {"$ref": "#/$defs/ids"}
+      }
+    }
+  }
+}

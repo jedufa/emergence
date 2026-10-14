@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_artifact_entry_v1.schema.json",
+  "title": "EIEL Artifact Entry V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "artifact_id",
+    "schema_version",
+    "locator",
+    "locator_type",
+    "artifact_role",
+    "media_type",
+    "size_bytes",
+    "sha256",
+    "checksum_verification_state",
+    "portability_state",
+    "integrity_state",
+    "access_sensitivity",
+    "rights_license_state",
+    "observed_existence_time",
+    "legacy_exceptions"
+  ],
+  "properties": {
+    "artifact_id": { "type": "string", "pattern": "^eiel-art-[a-z0-9][a-z0-9-]{8,}$" },
+    "schema_version": { "const": "eiel_artifact_entry_v1" },
+    "locator": { "type": "string", "minLength": 1 },
+    "locator_type": { "enum": ["repo_relative_path", "runtime_path", "cold_storage_path", "uri", "archive_member", "unknown"] },
+    "artifact_role": { "enum": ["canonical_report", "frozen_report", "evidence_package", "manifest", "table", "receipt", "generated_view", "legacy_physical_file", "raw_pointer"] },
+    "media_type": { "type": "string", "minLength": 1 },
+    "size_bytes": { "type": ["integer", "null"], "minimum": 0 },
+    "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+    "checksum_verification_state": { "enum": ["verified", "missing", "mismatch", "not_applicable", "unknown"] },
+    "package_member_role": { "type": ["string", "null"] },
+    "git_binding": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+        "path": { "type": "string" }
+      }
+    },
+    "portability_state": { "enum": ["portable", "contains_absolute_paths", "host_local", "unknown"] },
+    "integrity_state": { "enum": ["unknown", "valid", "invalid", "unsafe", "in_progress_or_unstable"] },
+    "access_sensitivity": { "enum": ["public_candidate", "internal", "sensitive", "unknown"] },
+    "rights_license_state": { "enum": ["project_owned", "third_party", "mixed", "unknown"] },
+    "observed_existence_time": { "type": ["string", "null"] },
+    "legacy_exceptions": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  }
+}

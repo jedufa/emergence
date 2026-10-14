@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:control-descriptor",
+  "title": "EIEL Science Control Descriptor V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "control_id",
+    "value_contract",
+    "unit",
+    "activation_phases",
+    "heterogeneity_modes",
+    "schedule_kinds",
+    "readback_capability_ids",
+    "interaction_ids",
+    "component_id",
+    "qualified_envelope_subjects"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_control_descriptor_v1"},
+    "control_id": {"$ref": "#/$defs/token"},
+    "value_contract": {"$ref": "#/$defs/canonical_payload"},
+    "unit": {"type": "string", "minLength": 1},
+    "activation_phases": {"$ref": "#/$defs/token_array"},
+    "heterogeneity_modes": {"$ref": "#/$defs/token_array"},
+    "schedule_kinds": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "piecewise_constant_absolute_ticks",
+          "pulse_absolute_ticks",
+          "registered_deterministic_trigger",
+          "static",
+          "switch_absolute_tick"
+        ]
+      }
+    },
+    "readback_capability_ids": {"$ref": "#/$defs/token_array"},
+    "interaction_ids": {"$ref": "#/$defs/token_array"},
+    "component_id": {"$ref": "#/$defs/token"},
+    "qualified_envelope_subjects": {"$ref": "#/$defs/token_array"}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "token_array": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/token"}
+    },
+    "canonical_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "payload"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/token"},
+        "payload": true
+      }
+    }
+  }
+}

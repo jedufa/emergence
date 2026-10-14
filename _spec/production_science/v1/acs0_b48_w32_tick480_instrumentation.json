@@ -1,0 +1,64 @@
+{
+  "schema_version": "eiel_production_science_request_v1",
+  "request_id": "acs0-b48-w32-tick480-instrumentation-v1",
+  "world_width": 32,
+  "batch_cells": 48,
+  "total_ticks": 480,
+  "checkpoint_ticks": [480],
+  "acs_capture_instrumentation": true,
+  "seeds": [1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008],
+  "configurations": [
+    {
+      "id": "baseline",
+      "controls": {
+        "env_cfg.jungle_predator_base_risk": 0.1,
+        "env_cfg.move_cost": 0.1,
+        "env_cfg.wdl_delayed_hazard_radius": 1
+      }
+    },
+    {
+      "id": "patch-low",
+      "controls": {
+        "env_cfg.jungle_predator_base_risk": 0.1,
+        "env_cfg.move_cost": 0.05,
+        "env_cfg.wdl_delayed_hazard_radius": 1
+      }
+    },
+    {
+      "id": "patch-high",
+      "controls": {
+        "env_cfg.jungle_predator_base_risk": 0.1,
+        "env_cfg.move_cost": 0.2,
+        "env_cfg.wdl_delayed_hazard_radius": 1
+      }
+    },
+    {
+      "id": "jungle-high",
+      "controls": {
+        "env_cfg.jungle_predator_base_risk": 0.3,
+        "env_cfg.move_cost": 0.1,
+        "env_cfg.wdl_delayed_hazard_radius": 1
+      }
+    },
+    {
+      "id": "wdl-wide",
+      "controls": {
+        "env_cfg.jungle_predator_base_risk": 0.1,
+        "env_cfg.move_cost": 0.1,
+        "env_cfg.wdl_delayed_hazard_radius": 3
+      }
+    },
+    {
+      "id": "multi-control",
+      "controls": {
+        "env_cfg.jungle_predator_base_risk": 0.3,
+        "env_cfg.move_cost": 0.2,
+        "env_cfg.wdl_delayed_hazard_radius": 3
+      }
+    }
+  ],
+  "deliberate_restore_ticks": [],
+  "observability": {
+    "living_lineage_canopy": true
+  }
+}

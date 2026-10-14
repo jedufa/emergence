@@ -1,0 +1,41 @@
+{
+  "allowed_authority_phases": [
+    "implementation",
+    "repair",
+    "review"
+  ],
+  "automation_policy": {
+    "allow_fresh_session": true,
+    "allow_independent_review": true,
+    "allow_repair": true,
+    "allow_resume": true,
+    "allow_work_completion": false
+  },
+  "created_by": "HUMAN_OPERATOR",
+  "enabled": true,
+  "lease_policy": {
+    "duration_seconds": 3600,
+    "heartbeat_interval_seconds": 300
+  },
+  "note": "Example only. The Scheduler remains optional.",
+  "queue": {
+    "priority": 100
+  },
+  "repository": {
+    "expected_branch": "main",
+    "repo_root": "/path/to/eiel"
+  },
+  "schema_version": "eiel_dispatch_request_v1",
+  "work_id": "WORK-SCHEDULER-EXAMPLE",
+  "worker_profile": {
+    "ephemeral": true,
+    "fake_behavior": "checkpoint",
+    "fake_fixture_content": "scheduler fake worker fixture\n",
+    "launcher_type": "fake",
+    "model": null,
+    "profile": null,
+    "profile_id": "fake-qualification",
+    "reasoning_level": null,
+    "sandbox": "workspace-write"
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "$id": "eiel_repair_lineage_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "finding_ids": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "repair_session_ref": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "rereview_session_ref": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "resolution": {
+      "enum": [
+        "OPEN",
+        "REPAIRED",
+        "WAIVED",
+        "REJECTED"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_repair_lineage_v1"
+    },
+    "source_review_ref": {
+      "type": "object"
+    },
+    "waiver_authority": {
+      "type": [
+        "object",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "source_review_ref",
+    "finding_ids",
+    "resolution",
+    "recorded_at_utc"
+  ],
+  "title": "EIEL repair lineage v1",
+  "type": "object"
+}

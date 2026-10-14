@@ -1,0 +1,83 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_review_execution_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "command_or_source": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "environment": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "evidence_relation": {
+      "enum": [
+        "EXECUTED_IN_REVIEW",
+        "IMPORTED_AND_VERIFIED"
+      ]
+    },
+    "executed_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "execution_mode": {
+      "enum": [
+        "REVIEWER_EXECUTED",
+        "EXTERNAL_IMPORTED",
+        "INHERITED"
+      ]
+    },
+    "executor_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "output_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "review_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "reviewed_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_review_execution_receipt_v1"
+    },
+    "source_execution_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "enum": [
+        "PASS",
+        "FAIL",
+        "NOT_RUN",
+        "BLOCKED"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "execution_mode",
+    "reviewed_commit",
+    "command_or_source",
+    "status",
+    "output_sha256",
+    "executor_id",
+    "executed_at_utc",
+    "environment",
+    "review_session_id",
+    "evidence_relation",
+    "source_execution_id"
+  ],
+  "title": "EIEL review execution provenance receipt",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.acceptance",
+  "x-eiel-persistence-class": "review_execution_evidence"
+}

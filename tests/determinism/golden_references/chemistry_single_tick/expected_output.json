@@ -1,0 +1,5 @@
+{
+  "case_id": "golden_chemistry_single_tick",
+  "schema_version": "golden_reference_expected_output_v1",
+  "note": "Populate with canonical expected chemistry output/hash when micro-golden execution is wired"
+}

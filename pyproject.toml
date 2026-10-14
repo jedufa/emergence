@@ -1,0 +1,100 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "emergence"
+version = "0.1.0a1"
+description = "A computational laboratory for ecological adaptation and evolutionary research"
+readme = "README.md"
+requires-python = ">=3.14"
+dependencies = ["numpy>=1.24", "numba>=0.57", "PyYAML>=6", "jsonschema>=4"]
+
+[project.optional-dependencies]
+research = ["torch>=2.1", "pandas>=2", "psutil>=5", "packaging>=23"]
+dev = ["pytest>=8", "setuptools>=68", "wheel", "build", "ninja"]
+
+[tool.black]
+target-version = ["py314"]
+
+[project.scripts]
+emergence-dev = "tools.emergence_dev.cli:main"
+eiel = "tools.eiel:main"
+eiel-evidence-librarian = "tools.evidence.librarian.cli:main"
+eiel-ingest-download = "tools.evidence.librarian.ingress:download_main"
+eiel-erm = "tools.resource_monitor:main"
+
+[tool.setuptools]
+package-dir = {"" = ".", "tools" = "tools", "engine" = "engine"}
+license-files = ["LICENSE", "LICENSES/*.txt", "THIRD_PARTY_NOTICES.md", "engine/option_d/native/LICENSING.md", "engine/tw_rngv2/native/LICENSING.md"]
+
+[tool.setuptools.packages.find]
+where = [".", "engine"]
+namespaces = false
+exclude = ["*.__pycache__", "*.__pycache__.*"]
+include = [
+    "agents*",
+    "artifact_catalog*",
+    "authoritative_state*",
+    "campaigns*",
+    "capacity_profiles*",
+    "device_selection*",
+    "dispatch_planning*",
+    "eiel_composition*",
+    "emergence_contracts*",
+    "emergence_worldkit*",
+    "emergence_agentkit*",
+    "emergence_lab*",
+    "emergence_evidence*",
+    "infra*",
+    "scripts*",
+    "_spec*",
+    "_artifacts",
+    "_config*",
+    "_runner*",
+    "registries*",
+    "engine*",
+    "env*",
+    "evolution*",
+    "experiments*",
+    "experiments_shared*",
+    "monitoring*",
+    "native_runtime*",
+    "perf*",
+    "planning_receipts*",
+    "qrr*",
+    "qualification_plans*",
+    "simulation*",
+    "tools*",
+    "validation_plans*",
+    "wrc*",
+]
+
+[tool.setuptools.package-data]
+"*" = ["*.json", "*.yaml", "*.yml", "*.csv", "*.cu", "*.cpp", "*.cc", "*.c", "*.h", "*.hpp", "*.cuh", "*.map", "*.html", "*.css", "*.js", "CMakeLists.txt", "native/**/*"]
+emergence_contracts = ["schemas/*.json", "resources/*.json", "resources/*.csv"]
+_spec = ["**/*.json", "**/*.yaml", "**/*.yml", "**/*.csv"]
+_config = ["**/*.json", "**/*.yaml", "**/*.yml"]
+registries = ["**/*.json", "**/*.yaml", "**/*.yml"]
+"tools.architecture" = ["baselines/*.json", "*.json"]
+"tools.visualization.living_lineage_canopy" = ["fixtures/*.json", "*.html"]
+"infra.webui" = ["static/**/*"]
+
+_artifacts = ["eiel-platform-2-1-adversarial-audit-20260822/09_qualification_impact_risk.md", "tw-cuda-full-evolution-reform-20260825/architecture_contract.json", "tw-cuda-full-evolution-reform-20260825/performance_restructure_contract.json", "tw-cuda-full-evolution-reform-20260825/science_consumer_extension_contract.json", "tw-cuda-full-evolution-reform-20260825/host_layout_receipt.json", "tw-cuda-full-evolution-reform-20260825/validation_matrix.json"]
+
+engine = ["tools/*.py"]
+"engine.native_runtime" = [
+    "authoritative_state/*.hpp",
+    "wdl/*.cpp",
+    "wdl/*.h",
+    "wdl/*.hpp",
+]
+native_runtime = [
+    "authoritative_state/*.hpp",
+    "wdl/*.cpp",
+    "wdl/*.h",
+    "wdl/*.hpp",
+]
+
+[tool.setuptools.exclude-package-data]
+"*" = ["catalog_source/**/*", "verification/v1_17_source_manifest.json", "verification/v1_10_2_source_manifest.json", "storage_audit/storage_inventory.json", "EIEL_Storage_Growth_Root_Cause_Audit.md", "verification/v1_9_context_efficiency_baseline.json", "verification/post_return_operator_q1_ledger.json", "verification/v1_5_integration_test_ledger.json"]

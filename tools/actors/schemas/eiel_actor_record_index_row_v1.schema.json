@@ -1,0 +1,24 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_actor_record_index_row_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EIEL Actor Record Index Row V1",
+  "description": "One independently replaceable row in the sharded derived actor-record index.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_actor_record_index_row_v1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "record_type": {"type": ["string", "null"]},
+    "actor": {"type": ["string", "null"]},
+    "status": {"type": ["string", "null"]},
+    "revision": {"type": ["integer", "null"], "minimum": 1},
+    "updated_at_utc": {"type": ["string", "null"]},
+    "record_sha256": {"type": ["string", "null"]},
+    "path": {"type": "string"},
+    "errors": {"type": "array", "items": {"type": "string"}},
+    "row_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "required": ["schema_version", "record_id", "record_type", "actor", "status", "revision", "updated_at_utc", "record_sha256", "path", "errors", "row_sha256"],
+  "x-eiel-owner": "tools.actors.store",
+  "x-eiel-persistence-class": "durable_derived_index_row"
+}

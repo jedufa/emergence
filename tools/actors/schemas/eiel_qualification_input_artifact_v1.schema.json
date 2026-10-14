@@ -1,0 +1,24 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_qualification_input_artifact_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_input_artifact_v1"},
+    "artifact_id": {"minLength": 1, "type": "string"},
+    "kind": {"minLength": 1, "type": "string"},
+    "source_uri": {"minLength": 1, "type": "string"},
+    "bytes_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "size_bytes": {"minimum": 0, "type": "integer"},
+    "content_path": {"minLength": 1, "type": "string"},
+    "state_root_locator": {"minLength": 1, "type": "string"},
+    "recorded_at_utc": {"minLength": 1, "type": "string"}
+  },
+  "required": [
+    "schema_version", "artifact_id", "kind", "source_uri", "bytes_sha256",
+    "size_bytes", "content_path", "state_root_locator", "recorded_at_utc"
+  ],
+  "title": "EIEL retained qualification input artifact V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.qualification_manager",
+  "x-eiel-persistence-class": "immutable_content_addressed_authoritative_input"
+}

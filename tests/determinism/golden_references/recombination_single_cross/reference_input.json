@@ -1,0 +1,5 @@
+{
+  "case_id": "golden_recombination_single_cross",
+  "schema_version": "golden_reference_input_v1",
+  "description": "Single recombination deterministic reference input"
+}

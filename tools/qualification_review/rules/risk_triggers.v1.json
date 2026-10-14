@@ -1,0 +1,18 @@
+{
+  "schema_version": "eiel_qualification_review_risk_rules_v1",
+  "judgment_evidence_statuses": [
+    "CONTRADICTORY",
+    "INCOMPLETE",
+    "ANOMALOUS",
+    "WARNING"
+  ],
+  "question_templates": {
+    "authority_change": "Does transition {transition_id} support the proposed authority scope without exceeding the bounded evidence?",
+    "changed_runtime_dependency": "Do changed runtime dependencies in {transition_id} preserve the qualification-supporting assumptions and claim boundary?",
+    "inheritance_boundary_change": "Can inherited evidence in {transition_id} cross the changed dependency boundary, and on what compatibility basis?",
+    "evidence_condition": "What is the bounded meaning of the contradictory, incomplete, anomalous, or warning-bearing evidence in {transition_id}?",
+    "limitations_or_no_claims": "How do the limitations or no-claims language in {transition_id} constrain acceptance, inheritance, and authority?",
+    "irreversible_decision": "Does the evidence justify the irreversible publication, integration, or acceptance decision in {transition_id}?",
+    "mechanical_warning": "Does warning-bearing mechanical evidence change the bounded meaning, limitations, inheritance, or authority decision?"
+  }
+}

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Emergence Simulation Slots</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="hero">
+    <div>
+      <p class="eyebrow">EMERGENCE RUNTIME</p>
+      <h1>Simulation Slots</h1>
+      <p class="subtitle">72 resident GPU worlds · 1 CPU simulation</p>
+    </div>
+    <div class="connection" id="connection"><span></span> Connecting</div>
+  </header>
+
+  <main>
+    <section class="summary" aria-label="Runtime summary">
+      <article class="summary-card cpu-summary">
+        <div class="summary-top"><span>CPU</span><strong id="cpuCount">— / 1</strong></div>
+        <div class="meter"><i id="cpuMeter"></i></div>
+        <div class="facts"><span>Serial simulation lane</span><span id="lastUpdate">Waiting for data</span></div>
+      </article>
+      <article class="summary-card gpu-summary">
+        <div class="summary-top"><span>GPU</span><strong id="gpuCount">— / 72</strong></div>
+        <div class="meter"><i id="gpuMeter"></i></div>
+        <div class="facts">
+          <span id="gpuName">NVIDIA GPU</span>
+          <span id="gpuUtil">—% load</span>
+          <span id="gpuMemory">— VRAM</span>
+          <span id="gpuTemp">—°C</span>
+        </div>
+      </article>
+    </section>
+
+    <section id="warning" class="warning hidden" role="alert"></section>
+
+    <section class="device-section cpu-section">
+      <div class="section-heading"><div><p class="eyebrow">SERIAL LANE</p><h2>CPU slot</h2></div></div>
+      <div id="cpuGrid" class="cpu-grid"></div>
+    </section>
+
+    <section class="device-section">
+      <div class="section-heading">
+        <div><p class="eyebrow">PHYSICAL RESIDENT BATCH</p><h2>GPU slots</h2></div>
+        <div class="legend"><span class="running">Running</span><span class="idle">Idle</span><span class="problem">Problem</span></div>
+      </div>
+      <div id="gpuGrid" class="slot-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="details" class="details hidden" aria-live="polite">
+      <div class="details-head"><div><p class="eyebrow">SELECTED POSITION</p><h2 id="detailTitle">Slot details</h2></div><button id="detailClose" type="button" aria-label="Close details">Close</button></div>
+      <div id="detailBody" class="detail-grid"></div>
+    </section>
+  </main>
+
+  <script src="/app.js" defer></script>
+</body>
+</html>

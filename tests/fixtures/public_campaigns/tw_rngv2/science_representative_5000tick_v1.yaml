@@ -1,0 +1,388 @@
+# Synthetic compile-only fixture: artifact locators are intentionally unavailable.
+schema_version: eiel_campaign_v1
+campaign_id: eiel-full-evolution-v1-science-5000tick-b136-w32p256c512-20260820
+description: Physical-B136 5000 absolute-tick EIEL_FULL_EVOLUTION_V1 runability rehearsal over
+  one simultaneous CUDA batch. This is QualPrep evidence for bounded resident execution and
+  checkpoint/restore; it is not a performance benchmark.
+no_claims: Physical-B136 runability/restore rehearsal only. Not formal qualification. Not a
+  science performance benchmark. Not a profiler run. Not B2, B140, B144, or HAPB comparison.
+  Not default-on V2. The request must remain one physical B136 batch.
+run_contract:
+  mode: strict
+  profile_id: eiel_full_evolution_v1
+world:
+  base: patch
+  overlays:
+  - eed_resource_impact
+  - jungle
+  - wdl_delayed_hazard
+policy:
+  family: fixed_mlp
+selection:
+  mode: genotype_blind_neutral
+parameters:
+  patch.grid_size: 32
+  patch.initial_population: 256
+  patch.capacity: 512
+  patch.founder_placement: balanced
+  eed.resource_impact_apply_enable: true
+  eed.ecology_frozen: false
+  eed.phenotype_fixed: false
+  genome_upgrade_v2.profile: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2.enable: true
+  genome_upgrade_v2.mutation_rate_q10: 20
+  genome_upgrade_v2.mutation_step_q10: 64
+  production_lifecycle.turnover_enabled: true
+  production_lifecycle.ordinary_births_enabled: true
+  production_lifecycle.lifecycle_mode: hybrid_overlapping_v1
+  production_lifecycle.life_history_profile: stage1s_overlap_tick_life_history_v1
+  production_lifecycle.turnover_cull_fraction: 0.0
+  production_lifecycle.turnover_parent_fraction: 1.0
+  wdl.delay_ticks: 12
+  wdl.cue_duration_ticks: 1
+  wdl.active_duration_ticks: 1
+  wdl.intensity: 0.1
+  wdl.cue_visible_at_decision: false
+  tw_rngv2.semantics_version: 2
+  tw_rngv2.world_uid: 1
+  tw_rngv2.namespace_key64: 14557060604566852032
+  cuda_architecture_b.cpython_gauss_segment_capacity: 0
+  cuda_architecture_b.policy_birth_segment_refill_enable: false
+  cuda_architecture_b.turnover_mlp_shadow_elide_enable: false
+  # Build the owner directly on CUDA.  The source cache is immutable and
+  # file-backed; no B136 CPU request bank is admitted.
+  cuda_architecture_b.cpu_request_staging_enable: false
+matrix:
+  dimensions:
+  - id: founder_profile
+    values:
+    - symmetric_mix
+  - id: ecology_seed
+    values:
+    - 101
+  - id: task_seed
+    values:
+    - 1001
+    - 1002
+    - 1003
+    - 1004
+    - 1005
+    - 1006
+    - 1007
+    - 1008
+    - 1009
+    - 1010
+    - 1011
+    - 1012
+    - 1013
+    - 1014
+    - 1015
+    - 1016
+    - 1017
+    - 1018
+    - 1019
+    - 1020
+    - 1021
+    - 1022
+    - 1023
+    - 1024
+    - 1025
+    - 1026
+    - 1027
+    - 1028
+    - 1029
+    - 1030
+    - 1031
+    - 1032
+    - 1033
+    - 1034
+    - 1035
+    - 1036
+    - 1037
+    - 1038
+    - 1039
+    - 1040
+    - 1041
+    - 1042
+    - 1043
+    - 1044
+    - 1045
+    - 1046
+    - 1047
+    - 1048
+    - 1049
+    - 1050
+    - 1051
+    - 1052
+    - 1053
+    - 1054
+    - 1055
+    - 1056
+    - 1057
+    - 1058
+    - 1059
+    - 1060
+    - 1061
+    - 1062
+    - 1063
+    - 1064
+    - 1065
+    - 1066
+    - 1067
+    - 1068
+    - 1069
+    - 1070
+    - 1071
+    - 1072
+    - 1073
+    - 1074
+    - 1075
+    - 1076
+    - 1077
+    - 1078
+    - 1079
+    - 1080
+    - 1081
+    - 1082
+    - 1083
+    - 1084
+    - 1085
+    - 1086
+    - 1087
+    - 1088
+    - 1089
+    - 1090
+    - 1091
+    - 1092
+    - 1093
+    - 1094
+    - 1095
+    - 1096
+    - 1097
+    - 1098
+    - 1099
+    - 1100
+    - 1101
+    - 1102
+    - 1103
+    - 1104
+    - 1105
+    - 1106
+    - 1107
+    - 1108
+    - 1109
+    - 1110
+    - 1111
+    - 1112
+    - 1113
+    - 1114
+    - 1115
+    - 1116
+    - 1117
+    - 1118
+    - 1119
+    - 1120
+    - 1121
+    - 1122
+    - 1123
+    - 1124
+    - 1125
+    - 1126
+    - 1127
+    - 1128
+    - 1129
+    - 1130
+    - 1131
+    - 1132
+    - 1133
+    - 1134
+    - 1135
+    - 1136
+  parameter_bindings:
+    founder_profile: eed.founder_resource_axis_profile
+  seed_bindings:
+    ecology_seed: ecology
+    task_seed: task
+  include: []
+  exclude: []
+  expected_cells: 136
+  max_cells: 136
+execution:
+  backend: cuda_resident
+  execution_route_identity: tick_native_execution_route_v1
+  total_ticks: 5000
+  checkpoint_ticks:
+  - 2500
+  - 5000
+  resident_owner_span_ticks: 1120
+  native_dispatch_window_ticks: 1120
+  source_window_ticks: 160
+  event_window_capacity: 41804
+  batch:
+    mode: explicit
+    cells: 136
+  budgets:
+    vram_bytes: 5786503741
+    host_bytes: 34359738368
+    minimum_free_gpu_bytes: 536870912
+    maximum_gpu_memory_slope_bytes_per_window: 67108864
+    maximum_host_memory_slope_bytes_per_window: 67108864
+    maximum_event_ring_occupancy_slope_per_window: 1024
+    disk_bytes: 107374182400
+    wall_seconds: 172800
+  cancellation: false
+  technical_gate:
+    selectors: []
+    partition: false
+checkpoints:
+  milestones: []
+  storage_mode: disk
+  # Do not retain a second asynchronous checkpoint/source bank in the
+  # representative run; direct-resident execution owns the live state.
+  acs_slots: 0
+  acs_capture_instrumentation: false
+  native_streamed_checkpoint: true
+artifact_lifecycle:
+  schema_version: eiel_run_artifact_lifecycle_contract_v1
+  lifecycle_profile: SCIENCE_COMPACT
+  storage:
+    # Physical-B136 aggregate checkpoints are one object per boundary.  The
+    # hot contract admits the exact source-derived two-boundary envelope; any
+    # sealed durable replacement is archived asynchronously by lifecycle.
+    total_max_bytes: 12000000000
+    scratch_max_bytes: 1000000000
+    checkpoint_max_bytes: 8000000000
+    durable_max_bytes: 2000000000
+    emergency_reserve_bytes: 1000000000
+  observability:
+    output_profile: compact_default
+    raw_tick_trace_policy: forbidden
+    debug_event_trace_policy: forbidden
+    ring_buffer:
+      enabled: false
+      max_bytes: 1
+  checkpoints:
+    authority: absolute_tick
+    checkpoint_ticks: [2500, 5000]
+    roles:
+    - identity: checkpoint-tick-000000002500
+      checkpoint_tick: 2500
+      role: transit_durable
+      retention_class: R3
+    - identity: checkpoint-tick-000000005000
+      checkpoint_tick: 5000
+      role: terminal
+      retention_class: R4
+  closeout:
+    required_types:
+    - run_passport
+    - artifact_disposition_manifest
+    - evidence_closeout_or_qualification_receipt
+    - storage_disposition_receipt
+    compact_replacement_verification_required: true
+  retention:
+    default_class: R3
+    decision_evidence_class: A
+    audit_hold_binding: required
+    qualification_hold_binding: not_required
+    unknown_artifact_policy: RX_BLOCKS_AUTO_DELETE
+  prune:
+    automatic_prune_allowed: false
+    required_predicates:
+    - valid_disposition_manifest
+    - unknown_artifacts_resolved
+    - no_live_references
+    - audit_hold_released_or_not_required
+    - qualification_hold_released_or_not_required
+    - replacement_verified_or_not_required
+    - explicit_checkpoint_roles_resolved
+    - storage_disposition_receipt
+  contract_sha256: ab6f5d2ef971866a54f74dbdff3cba40c777276a8ff34e9f1edbec3620a117e1
+comparisons:
+  fresh_repeats: 0
+  continuation_splits: []
+artifacts:
+  cuda_extension:
+    path: /tmp/emergence-fixture/runtime/builds/tw_physical_b136_long_horizon/d144152618e5c3e18f6c3ba65bba18231fa9b91d/wdl_jungle_eed_sm75_cache2_exact/eiel_cuda_architecture_b_wdl_jungle_eed_v1.so
+    sha256: 9167756c1051f6054aeb84a96533dffab5e80bb0577d223064696d35203595bc
+    kind: cuda_extension
+    abi: architecture_b_wdl_jungle_eed_fixed_mlp_native_v1
+  extension_manifest:
+    path: /tmp/emergence-fixture/runtime/builds/tw_physical_b136_long_horizon/d144152618e5c3e18f6c3ba65bba18231fa9b91d/wdl_jungle_eed_sm75_cache2_exact/eiel_cuda_architecture_b_wdl_jungle_eed_v1.so.manifest.json
+    sha256: c8336a67e82e615a1c4c1a76983a818499e46620f865141c06558a216915d59c
+    kind: extension_manifest
+    abi: architecture_b_wdl_jungle_eed_fixed_mlp_native_v1
+  acs_native_runtime_extension:
+    path: /tmp/emergence-fixture/runtime/builds/tw_physical_b136_long_horizon/c01b262d5c709ebf954588643d46080b0e8889a4/acs_native_runtime/eiel_native_runtime_ext.so
+    sha256: 9edde818faa5d33ea1dcc9481dc1ade77782a172404e9fdc04219dd91cd0c63e
+    kind: native_runtime_extension
+    abi: eiel_native_runtime_abi_v1
+  acs_native_runtime_extension_manifest:
+    path: /tmp/emergence-fixture/runtime/builds/tw_physical_b136_long_horizon/c01b262d5c709ebf954588643d46080b0e8889a4/acs_native_runtime/eiel_native_runtime_ext.so.manifest.json
+    sha256: 81d0de158743ad679ae489050e695eb20e2743ed0e3a07ea2a128ead5c782eed
+    kind: native_runtime_extension_manifest
+    abi: eiel_native_runtime_abi_v1
+  qualification_receipt:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_current_source_candidate_receipts_d14415261_r1/qualification.json
+    sha256: 1b1f64e45bd33a417469efeba7fa0cb579544bf50049ac665407d69470b79198
+    kind: qualification_receipt
+    abi: architecture_b_wdl_jungle_eed_fixed_mlp_native_v1
+  reporting_receipt:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_current_source_candidate_receipts_d14415261_r1/reporting.json
+    sha256: 560e1393e895bdaa9848eff8c4475d398bbfd7e45824acbab51d27cff8c0c923
+    kind: reporting_receipt
+    abi: architecture_b_wdl_jungle_eed_fixed_mlp_native_v1
+  genome_upgrade_v2_capability_contract:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_p10_capability_contract.json
+    sha256: 31d865d4ad34f545124a1a9dd217151d7de14ee32a50d9684169f7f5ca4d0af3
+    kind: capability_contract
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_chronicle_schema:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_chronicle_schema.json
+    sha256: deabff27ec702de2d1779918a0635c83e34d0b721bdb5816cdb3d744e66d41a8
+    kind: chronicle_schema
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_executable_contract:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_executable_contract.json
+    sha256: a9fc9d78875fc6415657dd2f3fea357b3eb7d785e9971c3ae58e14ed16a9f9b8
+    kind: executable_contract
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_invalidation_rules:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_package_invalidation_rules.json
+    sha256: bf2f762c7bcc12a961dff9be291275d676501486932f06f2b550861ca7f0d05b
+    kind: invalidation_rules
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_obligation_dictionary:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_package_obligation_dictionary.json
+    sha256: 6c39a610547cbf81e812fe4aec7f56565e8ec2a2ee8a1c92ebc5dc131e8fc4b5
+    kind: obligation_dictionary
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_observability_storage_budget:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_observability_storage_budget.json
+    sha256: c6cff32050a8bff2b0ff80cbe5aa10aa3f8164a3c0c809104131e7a1f9351bec
+    kind: observability_storage_budget
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_package_contract:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_executable_package_contract_v1.json
+    sha256: ce7f5bb6fdb37019daec0ab3ad8447a9415c6b4e4c1b0285edb4a4969559e946
+    kind: package_contract
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_package_receipt:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/genome_v2_package_identity_receipt.json
+    sha256: 48d994e6c3b0db5f2452ab0f3b35eb2b67a93d8eba5799cbb8727e90af1741b6
+    kind: package_receipt
+    abi: genome_upgrade_v2_fixed_q10_v1
+  genome_upgrade_v2_reporting_schema:
+    path: /tmp/emergence-fixture/runtime/tw_physical_b136_long_horizon_execution_20260820/repair26_v22_gv2_package_rebind_9167756c_d14415261_r1/contracts/genome_v2_reporting_schema.json
+    sha256: 9e834cdcb9c96a2fa4325cb309b45c178cdcf5cde776c03a58d8bc36194c46c2
+    kind: reporting_schema
+    abi: genome_upgrade_v2_fixed_q10_v1
+analysis:
+  required_metrics: []
+  optional_metrics: []
+  rules: []
+output:
+  runtime_root: /tmp/emergence-fixture/runtime/eiel_full_evolution_v1_physical_b136_uninterrupted_20260820
+  reporting_profile: compact
+  chronicle_archive_enabled: false
+  evidence_closeout_enabled: false

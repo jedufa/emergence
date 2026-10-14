@@ -1,0 +1,22 @@
+{
+  "schema_version": "eiel_science_request_v1_example_archive_provenance_v1",
+  "source_archive": {
+    "basename": "EIEL_SCIENCE_REQUEST_V1_campaign_examples.zip",
+    "sha256": "4e102dde3a7617417f8f40accb8928f99dc9be4e3b10787d5d7db9042dfd0495"
+  },
+  "member_policy": "Repository example bytes are exact copies of the named ZIP members; the archive is provenance input, not execution authority.",
+  "members": [
+    {
+      "member_name": "EIEL_SCIENCE_REQUEST_V1_selection_window_w32_b1024_example.json",
+      "repository_path": "_spec/campaigns/v1/eiel_science_request_v1/examples/EIEL_SCIENCE_REQUEST_V1_selection_window_w32_b1024_example.json",
+      "size_bytes": 4363,
+      "sha256": "22c0859df66c4af6930c7e11e2cf17510e0e219f3fe30a8ccafd72699b98997f"
+    },
+    {
+      "member_name": "EIEL_SCIENCE_REQUEST_V1_mutation_pressure_w128x80_multibatch_example.json",
+      "repository_path": "_spec/campaigns/v1/eiel_science_request_v1/examples/EIEL_SCIENCE_REQUEST_V1_mutation_pressure_w128x80_multibatch_example.json",
+      "size_bytes": 4152,
+      "sha256": "3037d36bfab72cfca09de08b3aa00a7e34207b8b00e74f2d4dd2ac594aab683a"
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "blocked_by_work_ids": [],
+  "blocked_reason": null,
+  "bootstrap_history": [
+    "BST-W32-QUALIFICATION"
+  ],
+  "bootstrap_record_id": "BST-W32-QUALIFICATION",
+  "codex_participants": [
+    {
+      "codex_id": "codex-w32-qualification-original",
+      "joined_at_utc": "2026-08-04T00:00:00Z",
+      "reason": "session created",
+      "role": "original",
+      "thread_url": null
+    },
+    {
+      "codex_id": "codex-w32-qualification-replacement",
+      "joined_at_utc": "2026-08-09T00:00:00Z",
+      "reason": "original Codex was unavailable",
+      "role": "takeover",
+      "thread_url": null
+    }
+  ],
+  "completed_steps": [
+    "qualification plan generated",
+    "route identity verified"
+  ],
+  "current_codex_id": "codex-w32-qualification-replacement",
+  "current_codex_thread_url": null,
+  "current_stage": "qualification execution",
+  "current_step": "rerun resource envelope canary",
+  "interrupted_during": "VRAM envelope canary",
+  "last_failed_command": null,
+  "last_successful_command": null,
+  "mission_id": "MIS-W32-QUALIFICATION",
+  "model_assignment": {
+    "model": "GPT-5.3 Spark High",
+    "provider": "OPENAI",
+    "reasoning_level": "HIGH",
+    "selected_by": "HUMAN_OPERATOR"
+  },
+  "next_action": "Run the bounded resource envelope canary.",
+  "next_command": "python -m tools.eiel qualificationManager check --request request.json",
+  "notes": [],
+  "original_codex_id": "codex-w32-qualification-original",
+  "original_codex_thread_url": null,
+  "parallel_session_acknowledged": false,
+  "preferred_continuation_codex_id": "codex-w32-qualification-original",
+  "promotion_request": null,
+  "references": {
+    "artifact_paths": [],
+    "evidence_assessment_ids": [],
+    "external_urls": [],
+    "librarian_document_ids": [],
+    "prompt_paths": [],
+    "qualification_record_ids": [],
+    "report_paths": [],
+    "resource_record_ids": []
+  },
+  "repository": {
+    "branch": "work/w32-qualification",
+    "head": "0123456789abcdef",
+    "repo_root": "/tmp/emergence-example/user/emergence"
+  },
+  "review_verdict": null,
+  "schema_version": "eiel_codex_session_v1",
+  "session_id": "SES-W32-QUALIFICATION-01",
+  "session_outcome": null,
+  "session_role": "IMPLEMENTATION_AUTHORITY",
+  "title": "W32 qualification Codex session",
+  "work_id": "WORK-W32-QUALIFICATION",
+  "work_package_binding": null
+}

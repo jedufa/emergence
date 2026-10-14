@@ -1,0 +1,137 @@
+harness_api: 1
+version: 1
+name: patch_jungle_v0_campaign_c4_recovery
+description: 'Campaign C4 ecological recovery sweep: off, low, medium, and high bounded recovery-regrowth bundles.'
+intent:
+  question: 'Campaign C4 ecological recovery sweep: off, low, medium, and high bounded recovery-regrowth bundles.'
+  axes:
+  - variant:
+    - recovery_off
+    - recovery_low
+    - recovery_medium
+    - recovery_high
+  - scenario: &id001
+    - s09_full_jungle_recovery
+matrix_order:
+- scenario
+- variant
+- seed
+axes:
+  variant:
+    values:
+    - recovery_off
+    - recovery_low
+    - recovery_medium
+    - recovery_high
+    flags:
+      recovery_off:
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=false
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.0
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.0
+      - --knob
+      - env_cfg.jungle_recovery_fertility_enable=false
+      - --knob
+      - env_cfg.jungle_resource_spread_enable=false
+      recovery_low:
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.05
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.1
+      - --knob
+      - env_cfg.jungle_recovery_fertility_enable=false
+      - --knob
+      - env_cfg.jungle_resource_spread_enable=false
+      recovery_medium:
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.1
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.25
+      - --knob
+      - env_cfg.jungle_recovery_fertility_enable=false
+      - --knob
+      - env_cfg.jungle_resource_spread_enable=false
+      recovery_high:
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.2
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_max=0.4
+      - --knob
+      - env_cfg.jungle_recovery_fertility_enable=false
+      - --knob
+      - env_cfg.jungle_resource_spread_enable=false
+  scenario:
+    values: *id001
+    flags:
+      s09_full_jungle_recovery:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+seeds:
+- 101
+- 202
+- 303
+- 404
+- 505
+- 606
+- 707
+- 808
+- 909
+- 1001
+cli_defaults:
+- - --generations
+  - '10'
+- - --steps
+  - '80'
+- - --pop
+  - '32'
+- - --grid_size
+  - '12'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: patch_jungle_v0_campaign_c4_recovery
+  run_id_format: '{name}__variant_{variant}__scenario_{scenario}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__variant_{variant}__scenario_{scenario}'

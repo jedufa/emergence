@@ -1,0 +1,94 @@
+{
+  "schema_version": "emergence_gitleaks_review_v1",
+  "findings": [
+    {
+      "path": "engine/evolution/recombination_c2.py",
+      "line": 224,
+      "end_line": 224,
+      "rule": "generic-api-key",
+      "sha256": "ccebf85fa63dda0bbd5eafa3a29c016933d92005cb0dd4c340903e23c27bb3e8",
+      "reason": "Frozen biological alignment key identifier, not an authentication key"
+    },
+    {
+      "path": "engine/native_runtime/compact_summary_host_token_resolver_plan.py",
+      "line": 768,
+      "end_line": 768,
+      "rule": "generic-api-key",
+      "sha256": "8776808656412ab1307039940f2579c0b1cd32ce842e5b15eb3b17140cb71da2",
+      "reason": "Numeric host token count validation, not a provider token"
+    },
+    {
+      "path": "engine/simulation/respec_n1_zone_telemetry.py",
+      "line": 220,
+      "end_line": 220,
+      "rule": "generic-api-key",
+      "sha256": "b8e0163ffc5c335cf8e7828eb82668ea87a2d06e0a51dea177fb81592a5cd8a5",
+      "reason": "Age-bin metric labels and dictionary key, not credentials"
+    },
+    {
+      "path": "engine/simulation/respec_n1_zone_telemetry.py",
+      "line": 223,
+      "end_line": 223,
+      "rule": "generic-api-key",
+      "sha256": "b8e0163ffc5c335cf8e7828eb82668ea87a2d06e0a51dea177fb81592a5cd8a5",
+      "reason": "Age-bin metric labels and dictionary key, not credentials"
+    },
+    {
+      "path": "tests/evolvability/capacity/test_escap8_activity_duplication.py",
+      "line": 96,
+      "end_line": 96,
+      "rule": "generic-api-key",
+      "sha256": "b11fa8acf78b8b42b0a617399988c8a35ca4e13e229483c07ef9187e5bf55894",
+      "reason": "Synthetic lineage token used for biological identity"
+    },
+    {
+      "path": "tests/evolvability/capacity/test_escap8_activity_duplication.py",
+      "line": 299,
+      "end_line": 299,
+      "rule": "generic-api-key",
+      "sha256": "b11fa8acf78b8b42b0a617399988c8a35ca4e13e229483c07ef9187e5bf55894",
+      "reason": "Synthetic lineage token used for biological identity"
+    },
+    {
+      "path": "tests/evolvability/capacity/test_escap2_structural_bootstrap_homology.py",
+      "line": 267,
+      "end_line": 267,
+      "rule": "generic-api-key",
+      "sha256": "c4c5d3485edeec162b8cfd898e7a6e61abd0460a9fa589e98c336b42f4c9b3bc",
+      "reason": "Frozen homology alignment assertion"
+    },
+    {
+      "path": "tests/evolvability/phase_c/test_c2_deterministic_recombination_lineage.py",
+      "line": 131,
+      "end_line": 131,
+      "rule": "generic-api-key",
+      "sha256": "2488da77bc46a0b7d56357a0b464ec2b3bd93d542ccecc47095ce565c9fb42b5",
+      "reason": "Frozen homology alignment assertion"
+    },
+    {
+      "path": "tools/evidence/librarian/wp4.py",
+      "line": 41,
+      "end_line": 41,
+      "rule": "generic-api-key",
+      "sha256": "3a41af43fd8d9e1e3e59f65beb86eb6d01bce4a28913367a4922f0f7967b5d08",
+      "reason": "Historical source commit digest, not an access key"
+    },
+    {
+      "path": "tools/scripts/render_eiel_qualification_authority_register_html.py",
+      "line": 270,
+      "end_line": 270,
+      "rule": "generic-api-key",
+      "sha256": "31e3fe4e7178a9ce9adbc32519c6a57551600db54c092f73d83c5077933d3efe",
+      "reason": "HTML data-sort-key table attributes"
+    },
+    {
+      "path": "tools/scripts/render_eiel_qualification_authority_register_html.py",
+      "line": 270,
+      "end_line": 270,
+      "rule": "generic-api-key",
+      "sha256": "31e3fe4e7178a9ce9adbc32519c6a57551600db54c092f73d83c5077933d3efe",
+      "reason": "HTML data-sort-key table attributes"
+    }
+  ],
+  "policy": "Review ledger only; no Gitleaks rule is disabled. Re-run Gitleaks and review any changed source hash or finding."
+}

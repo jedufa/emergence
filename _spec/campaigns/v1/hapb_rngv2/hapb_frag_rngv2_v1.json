@@ -1,0 +1,78 @@
+{
+  "schema_version": "hapb_frag_rngv2_contract_v1",
+  "status": "ENGINEERING_VALIDATION_DEFAULT_OFF_NOT_AUTHORIZED_FOR_Q6",
+  "route_id": "hapb_frag_rngv2_v1",
+  "rng_semantics_version": 2,
+  "semantic_name": "HAPB-FRAG-RNGV2-1",
+  "parent_tw_contract_identity": "tensor_world_c0_c7_rngv2_v1@7a6614d2b7851d85",
+  "parent_tw_route_id": "tensor_world_c0_c7_rngv2_v1",
+  "parent_tw_contract_hash": "7a6614d2b7851d8557d0c5bf0fce82919182cd925eeb4aacae7f27984e55d958",
+  "parent_prototype_identity": "TW-RNGV2-DEA1-PROTO-1@99b023cd881e1a28",
+  "twdmath_identity": "TWDMATH-1",
+  "algorithm": "Random123 Philox4x32-10",
+  "default_activation": false,
+  "v1_coexistence": "Legacy HAPB-FRAG remains the default route. Selecting hapb_rng_semantics_version=2 is explicit.",
+  "fail_closed_mixing": true,
+  "no_host_tapes": true,
+  "no_host_gaussian_or_mt_for_migrated_domains": true,
+  "semantic_address_forbids": [
+    "physical slot",
+    "slot generation token",
+    "CUDA thread or block index",
+    "compaction position",
+    "execution completion order",
+    "host page number"
+  ],
+  "shared_domains_use_parent_ids": true,
+  "hapb_only_domains": [
+    {
+      "id": 1536,
+      "id_hex": "0600",
+      "name": "HAPB_POLICY_WINDOW_CROSSOVER",
+      "subject": "semantic policy-episode ordinal, never physical tape slot"
+    },
+    {
+      "id": 1537,
+      "id_hex": "0601",
+      "name": "HAPB_POLICY_WINDOW_MUTATION",
+      "subject": "semantic policy-episode ordinal, never physical tape slot"
+    },
+    {
+      "id": 1538,
+      "id_hex": "0602",
+      "name": "HAPB_POLICY_WINDOW_MASK",
+      "subject": "semantic policy-episode ordinal, never physical tape slot"
+    }
+  ],
+  "shared_parent_domains": [
+    256, 512, 528, 768, 784, 800, 816, 817, 818, 832, 833, 834, 864, 880, 1024, 1280
+  ],
+  "checkpoint": {
+    "schema": "hapb_frag_rngv2_checkpoint_v1",
+    "stores": [
+      "hapb contract identity/hash",
+      "parent TW contract identity/hash",
+      "rng_semantics_version",
+      "namespace key",
+      "semantic epoch",
+      "world/cell uids",
+      "absolute tick",
+      "next entity uid",
+      "semantic-to-physical identity map",
+      "required HAPB ownership/page mapping",
+      "optional preserved compact non-V2 RNG"
+    ],
+    "forbids": [
+      "giant future RNG tapes",
+      "CPython Gaussian cache",
+      "host MT words",
+      "draw cursors that change V2 semantics"
+    ]
+  },
+  "no_claims": [
+    "formal HAPB Q6 qualification",
+    "production admission",
+    "identical V1 vs V2 trajectories",
+    "apples-to-apples HAPB-vs-TensorWorld production comparison without a matched TW B48 full-route 1000-tick measurement"
+  ]
+}

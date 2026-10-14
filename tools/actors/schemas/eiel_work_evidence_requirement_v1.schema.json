@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_work_evidence_requirement_v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_work_evidence_requirement_v1"},
+    "mode": {"enum": ["GATE", "PROVENANCE_ONLY"]},
+    "required_assessment_ids": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "accepted_decisions": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "supports_proposition": {"type": ["string", "null"]},
+    "recorded_at_utc": {"type": "string"}
+  },
+  "required": ["schema_version", "mode", "required_assessment_ids", "accepted_decisions", "supports_proposition", "recorded_at_utc"]
+}

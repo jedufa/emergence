@@ -1,0 +1,43 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_actor_preflight_binding_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_actor_preflight_binding_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "authority_domain_filter": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "catalog_build_id": {
+      "type": "string"
+    },
+    "maintained_source_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "receipt_id": {
+      "type": "string"
+    },
+    "receipt_path": {
+      "type": "string"
+    },
+    "receipt_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_actor_preflight_binding_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "receipt_sha256",
+    "receipt_path"
+  ],
+  "title": "EIEL Actor Preflight Binding V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.authority",
+  "x-eiel-persistence-class": "embedded_durable_binding"
+}

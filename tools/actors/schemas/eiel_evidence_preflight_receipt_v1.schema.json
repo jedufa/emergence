@@ -1,0 +1,59 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_evidence_preflight_receipt_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_evidence_preflight_receipt_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "artifact_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "authority_domain_filter": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "authority_resolution_state": {
+      "type": "string"
+    },
+    "catalog_build_id": {
+      "type": "string"
+    },
+    "collection": {
+      "type": "string"
+    },
+    "evidence_ids": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "fail_closed": {
+      "type": "boolean"
+    },
+    "schema_version": {
+      "const": "eiel_evidence_preflight_receipt_v1"
+    },
+    "source_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "topic",
+    "catalog_build_id",
+    "source_digest",
+    "fail_closed"
+  ],
+  "title": "EIEL Evidence Preflight Receipt V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.authority",
+  "x-eiel-persistence-class": "retained_durable_receipt"
+}

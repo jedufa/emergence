@@ -1,0 +1,77 @@
+{
+  "schema_version": "eiel_science_request_v1",
+  "campaign_id": "EIEL-ADAPTIVE-EXPEDITION-G4-W64-FOUNDER-DECLARATION-V1",
+  "test": "EIEL_ADAPTIVE_EXPEDITION_G4_W64_FOUNDER_DECLARATION_V1",
+  "question": {
+    "description": "Declare the singleton W64 founder basis used by the bounded no-claims G4 exact-branch engineering expedition.",
+    "no_claims": true
+  },
+  "world": {
+    "width": 64,
+    "height": 64,
+    "population": 1024,
+    "capacity": 2048
+  },
+  "run": {
+    "ticks": 2,
+    "batch": {
+      "policy": "exact",
+      "worlds": 1
+    },
+    "checkpoint_ticks": [2]
+  },
+  "dimensions": {
+    "condition": [0],
+    "founder_basis": [0],
+    "replicate": [0]
+  },
+  "world_template": {
+    "initialization": {
+      "initial_population": 1024,
+      "initial_live_count": 1024,
+      "founder_profiles": ["native-broad-diverse-a-v1"],
+      "exact_founder_composition": [
+        {
+          "founder_profile_id": "native-broad-diverse-a-v1",
+          "count": 1024
+        }
+      ],
+      "spatial_placement_profile": "deterministic_seeded_shuffle_v1",
+      "standing_variation_profile": "broad-standing-variation-v1"
+    },
+    "controls": {
+      "environment.resource.multiplier": 1.0,
+      "mutation.rate": 0.125
+    },
+    "seeds": {
+      "ecology": 101,
+      "founder": "${founder_basis}",
+      "initialization": 83,
+      "intervention": "${replicate}",
+      "mutation": 83,
+      "policy": "${condition}",
+      "task_environment": 100001
+    }
+  },
+  "replicate_dimension": "replicate",
+  "observe": {
+    "profile": "SCIENCE_STANDARD_V1",
+    "events": ["birth", "death"],
+    "state": ["genome_identity", "population_count"],
+    "runtime_counters": ["birth_count", "mutation_count"],
+    "snapshot_ticks": [0, 2]
+  },
+  "reduce": {
+    "reducer": "science.compact.world_atlas.v1",
+    "configuration": {
+      "analysis_dimensions": ["condition", "founder_basis", "replicate"],
+      "axis_a": "founder_basis",
+      "axis_b": "condition",
+      "decision_family": "ADAPTIVE_EXPEDITION_ENGINEERING",
+      "reporting_group": "ADAPTIVE_EXPEDITION_ENGINEERING",
+      "tracked_policy_loci": [0],
+      "tracked_trait_loci": [1]
+    }
+  },
+  "expect_worlds": 1
+}

@@ -1,0 +1,133 @@
+harness_api: 1
+version: 1
+name: exploration_chaos_week_quick
+description: Chaos Week exploration pack (quick). 12 experiments, each an A/B pair (baseline vs variant). Variant applies exactly 1 primary knob + 1 helper knob via --knob. Exploratory diagnostics (NOT validations).
+intent:
+  question: Where does the weirdness live? Map which pressures move (or fail to move) population dynamics, timing, and late-life signals under tightly controlled 1-primary + 1-helper perturbations.
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - forbidden_scalar_late_pred_cost__baseline
+    - forbidden_scalar_late_pred_cost__variant
+    - wrong_early_life_pred_err_reward__baseline
+    - wrong_early_life_pred_err_reward__variant
+    - strong_late_pred_energy_tax__baseline
+    - strong_late_pred_energy_tax__variant
+    - invert_hazard_map_left_high_right_low__baseline
+    - invert_hazard_map_left_high_right_low__variant
+    - policy_stride_1__baseline
+    - policy_stride_1__variant
+    - policy_stride_4__baseline
+    - policy_stride_4__variant
+    - policy_stride_8__baseline
+    - policy_stride_8__variant
+    - mutation_storm__baseline
+    - mutation_storm__variant
+    - scarcity_shock_schedule__baseline
+    - scarcity_shock_schedule__variant
+    - remove_episode0_weighting__baseline
+    - remove_episode0_weighting__variant
+    - identity_drift_scalar__baseline
+    - identity_drift_scalar__variant
+    - biome_harshness__baseline
+    - biome_harshness__variant
+    flags:
+      forbidden_scalar_late_pred_cost__baseline: []
+      forbidden_scalar_late_pred_cost__variant:
+      - --knob
+      - sim_cfg.late_pred_cost_enable=true
+      - --knob
+      - sim_cfg.late_pred_cost_weight=4.0
+      wrong_early_life_pred_err_reward__baseline: []
+      wrong_early_life_pred_err_reward__variant:
+      - --knob
+      - sim_cfg.episode0_pred_err_weight=2.0
+      - --knob
+      - sim_cfg.episode0_pred_err_fitness_weight=2.0
+      strong_late_pred_energy_tax__baseline: []
+      strong_late_pred_energy_tax__variant:
+      - --knob
+      - sim_cfg.late_pred_energy_tax_enable=true
+      - --knob
+      - sim_cfg.late_pred_energy_tax_weight=2.5
+      invert_hazard_map_left_high_right_low__baseline: []
+      invert_hazard_map_left_high_right_low__variant:
+      - --knob
+      - env_cfg.spatial_ecology_enable=true
+      - --knob
+      - env_cfg.hazard_rate_map_spec=@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json
+      policy_stride_1__baseline: []
+      policy_stride_1__variant:
+      - --knob
+      - sim_cfg.policy_tick_stride=1
+      - --knob
+      - genome.action_temperature=1.15
+      policy_stride_4__baseline: []
+      policy_stride_4__variant:
+      - --knob
+      - sim_cfg.policy_tick_stride=4
+      - --knob
+      - genome.action_temperature=1.15
+      policy_stride_8__baseline: []
+      policy_stride_8__variant:
+      - --knob
+      - sim_cfg.policy_tick_stride=8
+      - --knob
+      - genome.action_temperature=1.15
+      mutation_storm__baseline: []
+      mutation_storm__variant:
+      - --knob
+      - genome.mutation_rate=0.25
+      - --knob
+      - pop_cfg.parent_fraction=0.30
+      scarcity_shock_schedule__baseline: []
+      scarcity_shock_schedule__variant:
+      - --knob
+      - sim_cfg.shock_start_prob=0.06
+      - --knob
+      - sim_cfg.shock_food_spawn_mult=0.25
+      remove_episode0_weighting__baseline: []
+      remove_episode0_weighting__variant:
+      - --knob
+      - sim_cfg.episode0_fitness_weight=0.0
+      - --knob
+      - sim_cfg.episode0_pred_err_weight=1.0
+      identity_drift_scalar__baseline: []
+      identity_drift_scalar__variant:
+      - --knob
+      - sim_cfg.identity_drift_enable=true
+      - --knob
+      - sim_cfg.identity_drift_strength=2.0
+      biome_harshness__baseline: []
+      biome_harshness__variant:
+      - --knob
+      - env_cfg.enable_biomes=true
+      - --knob
+      - env_cfg.biome_wild_hazard_prob=0.06
+seeds:
+- 1
+- 2
+- 3
+cli_defaults:
+- - --generations
+  - '12'
+- - --steps
+  - '150'
+- - --pop
+  - '128'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: chaos_week_quick
+  run_id_format: exploration_chaos_week_quick__{case}__seed{seed:06d}
+  run_tag_format: chaos_week_quick__{case}

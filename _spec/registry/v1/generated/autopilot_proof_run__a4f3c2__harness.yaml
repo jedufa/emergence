@@ -1,0 +1,88 @@
+harness_api: 1
+version: 1
+uid: autopilot_proof_run
+name: autopilot_proof_run
+description: Aggressive proof run to make pressure autopilot activity obvious.
+intent:
+  question: does the pressure autopilot schedule visible accepted knob changes on a short run?
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - aggressive_cycle_probe
+    flags:
+      aggressive_cycle_probe:
+      - --shock_start_prob
+      - '0.10'
+      - --knob
+      - sim_cfg.epi_enable=true
+      - --knob
+      - sim_cfg.epi_timeseries_enable=true
+      - --knob
+      - sim_cfg.pressure_autopilot_enable=true
+      - --knob
+      - sim_cfg.pressure_autopilot_hold=false
+      - --knob
+      - sim_cfg.pressure_autopilot_suggestion_only=false
+      - --knob
+      - sim_cfg.pressure_autopilot_reset_on_enable=true
+      - --knob
+      - sim_cfg.pressure_autopilot_profile=cycle
+      - --knob
+      - sim_cfg.pressure_autopilot_tick_interval_gen=25
+      - --knob
+      - sim_cfg.pressure_autopilot_start_gen=0
+      - --knob
+      - sim_cfg.pressure_autopilot_apply_delay_gen=1
+      - --knob
+      - sim_cfg.pressure_autopilot_pressure_init=1.0
+      - --knob
+      - sim_cfg.pressure_autopilot_target_survival=0.60
+      - --knob
+      - sim_cfg.pressure_autopilot_survival_deadband=0.02
+      - --knob
+      - sim_cfg.pressure_autopilot_delta_up=0.35
+      - --knob
+      - sim_cfg.pressure_autopilot_delta_down=0.35
+      - --knob
+      - sim_cfg.pressure_autopilot_epi_improve_eps=999999.0
+      - --knob
+      - sim_cfg.pressure_autopilot_stagnation_ticks_required=1
+      - --knob
+      - sim_cfg.pressure_autopilot_collapse_streak_switch=1
+      - --knob
+      - sim_cfg.pressure_autopilot_allow_shock_enable=true
+      - --knob
+      - sim_cfg.pressure_autopilot_shock_baseline_if_zero=0.10
+seeds:
+- 1
+cli_defaults:
+- - --generations
+  - '600'
+- - --steps
+  - '150'
+- - --pop
+  - '128'
+- - --policy_tick_stride
+  - '2'
+- - --grid_size
+  - '32'
+- - --checkpoint_period_gen
+  - '200'
+- - --checkpoint_rotate
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- autopilot/pressure_autopilot_state.json
+- autopilot/pressure_autopilot_decisions.jsonl
+naming:
+  run_tag_prefix: autopilot_proof_run
+  run_id_format: r__{case}__s{seed:06d}
+  run_tag_format: '{run_tag_prefix}__{case}'

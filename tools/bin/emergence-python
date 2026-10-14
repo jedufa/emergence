@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Resolve the approved Emergence interpreter from any repository worktree.
+set -euo pipefail
+
+repository_root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/../.." && pwd -P)
+
+if [[ -n "${EMERGENCE_PYTHON:-}" ]]; then
+    candidates=("$EMERGENCE_PYTHON")
+else
+    candidates=(
+        "$repository_root/.venv/bin/python"
+        "${HOME}/.venvs/emergence-py314-cuda/bin/python"
+    )
+fi
+
+for candidate in "${candidates[@]}"; do
+    if [[ -x "$candidate" && -f "$candidate" ]]; then
+        export PYTHONPATH="$repository_root${PYTHONPATH:+:$PYTHONPATH}"
+        exec "$candidate" "$@"
+    fi
+done
+
+printf '%s\n' "No approved Emergence Python interpreter was found." >&2
+printf '%s\n' "Checked: ${candidates[*]}" >&2
+printf '%s\n' "Set EMERGENCE_PYTHON to an executable interpreter to override discovery." >&2
+exit 127

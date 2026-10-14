@@ -1,0 +1,264 @@
+harness_api: 1
+version: 1
+name: respec1_fixed_arm_world_pressure_validation
+description: RESPEC-1 fixed-arm world-pressure dry-run matrix for Resource A/B demand validation readiness.
+intent:
+  question: Can a fixed resource-handling arm matrix isolate Resource A/B world pressure from flat, reporting-only, single-resource, and equalized-sham alternatives before any selection campaign is authorized?
+  safe_claim_boundary: Registry design and dry-run readiness only; no intelligence, emergence, cognition, adaptive-memory, prediction-selection, solved lineage-diversity, or open-endedness claim.
+  task_decision_target: RESPEC-1-A
+matrix_order:
+- world_family
+- fixed_arm
+- seed
+flag_templates:
+  flat_world: &flat_world
+  - --knob
+  - env_cfg.patch_world_enable=false
+  - --knob
+  - env_cfg.patch_world_observation_enable=false
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.respec0b_resource_equalized_sham_enable=false
+  - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+  reporting_only_world: &reporting_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=false
+  - --knob
+  - env_cfg.respec0b_resource_equalized_sham_enable=false
+  - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+  a_only_world: &a_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_class_mode=all_a
+  - --knob
+  - env_cfg.respec0b_resource_equalized_sham_enable=false
+  - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+  b_only_world: &b_only_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_class_mode=all_b
+  - --knob
+  - env_cfg.respec0b_resource_equalized_sham_enable=false
+  - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+  equalized_sham_world: &equalized_sham_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_class_mode=vertical_split_ab
+  - --knob
+  - env_cfg.respec0b_resource_equalized_sham_enable=true
+  - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+  mixed_tradeoff_world: &mixed_tradeoff_world
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_specialization_enable=true
+  - --knob
+  - env_cfg.respec0b_resource_class_mode=vertical_split_ab
+  - --knob
+  - env_cfg.respec0b_resource_equalized_sham_enable=false
+  - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+  fixed_a_favored: &fixed_a_favored
+  - --knob
+  - sim_cfg.resource_handling_representation_enable=true
+  - --knob
+  - sim_cfg.resource_handling_representation_reporting_enable=true
+  - --knob
+  - genome.resource_handling_axis=0.75
+  - --knob
+  - genome.mutation_rate=0.0
+  fixed_neutral: &fixed_neutral
+  - --knob
+  - sim_cfg.resource_handling_representation_enable=true
+  - --knob
+  - sim_cfg.resource_handling_representation_reporting_enable=true
+  - --knob
+  - genome.resource_handling_axis=0.0
+  - --knob
+  - genome.mutation_rate=0.0
+  fixed_b_favored: &fixed_b_favored
+  - --knob
+  - sim_cfg.resource_handling_representation_enable=true
+  - --knob
+  - sim_cfg.resource_handling_representation_reporting_enable=true
+  - --knob
+  - genome.resource_handling_axis=-0.75
+  - --knob
+  - genome.mutation_rate=0.0
+axes:
+  world_family:
+    values:
+    - flat
+    - reporting_only
+    - a_only
+    - b_only
+    - equalized_sham
+    - mixed_tradeoff
+    flags:
+      flat: *flat_world
+      reporting_only: *reporting_only_world
+      a_only: *a_only_world
+      b_only: *b_only_world
+      equalized_sham: *equalized_sham_world
+      mixed_tradeoff: *mixed_tradeoff_world
+  fixed_arm:
+    values:
+    - a_favored
+    - neutral
+    - b_favored
+    flags:
+      a_favored: *fixed_a_favored
+      neutral: *fixed_neutral
+      b_favored: *fixed_b_favored
+seeds:
+- 101
+- 202
+- 303
+- 404
+cli_defaults:
+- - --generations
+  - '48'
+- - --steps
+  - '80'
+- - --pop
+  - '64'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cuda
+- - --bank_device
+  - cuda
+- - --knob
+  - sim_cfg.device=cuda
+- - --knob
+  - sim_cfg.bank_device=cuda
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.campaign_output_profile=compact_default
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+- - --knob
+  - sim_cfg.lineage_qd_archive_enable=false
+- - --knob
+  - sim_cfg.lineage_founder_balance_enable=false
+- - --knob
+  - sim_cfg.lro1_reproductive_opportunity_enable=false
+- - --knob
+  - sim_cfg.lro4_offspring_dispersal_enable=false
+- - --knob
+  - sim_cfg.pressure_autopilot_enable=false
+- - --knob
+  - sim_cfg.pressure_autopilot_hold=true
+- - --knob
+  - sim_cfg.pressure_autopilot_suggestion_only=true
+- - --knob
+  - sim_cfg.branch_observability_enable=true
+- - --knob
+  - sim_cfg.branch_observability_birth_edges_enable=true
+- - --knob
+  - sim_cfg.branch_observability_lifecycle_enable=true
+- - --knob
+  - sim_cfg.branch_observability_descriptor_snapshot_enable=true
+- - --knob
+  - sim_cfg.branch_niche_observability_enable=true
+- - --knob
+  - sim_cfg.branch_niche_lifecycle_enable=true
+- - --knob
+  - sim_cfg.branch_niche_strategy_compression_enable=true
+- - --knob
+  - sim_cfg.branch_niche_output_profile=compact_v1
+- - --knob
+  - sim_cfg.lineage_collapse_forensics_enable=true
+- - --knob
+  - sim_cfg.lineage_collapse_forensics_schema_version=1
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_reporting_enable=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_schema_version=1
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_per_generation=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_events=false
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_write_scan_action_events=false
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_event_output_profile=path2_roz_summary_only_v1
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_incremental_summary_cache_enable=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_include_patch_context=true
+- - --knob
+  - sim_cfg.lineage_reproduction_funnel_include_basin_context=false
+- - --knob
+  - sim_cfg.disable_prediction_error_selection_pressure=true
+- - --knob
+  - sim_cfg.episode0_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_pred_err_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_thrashing_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_drive_jitter_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_selfharm_fitness_weight=0.0
+naming:
+  run_id_format: "{name}__world_{world_family}__arm_{fixed_arm}__seed{seed:06d}"
+  run_tag_prefix: respec1_fixed_arm_world_pressure_validation
+  run_tag_format: "{run_tag_prefix}__world_{world_family}__arm_{fixed_arm}__seed{seed:06d}"
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- metrics.csv
+- branch_observability/branch_observability_agent_lifecycle.jsonl
+- branch_observability/branch_observability_birth_edges.jsonl
+- branch_observability/branch_observability_niche_lifecycle.jsonl
+respec1_contract:
+  fixed_arm_axis_values:
+    a_favored: 0.75
+    neutral: 0.0
+    b_favored: -0.75
+  planned_world_families:
+  - flat
+  - reporting_only
+  - a_only
+  - b_only
+  - equalized_sham
+  - mixed_tradeoff
+  no_direct_reward: true
+  no_lineage_or_branch_rescue: true
+  no_evolving_axis_arm: true
+  fixed_arm_freeze_mechanism: founder genome.resource_handling_axis override plus genome.mutation_rate=0.0.
+  observation_decision: Existing Patch World food observations and learned experience are sufficient for fixed-arm demand validation; no explicit A/B identity channel is claimed for future evolving-axis selection.
+  planned_cells: 72

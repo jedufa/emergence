@@ -1,0 +1,10 @@
+{
+  "file": {
+    "region_grid_path": null
+  },
+  "grid": {
+    "region_cols": 1,
+    "region_rows": 1
+  },
+  "mode": "grid"
+}

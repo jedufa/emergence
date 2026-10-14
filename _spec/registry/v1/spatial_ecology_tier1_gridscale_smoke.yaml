@@ -1,0 +1,79 @@
+harness_api: 1
+version: 1
+name: spatial_ecology_tier1_gridscale
+description: >
+  Smoke-scale Tier 1 spatial ecology grid-scaling canary. Confirms that MapSpecs are accepted,
+  generated deterministically, logged to run_dir/maps/, and validated correctly across grid sizes.
+
+intent:
+  question: "Do Tier 1 spatial ecology maps (uniform vs spawn hotspot) generate, log, and validate correctly across different grid sizes?"
+  axes:
+    - scenario: ["uniform", "spawn_hotspot"]
+    - grid_size: ["16", "64"]
+
+matrix_order: [scenario, grid_size, seed]
+
+axes:
+  scenario:
+    values: ["uniform", "spawn_hotspot"]
+    flags:
+      uniform:
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json"
+      spawn_hotspot:
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json"
+
+  grid_size:
+    values: ["16", "64"]
+    flags:
+      "16":
+        - "--grid_size"
+        - "16"
+      "64":
+        - "--grid_size"
+        - "64"
+
+seeds: [42]
+
+cli_defaults:
+  - ["--generations", "2"]
+  - ["--steps", "60"]
+  - ["--pop", "64"]
+  - ["--policy_tick_stride", "2"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "run_config.csv"
+  - "config.json"
+  - "metrics.csv"
+  - "maps/spec.json"
+  - "maps/summary.json"
+  - "maps/maps_readme.md"
+  - "maps/resource_regrowth_map.npy"
+  - "maps/resource_spawn_density_map.npy"
+  - "maps/hazard_rate_map.npy"
+  - "maps/validation_stats.json"
+
+naming:
+  run_tag_prefix: "spat1g_smoke"
+  run_id_format: "{name}__scenario_{scenario}__grid{grid_size}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__scenario_{scenario}__grid{grid_size}"

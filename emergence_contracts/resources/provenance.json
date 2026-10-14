@@ -1,0 +1,19 @@
+{
+  "schema_version": "eiel_contract_resource_provenance_v1",
+  "source_commit": "fb00e803",
+  "authority_commit": "86477bdcd0702ddae3bfd27597bf2007dbd127a0",
+  "resources": [
+    {
+      "name": "crca.run-attempt-edge-cases.v1",
+      "file": "07_run_attempt_edge_cases.csv",
+      "source_path": "_artifacts/eiel-platform-2-1-adversarial-audit-20260822/07_run_attempt_edge_cases.csv",
+      "sha256": "6d2856a982117064536fd7b0750df4a78040e183f725d38fa7cb9c9a3d0d41bd"
+    },
+    {
+      "name": "crca.g0-ratchet-reconciliation.v1",
+      "file": "ratchet_reconciliation.json",
+      "source_path": "_artifacts/crca-end-to-end-20260823/g0/ratchet_reconciliation.json",
+      "sha256": "3a681db683d9f6609ab8dcb38eba5b8f3aed9fc23e11053c005e7da29aa40bdf"
+    }
+  ]
+}

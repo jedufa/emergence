@@ -1,0 +1,31 @@
+{
+  "case_id": "golden_chemistry_single_tick_clamp_edges",
+  "schema_version": "golden_reference_input_v1",
+  "kind": "chemistry_single_tick",
+  "seed": 31002,
+  "tick_index": 0,
+  "agents": [
+    {
+      "agent_id": 2,
+      "alive": true,
+      "energy": 0.0,
+      "max_energy_norm": 10.0,
+      "health": 0.0,
+      "start_health_norm": 10.0,
+      "injury": 9.0,
+      "drives": [1.0, 1.0, 1.0, 1.0],
+      "chemistry": [1.0, 0.0, 1.0, 1.0, 1.0, 0.0]
+    },
+    {
+      "agent_id": 3,
+      "alive": true,
+      "energy": 10.0,
+      "max_energy_norm": 10.0,
+      "health": 10.0,
+      "start_health_norm": 10.0,
+      "injury": 0.0,
+      "drives": [0.0, 0.0, 0.0, 0.0],
+      "chemistry": [0.0, 1.0, 0.0, 0.0, 0.0, 1.0]
+    }
+  ]
+}

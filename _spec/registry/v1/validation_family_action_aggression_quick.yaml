@@ -1,0 +1,49 @@
+harness_api: 1
+version: 1
+name: validation_family_action_aggression
+description: Quick family validation for action aggression (aggregated per knob).
+intent:
+  question: Are knobs in family 'action_aggression' traceably applied, and do they
+    produce a detectable signal?
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - genome_action_temperature__baseline
+    - genome_action_temperature__variant
+    - genome_aggression_bias__baseline
+    - genome_aggression_bias__variant
+    flags:
+      genome_action_temperature__baseline: []
+      genome_action_temperature__variant:
+      - --knob
+      - genome.action_temperature=1.4
+      genome_aggression_bias__baseline: []
+      genome_aggression_bias__variant:
+      - --knob
+      - genome.aggression_bias=0.6
+seeds:
+- 1
+- 2
+cli_defaults:
+- - --generations
+  - '8'
+- - --steps
+  - '120'
+- - --pop
+  - '128'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: val_family_quick
+  run_id_format: '{name}__{case}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__{case}'

@@ -1,0 +1,224 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_worker_result_v1.schema.json",
+  "title": "EIEL digest-bound Worker Result",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "eiel_worker_result_v1"
+    },
+    "assignment_id": {
+      "type": "string",
+      "pattern": "^ASSIGN-[A-Z0-9-]+$"
+    },
+    "assignment_material_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "context_receipt_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "lease_id": {
+      "type": "string",
+      "pattern": "^LEASE-[A-Z0-9-]+$"
+    },
+    "work_id": {
+      "type": "string",
+      "pattern": "^WORK-[A-Z0-9-]+$"
+    },
+    "session_id": {
+      "type": "string",
+      "pattern": "^SES-[A-Z0-9-]+$"
+    },
+    "worker_identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string"
+        },
+        "worker_id": {
+          "type": "string"
+        },
+        "pid": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "process_start_identity": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "thread_id": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "kind",
+        "worker_id",
+        "pid",
+        "process_start_identity",
+        "thread_id"
+      ]
+    },
+    "outcome": {
+      "enum": [
+        "COMPLETED",
+        "CHECKPOINTED",
+        "BLOCKED",
+        "PROMOTION_REQUIRED",
+        "ASSIGNMENT_STALE",
+        "INTEGRITY_FAILURE",
+        "PROCESS_FAILURE",
+        "OPERATOR_DECISION_REQUIRED"
+      ]
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "working_directory": {
+          "type": "string"
+        },
+        "branch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "head_before": {
+          "type": "string"
+        },
+        "head_after": {
+          "type": "string"
+        },
+        "commit_created": {
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "working_directory",
+        "branch",
+        "head_before",
+        "head_after",
+        "commit_created"
+      ]
+    },
+    "session": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "revision_after": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "record_sha256_after": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "status_after": {
+          "type": "string"
+        },
+        "session_outcome": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "revision_after",
+        "record_sha256_after",
+        "status_after",
+        "session_outcome"
+      ]
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "started_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "ended_at_utc": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "exit_code": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "started_at_utc",
+        "ended_at_utc",
+        "exit_code"
+      ]
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "enum": [
+            "PASSED",
+            "FAILED",
+            "NOT_RUN",
+            "PARTIAL",
+            "BLOCKED"
+          ]
+        },
+        "commands": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "report_paths": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "status",
+        "commands",
+        "report_paths"
+      ]
+    },
+    "blockers": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    }
+  },
+  "required": [
+    "schema_version",
+    "assignment_id",
+    "assignment_material_sha256",
+    "context_receipt_sha256",
+    "lease_id",
+    "work_id",
+    "session_id",
+    "worker_identity",
+    "outcome",
+    "repository",
+    "session",
+    "execution",
+    "validation",
+    "blockers"
+  ]
+}

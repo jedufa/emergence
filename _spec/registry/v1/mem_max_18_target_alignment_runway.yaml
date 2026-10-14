@@ -1,0 +1,13 @@
+harness_api: 1
+version: 1
+name: mem_max_18_target_alignment_runway
+description: MEM-MAX-18 target-alignment semantics gate. Medium runway blocked until position-aware telemetry exists.
+matrix_order:
+- runway_cell
+- seed
+axes:
+  runway_cell:
+    values: [useful_normal, useful_ablated, cue_off_normal]
+seeds: [20115]
+status: gate_blocked
+gate_blocker: position_aware_level4_telemetry_missing

@@ -1,0 +1,283 @@
+{
+  "$defs": {
+    "nonEmptyUniqueStrings": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 256,
+      "minItems": 1,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "uniqueStrings": {
+      "items": {
+        "maxLength": 4096,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    }
+  },
+  "$id": "https://eiel.local/schemas/eiel_work_package_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Small immutable engineering contract for one Work Item. It does not contain mutable lifecycle state.",
+  "properties": {
+    "acceptance_criteria": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "dependencies": {
+      "items": {
+        "pattern": "^WORK-[A-Z0-9-]+$",
+        "type": "string"
+      },
+      "maxItems": 256,
+      "type": "array",
+      "uniqueItems": true
+    },
+    "evidence": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "execution_budget": {
+      "additionalProperties": false,
+      "properties": {
+        "context_health_policy": {
+          "const": "advisory"
+        },
+        "expected_duration_minutes": {
+          "maximum": 10080,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "expected_tool_calls": {
+          "maximum": 10000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "handoff_recommended_after_tool_calls": {
+          "maximum": 10000,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "maximum_compactions": {
+          "maximum": 100,
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "forbidden_files": {
+      "$ref": "#/$defs/uniqueStrings"
+    },
+    "goal": {
+      "maxLength": 4096,
+      "minLength": 1,
+      "type": "string"
+    },
+    "output_policy": {
+      "additionalProperties": false,
+      "properties": {
+        "default_output_mode": {
+          "enum": [
+            "compact",
+            "normal"
+          ]
+        },
+        "git_output": {
+          "enum": [
+            "short_status_or_stat",
+            "name_status",
+            "full"
+          ]
+        },
+        "json_output": {
+          "enum": [
+            "selected_fields",
+            "summary",
+            "full"
+          ]
+        },
+        "log_output": {
+          "enum": [
+            "tail_only",
+            "summary",
+            "full"
+          ]
+        },
+        "maximum_display_lines": {
+          "maximum": 2000,
+          "minimum": 20,
+          "type": "integer"
+        },
+        "recursive_output_requires_reason": {
+          "type": "boolean"
+        },
+        "test_output": {
+          "enum": [
+            "failures_and_summary",
+            "summary",
+            "full"
+          ]
+        }
+      },
+      "type": "object"
+    },
+    "owned_files": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "package_version": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "read_contract": {
+      "additionalProperties": false,
+      "properties": {
+        "broad_search_allowed": {
+          "type": "boolean"
+        },
+        "entry_files": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "excluded_roots": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "known_symbols": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "maximum_initial_files": {
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "required_documents": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "search_roots": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      },
+      "type": "object"
+    },
+    "recommended_authority": {
+      "enum": [
+        "ARCHITECTURE_AUTHORITY",
+        "ENGINEERING_AUTHORITY",
+        "IMPLEMENTATION_AUTHORITY"
+      ]
+    },
+    "recommended_model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_work_package_v1"
+    },
+    "scope": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "stop_conditions": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "tests": {
+      "$ref": "#/$defs/nonEmptyUniqueStrings"
+    },
+    "title": {
+      "maxLength": 512,
+      "minLength": 1,
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "uncertainty_class": {
+      "enum": [
+        "U1",
+        "U2",
+        "U3",
+        "U4",
+        "U5"
+      ]
+    },
+    "work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "decision_basis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "reason_summary": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "unresolved_questions": {
+          "$ref": "#/$defs/uniqueStrings"
+        },
+        "rejected_alternatives": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "properties": {
+              "alternative": {
+                "type": "string",
+                "minLength": 1
+              },
+              "reason_rejected": {
+                "type": "string",
+                "minLength": 1
+              },
+              "evidence_ref": {
+                "type": [
+                  "string",
+                  "null"
+                ]
+              }
+            },
+            "required": [
+              "alternative",
+              "reason_rejected",
+              "evidence_ref"
+            ]
+          }
+        },
+        "source_decision_refs": {
+          "$ref": "#/$defs/uniqueStrings"
+        }
+      },
+      "required": [
+        "reason_summary",
+        "unresolved_questions",
+        "rejected_alternatives",
+        "source_decision_refs"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "work_id",
+    "package_version",
+    "goal",
+    "scope",
+    "owned_files",
+    "forbidden_files",
+    "dependencies",
+    "acceptance_criteria",
+    "tests",
+    "evidence",
+    "stop_conditions",
+    "recommended_authority",
+    "recommended_model",
+    "uncertainty_class"
+  ],
+  "title": "EIEL repository-native Work Package",
+  "type": "object"
+}

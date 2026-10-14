@@ -1,0 +1,16 @@
+{
+  "snapshots": [
+    {
+      "processes": [{"owner_id": "example-helper", "pid": 4242}],
+      "source_state": "running"
+    },
+    {
+      "processes": [{"owner_id": "example-helper", "pid": 4242}],
+      "source_state": "source_complete"
+    },
+    {
+      "processes": [],
+      "source_state": "source_complete"
+    }
+  ]
+}

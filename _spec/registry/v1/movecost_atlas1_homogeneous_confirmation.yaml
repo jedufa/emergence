@@ -1,0 +1,19 @@
+name: movecost_atlas1_homogeneous_confirmation
+policies: 32
+worlds:
+  - movecost_tradeoff
+  - uncorrelated_food_cost
+  - budget_matched_uniform
+  - inverted_food_cost
+seeds:
+  - 505
+  - 606
+  - 707
+  - 808
+  - 909
+  - 1001
+  - 1102
+  - 1203
+cells: 1024
+workers: 1
+mutation: disabled

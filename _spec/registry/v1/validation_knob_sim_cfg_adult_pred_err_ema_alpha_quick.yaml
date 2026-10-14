@@ -1,0 +1,43 @@
+harness_api: 1
+version: 1
+name: validation_knob_sim_cfg_adult_pred_err_ema_alpha_quick
+description: Per-knob A/B validation for sim_cfg.adult_pred_err_ema_alpha. Baseline
+  vs variant differ only by this knob (or required enabling context).
+intent:
+  question: Is knob sim_cfg.adult_pred_err_ema_alpha traceably applied (config + required
+    artifacts) in an A/B run pair?
+  axes:
+  - ab
+matrix_order:
+- ab
+- seed
+axes:
+  ab:
+    values:
+    - baseline
+    - variant
+    flags:
+      baseline: []
+      variant:
+      - --adult_pred_err_ema_alpha
+      - '0.25'
+seeds:
+- 1
+cli_defaults:
+- - --generations
+  - '1'
+- - --steps
+  - '150'
+- - --policy_tick_stride
+  - '2'
+- - --pop
+  - '64'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: valknob_quick
+  run_id_format: validation_knob_sim_cfg_adult_pred_err_ema_alpha_quick__ab_{ab}__seed{seed:06d}
+  run_tag_format: valknob_quick__ab_{ab}

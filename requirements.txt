@@ -1,0 +1,2 @@
+# Maintained runtime dependencies; install [research,dev] for contributor checks.
+-e .[research,dev]

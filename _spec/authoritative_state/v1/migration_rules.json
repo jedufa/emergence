@@ -1,0 +1,34 @@
+{
+  "contract_hash": "1b244520e20ab03da57230dffe382fff2ec8a0dca946ce2b4dd5203534c9eeb4",
+  "rules": [
+    {
+      "category": "identity",
+      "component": "checkpoint",
+      "details": {},
+      "from_contract_hash": "3227e67e69245d7e7a409b6fa5f4a30986039a9bb666811dd50681b011ee954e",
+      "to_contract_hash": "3227e67e69245d7e7a409b6fa5f4a30986039a9bb666811dd50681b011ee954e"
+    },
+    {
+      "category": "identity",
+      "component": "chronicle",
+      "details": {},
+      "from_contract_hash": "e72288b8c2876647a49e1bab907d902bf8e0964a07c254fd0ef8fba8ebea005f",
+      "to_contract_hash": "e72288b8c2876647a49e1bab907d902bf8e0964a07c254fd0ef8fba8ebea005f"
+    },
+    {
+      "category": "identity",
+      "component": "provider_projection",
+      "details": {},
+      "from_contract_hash": "e59be445587feeff89c10190f1c5a63c7471af6a22bcd5544eb69b0067d09433",
+      "to_contract_hash": "e59be445587feeff89c10190f1c5a63c7471af6a22bcd5544eb69b0067d09433"
+    },
+    {
+      "category": "identity",
+      "component": "analysis_projection",
+      "details": {},
+      "from_contract_hash": "893d1aa492d7edb16abe7d41fe1d2a9ade3a7bd399fde786e568194417d1a6c1",
+      "to_contract_hash": "893d1aa492d7edb16abe7d41fe1d2a9ade3a7bd399fde786e568194417d1a6c1"
+    }
+  ],
+  "schema_version": "eiel_authoritative_state_migration_rules_v1"
+}

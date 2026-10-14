@@ -1,0 +1,29 @@
+schema_version: eiel_work_package_v1
+work_id: WORK-042
+package_version: 1
+title: Add bounded Work Package support
+goal: Bind one immutable repository-native engineering contract to an existing Work Item.
+scope:
+  - Add Work Package validation and digest binding.
+  - Expose the binding through Work Manager and Session Manager.
+owned_files:
+  - tools/actors/work_package.py
+  - tools/actors/work_manager.py
+  - tests/test_eiel_work_package_v1.py
+forbidden_files:
+  - tools/actors/mission_planner.py
+  - tools/actors/qualification_manager.py
+dependencies: []
+acceptance_criteria:
+  - Work Manager creates WORK-042 from this package.
+  - A Session verifies the same relative package and digest.
+tests:
+  - pytest -q tests/test_eiel_work_package_v1.py
+evidence:
+  - Targeted pytest output.
+  - Work and Session handoff JSON showing the same SHA-256.
+stop_conditions:
+  - Stop and request promotion if implementation requires a new manager or automatic scheduler.
+recommended_authority: IMPLEMENTATION_AUTHORITY
+recommended_model: GPT-5.3 Spark High
+uncertainty_class: U2

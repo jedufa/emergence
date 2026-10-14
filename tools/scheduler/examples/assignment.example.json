@@ -1,0 +1,96 @@
+{
+  "assignment_material_sha256": "0e86266ec8c2a2f0eedbcd14cd0c36e470ee0b96498fd6eac9c732da25437c9c",
+  "material": {
+    "bootstrap_expectations": {
+      "expected_branch": "main",
+      "expected_head": "ffffffffffffffffffffffffffffffffffffffff",
+      "expected_repo_root": "/repo",
+      "record_id": "BST-EXAMPLE",
+      "record_sha256": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "verify_only": true
+    },
+    "continuation": {
+      "authority_phase": "implementation",
+      "context_receipt_id": "CTX-EXAMPLE",
+      "context_receipt_path": "/state/context-receipts/CTX-EXAMPLE.json",
+      "context_receipt_sha256": "1111111111111111111111111111111111111111111111111111111111111111"
+    },
+    "created_at_utc": "2026-08-05T00:00:00Z",
+    "dispatch_request": {
+      "record_id": "DSP-EXAMPLE",
+      "record_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "revision": 1
+    },
+    "lease_policy": {
+      "duration_seconds": 3600,
+      "heartbeat_interval_seconds": 300
+    },
+    "next_safe_action": {
+      "description": "Execute bounded package."
+    },
+    "phase": {
+      "authority_role": "IMPLEMENTATION_AUTHORITY",
+      "kind": "implementation"
+    },
+    "repository": {
+      "expected_branch": "main",
+      "expected_head": "ffffffffffffffffffffffffffffffffffffffff",
+      "repo_root": "/repo",
+      "working_directory": "/repo",
+      "worktree_action": "USE_EXISTING",
+      "worktree_mutation_allowed": false
+    },
+    "result_contract": {
+      "prose_parsing_allowed": false,
+      "result_path": "/state/scheduler/results/ASSIGN-EXAMPLE.json",
+      "schema_version": "eiel_worker_result_v1",
+      "worker_must_not_complete_work": true
+    },
+    "schema_version": "eiel_worker_assignment_v1",
+    "session": {
+      "action": "ACTIVATE_PREPARED",
+      "record_id": "SES-EXAMPLE",
+      "record_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+      "revision": 1,
+      "status": "CREATED"
+    },
+    "work": {
+      "derived_status": "READY",
+      "record_id": "WORK-EXAMPLE",
+      "record_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "revision": 1,
+      "status": "ACTIVE",
+      "work_package_binding": {
+        "package_version": 1,
+        "path": "work_packages/WORK-EXAMPLE.yaml",
+        "sha256": "cccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccccc"
+      }
+    },
+    "worker_profile": {
+      "ephemeral": true,
+      "fake_behavior": "checkpoint",
+      "fake_fixture_content": "fixture\n",
+      "launcher_type": "fake",
+      "model": null,
+      "profile": null,
+      "profile_id": "fake",
+      "reasoning_level": null,
+      "sandbox": "workspace-write"
+    },
+    "workspace_handoff": {
+      "next_safe_action": {
+        "description": "Execute bounded package."
+      },
+      "status": "WORKSPACE_READY"
+    }
+  },
+  "operational": {
+    "claim_count": 0,
+    "current_lease_id": null,
+    "result_id": null
+  },
+  "preparation": {
+    "phase": "READY"
+  },
+  "schema_version": "eiel_worker_assignment_v1"
+}

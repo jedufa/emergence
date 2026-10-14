@@ -1,0 +1,121 @@
+{
+  "schema_version": "tw_cuda_full_evolution_host_layout_receipt_v1",
+  "programme_id": "TW-CUDA-FULL-EVOLUTION-REFORM-20260825",
+  "claim_class": "TECHNICAL_ONLY",
+  "source_parent_commit": "c4cf309484256140fe6f1500d1eecbaadf151ce4",
+  "source_inventory": [
+    {
+      "path": "engine/perf/cuda_full_evolution_v2/__init__.py",
+      "sha256": "d2eb5de2f15a012fcd6fad3ffc021903428355eb3b948dae862ce524671e0bed"
+    },
+    {
+      "path": "engine/perf/cuda_full_evolution_v2/contract.py",
+      "sha256": "422aa6479e9bec133f8a340c20ed1f14d024450e40898b76e06acfd45412b48f"
+    },
+    {
+      "path": "engine/perf/cuda_full_evolution_v2/layout.py",
+      "sha256": "e3207c053d8983d379b95b17ed8abd646ccf95786f6f86fffad24bcfbe06aabf"
+    },
+    {
+      "path": "tests/test_eiel_cuda_full_evolution_v2_contract.py",
+      "sha256": "64f4e6aa341e0f993fc3d01dd5ed8aa0da95b5e150e99901b3b70ba9c0bc9d9b"
+    }
+  ],
+  "trajectory_identity": {
+    "profile": "EIEL_FULL_EVOLUTION_CUDA_NATIVE_V2",
+    "route_id": "tensor_world_cuda_full_evolution_v2",
+    "native_abi": "eiel_full_evolution_cuda_native_abi_v1",
+    "time_authority": "absolute_tick_v1",
+    "world_width": 32,
+    "initial_population": 256,
+    "resident_capacity_c": 512,
+    "linked_diploid_loci": 128,
+    "temporal_k_default": 8,
+    "temporal_k_range": [1, 64]
+  },
+  "performance_authority": {
+    "qualified_v1_world_ticks_per_second": "4467.193115159868",
+    "qualified_v1_packed_ticks_per_second": "32.847008199704916",
+    "literal_100x_world_ticks_per_second": "446719.311515986800",
+    "literal_100x_packed_ticks_per_second": "3284.700819970491600",
+    "literal_100x_packed_tick_milliseconds": "0.30444172995"
+  },
+  "state_layout": {
+    "alignment_bytes": 64,
+    "state_bytes_per_world": 265472,
+    "canonical_checkpoint_bytes_per_world": 191744,
+    "derived_cache_bytes_per_world": 73728,
+    "reference_scratch_bytes_per_world": 8192,
+    "fields": [
+      ["scalar_header_counters", "u64", [24], 0, 192],
+      ["occupancy", "u16", [1024], 192, 2048],
+      ["resource", "u16", [1024], 2240, 2048],
+      ["scent", "u16", [1024], 4288, 2048],
+      ["waste", "u16", [1024], 6336, 2048],
+      ["eed_impact", "u16", [1024], 8384, 2048],
+      ["eed_pending", "u16", [1024], 10432, 2048],
+      ["wdl_due", "u64", [1024], 12480, 8192],
+      ["wdl_active", "u8", [1024], 20672, 1024],
+      ["terrain", "u8", [1024], 21696, 1024],
+      ["jungle", "u8", [1024], 22720, 1024],
+      ["position", "u16", [512], 23744, 1024],
+      ["energy", "i16", [512], 24768, 1024],
+      ["health", "i16", [512], 25792, 1024],
+      ["age", "u16", [512], 26816, 1024],
+      ["absolute_birth_tick", "u64", [512], 27840, 4096],
+      ["alive_words", "u32", [16], 31936, 64],
+      ["agent_id", "u64", [512], 32000, 4096],
+      ["parent_a_id", "u64", [512], 36096, 4096],
+      ["parent_b_id", "u64", [512], 40192, 4096],
+      ["policy_alleles", "i8", [2, 112, 512], 44288, 114688],
+      ["trait_alleles", "i16", [2, 16, 512], 158976, 32768],
+      ["expressed_policy_cache", "i32", [7, 4, 512], 191744, 57344],
+      ["expressed_trait_cache", "i16", [16, 512], 249088, 16384]
+    ]
+  },
+  "event_contract": {
+    "row_bytes": 48,
+    "rows_per_world_per_tick": 1024,
+    "rows_per_world_per_dispatch": "1024 * temporal_k",
+    "identity": "world_uid + absolute_tick + ((event_kind << 48) | canonical_slot_ordinal)",
+    "row_index": {
+      "death": "tick_offset * 1024 + slot",
+      "birth": "tick_offset * 1024 + 512 + slot"
+    },
+    "status": {"unused": 0, "committed": 1},
+    "reserved_value": 0,
+    "rng_address": false,
+    "fields": [
+      ["absolute_tick", "u64"],
+      ["event_id", "u64"],
+      ["agent_id", "u64"],
+      ["parent_a_id", "u64"],
+      ["parent_b_id", "u64"],
+      ["event_kind", "u16"],
+      ["site_index", "u16"],
+      ["status", "u16"],
+      ["reserved", "u16"]
+    ]
+  },
+  "b136_k8_design_ledger": {
+    "resident_state_bytes": 36104192,
+    "bounded_dispatch_event_bytes": 53477376,
+    "canonical_checkpoint_staging_slab_bytes": 26077184,
+    "canonical_checkpoint_staging_bytes": 52154368,
+    "optional_reference_scratch_bytes": 1114112,
+    "fixed_owner_allowance_bytes": 65536,
+    "production_total_without_reference_scratch_bytes": 141801472,
+    "golden_validation_total_bytes": 142915584,
+    "horizon_dependent_bytes": 0
+  },
+  "validation": {
+    "command": "./tools/bin/emergence-python -m pytest -q -o addopts='' tests/test_eiel_cuda_full_evolution_v2_contract.py",
+    "result": "33 passed",
+    "independent_review": "P0_CONVERGENCE_PASS; SEALED_BUILD_AND_TINY_GPU_PROOF_DEFERRED_TO_G1_GPU_GATE"
+  },
+  "limitations": [
+    "This is a host design ledger, not measured device/process peak VRAM.",
+    "The actual serializer/checkpoint round trip remains a G1 GPU/runtime gate.",
+    "No throughput or qualification claim is made."
+  ]
+}

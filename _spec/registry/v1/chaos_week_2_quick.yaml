@@ -1,0 +1,178 @@
+harness_api: 1
+version: 1
+name: chaos_week_2_quick
+description: 'Chaos Week 2 (quick): medium horizon, multi-seed. 1-primary axis perturbations
+  with targeted ablations (1 per block).'
+intent:
+  question: Pressure topology mapping for Chaos Week 2 (identity coupling, late-life
+    pressure, developmental lock-in).
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - quick_A1_identity_gate_soft_action_noise__baseline
+    - quick_A1_identity_gate_soft_action_noise__variant
+    - quick_A2_identity_gate_soft_perception_blur__baseline
+    - quick_A2_identity_gate_soft_perception_blur__variant
+    - quick_A4_identity_gate_moderate_resource_lockout__baseline
+    - quick_A4_identity_gate_moderate_resource_lockout__variant
+    - quick_A4_identity_gate_moderate_resource_lockout_ablation__baseline
+    - quick_A4_identity_gate_moderate_resource_lockout_ablation__variant
+    - quick_B1_late_life_hazard_mild__baseline
+    - quick_B1_late_life_hazard_mild__variant
+    - quick_B3_late_life_resource_access_tax__baseline
+    - quick_B3_late_life_resource_access_tax__variant
+    - quick_B3_late_life_resource_access_tax_ablation__baseline
+    - quick_B3_late_life_resource_access_tax_ablation__variant
+    - quick_B4_late_life_metabolic_cost__baseline
+    - quick_B4_late_life_metabolic_cost__variant
+    - quick_C1_plasticity_decay_soft__baseline
+    - quick_C1_plasticity_decay_soft__variant
+    - quick_C2_commitment_lock_mid__baseline
+    - quick_C2_commitment_lock_mid__variant
+    - quick_C2_commitment_lock_mid_ablation__baseline
+    - quick_C2_commitment_lock_mid_ablation__variant
+    - quick_C3_juvenile_fast_mode_late_fragility__baseline
+    - quick_C3_juvenile_fast_mode_late_fragility__variant
+    flags:
+      quick_A1_identity_gate_soft_action_noise__baseline: []
+      quick_A1_identity_gate_soft_action_noise__variant:
+      - --knob
+      - sim_cfg.identity_gate_enable=true
+      - --knob
+      - sim_cfg.identity_gate_mode=action_noise
+      - --knob
+      - sim_cfg.identity_gate_strength=0.5
+      - --knob
+      - sim_cfg.identity_gate_adult_only=true
+      quick_A2_identity_gate_soft_perception_blur__baseline: []
+      quick_A2_identity_gate_soft_perception_blur__variant:
+      - --knob
+      - sim_cfg.identity_gate_enable=true
+      - --knob
+      - sim_cfg.identity_gate_mode=perception_blur
+      - --knob
+      - sim_cfg.identity_gate_strength=0.5
+      - --knob
+      - sim_cfg.identity_gate_adult_only=true
+      quick_A4_identity_gate_moderate_resource_lockout__baseline: []
+      quick_A4_identity_gate_moderate_resource_lockout__variant:
+      - --knob
+      - sim_cfg.identity_gate_enable=true
+      - --knob
+      - sim_cfg.identity_gate_mode=resource_lockout
+      - --knob
+      - sim_cfg.identity_gate_strength=1.0
+      - --knob
+      - sim_cfg.identity_gate_adult_only=true
+      quick_A4_identity_gate_moderate_resource_lockout_ablation__baseline: []
+      quick_A4_identity_gate_moderate_resource_lockout_ablation__variant:
+      - --knob
+      - sim_cfg.identity_gate_enable=false
+      - --knob
+      - sim_cfg.identity_gate_mode=resource_lockout
+      - --knob
+      - sim_cfg.identity_gate_strength=1.0
+      - --knob
+      - sim_cfg.identity_gate_adult_only=true
+      quick_B1_late_life_hazard_mild__baseline: []
+      quick_B1_late_life_hazard_mild__variant:
+      - --knob
+      - sim_cfg.late_life_pressure_enable=true
+      - --knob
+      - sim_cfg.late_life_pressure_type=hazard
+      - --knob
+      - sim_cfg.late_life_pressure_weight=0.5
+      - --knob
+      - sim_cfg.late_life_start_age_frac=0.66
+      quick_B3_late_life_resource_access_tax__baseline: []
+      quick_B3_late_life_resource_access_tax__variant:
+      - --knob
+      - sim_cfg.late_life_pressure_enable=true
+      - --knob
+      - sim_cfg.late_life_pressure_type=resource_access_tax
+      - --knob
+      - sim_cfg.late_life_pressure_weight=1.0
+      - --knob
+      - sim_cfg.late_life_start_age_frac=0.66
+      quick_B3_late_life_resource_access_tax_ablation__baseline: []
+      quick_B3_late_life_resource_access_tax_ablation__variant:
+      - --knob
+      - sim_cfg.late_life_pressure_enable=false
+      - --knob
+      - sim_cfg.late_life_pressure_type=resource_access_tax
+      - --knob
+      - sim_cfg.late_life_pressure_weight=1.0
+      - --knob
+      - sim_cfg.late_life_start_age_frac=0.66
+      quick_B4_late_life_metabolic_cost__baseline: []
+      quick_B4_late_life_metabolic_cost__variant:
+      - --knob
+      - sim_cfg.late_life_pressure_enable=true
+      - --knob
+      - sim_cfg.late_life_pressure_type=metabolic_cost
+      - --knob
+      - sim_cfg.late_life_pressure_weight=1.0
+      - --knob
+      - sim_cfg.late_life_start_age_frac=0.66
+      quick_C1_plasticity_decay_soft__baseline: []
+      quick_C1_plasticity_decay_soft__variant:
+      - --knob
+      - sim_cfg.dev_lockin_enable=true
+      - --knob
+      - sim_cfg.dev_plasticity_decay_enable=true
+      - --knob
+      - sim_cfg.dev_plasticity_half_life_steps=60
+      quick_C2_commitment_lock_mid__baseline: []
+      quick_C2_commitment_lock_mid__variant:
+      - --knob
+      - sim_cfg.dev_lockin_enable=true
+      - --knob
+      - sim_cfg.dev_commitment_enable=true
+      - --knob
+      - sim_cfg.dev_commit_age_frac=0.25
+      quick_C2_commitment_lock_mid_ablation__baseline: []
+      quick_C2_commitment_lock_mid_ablation__variant:
+      - --knob
+      - sim_cfg.dev_lockin_enable=false
+      - --knob
+      - sim_cfg.dev_commitment_enable=true
+      - --knob
+      - sim_cfg.dev_commit_age_frac=0.25
+      quick_C3_juvenile_fast_mode_late_fragility__baseline: []
+      quick_C3_juvenile_fast_mode_late_fragility__variant:
+      - --knob
+      - sim_cfg.dev_lockin_enable=true
+      - --knob
+      - sim_cfg.dev_fragility_enable=true
+      - --knob
+      - sim_cfg.dev_fragility_strength=1.0
+      - --knob
+      - sim_cfg.dev_fragility_accumulates_in_juvenile=true
+seeds:
+- 1
+- 2
+- 3
+cli_defaults:
+- - --generations
+  - '150'
+- - --steps
+  - '150'
+- - --pop
+  - '256'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- behaviors.csv
+naming:
+  run_tag_prefix: chaos_week2_quick
+  run_id_format: chaos_week_2_quick__{case}__seed{seed:06d}
+  run_tag_format: chaos_week2_quick__{case}

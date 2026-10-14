@@ -1,0 +1,19 @@
+name: movecost_atlas1_homogeneous_core
+policies: 32
+worlds:
+  - true_flat
+  - resource_gradient_only
+  - movement_cost_only
+  - label_only_sham
+  - uncorrelated_food_cost
+  - budget_matched_uniform
+  - inverted_food_cost
+  - movecost_tradeoff
+seeds:
+  - 101
+  - 202
+  - 303
+  - 404
+cells: 1024
+workers: 1
+mutation: disabled

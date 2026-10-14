@@ -1,0 +1,19 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_actor_history_head_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EIEL Actor History Head V1",
+  "description": "Bounded pointer to the latest immutable actor-record revision.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_actor_history_head_v1"},
+    "record_id": {"type": "string", "minLength": 1},
+    "revision": {"type": "integer", "minimum": 1},
+    "record_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "snapshot": {"type": "string", "pattern": "^[0-9]{6}\\.json$"},
+    "head_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "required": ["schema_version", "record_id", "revision", "record_sha256", "snapshot", "head_sha256"],
+  "x-eiel-owner": "tools.actors.store",
+  "x-eiel-persistence-class": "durable_derived_history_pointer"
+}

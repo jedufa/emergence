@@ -1,0 +1,192 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_dispatch_request_v1.schema.json",
+  "title": "EIEL explicit Dispatch Request",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "eiel_dispatch_request_v1"
+    },
+    "work_id": {
+      "type": "string",
+      "pattern": "^WORK-[A-Z0-9-]+$"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "allowed_authority_phases": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "enum": [
+          "implementation",
+          "review",
+          "repair"
+        ]
+      }
+    },
+    "worker_profile": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "profile_id": {
+          "type": "string",
+          "minLength": 1
+        },
+        "launcher_type": {
+          "enum": [
+            "fake",
+            "codex_exec"
+          ]
+        },
+        "model": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "reasoning_level": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "profile": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "sandbox": {
+          "enum": [
+            "read-only",
+            "workspace-write"
+          ]
+        },
+        "ephemeral": {
+          "type": "boolean"
+        },
+        "fake_behavior": {
+          "type": "string"
+        },
+        "fake_fixture_content": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "profile_id",
+        "launcher_type",
+        "model",
+        "reasoning_level",
+        "profile",
+        "sandbox",
+        "ephemeral",
+        "fake_behavior",
+        "fake_fixture_content"
+      ]
+    },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "repo_root": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_branch": {
+          "type": [
+            "string",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "repo_root",
+        "expected_branch"
+      ]
+    },
+    "queue": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "priority": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "priority"
+      ]
+    },
+    "automation_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "allow_fresh_session": {
+          "type": "boolean"
+        },
+        "allow_resume": {
+          "type": "boolean"
+        },
+        "allow_independent_review": {
+          "type": "boolean"
+        },
+        "allow_repair": {
+          "type": "boolean"
+        },
+        "allow_work_completion": {
+          "const": false
+        }
+      },
+      "required": [
+        "allow_fresh_session",
+        "allow_resume",
+        "allow_independent_review",
+        "allow_repair",
+        "allow_work_completion"
+      ]
+    },
+    "lease_policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "duration_seconds": {
+          "type": "integer",
+          "minimum": 30
+        },
+        "heartbeat_interval_seconds": {
+          "type": "integer",
+          "minimum": 1
+        }
+      },
+      "required": [
+        "duration_seconds",
+        "heartbeat_interval_seconds"
+      ]
+    },
+    "created_by": {
+      "type": "string",
+      "minLength": 1
+    },
+    "note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "work_id",
+    "enabled",
+    "allowed_authority_phases",
+    "worker_profile",
+    "repository",
+    "queue",
+    "automation_policy",
+    "lease_policy",
+    "created_by",
+    "note"
+  ]
+}

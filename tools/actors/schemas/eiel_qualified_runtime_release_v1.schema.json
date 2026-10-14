@@ -1,0 +1,54 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://eiel.local/schemas/eiel_qualified_runtime_release_v1.schema.json",
+    "title": "Qualified Runtime Release V1",
+    "type": "object",
+    "additionalProperties": false,
+    "required": [
+        "schema_version",
+        "release_id",
+        "source_identity",
+        "qualified_execution_envelope",
+        "environment_contract",
+        "qualified_artifacts",
+        "python_payload",
+        "qualification_authority",
+        "template_plan_sha256",
+        "historical_escape_suite_id",
+        "historical_escape_suite_inventory_sha256",
+        "launcher_sha256",
+        "created_at_utc",
+        "manifest_sha256"
+    ],
+    "properties": {
+        "schema_version": {"const": "eiel_qualified_runtime_release_v1"},
+        "release_id": {"type": "string", "pattern": "^qrr1-[0-9a-f]{32}$"},
+        "source_identity": {"type": "object"},
+        "qualified_execution_envelope": {
+            "type": "object",
+            "required": [
+                "schema_version",
+                "envelope_id",
+                "execution_route_sha256",
+                "qualification_key_sha256",
+                "resource_contract",
+                "representation_contract",
+                "dimensions",
+                "envelope_sha256"
+            ]
+        },
+        "environment_contract": {"type": "object"},
+        "qualified_artifacts": {"type": "array", "items": {"type": "object"}},
+        "python_payload": {"type": "array", "items": {"type": "object"}},
+        "qualification_authority": {"type": "object"},
+        "template_plan_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "historical_escape_suite_id": {"const": "HistoricalQualificationEscapeSuiteV1"},
+        "historical_escape_suite_inventory_sha256": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$"
+        },
+        "launcher_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "created_at_utc": {"type": "string"},
+        "manifest_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+    }
+}

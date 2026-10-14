@@ -1,0 +1,58 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_work_acceptance_evidence_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "acceptance_scope": {
+      "enum": [
+        "UNCONDITIONAL",
+        "WITH_LIMITS"
+      ]
+    },
+    "accepted_delivery": {
+      "$ref": "eiel_actor_record_ref_v1.schema.json"
+    },
+    "accepted_review": {
+      "$ref": "eiel_actor_record_ref_v1.schema.json"
+    },
+    "decision_snapshot": {
+      "type": "object"
+    },
+    "known_limitations": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "obligation_proof": {
+      "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "repository_integration_receipt": {
+      "$ref": "eiel_repository_truth_artifact_ref_v1.schema.json"
+    },
+    "schema_version": {
+      "const": "eiel_work_acceptance_evidence_v2"
+    }
+  },
+  "required": [
+    "schema_version",
+    "decision_snapshot",
+    "accepted_review",
+    "accepted_delivery",
+    "obligation_proof",
+    "repository_integration_receipt",
+    "acceptance_scope",
+    "known_limitations",
+    "recorded_at_utc"
+  ],
+  "title": "EIEL Work terminal acceptance evidence V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.work_manager",
+  "x-eiel-persistence-class": "embedded_durable_terminal_decision_evidence"
+}

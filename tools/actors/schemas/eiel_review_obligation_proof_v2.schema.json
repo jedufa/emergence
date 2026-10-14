@@ -1,0 +1,130 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_review_obligation_proof_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "implementation_sufficiency": {
+      "enum": [
+        "SUFFICIENT",
+        "INSUFFICIENT",
+        "UNASSESSED"
+      ]
+    },
+    "limitations": {
+      "items": {
+        "minLength": 1,
+        "type": "string"
+      },
+      "type": "array",
+      "uniqueItems": true
+    },
+    "obligation_results": {
+      "items": {
+        "additionalProperties": false,
+        "properties": {
+          "evidence_refs": {
+            "items": {
+              "additionalProperties": false,
+              "anyOf": [
+                {
+                  "required": [
+                    "uri",
+                    "sha256"
+                  ]
+                },
+                {
+                  "required": [
+                    "path",
+                    "sha256"
+                  ]
+                }
+              ],
+              "properties": {
+                "path": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "sha256": {
+                  "pattern": "^[0-9a-f]{64}$",
+                  "type": "string"
+                },
+                "uri": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "type": "object"
+            },
+            "minItems": 1,
+            "type": "array"
+          },
+          "execution_receipt": {
+            "oneOf": [
+              {
+                "$ref": "eiel_review_execution_receipt_v1.schema.json"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "kind": {
+            "enum": [
+              "acceptance_criterion",
+              "test",
+              "evidence_item"
+            ]
+          },
+          "obligation": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "PASS",
+              "FAIL",
+              "NOT_RUN",
+              "BLOCKED"
+            ]
+          }
+        },
+        "required": [
+          "kind",
+          "obligation",
+          "status",
+          "evidence_refs",
+          "execution_receipt"
+        ],
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "reviewed_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "reviewed_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_review_obligation_proof_v2"
+    },
+    "work_id": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "work_id",
+    "reviewed_commit",
+    "reviewed_package_sha256",
+    "implementation_sufficiency",
+    "obligation_results"
+  ],
+  "title": "EIEL evidence-entailing review obligation proof input V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.acceptance",
+  "x-eiel-persistence-class": "review_input_contract"
+}

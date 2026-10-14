@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_delivery_component_v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_delivery_component_v1"},
+    "source_session_id": {"type": "string", "pattern": "^SES-"},
+    "source_commit": {"type": ["string", "null"]},
+    "contribution_paths": {"type": "array", "items": {"type": "string"}, "uniqueItems": true},
+    "artifact_refs": {"type": "array", "items": {"type": "object"}},
+    "disposition": {"enum": ["INCLUDED", "MODIFIED", "REFERENCE_ONLY", "REJECTED"]},
+    "reason": {"type": "string", "minLength": 1},
+    "recorded_at_utc": {"type": "string"}
+  },
+  "required": ["schema_version", "source_session_id", "source_commit", "contribution_paths", "artifact_refs", "disposition", "reason", "recorded_at_utc"]
+}

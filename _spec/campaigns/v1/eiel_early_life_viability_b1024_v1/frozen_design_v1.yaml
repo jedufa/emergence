@@ -1,0 +1,66 @@
+schema_version: eiel_early_life_viability_diagnostic_design_v1
+campaign_id: EIEL-EARLY-LIFE-VIABILITY-B1024-V1
+instrument_contract: EIEL_SCIENCE_INSTRUMENT_V1
+world_bundle_contract: EIEL_SCIENCE_WORLD_BUNDLE_V1
+scientific_objective: early_life_viability_and_retention
+source_campaign: EIEL-LOOP-ATLAS-1024-V1
+physical_execution:
+  carrier: w32x32p256c512_gpuv2
+  native_batch_size: 1024
+  stitched_composition: false
+factorial:
+  founder_pair:
+    - id: neutral-resource
+      focal: native-neutral-v1
+      partner: native-resource-specialist-v1
+    - id: resource-movement
+      focal: native-resource-specialist-v1
+      partner: native-movement-specialist-v1
+    - id: movement-risk
+      focal: native-movement-specialist-v1
+      partner: native-risk-resistant-v1
+    - id: risk-neutral
+      focal: native-risk-resistant-v1
+      partner: native-neutral-v1
+  composition:
+    - homogeneous
+    - mixed
+  early_ecology:
+    - supportive
+    - resource-limited
+    - movement-risk
+    - damage-limited
+  pressure_regime:
+    - "off"
+    - early-moderate
+    - late-moderate
+    - late-severe
+  mutation_regime:
+    - disabled
+    - baseline
+  paired_seed:
+    - S00
+    - S01
+  replicate:
+    - R0
+    - R1
+  expected_world_count: 1024
+time:
+  authority: absolute_tick_v1
+  start_next_tick: 0
+  total_ticks: 25000
+  checkpoint_ticks: [10000, 25000]
+  snapshot_ticks: [0, 100, 250, 500, 1000, 2500, 5000, 7500, 10000, 15000, 25000]
+strategy_attribution:
+  schema_version: eiel_science_strategy_attribution_v1
+  identity_mode: declared_policy_mapping_v1
+  lineage_mode: parent_ancestry_v1
+  event_kinds: [birth, death, lineage, offspring, parent]
+  denominator_fields: [reproduction_eligible_count, mate_candidate_count, birth_attempt_count, successful_parent_count, births_as_parent_count]
+  strategy_ids: [native-movement-specialist-v1, native-neutral-v1, native-resource-specialist-v1, native-risk-resistant-v1]
+causal_classes:
+  A: founders die before reproduction opportunity from baseline energetic/ecological needs
+  B: founders survive but never become reproduction eligible or receive opportunity
+  C: births occur but offspring or lineages disappear before tick 10000 without pressure timing
+  D: viable lineage is lost after preregistered pressure onset relative to no-pressure control
+  E: viable mixed lineage persists with attributed funnel but no directional reproductive contrast

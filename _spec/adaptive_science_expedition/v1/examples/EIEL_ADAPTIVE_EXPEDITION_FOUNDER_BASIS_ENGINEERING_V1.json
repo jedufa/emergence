@@ -1,0 +1,115 @@
+{
+  "schema_version": "eiel_science_request_v1",
+  "campaign_id": "EIEL-ADAPTIVE-EXPEDITION-FOUNDER-BASIS-ENGINEERING-V1",
+  "test": "EIEL_ADAPTIVE_EXPEDITION_FOUNDER_BASIS_ENGINEERING_V1",
+  "question": {
+    "description": "Declare one immutable small founder basis for no-claims adaptive-expedition engineering validation.",
+    "no_claims": true
+  },
+  "world": {
+    "width": 32,
+    "height": 32,
+    "population": 256,
+    "capacity": 512
+  },
+  "run": {
+    "ticks": 64,
+    "batch": 1,
+    "checkpoint_ticks": [
+      64
+    ]
+  },
+  "dimensions": {
+    "condition": [
+      1
+    ],
+    "replicate": [
+      7
+    ],
+    "seed": [
+      1103
+    ]
+  },
+  "world_template": {
+    "initialization": {
+      "initial_population": 256,
+      "initial_live_count": 256,
+      "founder_profiles": [
+        "native-broad-diverse-a-v1"
+      ],
+      "exact_founder_composition": [
+        {
+          "founder_profile_id": "native-broad-diverse-a-v1",
+          "count": 256
+        }
+      ],
+      "spatial_placement_profile": "deterministic_seeded_shuffle_v1",
+      "standing_variation_profile": "broad-standing-variation-v1"
+    },
+    "controls": {
+      "environment.patch.enabled": true,
+      "environment.resource.carrying_base": 64,
+      "environment.resource.carrying_variation": 96,
+      "environment.resource.growth_base": 1,
+      "environment.resource.growth_variation": 3,
+      "environment.resource.multiplier": 0.8,
+      "environment.resource.uptake_base": 8,
+      "mutation.enabled": true,
+      "mutation.rate": 0.03125,
+      "mutation.step": 1,
+      "reproduction.enabled": true,
+      "reproduction.energy_cost": 30,
+      "reproduction.energy_threshold": 100
+    },
+    "seeds": {
+      "ecology": "${seed}",
+      "founder": "${seed}",
+      "initialization": "${seed}",
+      "intervention": "${replicate}",
+      "mutation": "${seed}",
+      "policy": "${condition}",
+      "task_environment": "${seed}"
+    }
+  },
+  "replicate_dimension": "replicate",
+  "observe": {
+    "profile": "SCIENCE_STANDARD_V1",
+    "events": [
+      "birth",
+      "death"
+    ],
+    "state": [
+      "genome_identity",
+      "population_count"
+    ],
+    "runtime_counters": [
+      "birth_count",
+      "mutation_count"
+    ],
+    "snapshot_ticks": [
+      0,
+      64
+    ]
+  },
+  "reduce": {
+    "reducer": "science.compact.world_atlas.v1",
+    "configuration": {
+      "analysis_dimensions": [
+        "condition",
+        "replicate",
+        "seed"
+      ],
+      "axis_a": "condition",
+      "axis_b": "seed",
+      "decision_family": "ADAPTIVE_EXPEDITION_ENGINEERING",
+      "reporting_group": "ADAPTIVE_EXPEDITION_ENGINEERING",
+      "tracked_policy_loci": [
+        0
+      ],
+      "tracked_trait_loci": [
+        1
+      ]
+    }
+  },
+  "expect_worlds": 1
+}

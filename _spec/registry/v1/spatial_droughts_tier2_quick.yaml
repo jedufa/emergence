@@ -1,0 +1,66 @@
+harness_api: 1
+version: 1
+name: spatial_droughts_tier2
+description: Tier 2 spatial droughts validation registry.
+intent:
+  question: Do Tier 2 spatial droughts activate deterministically, log realized events,
+    and influence spawn/regrowth fields without agent inspection?
+  axes:
+  - scenario
+matrix_order:
+- scenario
+- seed
+axes:
+  scenario:
+    values:
+    - explicit_one_region
+    flags:
+      explicit_one_region:
+      - --spatial_droughts_enable
+      - --spatial_droughts_spec
+      - '@experiments/assets/spatial_droughts/v1/drought_spec__explicit_one_region.json'
+      - --spatial_ecology_enable
+      - --spatial_ecology_seed
+      - '123'
+      - --spatial_ecology_log_formats
+      - npy
+      - --resource_regrowth_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_regrowth_map__uniform.json'
+      - --resource_spawn_density_map_spec
+      - '@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__uniform.json'
+      - --hazard_rate_map_spec
+      - '@experiments/assets/spatial_ecology/v1/hazard_rate_map__uniform.json'
+seeds:
+- 41
+- 42
+cli_defaults:
+- - --generations
+  - '5'
+- - --steps
+  - '120'
+- - --pop
+  - '128'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+- maps/spec.json
+- maps/summary.json
+- maps/maps_readme.md
+- maps/resource_regrowth_map.npy
+- maps/resource_spawn_density_map.npy
+- maps/hazard_rate_map.npy
+- droughts/README.txt
+- droughts/drought_events.jsonl
+- droughts/drought_intensity_timeseries.csv
+- droughts/drought_stats_periodic.csv
+- droughts/regions/drought_region_id_map.npy
+- droughts/regions/north_west_mask.npy
+
+naming:
+  run_tag_prefix: "spat2_quick"
+  run_id_format: "{name}__scenario_{scenario}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__scenario_{scenario}"

@@ -1,0 +1,342 @@
+harness_api: 1
+version: 1
+name: mem1_drh0_rp2_geometry_memory_arm_binding_dry_run
+description: MEM1-DRH0-RP2 dry-run registry fixture declaration for exact DRH0 geometry and memory-arm binding.
+intent: Bounded dry-run only; validates registry-fixture geometry/control metadata and memory arm config labels before any DRH0 memory preflight.
+matrix_order:
+- trait_arm
+- geometry_case
+- seed
+axes:
+  trait_arm:
+    values:
+    - memory_normal
+    - memory_ablated
+    flags:
+      memory_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - sim_cfg.memory_pressure_scenario=true
+      - --knob
+      - sim_cfg.memory_pressure_type=drh0_delayed_refuge_preflight
+      - --knob
+      - sim_cfg.force_prediction_zero_lr=false
+      - --knob
+      - sim_cfg.reset_prediction_each_tick=false
+      - --knob
+      - sim_cfg.prediction_pressure_scenario=false
+      memory_ablated:
+      - --knob
+      - sim_cfg.force_memory_disabled=true
+      - --knob
+      - sim_cfg.reset_memory_each_tick=true
+      - --knob
+      - sim_cfg.memory_pressure_scenario=true
+      - --knob
+      - sim_cfg.memory_pressure_type=drh0_delayed_refuge_preflight
+      - --knob
+      - sim_cfg.force_prediction_zero_lr=false
+      - --knob
+      - sim_cfg.reset_prediction_each_tick=false
+      - --knob
+      - sim_cfg.prediction_pressure_scenario=false
+  geometry_case:
+    values:
+    - reference_full
+    - reference_cue_off_control
+    - reference_observation_off_control
+    - reference_consequence_off_control
+    - reference_refuge_off_control
+    - reference_static_refuge_control
+    - alternate_reachable_full
+    - threshold_timing_full
+    - timing_too_short_unreachable
+    flags:
+      reference_full: &reference_full_flags
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=true
+      reference_cue_off_control:
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=true
+      reference_observation_off_control:
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=false
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=false
+      reference_consequence_off_control:
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=false
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=false
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_damage_enable=false
+      reference_refuge_off_control:
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      - --knob
+      - env_cfg.path1_drh0_min_refuge_cells=99
+      reference_static_refuge_control:
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      - --knob
+      - env_cfg.path1_drh0_static_refuge_control_enable=true
+      alternate_reachable_full: *reference_full_flags
+      threshold_timing_full: *reference_full_flags
+      timing_too_short_unreachable: *reference_full_flags
+seeds:
+- 101
+cli_defaults:
+- - --generations
+  - "1"
+- - --steps
+  - "8"
+- - --pop
+  - "4"
+- - --grid_size
+  - "5"
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - env_cfg.patch_world_enable=true
+- - --knob
+  - env_cfg.patch_world_observation_enable=true
+- - --knob
+  - env_cfg.enable_biomes=false
+- - --knob
+  - env_cfg.food_spawn_per_step=0
+- - --knob
+  - env_cfg.max_food=0
+- - --knob
+  - env_cfg.wdl_delayed_hazard_enable=true
+- - --knob
+  - env_cfg.wdl_delayed_hazard_damage_enable=true
+- - --knob
+  - env_cfg.wdl_delayed_hazard_radius=0
+- - --knob
+  - env_cfg.wdl_delayed_hazard_intensity=0.4
+- - --knob
+  - env_cfg.path1_drh0_refuge_reachability_enable=true
+- - --knob
+  - env_cfg.path1_drh0_refuge_requires_shelter_or_cover=true
+- - --knob
+  - env_cfg.path1_drh0_min_refuge_cells=1
+- - --knob
+  - env_cfg.path1_drh0_cue_required_for_refuge_protection=true
+- - --knob
+  - env_cfg.path1_drh0_pre_arrival_required_for_refuge_protection=true
+- - --knob
+  - env_cfg.path1_drh0_damage_reduction_fraction=0.5
+- - --knob
+  - env_cfg.path1_drh0_damage_reduction_cap=1.0
+- - --knob
+  - sim_cfg.enable_cognitive_trait_registry=true
+- - --knob
+  - sim_cfg.enable_cognitive_status_metrics=true
+- - --knob
+  - sim_cfg.enable_cognitive_budget_ledger=false
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.behavior_log_enable=true
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+- - --knob
+  - sim_cfg.lineage_qd_archive_enable=false
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: mem1_drh0_rp2_geometry_memory_arm_binding_dry_run
+  run_id_format: mem1_drh0_rp2__trait_{trait_arm}__geometry_{geometry_case}__seed{seed:06d}
+  run_tag_format: mem1_drh0_rp2__trait_{trait_arm}__geometry_{geometry_case}
+mem1_drh0_rp2_fixture_geometry:
+  schema_version: mem1_drh0_rp2_fixture_geometry_v1
+  grid:
+    width: 5
+    height: 5
+  cases:
+    reference_full:
+      family: baseline_reachable_reference
+      role: full
+      cue_present: true
+      observation_enabled: true
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [2, 1]
+      refuge_location: [2, 2]
+      active_hazard_location: [2, 2]
+      cue_duration_steps: 1
+      hidden_window_steps: 1
+      active_duration_steps: 1
+      timer_value: 1
+      expected_reachable: true
+    reference_cue_off_control:
+      family: baseline_reachable_reference
+      role: cue_off_control
+      cue_present: false
+      observation_enabled: true
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [2, 1]
+      refuge_location: [2, 2]
+      active_hazard_location: [2, 2]
+      cue_duration_steps: 0
+      hidden_window_steps: 0
+      active_duration_steps: 1
+      timer_value: 1
+      expected_reachable: false
+    reference_observation_off_control:
+      family: baseline_reachable_reference
+      role: observation_off_control
+      cue_present: true
+      observation_enabled: false
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [2, 1]
+      refuge_location: [2, 2]
+      active_hazard_location: [2, 2]
+      cue_duration_steps: 1
+      hidden_window_steps: 1
+      active_duration_steps: 1
+      timer_value: 1
+      expected_reachable: true
+    reference_consequence_off_control:
+      family: baseline_reachable_reference
+      role: consequence_off_control
+      cue_present: true
+      observation_enabled: true
+      consequence_enabled: false
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [2, 1]
+      refuge_location: [2, 2]
+      active_hazard_location: null
+      cue_duration_steps: 1
+      hidden_window_steps: 1
+      active_duration_steps: 0
+      timer_value: 1
+      expected_reachable: true
+    reference_refuge_off_control:
+      family: baseline_reachable_reference
+      role: refuge_off_control
+      cue_present: true
+      observation_enabled: true
+      consequence_enabled: true
+      refuge_present: false
+      static_refuge_control: false
+      cue_location: [2, 1]
+      refuge_location: null
+      active_hazard_location: [2, 2]
+      cue_duration_steps: 1
+      hidden_window_steps: 1
+      active_duration_steps: 1
+      timer_value: 1
+      expected_reachable: false
+    reference_static_refuge_control:
+      family: baseline_reachable_reference
+      role: static_refuge_control
+      cue_present: false
+      observation_enabled: false
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: true
+      cue_location: [2, 1]
+      refuge_location: [2, 2]
+      active_hazard_location: [2, 2]
+      cue_duration_steps: 0
+      hidden_window_steps: 0
+      active_duration_steps: 1
+      timer_value: 1
+      expected_reachable: false
+    alternate_reachable_full:
+      family: alternate_reachable_geometry
+      role: full
+      cue_present: true
+      observation_enabled: true
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [1, 1]
+      refuge_location: [1, 4]
+      active_hazard_location: [1, 4]
+      cue_duration_steps: 1
+      hidden_window_steps: 3
+      active_duration_steps: 1
+      timer_value: 3
+      expected_reachable: true
+    threshold_timing_full:
+      family: threshold_timing_reachable
+      role: full
+      cue_present: true
+      observation_enabled: true
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [0, 1]
+      refuge_location: [3, 1]
+      active_hazard_location: [3, 1]
+      cue_duration_steps: 1
+      hidden_window_steps: 3
+      active_duration_steps: 1
+      timer_value: 3
+      expected_reachable: true
+    timing_too_short_unreachable:
+      family: timing_too_short_unreachable
+      role: broken_unreachable_fixture
+      cue_present: true
+      observation_enabled: true
+      consequence_enabled: true
+      refuge_present: true
+      static_refuge_control: false
+      cue_location: [0, 0]
+      refuge_location: [4, 4]
+      active_hazard_location: null
+      cue_duration_steps: 1
+      hidden_window_steps: 1
+      active_duration_steps: 0
+      timer_value: 1
+      expected_reachable: false

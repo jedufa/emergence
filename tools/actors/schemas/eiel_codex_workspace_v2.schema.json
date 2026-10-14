@@ -1,0 +1,229 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_codex_workspace_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "properties": {
+    "bootstrap": {
+      "properties": {
+        "age_hours": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "record_id": {
+          "pattern": "^BST-[A-Z0-9-]+$",
+          "type": "string"
+        },
+        "record_sha256": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "READY",
+            "READY_WITH_WARNINGS"
+          ]
+        }
+      },
+      "required": [
+        "record_id",
+        "status",
+        "age_hours",
+        "record_sha256"
+      ],
+      "type": "object"
+    },
+    "bridge": {
+      "type": "object"
+    },
+    "context_health": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "context_receipt": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "execution_budget": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "initial_context": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "mission": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "normal_path": {
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1,
+      "type": "array"
+    },
+    "operator_contract_version": {
+      "const": "eiel_codex_operator_contract_v1"
+    },
+    "output_policy": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "portfolio": {
+      "type": "object"
+    },
+    "repository": {
+      "properties": {
+        "head": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "root": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "root",
+        "head"
+      ],
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_codex_workspace_v2"
+    },
+    "selected_session": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "selected_work": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "state_root": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "task_context": {
+      "additionalProperties": false,
+      "properties": {
+        "bootstrap_task_mode": {
+          "enum": [
+            "review",
+            "diagnosis",
+            "implementation",
+            "campaign",
+            "qualification",
+            "documentation",
+            "evidence",
+            "mechanical"
+          ],
+          "type": "string"
+        },
+        "qualification_reason": {
+          "type": "string"
+        },
+        "qualification_required": {
+          "type": "boolean"
+        },
+        "qualification_status": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "required_authority_domain": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "required_session_role": {
+          "enum": [
+            "ARCHITECTURE_AUTHORITY",
+            "ENGINEERING_AUTHORITY",
+            "IMPLEMENTATION_AUTHORITY",
+            "REVIEW_AUTHORITY"
+          ],
+          "type": "string"
+        },
+        "task_class": {
+          "enum": [
+            "review",
+            "diagnosis",
+            "implementation",
+            "campaign",
+            "qualification",
+            "documentation",
+            "evidence",
+            "repository_maintenance"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "bootstrap_task_mode",
+        "task_class",
+        "required_authority_domain",
+        "required_session_role",
+        "qualification_required",
+        "qualification_status",
+        "qualification_reason"
+      ],
+      "type": "object"
+    },
+    "workflow_administration": {
+      "additionalProperties": false,
+      "properties": {
+        "obligations": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "required_for_operator_authorized_execution": {
+          "const": false
+        }
+      },
+      "required": [
+        "required_for_operator_authorized_execution",
+        "obligations"
+      ],
+      "type": "object"
+    },
+    "tooling_version": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "operator_contract_version",
+    "tooling_version",
+    "state_root",
+    "repository",
+    "bootstrap",
+    "portfolio",
+    "normal_path",
+    "context_receipt",
+    "initial_context",
+    "output_policy",
+    "execution_budget",
+    "context_health",
+    "task_context",
+    "workflow_administration"
+  ],
+  "title": "EIEL consolidated Codex workspace",
+  "type": "object"
+}

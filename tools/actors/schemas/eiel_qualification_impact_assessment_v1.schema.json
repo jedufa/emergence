@@ -1,0 +1,49 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_qualification_impact_assessment_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_qualification_impact_assessment_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "automatic_invalidation": {
+      "type": "boolean"
+    },
+    "changed_axes": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "changed_paths": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "impact_families": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "next_required_action": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_qualification_impact_assessment_v1"
+    },
+    "scientific_effect": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "changed_axes",
+    "changed_paths",
+    "impact_families",
+    "automatic_invalidation"
+  ],
+  "title": "EIEL Qualification Impact Assessment V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.qualification_manager",
+  "x-eiel-persistence-class": "durable_actor_payload"
+}

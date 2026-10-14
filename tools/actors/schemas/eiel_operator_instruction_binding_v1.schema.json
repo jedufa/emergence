@@ -1,0 +1,20 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_operator_instruction_binding_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_operator_instruction_binding_v1"},
+    "binding_kind": {"enum": ["CONTENT_ADDRESSED_FILE", "PROVENANCE_ONLY_LABEL"]},
+    "source_path": {"type": "string"},
+    "state_root_locator": {"type": "string"},
+    "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "digest_kind": {"type": "string", "minLength": 1},
+    "label": {"type": "string", "minLength": 1},
+    "execution_authority": {"type": "boolean"}
+  },
+  "required": ["schema_version", "binding_kind", "digest_kind", "execution_authority"],
+  "title": "EIEL operator instruction content/provenance binding",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.bootstrap",
+  "x-eiel-persistence-class": "embedded_authority_material"
+}

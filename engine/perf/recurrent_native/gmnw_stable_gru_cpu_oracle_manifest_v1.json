@@ -1,0 +1,42 @@
+{
+  "schema_version": "eiel_gmnw_stable_gru_cpu_oracle_manifest_v1",
+  "runtime_jit": false,
+  "production_routing_qualified": false,
+  "compiler_identity": "g++ (Ubuntu 15.2.0-16ubuntu1) 15.2.0",
+  "sources": [
+    {"path": "engine/perf/native/recurrent/recurrent_common_v1.hpp", "sha256": "74d27146a7d52eb935019b9cd8bc81cf4021856e4331ddb8ab9130588b2f8e59"},
+    {"path": "engine/perf/native/recurrent/gmnw_recurrent_exact_math_v1.hpp", "sha256": "b9ffb892d00061b105e39a12eee1e463a40d2df12d9ad1e0c1c3259eec1ff508"},
+    {"path": "engine/perf/native/recurrent/stable_gru_v1.hpp", "sha256": "0e76295c386fddd38d2f788365f360b1c22b33a83dcc98ebb0a6ea6e3984fc29"},
+    {"path": "engine/perf/native/recurrent/stable_gru_v1.cpp", "sha256": "4ab1db68cdba81e5f6058dad037ebb6e358c85ea6cd81a55076073aac4e3863f"},
+    {"path": "engine/perf/native/recurrent/stable_gru_cpu_oracle_c_api_v1.h", "sha256": "d15f77a647f45ffd772b19738dfb631bffa8b5c5619a164f642f637956284ddf"},
+    {"path": "engine/perf/native/recurrent/stable_gru_cpu_oracle_c_api_v1.cpp", "sha256": "bc0d7c0ba9877ba3c5d576a8cda3eb9428760a12269118eb5ea371e8ca5b61ec"}
+  ],
+  "build_command": [
+    "g++", "-std=c++17", "-O2", "-fPIC", "-shared", "-Wall", "-Wextra",
+    "-Wconversion", "-Wsign-conversion", "-Wshadow", "-Werror", "-pedantic",
+    "-fno-exceptions", "-fno-rtti", "-fvisibility=hidden", "-fno-ident",
+    "-frandom-seed=eiel-gmnw-stable-gru-cpu-oracle-v1",
+    "-DEIEL_GMNW_RECURRENT_EXACT_MATH_REMAP_V1=1",
+    "-include", "engine/perf/native/recurrent/gmnw_recurrent_exact_math_v1.hpp",
+    "-Wl,--build-id=none", "-Wl,-z,defs", "-Wl,-z,relro,-z,now",
+    "engine/perf/native/recurrent/stable_gru_v1.cpp",
+    "engine/perf/native/recurrent/stable_gru_cpu_oracle_c_api_v1.cpp",
+    "-o", "{artifact}"
+  ],
+  "artifact": {
+    "file_name": "libeiel_gmnw_stable_gru_cpu_oracle_v1.so",
+    "size_bytes": 26824,
+    "sha256": "f9e4fd58be62193fac91a0bdb4d96a71dcaf1544ef01b3a7f399869080ed40ec"
+  },
+  "exported_symbols": [
+    "eiel_stable_gru_checkpoint_project_v1",
+    "eiel_stable_gru_checkpoint_restore_v1",
+    "eiel_stable_gru_cpu_oracle_abi_version_v1",
+    "eiel_stable_gru_forward_batch_v1",
+    "eiel_stable_gru_forward_v1",
+    "eiel_stable_gru_lifecycle_v1",
+    "eiel_stable_gru_mutate_v1",
+    "eiel_stable_gru_packed_parameter_count_v1"
+  ],
+  "qualification_scope": "GMNW integrated CPU/CUDA recurrent exactness oracle only"
+}

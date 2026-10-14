@@ -1,0 +1,70 @@
+{
+  "schema_version": "eiel_qualification_review_spec_v1",
+  "review_id": "EXAMPLE-MECHANICAL-REVIEW",
+  "rules_version": "eiel_qualification_review_risk_rules_v1",
+  "freshness_contract": {"reusable": true},
+  "packet_validations": [
+    {"id": "packet.schema", "path": "evidence/packet.json", "schema_path": "evidence/packet.schema.json"}
+  ],
+  "hash_graphs": [
+    {
+      "id": "packet.hash_graph",
+      "nodes": [
+        {"id": "packet", "path": "evidence/packet.json", "sha256": "d45ab9d17aa9cc25a08a80bd62f5ac91a9d132360510cdbf403ceb44dd2518c3"},
+        {"id": "artifact", "path": "evidence/artifact.json", "sha256": "6705e031b2e39cf00cd1fb5de29f24b432786fd8d4f14df6b3bf0338624f4590"}
+      ],
+      "edges": [{"from": "packet", "to": "artifact", "json_pointer": "/artifact_sha256"}],
+      "require_acyclic": true
+    }
+  ],
+  "json_assertions": [
+    {"id": "packet.ready", "path": "evidence/packet.json", "pointer": "/ready", "operator": "equals", "expected": true}
+  ],
+  "inventories": [
+    {
+      "id": "evidence.inventory",
+      "root": "evidence",
+      "expected_paths": ["artifact.json", "expected_negative.json", "packet.json", "packet.schema.json", "process_snapshots.json"]
+    }
+  ],
+  "freshness_checks": [
+    {
+      "id": "packet.freshness",
+      "path": "evidence/packet.json",
+      "timestamp_source": "json",
+      "timestamp_pointer": "/generated_at_utc",
+      "max_age_seconds": 7200
+    }
+  ],
+  "authority_transitions": [
+    {
+      "id": "example.acceptance",
+      "current_authority": "Q5_EVIDENCE_ONLY",
+      "proposed_authority": "READY_FOR_QUALIFICATION_CANDIDATE",
+      "preconditions": [
+        {"id": "ready", "path": "evidence/packet.json", "pointer": "/ready", "operator": "equals", "expected": true}
+      ],
+      "evidence_pointers": ["evidence/packet.json"],
+      "decision": {"kind": "acceptance", "irreversible": false, "evidence_pointers": []}
+    }
+  ],
+  "expected_negative_receipts": [
+    {
+      "id": "runbook.expected_negative",
+      "path": "evidence/expected_negative.json",
+      "expected_exit_code": 3,
+      "expected_reasons": ["SOURCE_NOT_TERMINAL", "HELPER_STILL_RUNNING"],
+      "ordered_reasons": true,
+      "state_assertions": [{"pointer": "/state", "operator": "equals", "expected": "NOT_READY"}]
+    }
+  ],
+  "process_convergence": [
+    {
+      "id": "helper.convergence",
+      "path": "evidence/process_snapshots.json",
+      "owner_id": "example-helper",
+      "expected_pids": [4242],
+      "terminal_source_states": ["source_complete"]
+    }
+  ]
+}

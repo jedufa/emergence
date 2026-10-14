@@ -1,0 +1,260 @@
+{
+  "schema_version": "experiment_contract_v1",
+  "contract_hash": "sha256:f6731562008e8d21d1065d1448b35e79b3bb99a85d7243e7d740ce221a136955",
+  "compatibility": {
+    "contract_family": "experiment_contract",
+    "major": 1,
+    "minor": 0
+  },
+  "project": {
+    "project_id": "emergence",
+    "display_name": "Emergence",
+    "owner": "causyl",
+    "tags": [
+      "emergence",
+      "experiment",
+      "gpu"
+    ]
+  },
+  "launch": {
+    "default_runner_id": "registry_batch",
+    "supported_runners": [
+      "pressure_point_search",
+      "registry_batch",
+      "registry_case"
+    ],
+    "entrypoints": {
+      "pressure_point_search": {
+        "command": [
+          "python3",
+          "-u",
+          "experiments/projects/emergence/_runner/run_pressure_point_search.py"
+        ],
+        "working_dir": "experiments/projects/emergence",
+        "env": {
+          "PYTHONUNBUFFERED": "1"
+        },
+        "required_args": [
+          "campaign_id"
+        ],
+        "optional_args": [
+          "dry_run",
+          "duration_days",
+          "max_active_children",
+          "once",
+          "poll_seconds",
+          "profile",
+          "runs_root"
+        ]
+      },
+      "registry_batch": {
+        "command": [
+          "python3",
+          "-u",
+          "experiments/projects/emergence/_runner/run_registry_batch.py"
+        ],
+        "working_dir": "experiments/projects/emergence",
+        "env": {
+          "PYTHONUNBUFFERED": "1"
+        },
+        "required_args": [
+          "registry"
+        ],
+        "optional_args": [
+          "batch_tag",
+          "dry_run",
+          "knob",
+          "only_run_id",
+          "only_seed",
+          "overwrite",
+          "perf",
+          "print_cmds",
+          "runs_root"
+        ]
+      },
+      "registry_case": {
+        "command": [
+          "python3",
+          "-u",
+          "experiments/projects/emergence/_runner/run_registry_case.py"
+        ],
+        "working_dir": "experiments/projects/emergence",
+        "env": {
+          "PYTHONUNBUFFERED": "1"
+        },
+        "required_args": [
+          "only_run_id",
+          "registry"
+        ],
+        "optional_args": [
+          "batch_tag",
+          "dry_run",
+          "overwrite",
+          "perf",
+          "print_cmds"
+        ]
+      }
+    },
+    "args": {
+      "required": [
+        "registry"
+      ],
+      "optional": [
+        "batch_tag",
+        "campaign_id",
+        "dry_run",
+        "duration_days",
+        "knob",
+        "max_active_children",
+        "once",
+        "only_run_id",
+        "only_seed",
+        "overwrite",
+        "perf",
+        "poll_seconds",
+        "print_cmds",
+        "profile",
+        "runs_root"
+      ],
+      "types": {
+        "batch_tag": "string",
+        "campaign_id": "string",
+        "dry_run": "bool",
+        "duration_days": "int",
+        "knob": "string_list",
+        "max_active_children": "int",
+        "once": "bool",
+        "only_run_id": "string_list",
+        "only_seed": "string_list",
+        "overwrite": "bool",
+        "perf": "bool",
+        "poll_seconds": "int",
+        "print_cmds": "bool",
+        "profile": "string",
+        "registry": "string",
+        "runs_root": "path"
+      }
+    }
+  },
+  "configuration": {
+    "profiles_root": "experiments/projects/emergence/_config",
+    "registry_root": "experiments/projects/emergence/_spec/registry/v1",
+    "override_modes": [
+      "knob",
+      "profile"
+    ],
+    "default_profile": "registry"
+  },
+  "observability": {
+    "status_files": [
+      {
+        "path": "run_record.json",
+        "type": "json",
+        "priority": 1
+      },
+      {
+        "path": "manifest.json",
+        "type": "json",
+        "priority": 2
+      },
+      {
+        "path": "summary.json",
+        "type": "json",
+        "priority": 3
+      },
+      {
+        "path": "r/*/heartbeat.json",
+        "type": "json",
+        "priority": 4
+      },
+      {
+        "path": "r/*/viz/run_status.json",
+        "type": "json",
+        "priority": 5
+      }
+    ],
+    "progress": {
+      "mode": "file",
+      "fields": [
+        "current_generation",
+        "status"
+      ]
+    },
+    "health_signals": [
+      "exit_code",
+      "heartbeat_age_sec"
+    ]
+  },
+  "control": {
+    "pause_supported": false,
+    "resume_supported": false,
+    "stop_supported": true,
+    "restart_supported": false,
+    "checkpoint_supported": false,
+    "branch_from_checkpoint_supported": false,
+    "intervention_actions": [
+      "graceful_stop"
+    ],
+    "unsupported_actions": [
+      "branch_from_checkpoint",
+      "checkpoint",
+      "hot_parameter_mutation",
+      "pause",
+      "restart",
+      "resume"
+    ]
+  },
+  "analysis": {
+    "primary_artifacts": [
+      "run_record.json",
+      "manifest.json",
+      "summary.json",
+      "r/*/viz/run_status.json"
+    ],
+    "recipes": [
+      "collect_bundle_metrics",
+      "debug_review"
+    ],
+    "default_recipe": "collect_bundle_metrics"
+  },
+  "resources": {
+    "resource_class": "gpu_heavy",
+    "project_semaphore": "gpu/emergence",
+    "max_parallel_runs": 2,
+    "estimated_footprint": {
+      "gpu_count": 1,
+      "cpu_cores": 8,
+      "ram_gb": 24
+    }
+  },
+  "limitations": [
+    "GPU-heavy Emergence runs must remain at two concurrent launches or fewer.",
+    "Pause, resume, restart, checkpoint, and branch-from-checkpoint are not exposed through this contract-backed runner path."
+  ],
+  "artifacts": {
+    "repo_tracked_outputs": [
+      "_artifacts/manifests/generated",
+      "_artifacts/proofs",
+      "small operator-readable reports"
+    ],
+    "external_data_root": "EMERGENCE_OUTPUTS_DIR or ~/causyl_experiment_data/emergence",
+    "artifact_manifest_required": false
+  },
+  "context_policy": {
+    "required_context_bundle": "lab_core_v1",
+    "additional_context_refs_allowed": false,
+    "forbidden_context_refs": [
+      "full_repo_dump",
+      "legacy_transcript_blob"
+    ]
+  },
+  "validation": {
+    "schema_validation_required": true,
+    "hash_validation_required": true,
+    "prelaunch_checks": [
+      "profiles_root_exists",
+      "registry_root_exists",
+      "runner_exists"
+    ]
+  }
+}

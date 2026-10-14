@@ -1,0 +1,683 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_science_request_v1.schema.json",
+  "title": "EIEL Science Request V1 authoring contract",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "test",
+    "question",
+    "world",
+    "run",
+    "dimensions",
+    "world_template",
+    "replicate_dimension",
+    "observe",
+    "reduce",
+    "expect_worlds"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "eiel_science_request_v1"
+    },
+    "campaign_id": {
+      "$ref": "#/$defs/token"
+    },
+    "test": {
+      "$ref": "#/$defs/token"
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "description",
+        "no_claims"
+      ],
+      "properties": {
+        "description": {
+          "$ref": "#/$defs/text"
+        },
+        "no_claims": {
+          "type": "boolean"
+        }
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "width",
+        "height",
+        "population",
+        "capacity"
+      ],
+      "properties": {
+        "width": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "height": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "population": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "capacity": {
+          "$ref": "#/$defs/positiveInteger"
+        }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "ticks",
+        "batch",
+        "checkpoint_ticks"
+      ],
+      "properties": {
+        "ticks": {
+          "$ref": "#/$defs/positiveInteger"
+        },
+        "batch": {
+          "oneOf": [
+            {
+              "$ref": "#/$defs/positiveInteger"
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "policy",
+                "worlds"
+              ],
+              "properties": {
+                "policy": {
+                  "const": "exact"
+                },
+                "worlds": {
+                  "$ref": "#/$defs/positiveInteger"
+                }
+              }
+            }
+          ]
+        },
+        "checkpoint_ticks": {
+          "$ref": "#/$defs/nonemptyTickArray"
+        }
+      }
+    },
+    "dimensions": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {
+        "$ref": "#/$defs/dimensionName"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "minItems": 1,
+        "items": {
+          "$ref": "#/$defs/dimensionScalar"
+        }
+      }
+    },
+    "exclude": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "minProperties": 1,
+        "propertyNames": {
+          "$ref": "#/$defs/dimensionName"
+        },
+        "additionalProperties": {
+          "$ref": "#/$defs/dimensionScalar"
+        }
+      }
+    },
+    "continuation": {
+      "$ref": "#/$defs/selectedWorldContinuation"
+    },
+    "exact_natural_source_state_bank": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "file_sha256",
+        "bank_sha256"
+      ],
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/text"
+        },
+        "file_sha256": {
+          "$ref": "#/$defs/digestHex"
+        },
+        "bank_sha256": {
+          "$ref": "#/$defs/digestHex"
+        }
+      }
+    },
+    "world_template": {
+      "type": "object",
+      "additionalProperties": false,
+      "oneOf": [
+        {
+          "required": [
+            "initialization",
+            "controls",
+            "seeds"
+          ]
+        },
+        {
+          "required": [
+            "controls"
+          ],
+          "not": {
+            "anyOf": [
+              {
+                "required": [
+                  "initialization"
+                ]
+              },
+              {
+                "required": [
+                  "seeds"
+                ]
+              }
+            ]
+          }
+        }
+      ],
+      "properties": {
+        "initialization": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "initial_population",
+            "initial_live_count",
+            "founder_profiles",
+            "exact_founder_composition",
+            "spatial_placement_profile",
+            "standing_variation_profile"
+          ],
+          "properties": {
+            "initial_population": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "initial_live_count": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "founder_profiles": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/$defs/text"
+              }
+            },
+            "exact_founder_composition": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "founder_profile_id",
+                  "count"
+                ],
+                "properties": {
+                  "founder_profile_id": {
+                    "$ref": "#/$defs/text"
+                  },
+                  "count": {
+                    "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+                  }
+                }
+              }
+            },
+            "exact_natural_source_composition": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "source_state_ref",
+                  "count"
+                ],
+                "properties": {
+                  "source_state_ref": {
+                    "$ref": "#/$defs/textOrPlaceholder"
+                  },
+                  "source_state_role": {
+                    "$ref": "#/$defs/textOrPlaceholder"
+                  },
+                  "count": {
+                    "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+                  }
+                }
+              }
+            },
+            "spatial_placement_profile": {
+              "$ref": "#/$defs/text"
+            },
+            "standing_variation_profile": {
+              "$ref": "#/$defs/text"
+            }
+          }
+        },
+        "controls": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {
+            "$ref": "#/$defs/text"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/templateValue"
+          }
+        },
+        "seeds": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "ecology",
+            "founder",
+            "policy",
+            "mutation",
+            "task_environment",
+            "initialization",
+            "intervention"
+          ],
+          "properties": {
+            "ecology": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "founder": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "policy": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "mutation": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "task_environment": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "initialization": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            },
+            "intervention": {
+              "$ref": "#/$defs/nonnegativeIntegerOrPlaceholder"
+            }
+          }
+        }
+      }
+    },
+    "replicate_dimension": {
+      "$ref": "#/$defs/dimensionName"
+    },
+    "observe": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "profile",
+        "events",
+        "state",
+        "runtime_counters",
+        "snapshot_ticks"
+      ],
+      "properties": {
+        "profile": {
+          "$ref": "#/$defs/token"
+        },
+        "events": {
+          "$ref": "#/$defs/nonemptyUniqueTextArray"
+        },
+        "state": {
+          "$ref": "#/$defs/nonemptyUniqueTextArray"
+        },
+        "runtime_counters": {
+          "$ref": "#/$defs/nonemptyUniqueTextArray"
+        },
+        "snapshot_ticks": {
+          "$ref": "#/$defs/nonemptyTickArray"
+        }
+      }
+    },
+    "reduce": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reducer",
+        "configuration"
+      ],
+      "properties": {
+        "reducer": {
+          "$ref": "#/$defs/token"
+        },
+        "configuration": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "analysis_dimensions",
+            "axis_a",
+            "axis_b",
+            "decision_family",
+            "reporting_group",
+            "tracked_policy_loci",
+            "tracked_trait_loci"
+          ],
+          "properties": {
+            "analysis_dimensions": {
+              "type": "array",
+              "minItems": 1,
+              "uniqueItems": true,
+              "items": {
+                "$ref": "#/$defs/dimensionName"
+              }
+            },
+            "axis_a": {
+              "$ref": "#/$defs/dimensionName"
+            },
+            "axis_b": {
+              "$ref": "#/$defs/dimensionName"
+            },
+            "decision_family": {
+              "$ref": "#/$defs/token"
+            },
+            "reporting_group": {
+              "$ref": "#/$defs/token"
+            },
+            "tracked_policy_loci": {
+              "$ref": "#/$defs/nonemptyUniqueNonnegativeIntegerArray"
+            },
+            "tracked_trait_loci": {
+              "$ref": "#/$defs/nonemptyUniqueNonnegativeIntegerArray"
+            },
+            "require_direct_genotype_reproductive_attribution": {
+              "type": "boolean"
+            },
+            "require_reproduction_funnel_denominators": {
+              "type": "boolean"
+            },
+            "require_full_hereditary_attribution": {
+              "type": "boolean"
+            },
+            "require_genotype_frequency_trajectory": {
+              "type": "boolean"
+            },
+            "focal_tracked_genotype_state_ids": {
+              "$ref": "#/$defs/nonemptyUniqueTextArray"
+            }
+          }
+        }
+      }
+    },
+    "expect_worlds": {
+      "$ref": "#/$defs/positiveInteger"
+    }
+  },
+  "$defs": {
+    "text": {
+      "type": "string",
+      "minLength": 1
+    },
+    "textOrPlaceholder": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/text"
+        },
+        {
+          "$ref": "#/$defs/placeholder"
+        }
+      ]
+    },
+    "digestHex": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "token": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9._+-]*$"
+    },
+    "dimensionName": {
+      "type": "string",
+      "pattern": "^[A-Za-z][A-Za-z0-9_]*$"
+    },
+    "positiveInteger": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "sha256Digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "algorithm",
+        "hex"
+      ],
+      "properties": {
+        "algorithm": {
+          "const": "sha256"
+        },
+        "hex": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "runArtifactRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "artifact_id",
+        "artifact_kind",
+        "artifact_schema_version",
+        "locator",
+        "content_digest",
+        "size_bytes"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "run_artifact_ref_v1"
+        },
+        "artifact_id": {
+          "$ref": "#/$defs/text"
+        },
+        "artifact_kind": {
+          "$ref": "#/$defs/text"
+        },
+        "artifact_schema_version": {
+          "$ref": "#/$defs/text"
+        },
+        "locator": {
+          "$ref": "#/$defs/text"
+        },
+        "content_digest": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "size_bytes": {
+          "type": "integer",
+          "minimum": 0
+        }
+      }
+    },
+    "stateRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "expedition_id",
+        "world_trajectory_id",
+        "logical_world_id",
+        "next_absolute_tick",
+        "state_class",
+        "semantic_world_sha256",
+        "control_history_sha256",
+        "source_object_sha256",
+        "source_artifact_ref",
+        "exact_state_sha256",
+        "checkpoint_occurrence_sha256",
+        "rng_state_sha256",
+        "event_prefix_sha256",
+        "parent_occurrence_sha256",
+        "replay_recipe_sha256"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "eiel_adaptive_science_state_ref_v1"
+        },
+        "expedition_id": {
+          "$ref": "#/$defs/text"
+        },
+        "world_trajectory_id": {
+          "$ref": "#/$defs/text"
+        },
+        "logical_world_id": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "next_absolute_tick": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "state_class": {
+          "const": "BRANCHABLE_EXACT"
+        },
+        "semantic_world_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "control_history_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "source_object_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "source_artifact_ref": {
+          "$ref": "#/$defs/runArtifactRef"
+        },
+        "exact_state_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "checkpoint_occurrence_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "rng_state_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "event_prefix_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "parent_occurrence_sha256": {
+          "$ref": "#/$defs/sha256Digest"
+        },
+        "replay_recipe_sha256": {
+          "type": "null"
+        }
+      }
+    },
+    "selectedWorldContinuation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "state_ref",
+        "authority_receipt_ref"
+      ],
+      "properties": {
+        "schema_version": {
+          "const": "eiel_science_selected_world_continuation_v1"
+        },
+        "state_ref": {
+          "$ref": "#/$defs/stateRef"
+        },
+        "authority_receipt_ref": {
+          "$ref": "#/$defs/runArtifactRef"
+        }
+      }
+    },
+    "dimensionScalar": {
+      "type": [
+        "boolean",
+        "integer",
+        "number",
+        "string"
+      ]
+    },
+    "placeholder": {
+      "type": "string",
+      "pattern": "^\\$\\{[A-Za-z][A-Za-z0-9_]*\\}$"
+    },
+    "nonnegativeIntegerOrPlaceholder": {
+      "oneOf": [
+        {
+          "type": "integer",
+          "minimum": 0
+        },
+        {
+          "$ref": "#/$defs/placeholder"
+        }
+      ]
+    },
+    "nonemptyTickArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "nonemptyUniqueTextArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "$ref": "#/$defs/text"
+      }
+    },
+    "nonemptyUniqueNonnegativeIntegerArray": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "integer",
+        "minimum": 0
+      }
+    },
+    "templateValue": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "integer"
+        },
+        {
+          "type": "number"
+        },
+        {
+          "type": "string",
+          "minLength": 1
+        },
+        {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/templateValue"
+          }
+        },
+        {
+          "type": "object",
+          "propertyNames": {
+            "$ref": "#/$defs/text"
+          },
+          "additionalProperties": {
+            "$ref": "#/$defs/templateValue"
+          }
+        }
+      ]
+    }
+  }
+}

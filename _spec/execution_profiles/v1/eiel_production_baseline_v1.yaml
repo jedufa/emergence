@@ -1,0 +1,150 @@
+schema_version: eiel_production_baseline_profile_v1
+profile_id: EIEL_PRODUCTION_BASELINE_V1
+human_name: Baseline
+version: 2
+
+# Baseline composes existing authorities. It does not redefine Full Evolution,
+# WRC, a runtime, a provider, route qualification, artifact lifecycle, or Canopy.
+requirements:
+  evolution.full_evolution:
+    domain: evolution_semantics
+    classification: REQUIRED
+    resolver: strict_run_contract
+    authority:
+      profile_id: eiel_full_evolution_v1
+      mode: strict
+    qualification:
+      mode: route_bound
+
+  runtime.production_cuda:
+    domain: runtime_route
+    classification: REQUIRED_MODE
+    resolver: production_cuda_runtime
+    authority:
+      provider_id: eiel-production-provider-v1
+      runtime_profile_id: eiel-production-runtime-v1
+      backend: cuda_resident
+    qualification:
+      mode: route_bound
+
+  science.wrc_variability:
+    domain: science_configuration
+    classification: REQUIRED
+    resolver: wrc_variability_envelope
+    authority:
+      schema_version: eiel_wrc_parameter_variability_envelope_v1
+      envelope_id: wrc-eiel-production-runtime-v1-eed-jungle-patch-wdl-v1
+      envelope_sha256: 0db593666df84bfa200d6bed62cf1eef8c5713bfb67bce6db5e476e0e2034b46
+      profile_id: eiel-production-runtime-v1
+      backend: cuda_resident
+      world:
+        base: patch
+        overlays:
+          - eed_resource_impact
+          - jungle
+          - wdl_delayed_hazard
+    qualification:
+      mode: route_bound
+
+  time.absolute_native_tick:
+    domain: native_time
+    classification: REQUIRED_MODE
+    resolver: absolute_native_tick
+    authority:
+      execution_route_identity: tick_native_execution_route_v1
+      time_authority: absolute_tick_v1
+    qualification:
+      mode: route_bound
+      required_obligations:
+        - non_generation_divisible_terminal_tick
+        - non_generation_divisible_checkpoint_tick
+        - exact_absolute_tick_checkpoint_export
+        - fresh_owner_partial_generation_restore
+        - first_committed_tick_after_partial_restore
+
+  checkpoint.native_streamed:
+    domain: checkpoint_acs
+    classification: REQUIRED_MODE
+    resolver: native_streamed_checkpoint
+    authority:
+      native_streamed_checkpoint: true
+    qualification:
+      mode: route_bound
+      required_obligations:
+        - checkpoint_export
+        - disk_checkpoint_reload
+        - fresh_owner_restore
+
+  checkpoint.acs_two_slot:
+    domain: checkpoint_acs
+    classification: REQUIRED_MODE
+    resolver: acs_two_slot
+    authority:
+      acs_checkpoint_slots: 2
+      persistence_mode: bounded_async_single_writer_v1
+    qualification:
+      mode: route_bound
+      required_obligations:
+        - async_checkpoint_backpressure
+        - async_checkpoint_failure_latch
+        - durable_frontier_publication
+
+  artifacts.lifecycle_contract:
+    domain: artifact_lifecycle
+    classification: REQUIRED
+    resolver: artifact_lifecycle
+    authority:
+      schema_version: eiel_run_artifact_lifecycle_contract_v1
+      source: explicit_plan_bound
+    qualification:
+      mode: not_applicable
+
+  provenance.canonical_front_door:
+    domain: provenance
+    classification: REQUIRED_MODE
+    resolver: canonical_front_door
+    authority:
+      admitted_front_doors:
+        - eiel_execution_request_v2
+        - eiel_production_science_request_v2
+    qualification:
+      mode: not_applicable
+
+  provenance.resource_preflight:
+    domain: provenance
+    classification: ADMISSION
+    resolver: resource_preflight
+    authority:
+      schema_version: eiel_campaign_preflight_v1
+      exact_plan_binding: true
+    qualification:
+      mode: not_applicable
+
+  observability.canopy:
+    domain: observability
+    classification: OPERATIONAL
+    resolver: canopy_supervision
+    authority:
+      schema_version: eiel_canopy_relay_supervision_v1
+      enabled: true
+      authority: read_only_external_projection_v1
+    qualification:
+      mode: not_applicable
+
+  authority.generation_runtime:
+    domain: native_time
+    classification: FORBIDDEN
+    resolver: generation_authority_forbidden
+    authority:
+      active: false
+    qualification:
+      mode: not_applicable
+
+  authority.device_fallback:
+    domain: runtime_route
+    classification: FORBIDDEN
+    resolver: device_fallback_forbidden
+    authority:
+      fallback_allowed: false
+    qualification:
+      mode: not_applicable

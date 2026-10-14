@@ -1,0 +1,28 @@
+{
+  "case_id": "golden_structure_single_operator_noop_path",
+  "schema_version": "golden_reference_input_v1",
+  "kind": "structure_single_operator",
+  "seed": 32002,
+  "operator_id": "gate_drift",
+  "max_ops": 1,
+  "payload": {
+    "schema_version": "modular_genome_v1",
+    "hidden_size": 64,
+    "exploration_bias": 0.1,
+    "aggression_bias": 0.2,
+    "reproduction_threshold": 30.0,
+    "mutation_rate": 0.05,
+    "action_temperature": 1.0,
+    "use_gru": false,
+    "memory_dim": 0,
+    "drive_inertia": 0.8,
+    "drive_noise": 0.01,
+    "drive_logit_gain": 1.0,
+    "pred_lr": 0.08,
+    "b2_invalid_policy": "clip",
+    "modules": [
+      {"module_id": "m0", "module_type": "generic", "io": {"inputs": [{"slot_id": "in", "value_type": "scalar"}], "outputs": [{"slot_id": "out", "value_type": "scalar"}] }}
+    ],
+    "connections": []
+  }
+}

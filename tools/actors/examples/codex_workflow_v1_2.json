@@ -1,0 +1,152 @@
+{
+  "boundaries": [
+    "Knowledge Librarian preflight and explicit operator/work-package authority come before READY.",
+    "Mission Planner structures an already authorized work package; it does not authorize a programme.",
+    "Actors do not launch campaigns.",
+    "Resource Manager does not reserve or kill processes.",
+    "Qualification Manager delegates execution to the existing eiel_campaign/eiel_qualification tools.",
+    "Evidence Manager uses the existing Evidence Decision Layer and requires the governing mission authority context.",
+    "Codex executes externally through existing approved EIEL campaign tooling."
+  ],
+  "forbidden": {
+    "evidenceManager": [
+      "run",
+      "execute",
+      "tune",
+      "claim",
+      "publish"
+    ],
+    "missionPlanner": [
+      "run",
+      "execute",
+      "launch",
+      "schedule"
+    ],
+    "qualificationManager": [
+      "run",
+      "execute",
+      "launch"
+    ],
+    "resourceManager": [
+      "reserve",
+      "schedule",
+      "launch",
+      "kill",
+      "cancel"
+    ]
+  },
+  "purpose": "Authority-bound deterministic local workflow for Codex. The managers retain receipts and never create strategy, execution authority, qualification authority, or scientific truth.",
+  "recovery": {
+    "commands": [
+      "python -m tools.eiel missionPlanner authority MIS-...",
+      "python -m tools.eiel missionPlanner status MIS-...",
+      "python -m tools.eiel missionPlanner history MIS-...",
+      "python -m tools.eiel missionPlanner next MIS-...",
+      "python -m tools.eiel missionPlanner handoff MIS-..."
+    ],
+    "required_output_fields": [
+      "status",
+      "completed_stages",
+      "missing_items",
+      "next_actions",
+      "related_records"
+    ]
+  },
+  "schema_version": "eiel_codex_actor_workflow_v1_2",
+  "steps": [
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner create --input MISSION.json",
+      "id": "create",
+      "order": 1,
+      "question": "What already-authorized work am I structuring?",
+      "success_status": "DRAFT"
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner preflight MIS-... --topic '<exact topic>' --authorization-basis operator_instruction --operator-instruction-ref '<operator instruction>' --ready",
+      "id": "preflight",
+      "order": 2,
+      "question": "What authority, evidence, limitations, and unknown gaps govern this mission?",
+      "success_status": "READY"
+    },
+    {
+      "actor": "qualificationManager",
+      "command": "python -m tools.eiel qualificationManager check --mission MIS-... --store",
+      "id": "qualification",
+      "order": 3,
+      "positive_statuses": [
+        "QUALIFIED",
+        "QUALIFIED_WITH_LIMITS",
+        "QUALIFIED_WITH_EXCLUSIONS"
+      ],
+      "question": "Can I trust the requested route?"
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner update MIS-... --qualification-ref QCHK-...",
+      "id": "attach_qualification",
+      "order": 4
+    },
+    {
+      "actor": "resourceManager",
+      "command": "python -m tools.eiel resourceManager assess --mission MIS-...",
+      "id": "resources",
+      "order": 5,
+      "positive_statuses": [
+        "ADMIT",
+        "ADMIT_WITH_LIMITS"
+      ],
+      "question": "Can I safely run now?"
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner update MIS-... --resource-ref RADM-... --status ACTIVE",
+      "id": "attach_resources",
+      "order": 6
+    },
+    {
+      "actor": "external_codex",
+      "authority": "outside_actor_managers",
+      "command": "python -m tools.scripts.eiel_campaign preflight CAMPAIGN_SPEC.json && python -m tools.scripts.eiel_campaign run CAMPAIGN_SPEC.json",
+      "id": "external_execution",
+      "order": 7,
+      "question": "Run with existing approved EIEL campaign tooling"
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner update MIS-... --campaign-spec-ref CAMPAIGN_SPEC.json --campaign-output-ref PATH --report-ref REPORT.md --source-commit COMMIT",
+      "id": "attach_outputs",
+      "order": 8
+    },
+    {
+      "actor": "evidenceManager",
+      "command": "python -m tools.eiel evidenceManager assess MANIFEST.json --mission MIS-... --deterministic",
+      "id": "evidence",
+      "order": 9,
+      "question": "What do outputs procedurally support?",
+      "success_status_prefix": "DECIDED_"
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner update MIS-... --evidence-ref EDM-... --status EVIDENCE_PENDING",
+      "id": "attach_evidence",
+      "order": 10
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner closeout MIS-... --closeout CLOSEOUT.json --librarian-document-id EIEL-DOC-... --strict-references",
+      "id": "closeout",
+      "order": 11,
+      "success_status": "CLOSED"
+    },
+    {
+      "actor": "missionPlanner",
+      "command": "python -m tools.eiel missionPlanner handoff MIS-...",
+      "id": "verify",
+      "order": 12,
+      "question": "Can a fresh Codex recover?",
+      "success_status": "CLOSED"
+    }
+  ]
+}

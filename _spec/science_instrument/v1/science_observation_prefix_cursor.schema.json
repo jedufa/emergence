@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-observation-prefix-cursor",
+  "title": "EIEL Science Observation Prefix Cursor V1",
+  "description": "Route-neutral observation continuity state sealed into an absolute-tick checkpoint. Route, physical partition, source path, and provider identity are deliberately excluded.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "instrument_manifest_sha256",
+    "semantic_execution_id",
+    "crca_semantic_run_digest",
+    "science_semantic_acquisition_sha256",
+    "cell_id",
+    "logical_world_id",
+    "world_uid",
+    "checkpoint_at_tick",
+    "next_absolute_tick",
+    "next_world_local_sequence",
+    "prefix_record_count",
+    "prefix_chain_sha256",
+    "last_deterministic_event_id",
+    "previous_cursor_sha256",
+    "effects_performed"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_observation_prefix_cursor_v1"},
+    "instrument_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "semantic_execution_id": {"$ref": "#/$defs/digest"},
+    "crca_semantic_run_digest": {"$ref": "#/$defs/digest"},
+    "science_semantic_acquisition_sha256": {"$ref": "#/$defs/digest"},
+    "cell_id": {"$ref": "#/$defs/token"},
+    "logical_world_id": {"type": "integer", "minimum": 0},
+    "world_uid": {"$ref": "#/$defs/digest"},
+    "checkpoint_at_tick": {"type": "integer", "minimum": 0},
+    "next_absolute_tick": {"type": "integer", "minimum": 0},
+    "next_world_local_sequence": {"type": "integer", "minimum": 0},
+    "prefix_record_count": {"type": "integer", "minimum": 0},
+    "prefix_chain_sha256": {"$ref": "#/$defs/digest"},
+    "last_deterministic_event_id": {
+      "oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+    },
+    "previous_cursor_sha256": {
+      "oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+    },
+    "effects_performed": {"const": false}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

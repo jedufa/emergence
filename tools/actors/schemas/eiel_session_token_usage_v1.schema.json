@@ -1,0 +1,194 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_token_usage_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "artifact_id": {
+      "pattern": "^SESTOK-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "attribution_assurance": {
+      "type": "string"
+    },
+    "cache_creation_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "capture_id": {
+      "pattern": "^TOKCAP-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "cached_input_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "boundary_record": {
+      "type": "object"
+    },
+    "close_intent_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "codex_thread_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "compactions": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "context_epoch_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_assurance": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_capture_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "duration_minutes": {
+      "minimum": 0,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "end_snapshot": {
+      "type": "object"
+    },
+    "input_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "measured_at_utc": {
+      "type": "string"
+    },
+    "measurement_scope": {
+      "type": "string"
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "output_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "problems": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reasoning_level": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resource_dimension": {
+      "const": "tokens"
+    },
+    "schema_version": {
+      "const": "eiel_session_token_usage_v1"
+    },
+    "session_id": {
+      "pattern": "^SES-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "source": {
+      "type": "object"
+    },
+    "start_snapshot": {
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "MEASURED",
+        "UNAVAILABLE"
+      ]
+    },
+    "tool_calls": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "total_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "artifact_sha256",
+    "capture_id",
+    "boundary_record",
+    "status",
+    "work_id",
+    "session_id",
+    "context_epoch_id",
+    "codex_thread_id",
+    "model",
+    "reasoning_level",
+    "duration_minutes",
+    "input_tokens",
+    "cached_input_tokens",
+    "cache_creation_tokens",
+    "output_tokens",
+    "total_tokens",
+    "start_snapshot",
+    "end_snapshot",
+    "measured_at_utc",
+    "source",
+    "problems",
+    "correction_note",
+    "tool_calls",
+    "compactions"
+  ],
+  "title": "EIEL WRA-1 immutable Session token delta",
+  "type": "object"
+}

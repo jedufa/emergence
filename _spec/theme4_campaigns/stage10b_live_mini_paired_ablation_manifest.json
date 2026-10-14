@@ -1,0 +1,535 @@
+{
+  "campaign_id": "theme4_stage10b_live_mini_paired_ablation",
+  "campaign_name": "Theme 4 Stage 10B-Live Mini Paired-Ablation Campaign",
+  "campaign_type": "live_simulator_mini_paired_ablation",
+  "cost_mode": "telemetry_only",
+  "default_env_overrides": {
+    "enable_biomes": false,
+    "food_spawn_per_step": 2,
+    "height": 6,
+    "max_food": 12,
+    "view_radius": 1,
+    "width": 6
+  },
+  "default_pop_overrides": {
+    "population_size": 4
+  },
+  "default_sim_overrides": {
+    "behavior_log_enable": false,
+    "checkpoint_bundle_v2_period_gen": 0,
+    "device": "cpu",
+    "enable_cognitive_budget_ledger": true,
+    "enable_cognitive_status_metrics": true,
+    "enable_cognitive_trait_registry": true,
+    "epi_enable": false,
+    "phase_e_e1_enable": false,
+    "policy_deterministic_actions": true,
+    "policy_tick_stride": 1
+  },
+  "description": "Live simulator-backed mini campaign validating Stage 9 orchestration against real flat, Patch World, and Jungle V0 metrics.",
+  "evidence_artifact_path": "evidences/theme4_stage10b_live_mini_campaign_evidence.md",
+  "horizon": {
+    "generations": 1,
+    "mode": "tiny_live_bridge_validation",
+    "note": "Intentionally tiny live-backed run for bridge validation, not ecological proof.",
+    "steps_per_generation": 2
+  },
+  "manifest_version": "theme4_campaign_manifest_v1",
+  "output_directory": "evidences/theme4_stage10b_live_mini_campaign",
+  "paired_ablation_groups": [
+    {
+      "ablation_cell_id": "flat_memory_disabled",
+      "expected_affected_metrics": [
+        "alive",
+        "memory_dim_mean"
+      ],
+      "group_id": "flat_memory_pair",
+      "normal_cell_id": "flat_memory_normal"
+    },
+    {
+      "ablation_cell_id": "flat_prediction_zero_lr",
+      "expected_affected_metrics": [
+        "alive",
+        "effective_prediction_lr_mean"
+      ],
+      "group_id": "flat_prediction_pair",
+      "normal_cell_id": "flat_prediction_normal"
+    },
+    {
+      "ablation_cell_id": "patch_perception_force_minimal",
+      "expected_affected_metrics": [
+        "alive",
+        "perception_capacity_component_mean"
+      ],
+      "group_id": "patch_perception_pair",
+      "normal_cell_id": "patch_perception_normal"
+    },
+    {
+      "ablation_cell_id": "patch_memory_disabled",
+      "expected_affected_metrics": [
+        "alive",
+        "memory_dim_mean"
+      ],
+      "group_id": "patch_memory_pair",
+      "normal_cell_id": "patch_memory_normal"
+    },
+    {
+      "ablation_cell_id": "patch_prediction_zero_lr",
+      "expected_affected_metrics": [
+        "alive",
+        "effective_prediction_lr_mean"
+      ],
+      "group_id": "patch_prediction_pair",
+      "normal_cell_id": "patch_prediction_normal"
+    },
+    {
+      "ablation_cell_id": "jungle_perception_force_minimal",
+      "expected_affected_metrics": [
+        "alive",
+        "perception_capacity_component_mean"
+      ],
+      "group_id": "jungle_perception_pair",
+      "normal_cell_id": "jungle_perception_normal"
+    },
+    {
+      "ablation_cell_id": "jungle_memory_disabled",
+      "expected_affected_metrics": [
+        "alive",
+        "memory_dim_mean"
+      ],
+      "group_id": "jungle_memory_pair",
+      "normal_cell_id": "jungle_memory_normal"
+    },
+    {
+      "ablation_cell_id": "jungle_development_force_legacy",
+      "expected_affected_metrics": [
+        "developmental_expression_factor_mean"
+      ],
+      "group_id": "jungle_development_pair",
+      "normal_cell_id": "jungle_development_normal"
+    }
+  ],
+  "scenario_cells": [
+    {
+      "cell_id": "flat_fixed_default",
+      "classification": "live",
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "baseline",
+      "scenario_group": "flat"
+    },
+    {
+      "cell_id": "flat_telemetry_default",
+      "classification": "live",
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "baseline",
+      "scenario_group": "flat",
+      "sim_overrides": {
+        "enable_cognitive_budget_ledger": true,
+        "enable_cognitive_status_metrics": true
+      }
+    },
+    {
+      "cell_id": "flat_memory_normal",
+      "classification": "live",
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "memory",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "memory",
+      "scenario_group": "flat"
+    },
+    {
+      "ablation_flags": {
+        "force_memory_disabled": true
+      },
+      "cell_id": "flat_memory_disabled",
+      "classification": "live",
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "memory",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "memory",
+      "scenario_group": "flat",
+      "sim_overrides": {
+        "force_memory_disabled": true
+      }
+    },
+    {
+      "cell_id": "flat_prediction_normal",
+      "classification": "live",
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "prediction",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "prediction",
+      "scenario_group": "flat"
+    },
+    {
+      "ablation_flags": {
+        "force_prediction_zero_lr": true
+      },
+      "cell_id": "flat_prediction_zero_lr",
+      "classification": "live",
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "prediction",
+        "guardrails"
+      ],
+      "pressure_type": "flat",
+      "primary_trait": "prediction",
+      "scenario_group": "flat",
+      "sim_overrides": {
+        "force_prediction_zero_lr": true
+      }
+    },
+    {
+      "cell_id": "patch_perception_normal",
+      "classification": "live",
+      "env_overrides": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "perception",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "sim_overrides": {
+        "enable_evolvable_sensor_channel_mask": true
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "patch_perception_force_minimal",
+      "classification": "live",
+      "env_overrides": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "perception",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "perception",
+      "scenario_group": "patch",
+      "sim_overrides": {
+        "enable_evolvable_sensor_channel_mask": true,
+        "force_minimal_sensor_channels_enabled": true
+      }
+    },
+    {
+      "cell_id": "patch_memory_normal",
+      "classification": "live",
+      "env_overrides": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "memory",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "memory",
+      "scenario_group": "patch"
+    },
+    {
+      "ablation_flags": {
+        "force_memory_disabled": true
+      },
+      "cell_id": "patch_memory_disabled",
+      "classification": "live",
+      "env_overrides": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "memory",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "memory",
+      "scenario_group": "patch",
+      "sim_overrides": {
+        "force_memory_disabled": true
+      }
+    },
+    {
+      "cell_id": "patch_prediction_normal",
+      "classification": "live",
+      "env_overrides": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "prediction",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "prediction",
+      "scenario_group": "patch"
+    },
+    {
+      "ablation_flags": {
+        "force_prediction_zero_lr": true
+      },
+      "cell_id": "patch_prediction_zero_lr",
+      "classification": "live",
+      "env_overrides": {
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "prediction",
+        "guardrails"
+      ],
+      "pressure_type": "patch",
+      "primary_trait": "prediction",
+      "scenario_group": "patch",
+      "sim_overrides": {
+        "force_prediction_zero_lr": true
+      }
+    },
+    {
+      "cell_id": "jungle_perception_normal",
+      "classification": "live",
+      "env_overrides": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "perception",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "sim_overrides": {
+        "enable_evolvable_sensor_channel_mask": true
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_minimal_sensor_channels_enabled": true
+      },
+      "cell_id": "jungle_perception_force_minimal",
+      "classification": "live",
+      "env_overrides": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "perception",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "perception",
+      "scenario_group": "jungle",
+      "sim_overrides": {
+        "enable_evolvable_sensor_channel_mask": true,
+        "force_minimal_sensor_channels_enabled": true
+      }
+    },
+    {
+      "cell_id": "jungle_memory_normal",
+      "classification": "live",
+      "env_overrides": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "memory",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "memory",
+      "scenario_group": "jungle"
+    },
+    {
+      "ablation_flags": {
+        "force_memory_disabled": true
+      },
+      "cell_id": "jungle_memory_disabled",
+      "classification": "live",
+      "env_overrides": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "memory",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "memory",
+      "scenario_group": "jungle",
+      "sim_overrides": {
+        "force_memory_disabled": true
+      }
+    },
+    {
+      "cell_id": "jungle_development_normal",
+      "classification": "live",
+      "env_overrides": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "development",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "development",
+      "scenario_group": "jungle",
+      "sim_overrides": {
+        "developmental_cognition_mode": "age_scaled_expression",
+        "enable_developmental_cognition": true
+      }
+    },
+    {
+      "ablation_flags": {
+        "force_legacy_full_cognition": true
+      },
+      "cell_id": "jungle_development_force_legacy",
+      "classification": "live",
+      "env_overrides": {
+        "jungle_predator_pressure_enable": true,
+        "patch_cover_default": 0.25,
+        "patch_shelter_default": 0.15,
+        "patch_shelter_from_cover_enable": false,
+        "patch_world_enable": true,
+        "patch_world_observation_enable": true
+      },
+      "execution_backend": "live_simulator",
+      "expected_metric_families": [
+        "core",
+        "development",
+        "guardrails"
+      ],
+      "pressure_type": "jungle",
+      "primary_trait": "development",
+      "scenario_group": "jungle",
+      "sim_overrides": {
+        "developmental_cognition_mode": "age_scaled_expression",
+        "enable_developmental_cognition": true,
+        "force_legacy_full_cognition": true
+      }
+    },
+    {
+      "cell_id": "stage5_introspection_live_evolution",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [
+        "introspection"
+      ],
+      "scenario_group": "later_stage",
+      "skip_reason": "Stage 5 introspection is an extraction surface in this worktree and is not treated as live evolutionary evidence in Stage 10B-Live."
+    },
+    {
+      "cell_id": "stage6_self_regulation_live_evolution",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [
+        "self_regulation"
+      ],
+      "scenario_group": "later_stage",
+      "skip_reason": "Stage 6 self-regulation remains a scripted/test control surface and is not wired into live policy output for this campaign."
+    },
+    {
+      "cell_id": "stage7_self_modification_live_evolution",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [
+        "self_modification"
+      ],
+      "scenario_group": "later_stage",
+      "skip_reason": "Stage 7 self-modification remains a scripted/test command surface and is not treated as live evolutionary evidence."
+    },
+    {
+      "cell_id": "stage8_directed_inheritance_live_evolution",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [
+        "directed_inheritance"
+      ],
+      "scenario_group": "later_stage",
+      "skip_reason": "Stage 8 directed inheritance is scaffold-only for this campaign; no live-selected inheritance influence claim is made."
+    }
+  ],
+  "seed_list": [
+    101,
+    202,
+    303
+  ],
+  "stage": "10B-Live",
+  "validation_warnings": [
+    "Tiny live horizon validates the bridge and metric flow only.",
+    "No intelligence or trait-usefulness claim is supported by this mini campaign.",
+    "Costs remain telemetry-only."
+  ]
+}

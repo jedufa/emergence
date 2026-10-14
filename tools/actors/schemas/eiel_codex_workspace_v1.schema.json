@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_codex_workspace_v1.schema.json",
+  "title": "EIEL read-only Codex workspace",
+  "type": "object",
+  "additionalProperties": true,
+  "required": ["schema_version", "bootstrap", "portfolio", "selected_work", "selected_session", "mission", "bridge"],
+  "properties": {
+    "schema_version": {"const": "eiel_codex_workspace_v1"},
+    "bootstrap": {"type": "object"},
+    "portfolio": {"type": "object"},
+    "selected_work": {"type": ["object", "null"]},
+    "selected_session": {"type": ["object", "null"]},
+    "mission": {"type": ["object", "null"]},
+    "bridge": {"type": "object"}
+  }
+}

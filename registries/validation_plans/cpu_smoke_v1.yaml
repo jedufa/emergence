@@ -1,0 +1,16 @@
+schema_version: eiel_validation_plan_v1
+plan_id: cpu-smoke-v1
+description: Minimal CPU-only validation-plan example.
+cpu_only: true
+defaults:
+  cwd: .
+  timeout_seconds: 30
+  inherit_env: []
+  env:
+    PYTHONHASHSEED: "0"
+steps:
+  - id: python-cpu-smoke
+    argv:
+      - /usr/bin/python3
+      - -c
+      - "print('cpu validation plan ok')"

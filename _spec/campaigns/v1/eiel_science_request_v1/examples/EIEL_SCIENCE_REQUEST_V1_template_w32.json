@@ -1,0 +1,73 @@
+{
+  "schema_version": "eiel_science_request_v1",
+  "campaign_id": "EIEL-CUSTOM-SCIENCE-W32-V1",
+  "test": "CUSTOM_SCIENCE_V1",
+  "question": {
+    "description": "Replace with the bounded scientific question for this request.",
+    "no_claims": true
+  },
+  "world": {
+    "width": 32,
+    "height": 32,
+    "population": 256,
+    "capacity": 512
+  },
+  "run": {
+    "ticks": 100000,
+    "batch": 1024,
+    "checkpoint_ticks": [100000]
+  },
+  "dimensions": {
+    "condition": [1],
+    "replicate": [1],
+    "seed": [1103]
+  },
+  "world_template": {
+    "initialization": {
+      "initial_population": 256,
+      "initial_live_count": 256,
+      "founder_profiles": ["native-broad-diverse-a-v1"],
+      "exact_founder_composition": [
+        {
+          "founder_profile_id": "native-broad-diverse-a-v1",
+          "count": 256
+        }
+      ],
+      "spatial_placement_profile": "deterministic_seeded_shuffle_v1",
+      "standing_variation_profile": "broad-standing-variation-v1"
+    },
+    "controls": {
+      "mutation.enabled": true
+    },
+    "seeds": {
+      "ecology": "${seed}",
+      "founder": "${seed}",
+      "policy": "${condition}",
+      "mutation": "${seed}",
+      "task_environment": "${seed}",
+      "initialization": "${seed}",
+      "intervention": "${replicate}"
+    }
+  },
+  "replicate_dimension": "replicate",
+  "observe": {
+    "profile": "SCIENCE_STANDARD_V1",
+    "events": ["birth", "death"],
+    "state": ["genome_identity", "population_count"],
+    "runtime_counters": ["birth_count", "mutation_count"],
+    "snapshot_ticks": [0, 100000]
+  },
+  "reduce": {
+    "reducer": "science.compact.world_atlas.v1",
+    "configuration": {
+      "analysis_dimensions": ["condition", "replicate", "seed"],
+      "axis_a": "seed",
+      "axis_b": "condition",
+      "decision_family": "CUSTOM_SCIENCE",
+      "reporting_group": "CUSTOM_SCIENCE",
+      "tracked_policy_loci": [0],
+      "tracked_trait_loci": [1]
+    }
+  },
+  "expect_worlds": 1
+}

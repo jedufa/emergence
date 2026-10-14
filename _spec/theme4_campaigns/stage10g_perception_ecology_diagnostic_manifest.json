@@ -1,0 +1,182 @@
+{
+  "campaign_id": "theme4_stage10g_perception_ecology_diagnostic",
+  "campaign_name": "Theme 4 Stage 10G Perception-Ecology Diagnostic and Pressure Cleanup",
+  "campaign_purpose": "diagnose whether current ecology exposes behavior-relevant perception affordances",
+  "campaign_type": "perception_ecology_diagnostic",
+  "cost_levels": {
+    "medium_from_stage10c": {
+      "config_values": {
+        "env_overrides": {
+          "gru_cost_base": 0.004,
+          "gru_cost_per_dim": 8e-05
+        },
+        "sim_overrides": {
+          "developmental_cognition_cost_base": 0.0005,
+          "developmental_cognition_cost_per_unexpressed_capacity": 0.001,
+          "enable_experimental_developmental_cost_charging": true,
+          "enable_experimental_perception_cost_charging": true,
+          "enable_experimental_prediction_cost_charging": true,
+          "enable_experimental_sensor_radius_cost_charging": true,
+          "maturation_cost_per_tick": 0.0005,
+          "prediction_cost_base": 0.0005,
+          "prediction_cost_per_lr": 0.001,
+          "prediction_state_cost": 0.0001,
+          "sensor_channel_cost_per_weight": 0.001,
+          "sensor_radius_cost_base": 0.0005,
+          "sensor_radius_cost_per_cell": 0.0001,
+          "sensor_radius_cost_per_cell_channel": 5e-05
+        }
+      },
+      "description": "Stage 10F medium explicit cost profile copied as diagnostic metadata only."
+    }
+  },
+  "cost_mode": "medium_from_stage10c",
+  "diagnostic_inputs": {
+    "source_manifest": "_spec/theme4_campaigns/stage10f_perception_pressure_isolation_manifest.json",
+    "source_output_directory": "evidences/theme4_stage10f_perception_pressure_isolation",
+    "stage10c_evidence": "evidences/theme4_stage10c_targeted_cost_sweep_evidence.md",
+    "stage10d_evidence": "evidences/theme4_stage10d_transfer_robustness_evidence.md",
+    "stage10e_evidence": "evidences/theme4_stage10e_longer_short_selection_probe_evidence.md",
+    "stage10f_evidence": "evidences/theme4_stage10f_perception_pressure_isolation_evidence.md"
+  },
+  "evidence_paths": {
+    "note": "evidences/theme4_stage10g_perception_ecology_diagnostic_evidence.md",
+    "zip": "evidences/theme4_stage10g_perception_ecology_diagnostic_evidence.zip"
+  },
+  "fixed_sensor_radius_setting": "force_default_sensor_radius",
+  "horizon": {
+    "generations": 0,
+    "mode": "analysis_only_diagnostic",
+    "note": "Stage 10G analyzes Stage 10F live outputs and does not rerun live simulation by default.",
+    "steps_per_generation": 0,
+    "tick_count": 0
+  },
+  "input_evidence_reference": [
+    "evidences/theme4_stage10c_targeted_cost_sweep_evidence.md",
+    "evidences/theme4_stage10d_transfer_robustness_evidence.md",
+    "evidences/theme4_stage10e_longer_short_selection_probe_evidence.md",
+    "evidences/theme4_stage10f_perception_pressure_isolation_evidence.md"
+  ],
+  "interpretation_limits": [
+    "Stage 10G is diagnostic and analysis-only unless a separate rerun is explicitly enabled.",
+    "No perception adaptiveness claim is allowed.",
+    "No new cognitive machinery, rewards, policy wiring, or Patch/Jungle mechanics are added.",
+    "Fixture data is not used as live evidence."
+  ],
+  "manifest_version": "theme4_campaign_manifest_v1",
+  "output_directory": "evidences/theme4_stage10g_perception_ecology_diagnostic",
+  "paired_ablation_groups": [],
+  "scenario_cells": [
+    {
+      "cell_id": "perception_channel_visibility_audit",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "affordance_outcome_correlation_report",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "behavior_expression_diagnostic",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "scenario_pressure_audit",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "perception_ablation_validity_audit",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "evidence_metadata_cleanup_report",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "stage10g_decision_report",
+      "classification": "platform_fixture",
+      "execution_backend": "scaffold",
+      "expected_metric_families": [],
+      "fixture": "stage10f_live_output_analysis",
+      "scenario_group": "diagnostic"
+    },
+    {
+      "cell_id": "stage10g_optional_live_rerun",
+      "classification": "skipped",
+      "execution_backend": "skipped",
+      "expected_metric_families": [],
+      "scenario_group": "diagnostic",
+      "skip_reason": "Skipped by default because Stage 10F live outputs already contain the metrics needed for Stage 10G diagnostics."
+    }
+  ],
+  "scenario_variants": {
+    "combined_a": {
+      "source": "stage10f"
+    },
+    "combined_b": {
+      "source": "stage10f"
+    },
+    "flat_a": {
+      "source": "stage10f"
+    },
+    "jungle_a": {
+      "source": "stage10f"
+    },
+    "jungle_b": {
+      "source": "stage10f"
+    },
+    "patch_a": {
+      "source": "stage10f"
+    },
+    "patch_b": {
+      "source": "stage10f"
+    }
+  },
+  "seed_list": [
+    111,
+    222,
+    333,
+    444,
+    555,
+    666,
+    777,
+    888
+  ],
+  "selected_diagnostic_scope": [
+    "perception_channel_visibility",
+    "affordance_outcome_correlation",
+    "behavior_expression",
+    "scenario_pressure",
+    "ablation_validity",
+    "evidence_metadata_cleanup",
+    "stage10g_decision"
+  ],
+  "stage": "theme4_stage10g",
+  "validation_warnings": [
+    "Analysis-only diagnostic; no new live runs are planned by default.",
+    "Stage 10F flat-world suspicious result is treated as an input finding, not as evidence for perception adaptiveness."
+  ]
+}

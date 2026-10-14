@@ -1,0 +1,37 @@
+{
+  "api_equation": "RNGStateBundle + DrawSchedule -> GeneratedMaterial + SuccessorRNGState + Receipt",
+  "contract_id": "option-d-v1-cpython-b7e1856",
+  "forbidden_actions": [
+    "Tensor World integration",
+    "default route activation",
+    "statistical substitution for bitwise exactness",
+    "host semantic decisions inside a resident generation segment",
+    "promotion of historical evidence to current qualification"
+  ],
+  "limits": {
+    "getrandbits_max_bits": 64,
+    "max_operations_per_world": 1000000,
+    "randbelow_max_exclusive_bound": 9223372036854775807,
+    "worlds_min": 1
+  },
+  "operators": [
+    "raw32",
+    "random",
+    "getrandbits",
+    "randbelow",
+    "gauss"
+  ],
+  "schedule_control": {
+    "predicate": "random_lt",
+    "source": "an earlier unpredicated random output in the same world",
+    "semantics": "predicate evaluated on device; false instructions consume no semantic or raw draws and publish an explicit skipped slot"
+  },
+  "primary_algorithm": "cpython.random.mt19937.v3.14.4",
+  "qualification_claim": "standalone bounded CPython-compatible RNG generation only",
+  "schema_version": "eiel_option_d_standalone_contract_v1",
+  "source_freeze": "b7e1856144e60038f23983eb22302b9869b787a6",
+  "typed_streams_excluded_from_v1": {
+    "numpy_pcg64": "historical primitive oracle remains provisional and is not required by the current scalar schedule",
+    "torch_cpu_mt19937": "bound as the narrow Aug 1-2 lineage but kept separate from CPython state authority"
+  }
+}

@@ -1,0 +1,70 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_resource_estimate_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "confidence": {
+      "enum": [
+        "none",
+        "low",
+        "medium",
+        "high"
+      ]
+    },
+    "estimated_tokens": {
+      "additionalProperties": false,
+      "properties": {
+        "expected": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "high": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "low": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "low",
+        "expected",
+        "high"
+      ],
+      "type": "object"
+    },
+    "method": {
+      "const": "static"
+    },
+    "prediction_present": {
+      "type": "boolean"
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_resource_estimate_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "estimated_tokens",
+    "confidence",
+    "method",
+    "recorded_at_utc",
+    "prediction_present"
+  ],
+  "title": "EIEL WRA-1 static Work token estimate",
+  "type": "object"
+}

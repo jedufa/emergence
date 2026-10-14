@@ -1,0 +1,19 @@
+harness_api: 1
+version: 1
+name: mem_max_19_live_level4_runway
+description: MEM-MAX-19 compact live Level-4 target-alignment telemetry and conditional coupling gate.
+matrix_order:
+- runway_cell
+- seed
+axes:
+  runway_cell:
+    values: [useful_normal, useful_ablated, cue_off_normal, consequence_off_normal, flat_normal]
+seeds: [20115]
+telemetry:
+  mem_max_live_level4_instrumentation_enable: true
+  max_events_per_run: 256
+  sample_rule: deterministic_first_eligible
+policy_mutation:
+  mode: sparse
+  rate: 0.05
+  std: 0.02

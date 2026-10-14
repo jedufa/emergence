@@ -1,0 +1,46 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_delivery_evidence_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_session_delivery_evidence_v2. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "changed_paths": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "decision_snapshot": {
+      "type": "object"
+    },
+    "implementation_commit": {
+      "type": "string"
+    },
+    "recorded_at_utc": {
+      "type": "string"
+    },
+    "repository": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_session_delivery_evidence_v2"
+    },
+    "validation": {
+      "type": "object"
+    },
+    "work_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "implementation_commit",
+    "work_package_sha256",
+    "repository"
+  ],
+  "title": "EIEL Session Delivery Evidence V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.session_manager",
+  "x-eiel-persistence-class": "embedded_durable_review_metadata"
+}

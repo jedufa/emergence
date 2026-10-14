@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causyl.local/schemas/eiel_qualification_matrix_v1.schema.json",
+  "title": "EIEL Qualification Matrix v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "plan_id", "case_id_prefix", "dimensions"],
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_matrix_v1"},
+    "plan_id": {"$ref": "#/$defs/id"},
+    "description": {"type": "string"},
+    "capability_requirements": {"$ref": "#/$defs/ids"},
+    "case_id_prefix": {"$ref": "#/$defs/id"},
+    "max_cases": {"type": "integer", "minimum": 1},
+    "dimensions": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/dimension"}
+    },
+    "include": {"$ref": "#/$defs/selectors"},
+    "exclude": {"$ref": "#/$defs/selectors"},
+    "templates": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/template"}
+    }
+  },
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$"
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/id"}
+    },
+    "scalar": {"type": ["boolean", "integer", "number", "string"]},
+    "selector": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/scalar"}
+    },
+    "selectors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/selector"}
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "values"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "description": {"type": "string"},
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/scalar"}
+        }
+      }
+    },
+    "template": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["selector"],
+      "properties": {
+        "selector": {"$ref": "#/$defs/selector"},
+        "description": {"type": "string"},
+        "prerequisites": {"$ref": "#/$defs/selectors"},
+        "capability_requirements": {"$ref": "#/$defs/ids"}
+      }
+    }
+  }
+}

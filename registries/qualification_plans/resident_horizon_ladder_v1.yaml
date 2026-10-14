@@ -1,0 +1,33 @@
+schema_version: eiel_qualification_plan_v1
+plan_id: resident-horizon-ladder-v1
+description: Declarative resident horizon ladder; this plan does not execute a runtime.
+capability_requirements:
+  - resident-generation-count
+dimensions:
+  - id: batch_cells
+    description: Physical cells in the qualification case.
+    values: [1]
+  - id: generation_count
+    description: Logical resident generation horizon.
+    values: [2, 8, 32]
+  - id: ticks_per_generation
+    description: Native ticks per generation.
+    values: [80]
+cases:
+  - id: horizon-g2
+    assignments:
+      batch_cells: 1
+      generation_count: 2
+      ticks_per_generation: 80
+  - id: horizon-g8
+    assignments:
+      batch_cells: 1
+      generation_count: 8
+      ticks_per_generation: 80
+    prerequisites: [horizon-g2]
+  - id: horizon-g32
+    assignments:
+      batch_cells: 1
+      generation_count: 32
+      ticks_per_generation: 80
+    prerequisites: [horizon-g8]

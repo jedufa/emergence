@@ -1,0 +1,51 @@
+harness_api: 1
+version: 1
+name: validation_2x2_devcoupling_latecoh
+description: >
+  Nightly-scale 2×2 validation grid: dev-coupling off/on × late-life coherence pressure off/on.
+  Intended for unattended overnight runs.
+
+intent:
+  question: "Does late-life coherence pressure shift selection, and does dev-coupling change the effect?"
+  axes:
+    # IMPORTANT:
+    # The harness schema coerces axis values to strings via str(v).
+    # YAML booleans (false/true) become Python bools -> str(False) == "False".
+    # Therefore, define axis values and flags keys as the *strings* "False"/"True"
+    # to avoid mismatches like:
+    #   axes.<axis>.flags missing entry for value 'False'
+    - dev_coupling: ["False", "True"]
+    - late_life_coh_cost: ["False", "True"]
+
+matrix_order: [dev_coupling, late_life_coh_cost, seed]
+
+axes:
+  dev_coupling:
+    values: ["False", "True"]
+    flags:
+      "False": []
+      "True": ["--devcoupling_enable"]
+  late_life_coh_cost:
+    values: ["False", "True"]
+    flags:
+      "False": []
+      "True": ["--late_pred_cost_enable", "--late_pred_cost_weight", "0.01"]
+
+seeds: [1, 2, 3]
+
+cli_defaults:
+  - ["--generations", "300"]
+  - ["--steps", "150"]
+  - ["--pop", "256"]
+  - ["--policy_tick_stride", "2"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "run_config.csv"
+  - "config.json"
+  - "metrics.csv"
+
+naming:
+  run_tag_prefix: "val2x2_nightly"
+  run_id_format: "{name}__dc_{dev_coupling}__lc_{late_life_coh_cost}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__dc_{dev_coupling}__lc_{late_life_coh_cost}"

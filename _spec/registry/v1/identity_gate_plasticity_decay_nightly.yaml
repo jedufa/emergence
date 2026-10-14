@@ -1,0 +1,107 @@
+harness_api: 1
+version: 1
+name: identity_gate_plasticity_decay_nightly
+description: >
+  Feature nightly validation: multi-seed confirmation that Identity Gate and
+  Developmental Plasticity Decay produce stable, non-pathological shifts.
+  Includes baseline, strong settings, and stress settings.
+intent:
+  question: Validate effect direction/variance across 5 seeds for gate/decay.
+  axes:
+    - case
+matrix_order:
+  - case
+  - seed
+axes:
+  case:
+    values:
+      - nightly_baseline__gate_off__decay_off
+      - nightly_gate_strong__decay_off
+      - nightly_gate_stress__decay_off
+      - nightly_gate_off__decay_strong
+      - nightly_gate_off__decay_stress
+      - nightly_gate_strong__decay_strong
+      - nightly_gate_stress__decay_stress
+    flags:
+      nightly_baseline__gate_off__decay_off: []
+
+      nightly_gate_strong__decay_off:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.5
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+
+      nightly_gate_stress__decay_off:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.9
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+
+      nightly_gate_off__decay_strong:
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=60
+
+      nightly_gate_off__decay_stress:
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=20
+
+      nightly_gate_strong__decay_strong:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.5
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=60
+
+      nightly_gate_stress__decay_stress:
+        - --knob
+        - sim_cfg.identity_gate_enable=true
+        - --knob
+        - sim_cfg.identity_gate_mode=action_noise
+        - --knob
+        - sim_cfg.identity_gate_strength=0.9
+        - --knob
+        - sim_cfg.identity_gate_adult_only=true
+        - --knob
+        - sim_cfg.dev_plasticity_decay_enable=true
+        - --knob
+        - sim_cfg.dev_plasticity_half_life_steps=20
+seeds:
+  - 1
+  - 2
+  - 3
+  - 4
+  - 5
+cli_defaults:
+  - [--generations, '500']
+  - [--steps, '150']
+  - [--pop, '256']
+  - [--policy_tick_stride, '2']
+expected_artifacts:
+  - manifest.json
+  - run_config.csv
+  - config.json
+  - metrics.csv
+  - behaviors.csv
+naming:
+  run_tag_prefix: feat_gate_decay_nightly
+  run_id_format: identity_gate_plasticity_decay_nightly__{case}__seed{seed:06d}
+  run_tag_format: feat_gate_decay_nightly__{case}

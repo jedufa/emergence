@@ -1,0 +1,45 @@
+{
+  "composition": {
+    "stack_rule": "multiply",
+    "min_regrowth_mult": 0.0,
+    "min_spawn_mult": 0.0,
+    "allow_gt1": false
+  },
+  "dynamics": {
+    "ramp_shape": "linear",
+    "production_only": true
+  },
+  "regions": [
+    {
+      "id": "north_west",
+      "bounds": {
+        "x0": 0,
+        "x1": 16,
+        "y0": 0,
+        "y1": 16
+      },
+      "affects": [
+        "regrowth",
+        "spawn"
+      ],
+      "target_mult": {
+        "regrowth": 0.2,
+        "spawn": 0.2
+      },
+      "timing": {
+        "ramp_steps": 10,
+        "duration_steps": 60,
+        "recovery_steps": 10
+      }
+    }
+  ],
+  "schedule": {
+    "mode": "explicit",
+    "explicit": [
+      {
+        "region_id": "north_west",
+        "start_step": 10
+      }
+    ]
+  }
+}

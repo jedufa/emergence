@@ -1,0 +1,45 @@
+harness_api: 1
+version: 1
+name: long_duration_test_epi__baseline_EIEL
+description: Chaos Week exploration pack (quick). 12 experiments, each an A/B pair (baseline vs variant). Variant applies exactly 1 primary knob + 1 helper knob via --knob. Exploratory diagnostics (NOT validations).
+intent:
+  question: Where does the weirdness live? Map which pressures move (or fail to move) population dynamics, timing, and late-life signals under tightly controlled 1-primary + 1-helper perturbations.
+  axes:
+  - case
+matrix_order:
+- case
+- seed
+axes:
+  case:
+    values:
+    - long_duration_test_epi__baseline
+    flags:
+      long_duration_test_epi__baseline: 
+      - --knob
+      - sim_cfg.epi_enable=true
+      - --knob
+      - sim_cfg.epi_print_each_gen=true
+      - --knob
+      - sim_cfg.epi_timeseries_enable=true
+seeds:
+- 1
+- 2 
+- 3
+cli_defaults:
+- - --generations
+  - '3000'
+- - --steps
+  - '150'
+- - --pop
+  - '256'
+- - --policy_tick_stride
+  - '2'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: long_duration_test_epi__baseline_EIEL
+  run_id_format: long_duration_test_epi__baseline_EIEL__{case}__seed{seed:06d}
+  run_tag_format: long_duration_test_epi__baseline_EIEL__{case}

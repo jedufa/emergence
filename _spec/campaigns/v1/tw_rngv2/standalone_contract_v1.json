@@ -1,0 +1,301 @@
+{
+  "schema_version": "tw_rngv2_dea1_prototype_contract_v1",
+  "status": "FROZEN_FOR_STANDALONE_PROTOTYPE_NOT_AUTHORIZED_FOR_INTEGRATION",
+  "semantic_name": "TW-RNGV2-DEA1",
+  "rng_semantics_version": 2,
+  "prototype_identity": "TW-RNGV2-DEA1-PROTO-1",
+  "semantic_epoch": 1,
+  "core": {
+    "algorithm": "Random123 Philox4x32-10",
+    "primary_source": "https://github.com/DEShawResearch/random123/blob/9545ff6413f258be2f04c1d319d99aaef7521150/include/Random123/philox.h",
+    "kat_source": "https://github.com/DEShawResearch/random123/blob/9545ff6413f258be2f04c1d319d99aaef7521150/tests/kat_vectors",
+    "word_bits": 32,
+    "counter_bits": 128,
+    "key_bits": 64,
+    "output_lanes": 4,
+    "rounds": 10,
+    "constants_hex": {
+      "M0": "d2511f53",
+      "M1": "cd9e8d57",
+      "W0": "9e3779b9",
+      "W1": "bb67ae85"
+    },
+    "round_function": "lo0,hi0=mulhilo32(M0,ctr0); lo1,hi1=mulhilo32(M1,ctr2); out=(hi1^ctr1^key0, lo1, hi0^ctr3^key1, lo0); then key0+=W0; key1+=W1 between rounds",
+    "output_word_order": "lane0,lane1,lane2,lane3 as produced by the official round permutation",
+    "integer_wrap": "uint32/uint64 modulo unsigned overflow",
+    "mulhilo": "explicit 32x32-to-64 product; lo=low32, hi=high32",
+    "security_boundary": "non_cryptographic"
+  },
+  "namespace": {
+    "rng_namespace_key": "explicit uint64; identical only when common-random-number coupling is intentional",
+    "independent_replication": "requires a distinct recorded rng_namespace_key",
+    "forbidden_implicit_inputs": [
+      "process id",
+      "wall clock",
+      "device id",
+      "GPU slot",
+      "unrecorded run UUID"
+    ]
+  },
+  "key_codec": {
+    "packed_identity_bits": {
+      "world_uid": 32,
+      "domain_id": 16,
+      "semantic_epoch": 16
+    },
+    "formula": "philox_key64 = rng_namespace_key64 XOR pack_le(world_uid32, domain_id16, semantic_epoch16)",
+    "pack_le": "world_uid in bits[31:0], domain_id in bits[47:32], semantic_epoch in bits[63:48]",
+    "philox_key_words": "key.v[0]=low32(philox_key64); key.v[1]=high32(philox_key64)",
+    "invariant": "For a fixed namespace key and semantic epoch, distinct world/domain pairs map injectively to Philox keys.",
+    "overflow_policy": "fail_before_generation"
+  },
+  "counter_codec": {
+    "logical_uint128_lsb_to_msb": [
+      {
+        "field": "subject_uid",
+        "bits": 48,
+        "range": "0..2^48-1"
+      },
+      {
+        "field": "absolute_tick",
+        "bits": 48,
+        "range": "0..2^48-1"
+      },
+      {
+        "field": "operation_id",
+        "bits": 16,
+        "range": "append-only domain-specific codec"
+      },
+      {
+        "field": "draw_block",
+        "bits": 16,
+        "range": "0..65535"
+      }
+    ],
+    "lane": "word_ordinal modulo 4",
+    "draw_block": "floor(word_ordinal / 4)",
+    "serialization": "four little-endian uint32 words of the packed uint128",
+    "reuse_policy": "Duplicate key/counter/lane within one semantic run is a fatal contract violation.",
+    "exhaustion_policy": "Return RNG_ADDRESS_EXHAUSTED and publish no state; never wrap or use a biased fallback."
+  },
+  "subject_identity": {
+    "persistent_entity": "monotonic world-local entity UID; never reused after death or slot recycling",
+    "world_event": "subject_uid 0 where the domain declares world ownership",
+    "ephemeral_event": "stable rank in canonical semantic tuple order within world/tick/domain",
+    "pair_event": "stable rank after sorting the canonical parent/entity UID tuple and occurrence",
+    "birth_proposal": "stable proposal rank from parent UIDs and proposal ordinal before random outcomes",
+    "accepted_child": "new entity UID assigned by prefix scan over accepted proposals in canonical proposal order",
+    "forbidden_identity_inputs": [
+      "physical slot",
+      "slot generation token",
+      "CUDA thread or block index",
+      "compaction position",
+      "execution completion order",
+      "source line number"
+    ]
+  },
+  "proposed_domain_registry": [
+    {
+      "id": 256,
+      "id_hex": "0100",
+      "name": "ENVIRONMENT_EVENT",
+      "subject": "world/cell semantic event"
+    },
+    {
+      "id": 512,
+      "id_hex": "0200",
+      "name": "AGENT_ACTION_THRESHOLD",
+      "subject": "entity"
+    },
+    {
+      "id": 528,
+      "id_hex": "0210",
+      "name": "AGENT_ACTION_CHOICE",
+      "subject": "entity"
+    },
+    {
+      "id": 768,
+      "id_hex": "0300",
+      "name": "MATING_CANDIDATE",
+      "subject": "entity or canonical pair event"
+    },
+    {
+      "id": 784,
+      "id_hex": "0310",
+      "name": "BIRTH_PROPOSAL",
+      "subject": "birth proposal event"
+    },
+    {
+      "id": 800,
+      "id_hex": "0320",
+      "name": "RECOMBINATION",
+      "subject": "birth proposal event"
+    },
+    {
+      "id": 816,
+      "id_hex": "0330",
+      "name": "MUTATION_BERNOULLI",
+      "subject": "birth proposal event"
+    },
+    {
+      "id": 817,
+      "id_hex": "0331",
+      "name": "MUTATION_NORMAL_PAIR",
+      "subject": "birth proposal event"
+    },
+    {
+      "id": 818,
+      "id_hex": "0332",
+      "name": "MUTATION_DISCRETE",
+      "subject": "birth proposal event"
+    },
+    {
+      "id": 1024,
+      "id_hex": "0400",
+      "name": "LIFECYCLE_TRANSITION",
+      "subject": "entity"
+    },
+    {
+      "id": 1280,
+      "id_hex": "0500",
+      "name": "LINEAGE_STOCHASTIC_EVENT",
+      "subject": "entity or lineage event"
+    },
+    {
+      "id": 61440,
+      "id_hex": "f000",
+      "name": "NON_TRAJECTORY_DIAGNOSTIC",
+      "subject": "diagnostic event; forbidden from state evolution"
+    }
+  ],
+  "registry_rules": [
+    "Domain and operation IDs are append-only and never repurposed.",
+    "A change in semantic meaning requires a new ID or semantic epoch.",
+    "Unknown domain IDs fail closed before generation.",
+    "Operation IDs name semantic instances such as locus, action, or pair component; they are not loop indices unless the loop index is itself frozen semantic identity."
+  ],
+  "branch_rules": {
+    "untaken_branch": "generates and consumes nothing; all unrelated addresses remain unchanged",
+    "taken_branch": "uses only its declared domain/operation/slot addresses",
+    "transaction_retry": "reuses identical addresses",
+    "algorithmic_retry": "uses the next addressed word ordinal within the same operation",
+    "counterfactual_coupling": "explicitly share namespace/domain/address identity only where common random numbers are intended"
+  },
+  "uniforms": {
+    "binary32_half_open": "q24 = u32 >> 8; result = float(q24) * 0x1p-24f",
+    "binary64_half_open": "u64 = lane_lo | (lane_hi << 32); q53 = u64 >> 11; result = double(q53) * 0x1p-53",
+    "binary64_open": "u64 = lane_lo | (lane_hi << 32); q52 = u64 >> 12; result = (double(q52) + 0.5) * 0x1p-52",
+    "rounding": "IEEE-754 round-to-nearest ties-to-even; conversions are in-range",
+    "zero_policy": "half-open maps include 0 and exclude 1; open radius maps exclude 0 and 1"
+  },
+  "bounded_integer": {
+    "u32_algorithm": "Lemire multiply-high with threshold rejection",
+    "primary_source": "https://doi.org/10.1145/3230636",
+    "threshold": "t = uint32(0u - n) % n; reject while low32(x*n) < t after the l < n gate",
+    "retry_addressing": "candidate retry r uses word_ordinal r; implementations may evaluate batches but commit the first accepted retry",
+    "n_equals_1": "return 0 without drawing a word; accepted_ordinal=0",
+    "n_equals_2_power_32": "return raw uint32 under the same operation at word_ordinal 0",
+    "supported_n": "1 .. 2^32 inclusive",
+    "u64": "not enabled in PROTO-1",
+    "bias_policy": "no modulo fallback and no fixed-cap substituted value",
+    "retry_overflow": "word_ordinal that would require draw_block > 65535 returns RNG_ADDRESS_EXHAUSTED"
+  },
+  "normal": {
+    "algorithm": "cacheless pair-valued Box-Muller",
+    "raw_input": "one Philox block (draw_block=0) supplies two binary64 uniforms from lanes 0-3",
+    "angle_uniform": "binary64 [0,1) from lanes 0|1",
+    "radius_uniform": "binary64 (0,1) from lanes 2|3",
+    "formula": "r=sqrt(-2*log(u_radius)); theta=tau*u_angle; z0=r*cos(theta); z1=r*sin(theta)",
+    "cache": "none",
+    "single_output": "select a named pair component and discard the other without affecting any address",
+    "math_contract": "TWDMATH-1",
+    "scale_shift": "round sigma*z, then round +mu; contraction forbidden",
+    "finite_policy": "any non-finite z0/z1 is RNG_NONFINITE"
+  },
+  "twdmath_1": {
+    "identity": "TWDMATH-1",
+    "authority": "this contract; vendor libm, glibc, libdevice, and std::normal_distribution are not semantic authorities",
+    "rounding": "IEEE-754 binary64 round-to-nearest-even, gradual underflow, no FTZ, no implicit FMA",
+    "sqrt": "IEEE-754 required correctly rounded binary64 square root",
+    "log": "fdlibm-derived __ieee754_log algorithm with the frozen hex coefficients below; this is a V2-owned copy, not a glibc binding",
+    "sin_cos": "fdlibm-derived rem_pio2 + __kernel_sin/__kernel_cos with iy=1 tail from Cody-Waite reduction; V2-owned copy",
+    "tau_hex": "401921fb54442d18",
+    "named_fma_rn_nodes": [],
+    "contraction": "forbidden except named fma_rn nodes (none in PROTO-1)"
+  },
+  "cpu_gpu_contract": {
+    "integer": "uint32/uint64 only, modulo unsigned overflow, defined shifts, explicit 32x32-to-64 products",
+    "floating": "IEEE binary32/binary64, round-to-nearest-even, gradual underflow, no fast math, no implicit FMA contraction",
+    "endianness": "canonical little-endian serialization independent of host endianness",
+    "oracle": "independent Python integer/IEEE reference plus official Random123 known-answer vectors",
+    "comparison": "raw bits only",
+    "parity_definition": "identical status, raw words, uniforms, bounded values, accepted retry ordinals, normal bits, and consumer digest"
+  },
+  "consumer_digest": {
+    "algorithm": "SHA-256 over little-endian records",
+    "record": "world_uid32, domain_id16, epoch16, subject48-in-u64, tick48-in-u64, operation_id16, draw_block16, lane8, status8, payload u64 bits",
+    "gpu_surrogate": "specified 64-bit mix used only for kernel timing; conformance digest is SHA-256 of GPU bits on the host"
+  },
+  "checkpoint": {
+    "rng_fields": [
+      "semantic version and epoch",
+      "Philox algorithm ID",
+      "rng_namespace_key64",
+      "domain/operation registry digests",
+      "TWDMATH version/digest",
+      "world UIDs",
+      "absolute tick/frontier",
+      "next entity UID per world",
+      "stable entity/event identity state",
+      "trajectory-affecting config digest",
+      "pending_work=none"
+    ],
+    "not_stored": [
+      "MT words/index",
+      "draw cursor",
+      "Gaussian cache",
+      "random tapes",
+      "unresolved RNG jobs"
+    ],
+    "cpu_gpu_handoff": "same semantic checkpoint; no RNG state translation",
+    "failure_atomicity": "late failure publishes nothing; frontier and allocators unchanged; replay after rollback yields identical values"
+  },
+  "status_codes": {
+    "0": "RNG_OK",
+    "1": "RNG_UNKNOWN_DOMAIN",
+    "2": "RNG_FIELD_OVERFLOW",
+    "3": "RNG_ADDRESS_EXHAUSTED",
+    "4": "RNG_INVALID_N",
+    "5": "RNG_NONFINITE",
+    "6": "RNG_DUPLICATE_ADDRESS",
+    "7": "RNG_TRANSACTION_ABORTED"
+  },
+  "generate_surrogate": "The standalone generate kernel emits raw Philox words, one Lemire sample, and one Box-Muller pair from the same operation as a complete-path KAT and timing surrogate. Production consumers must assign distinct operation_ids to distinct semantic draws. Recomputing the same address is intentional CRN or transaction retry, not an accidental alias.",
+  "normative_versus_implementation": {
+    "normative": [
+      "address/key/counter codecs",
+      "domain registry",
+      "Philox4x32-10",
+      "uniform maps",
+      "Lemire bounded integer",
+      "TWDMATH-1 and Box-Muller formula",
+      "checkpoint semantic frontier",
+      "CPU/GPU bit parity"
+    ],
+    "implementation_only": [
+      "CUDA grid/block geometry",
+      "host language",
+      "SHA-256 host digest assembly",
+      "build directory",
+      "kernel occupancy"
+    ]
+  },
+  "no_claims": [
+    "production speedup",
+    "scientific equivalence to V1 trajectories",
+    "qualification inheritance into V2",
+    "B64 or B72 feasibility",
+    "production readiness",
+    "Tensor World integration authority"
+  ]
+}

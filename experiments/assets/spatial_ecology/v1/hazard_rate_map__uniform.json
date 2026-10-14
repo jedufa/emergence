@@ -1,0 +1,9 @@
+{
+  "name": "hazard_rate_map",
+  "params": {
+    "value": 1.0
+  },
+  "seed": 0,
+  "type": "uniform",
+  "version": 1
+}

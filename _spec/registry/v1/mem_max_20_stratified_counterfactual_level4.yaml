@@ -1,0 +1,20 @@
+harness_api: 1
+version: 1
+name: mem_max_20_stratified_counterfactual_level4
+description: MEM-MAX-20 stratified live decision sampling, counterfactual diagnostic contract, and parent-child Level-4 lineage gate.
+matrix_order:
+- runway_cell
+- seed
+axes:
+  runway_cell:
+    values: [useful_normal, useful_ablated, cue_off_normal, consequence_off_normal, flat_normal]
+seeds: [20115]
+telemetry:
+  mem_max_live_level4_instrumentation_enable: true
+  mem_max_live_level4_sampling_mode: stratified
+  max_events_per_run: 768
+  per_stratum_limit: 16
+policy_mutation:
+  mode: sparse
+  rate: 0.05
+  std: 0.02

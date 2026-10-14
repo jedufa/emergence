@@ -1,0 +1,466 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-campaign",
+  "title": "EIEL Science Campaign V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "product_id",
+    "campaign_id",
+    "instrument",
+    "question",
+    "design",
+    "world",
+    "initialization",
+    "controls",
+    "seeds",
+    "time",
+    "observations",
+    "execution",
+    "reducers"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_campaign_v1"},
+    "product_id": {"const": "EIEL_SCIENCE_INSTRUMENT_V1"},
+    "campaign_id": {"$ref": "#/$defs/token"},
+    "instrument": {"$ref": "#/$defs/instrument"},
+    "question": {"$ref": "#/$defs/question"},
+    "design": {"$ref": "#/$defs/design"},
+    "world": {"$ref": "#/$defs/world"},
+    "initialization": {"$ref": "#/$defs/initialization"},
+    "controls": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/control_binding"}
+    },
+    "seeds": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"$ref": "#/$defs/seed_binding"}
+    },
+    "time": {"$ref": "#/$defs/time"},
+    "observations": {"$ref": "#/$defs/observations"},
+    "execution": {"$ref": "#/$defs/execution"},
+    "reducers": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/reducer_binding"}
+    },
+    "artifact_lifecycle": {"$ref": "#/$defs/artifact_lifecycle"},
+    "decision": {"$ref": "#/$defs/decision"},
+    "legacy_compatibility": {
+      "type": "object",
+      "description": "Display-only metadata; removal cannot alter compilation or identity."
+    }
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "string_array": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/token"},
+      "uniqueItems": true
+    },
+    "tick_array": {
+      "type": "array",
+      "items": {"type": "integer", "minimum": 0},
+      "uniqueItems": true
+    },
+    "instrument": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["product_id", "instrument_manifest_sha256"],
+      "properties": {
+        "product_id": {"const": "EIEL_SCIENCE_INSTRUMENT_V1"},
+        "instrument_manifest_sha256": {"$ref": "#/$defs/digest"}
+      }
+    },
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["question_id", "no_claims"],
+      "properties": {
+        "question_id": {"$ref": "#/$defs/token"},
+        "hypothesis_ids": {"$ref": "#/$defs/string_array"},
+        "labels": {"$ref": "#/$defs/string_array"},
+        "description": {"type": "string"},
+        "preregistration_ref": {"type": ["string", "null"]},
+        "science_ownership": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["test_id", "test_version", "study_id"],
+          "properties": {
+            "test_id": {"$ref": "#/$defs/token"},
+            "test_version": {"$ref": "#/$defs/token"},
+            "study_id": {"$ref": "#/$defs/token"},
+            "arm_dimension_ids": {"$ref": "#/$defs/string_array"},
+            "fixed_arm_id": {"$ref": "#/$defs/token"},
+            "replicate_dimension_id": {"$ref": "#/$defs/token"},
+            "fixed_replicate": {"type": ["string", "integer"]}
+          }
+        },
+        "no_claims": {"type": "boolean"}
+      }
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimension_id", "binding_path", "canonical_values"],
+      "properties": {
+        "dimension_id": {"$ref": "#/$defs/token"},
+        "binding_path": {"type": "string", "minLength": 1},
+        "canonical_values": {"type": "array", "minItems": 1},
+        "ordering": {"enum": ["declared", "canonical_json_bytes"]}
+      }
+    },
+    "design_row": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bindings"],
+      "properties": {
+        "bindings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["dimension_id", "value"],
+            "properties": {
+              "dimension_id": {"$ref": "#/$defs/token"},
+              "value": true
+            }
+          }
+        }
+      }
+    },
+    "design": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimensions", "expected_cell_count"],
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/dimension"}
+        },
+        "include_rows": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/design_row"}
+        },
+        "exclude_rows": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/design_row"}
+        },
+        "pairing_groups": {"$ref": "#/$defs/string_array"},
+        "repeat_groups": {"$ref": "#/$defs/string_array"},
+        "expected_cell_count": {"type": "integer", "minimum": 1}
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["world_profile_id", "geometry", "resident_capacity"],
+      "properties": {
+        "world_profile_id": {"$ref": "#/$defs/token"},
+        "overlay_profile_ids": {"$ref": "#/$defs/string_array"},
+        "geometry": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["width", "height"],
+          "properties": {
+            "width": {"type": "integer", "minimum": 1},
+            "height": {"type": "integer", "minimum": 1}
+          }
+        },
+        "resident_capacity": {"type": "integer", "minimum": 0}
+      }
+    },
+    "initialization": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "initial_population",
+        "initial_live_count",
+        "founder_profiles",
+        "exact_founder_composition",
+        "spatial_placement_profile",
+        "standing_variation_profile"
+      ],
+      "properties": {
+        "initial_population": {"type": "integer", "minimum": 0},
+        "initial_live_count": {"type": "integer", "minimum": 0},
+        "founder_profiles": {"$ref": "#/$defs/string_array"},
+        "exact_founder_composition": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["founder_profile_id", "count"],
+            "properties": {
+              "founder_profile_id": {"$ref": "#/$defs/token"},
+              "count": {"type": "integer", "minimum": 0}
+            }
+          }
+        },
+        "spatial_placement_profile": {"$ref": "#/$defs/token"},
+        "standing_variation_profile": {"$ref": "#/$defs/token"}
+      }
+    },
+    "schedule": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind"],
+          "properties": {"kind": {"const": "static"}}
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "segments"],
+          "properties": {
+            "kind": {"const": "piecewise_constant_absolute_ticks"},
+            "segments": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["start_absolute_tick", "value"],
+                "properties": {
+                  "start_absolute_tick": {"type": "integer", "minimum": 0},
+                  "value": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "start_absolute_tick", "duration_ticks"],
+          "properties": {
+            "kind": {"const": "pulse_absolute_ticks"},
+            "start_absolute_tick": {"type": "integer", "minimum": 0},
+            "duration_ticks": {"type": "integer", "minimum": 1}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "absolute_tick"],
+          "properties": {
+            "kind": {"const": "switch_absolute_tick"},
+            "absolute_tick": {"type": "integer", "minimum": 0}
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["kind", "trigger_profile_id"],
+          "properties": {
+            "kind": {"const": "registered_deterministic_trigger"},
+            "trigger_profile_id": {"$ref": "#/$defs/token"}
+          }
+        }
+      ]
+    },
+    "control_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["control_id", "schedule"],
+      "properties": {
+        "control_id": {"$ref": "#/$defs/token"},
+        "value": true,
+        "profile_ref": {"$ref": "#/$defs/token"},
+        "dimension_binding": {"$ref": "#/$defs/token"},
+        "schedule": {"$ref": "#/$defs/schedule"}
+      },
+      "oneOf": [
+        {"required": ["value"], "not": {"required": ["profile_ref"]}},
+        {"required": ["profile_ref"], "not": {"required": ["value"]}}
+      ]
+    },
+    "seed_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["owner", "binding_kind"],
+      "properties": {
+        "owner": {
+          "enum": [
+            "ecology",
+            "founder",
+            "policy",
+            "mutation",
+            "task_environment",
+            "initialization",
+            "intervention"
+          ]
+        },
+        "binding_kind": {"enum": ["literal", "dimension_bound"]},
+        "literal": {"type": "integer", "minimum": 0},
+        "dimension_id": {"$ref": "#/$defs/token"},
+        "held_equal_in_pairing_groups": {"$ref": "#/$defs/string_array"}
+      },
+      "oneOf": [
+        {
+          "properties": {"binding_kind": {"const": "literal"}},
+          "required": ["literal"],
+          "not": {"required": ["dimension_id"]}
+        },
+        {
+          "properties": {"binding_kind": {"const": "dimension_bound"}},
+          "required": ["dimension_id"],
+          "not": {"required": ["literal"]}
+        }
+      ]
+    },
+    "restore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["checkpoint_occurrence_sha256", "next_absolute_tick"],
+      "properties": {
+        "checkpoint_occurrence_sha256": {"$ref": "#/$defs/digest"},
+        "next_absolute_tick": {"type": "integer", "minimum": 0}
+      }
+    },
+    "branch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "branch_id",
+        "parent_checkpoint_tick",
+        "intervention_control_ids"
+      ],
+      "properties": {
+        "branch_id": {"$ref": "#/$defs/token"},
+        "parent_checkpoint_tick": {"type": "integer", "minimum": 0},
+        "intervention_control_ids": {"$ref": "#/$defs/string_array"}
+      }
+    },
+    "time": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["authority", "start_next_tick", "total_ticks"],
+      "properties": {
+        "authority": {"const": "absolute_tick_v1"},
+        "start_next_tick": {"type": "integer", "minimum": 0},
+        "total_ticks": {"type": "integer", "minimum": 1},
+        "observation_ticks": {"$ref": "#/$defs/tick_array"},
+        "checkpoint_ticks": {"$ref": "#/$defs/tick_array"},
+        "restore": {"$ref": "#/$defs/restore"},
+        "branches": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/branch"}
+        }
+      }
+    },
+    "observations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "required_capability_ids"],
+      "properties": {
+        "profile_id": {
+          "enum": [
+            "SCIENCE_MINIMAL_V1",
+            "SCIENCE_STANDARD_V1",
+            "SCIENCE_FORENSIC_V1"
+          ]
+        },
+        "required_capability_ids": {"$ref": "#/$defs/string_array"},
+        "event_observations": {"$ref": "#/$defs/string_array"},
+        "state_observations": {"$ref": "#/$defs/string_array"},
+        "runtime_counters": {"$ref": "#/$defs/string_array"},
+        "observation_windows": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["start_tick", "end_tick"],
+            "properties": {
+              "start_tick": {"type": "integer", "minimum": 0},
+              "end_tick": {"type": "integer", "minimum": 0}
+            }
+          }
+        },
+        "milestone_ticks": {"$ref": "#/$defs/tick_array"},
+        "cadence_overrides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["record_kind", "every_ticks"],
+            "properties": {
+              "record_kind": {"$ref": "#/$defs/token"},
+              "every_ticks": {"type": "integer", "minimum": 1}
+            }
+          }
+        },
+        "bounded_forensic_reason": {"type": "string", "minLength": 1}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["machine_profile_id", "logical_world_count", "batching_policy"],
+      "properties": {
+        "machine_profile_id": {"const": "EIEL_PRODUCTION_BASELINE_V1"},
+        "logical_world_count": {"type": "integer", "minimum": 1},
+        "batching_policy": {
+          "enum": ["authority_selected", "at_most", "exact_qualified_partition"]
+        },
+        "maximum_physical_batch_worlds": {"type": "integer", "minimum": 1},
+        "checkpoint_mode": {"$ref": "#/$defs/token"},
+        "restore_mode": {"$ref": "#/$defs/token"}
+      }
+    },
+    "reducer_binding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reducer_id",
+        "contract_version",
+        "descriptor_sha256",
+        "configuration",
+        "required_observation_capability_ids",
+        "output_contract_id"
+      ],
+      "properties": {
+        "reducer_id": {"$ref": "#/$defs/token"},
+        "contract_version": {"$ref": "#/$defs/token"},
+        "descriptor_sha256": {"$ref": "#/$defs/digest"},
+        "configuration": true,
+        "required_observation_capability_ids": {"$ref": "#/$defs/string_array"},
+        "output_contract_id": {"$ref": "#/$defs/token"}
+      }
+    },
+    "artifact_lifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["profile_id", "contract_ref"],
+      "properties": {
+        "profile_id": {"const": "SCIENCE_COMPACT"},
+        "contract_ref": {"const": "eiel_run_artifact_lifecycle_contract_v1"},
+        "explicit_intent_allowed_override": {"type": ["string", "null"]}
+      }
+    },
+    "decision": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "offline_decision_rule_ids": {"$ref": "#/$defs/string_array"},
+        "expected_outputs": {"$ref": "#/$defs/string_array"},
+        "presentation_metadata": {"type": "object"}
+      }
+    }
+  }
+}

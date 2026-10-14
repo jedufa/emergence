@@ -1,0 +1,6 @@
+{
+  global:
+    eiel_native_compact_*;
+  local:
+    *;
+};

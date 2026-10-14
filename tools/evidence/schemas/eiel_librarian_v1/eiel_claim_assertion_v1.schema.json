@@ -1,0 +1,47 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_claim_assertion_v1.schema.json",
+  "title": "EIEL Claim Assertion V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "claim_id",
+    "schema_version",
+    "claim_text",
+    "claim_domain",
+    "applicability_envelope",
+    "support_state",
+    "supporting_record_ids",
+    "contradicting_record_ids",
+    "limitation_ids",
+    "asserted_by",
+    "effective_time",
+    "supersession"
+  ],
+  "properties": {
+    "claim_id": { "type": "string", "pattern": "^eiel-claim-[a-z0-9][a-z0-9-]{8,}$" },
+    "schema_version": { "const": "eiel_claim_assertion_v1" },
+    "claim_text": { "type": "string", "minLength": 1 },
+    "claim_domain": { "enum": ["engineering", "qualification", "scientific", "architecture", "roadmap", "release", "unknown"] },
+    "applicability_envelope": { "type": "object" },
+    "support_state": { "enum": ["supported", "not_supported", "contradicted", "untested", "invalidated", "unknown"] },
+    "supporting_record_ids": { "$ref": "#/$defs/ids" },
+    "contradicting_record_ids": { "$ref": "#/$defs/ids" },
+    "limitation_ids": { "$ref": "#/$defs/ids" },
+    "asserted_by": { "type": "string", "minLength": 1 },
+    "effective_time": { "type": ["string", "null"] },
+    "supersession": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["supersedes_claim_ids", "superseded_by_claim_ids", "retraction_ref"],
+      "properties": {
+        "supersedes_claim_ids": { "$ref": "#/$defs/ids" },
+        "superseded_by_claim_ids": { "$ref": "#/$defs/ids" },
+        "retraction_ref": { "type": ["string", "null"] }
+      }
+    }
+  },
+  "$defs": {
+    "ids": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.local/schemas/eiel_catalog_build_v1.schema.json",
+  "title": "EIEL Catalog Build V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "source_commit",
+    "librarian_code_commit",
+    "accession_source_set_digest",
+    "build_time",
+    "deterministic_mode",
+    "tool_versions",
+    "issue_counts",
+    "output_hashes",
+    "build_status"
+  ],
+  "properties": {
+    "schema_version": { "const": "eiel_catalog_build_v1" },
+    "source_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "librarian_code_commit": { "type": "string", "pattern": "^[0-9a-f]{40}$" },
+    "accession_source_set_digest": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "build_time": { "type": "string" },
+    "deterministic_mode": { "type": "boolean" },
+    "tool_versions": { "type": "object" },
+    "issue_counts": { "type": "object" },
+    "output_hashes": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+    },
+    "build_status": { "enum": ["success", "failed"] }
+  }
+}

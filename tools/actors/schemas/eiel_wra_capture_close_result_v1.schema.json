@@ -1,0 +1,44 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_wra_capture_close_result_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "boundary_record": {
+      "type": "object"
+    },
+    "capture_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "end_snapshot": {
+      "type": "object"
+    },
+    "intent_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "result_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_wra_capture_close_result_v1"
+    },
+    "usage_artifact": {
+      "type": "object"
+    }
+  },
+  "required": [
+    "schema_version",
+    "intent_id",
+    "capture_id",
+    "boundary_record",
+    "end_snapshot",
+    "usage_artifact",
+    "result_sha256"
+  ],
+  "title": "EIEL WRA immutable capture-close result",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.resource_accounting",
+  "x-eiel-persistence-class": "immutable_wal_result"
+}

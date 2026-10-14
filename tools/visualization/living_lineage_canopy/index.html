@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>EIEL Living Lineage Canopy</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stage" aria-label="Living lineage canopy visualization">
+        <canvas id="canopyCanvas"></canvas>
+        <div class="stage-topbar">
+          <div>
+            <div class="app-title">Living Lineage Canopy</div>
+            <div id="datasetSubtitle" class="subtitle">Synthetic lineage playback</div>
+            <div class="playback-library" aria-label="Stored playback library">
+              <label for="playbackSearch">Find a playback
+                <input id="playbackSearch" type="search" autocomplete="off" placeholder="Run, storage, or path">
+              </label>
+              <label for="playbackLibrarySelect">Matching playback
+                <select id="playbackLibrarySelect" disabled>
+                  <option>Discovering saved playbacks…</option>
+                </select>
+              </label>
+              <button id="playbackLibraryPlay" type="button" disabled>Play selected</button>
+              <button id="playbackLibraryRefresh" type="button">Refresh</button>
+              <span id="playbackLibraryStatus" role="status"></span>
+            </div>
+          </div>
+          <div id="qualityBadge" class="quality-badge">read-only projection</div>
+        </div>
+        <div id="hoverHint" class="hover-hint">Click a particle to inspect lineage</div>
+      </section>
+
+      <aside class="control-rail" aria-label="Playback and view controls">
+        <div class="panel transport-panel">
+          <label class="field-label" for="datasetSelect">Dataset</label>
+          <div class="mode-row" aria-label="Playback mode">
+            <button id="scenariosModeButton" type="button">Scenarios</button>
+            <button id="savedModeButton" type="button">Saved playback</button>
+            <button id="relayModeButton" type="button">Near-live relay</button>
+          </div>
+          <select id="datasetSelect"></select>
+          <div class="file-load-row">
+            <label class="file-load-button" for="playbackFileInput">Load playback file</label>
+            <input id="playbackFileInput" type="file" accept=".json,application/json">
+            <label class="file-load-button secondary" for="provenanceFileInput">Load provenance</label>
+            <input id="provenanceFileInput" type="file" accept=".json,application/json">
+          </div>
+          <div id="relayControls" class="relay-controls" hidden>
+            <label class="field-label" for="relayManifestInput">Relay manifest URL</label>
+            <input id="relayManifestInput" type="url" placeholder="http://127.0.0.1:8772/relay_manifest.json" spellcheck="false">
+            <div class="button-row relay-button-row">
+              <button id="relayConnectButton" type="button">Connect</button>
+              <button id="relayDisconnectButton" type="button">Disconnect</button>
+              <label class="loop-line"><input id="followLiveToggle" type="checkbox" checked> Follow live</label>
+            </div>
+            <div id="relayStatusPanel" class="relay-status">
+              <div><span>State</span><strong id="relayStateValue">idle</strong></div>
+              <div><span>Run</span><strong id="relayRunValue">-</strong></div>
+              <div><span>Boundary</span><strong id="relayBoundaryValue">-</strong></div>
+              <div><span>Lag</span><strong id="relayLagValue">-</strong></div>
+              <div><span>Sequence</span><strong id="relaySequenceValue">-</strong></div>
+              <div><span>Verified</span><strong id="relayVerifiedValue">no</strong></div>
+              <div><span>Warnings</span><strong id="relayWarningValue">0</strong></div>
+            </div>
+          </div>
+          <button id="returnGalleryButton" class="wide-button" type="button" hidden>Return to gallery</button>
+          <div class="button-row">
+            <button id="playButton" type="button">Play</button>
+            <button id="resetButton" type="button">Reset</button>
+            <button id="endButton" type="button">Jump to end</button>
+          </div>
+          <div class="showcase-row">
+            <button id="showcaseButton" type="button">Showcase</button>
+            <button id="skipScenarioButton" type="button">Skip</button>
+            <label class="loop-line"><input id="loopShowcaseToggle" type="checkbox"> Loop</label>
+          </div>
+          <label class="field-label" for="timelineRange">Timeline</label>
+          <input id="timelineRange" type="range" min="0" max="1" value="0" step="1">
+          <div class="tick-row">
+            <span id="tickValue">tick 0</span>
+            <span id="generationValue"></span>
+          </div>
+          <label class="field-label" for="speedRange">Speed</label>
+          <input id="speedRange" type="range" min="0.25" max="8" value="1" step="0.25">
+          <div id="speedValue" class="speed-value">1.00x</div>
+        </div>
+
+        <div class="panel semantic-panel" id="semanticPanel" hidden>
+          <div class="panel-title" id="semanticTitle">Data semantics</div>
+          <div id="semanticNotice" class="semantic-notice"></div>
+        </div>
+
+        <div class="panel scenario-panel">
+          <div class="panel-title">Scenario Gallery</div>
+          <div id="scenarioGallery" class="scenario-gallery"></div>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">View</div>
+          <label class="control-line">Particle size <input id="particleSizeRange" type="range" min="0.65" max="1.8" value="1" step="0.05"></label>
+          <label class="control-line">Motion <input id="motionRange" type="range" min="0" max="1.6" value="0.72" step="0.04"></label>
+          <label class="control-line">Branch pull <input id="branchPullRange" type="range" min="0.1" max="1.8" value="1" step="0.05"></label>
+          <label class="control-line">Lineage pull <input id="lineagePullRange" type="range" min="0.1" max="1.8" value="0.82" step="0.05"></label>
+          <label class="check-line"><input id="birthPulseToggle" type="checkbox" checked> Birth pulse</label>
+          <label class="check-line"><input id="dyingToggle" type="checkbox" checked> Dying particles</label>
+        </div>
+
+        <div class="panel">
+          <div class="panel-title">Selection</div>
+          <select id="lineageSelect"></select>
+          <div id="lineageLegend" class="lineage-legend"></div>
+          <div class="button-row">
+            <button id="isolateButton" type="button">Isolate</button>
+            <button id="showAllButton" type="button">Show all</button>
+          </div>
+          <div id="selectionDetails" class="details-block">No particle selected.</div>
+        </div>
+
+        <div class="panel metrics-panel">
+          <div class="panel-title">Metrics</div>
+          <dl>
+            <div><dt id="livingMetricLabel">Living</dt><dd id="livingMetric">0</dd></div>
+            <div><dt>Lineages</dt><dd id="lineageMetric">0</dd></div>
+            <div><dt>Branches</dt><dd id="branchMetric">0</dd></div>
+            <div><dt id="shareMetricLabel">Largest share</dt><dd id="shareMetric">0%</dd></div>
+            <div><dt>FPS</dt><dd id="fpsMetric">0</dd></div>
+            <div><dt>Physics</dt><dd id="physicsMetric">0 ms</dd></div>
+            <div><dt>Render</dt><dd id="renderMetric">0 ms</dd></div>
+          </dl>
+        </div>
+      </aside>
+      <div id="showcaseOverlay" class="showcase-overlay" hidden></div>
+    </main>
+    <script type="module" src="./js/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "assignment_id": "ASSIGN-EXAMPLE",
+  "assignment_material_sha256": "56c132eb924d12873e45518164a6324b9f1cc59225f586c654bc1fbae47b425a",
+  "claimed_at_utc": "2026-08-05T00:00:00Z",
+  "expires_at_utc": "2026-08-05T01:00:00Z",
+  "last_heartbeat_at_utc": "2026-08-05T00:00:00Z",
+  "scheduler_id": "SCH-EXAMPLE",
+  "schema_version": "eiel_assignment_lease_v1",
+  "worker": {
+    "kind": null,
+    "pid": null,
+    "process_start_identity": null,
+    "thread_id": null,
+    "worker_id": null
+  },
+  "duration_seconds": 3600,
+  "heartbeat_interval_seconds": 300
+}

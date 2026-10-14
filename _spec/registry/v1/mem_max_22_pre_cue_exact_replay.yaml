@@ -1,0 +1,11 @@
+harness_api: 1
+version: 1
+name: mem_max_22_pre_cue_exact_replay
+description: MEM-MAX-22 pre-cue branch checkpoint exact replay gate.
+requires:
+- checkpoint_bundle_v2
+- pre_cue_tick_boundary_capture
+- isolated_runner_clone_replay
+gate:
+  default_off: true
+  fail_closed_without_pre_cue_round_trip: true

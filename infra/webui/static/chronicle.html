@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Chronicle Dialogue</title>
+  <link rel="stylesheet" href="/static/chronicle.css?v=20260809_2"/>
+</head>
+<body>
+  <header class="dialogue-controls" aria-label="Chronicle dialogue controls">
+    <label class="run-search" for="runSearch">
+      <span>Find a run</span>
+      <input id="runSearch" type="search" autocomplete="off"
+             placeholder="Campaign, run, world, commit, or path"/>
+    </label>
+    <label class="run-select" for="simulationSelect">
+      <span>Matching run</span>
+      <select id="simulationSelect" aria-label="Simulation with Chronicle"></select>
+    </label>
+    <label for="audienceSelect">
+      <span>Audience</span>
+      <select id="audienceSelect" aria-label="Dialogue audience">
+        <option value="dry_humour" selected>Dry humor</option>
+        <option value="public_plain">Plain</option>
+        <option value="field_observer">Field observer</option>
+        <option value="documentary">Documentary</option>
+      </select>
+    </label>
+  </header>
+
+  <main id="dialogue" class="dialogue" aria-live="polite"></main>
+
+  <script src="/static/chronicle.js?v=20260809_2"></script>
+</body>
+</html>

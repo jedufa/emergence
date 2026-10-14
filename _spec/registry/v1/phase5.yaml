@@ -1,0 +1,46 @@
+harness_api: 1
+version: 1
+manifest_api: 1
+git_ref: 54eca2151a85b77d2a34808854e86f60c4548eda
+output_root: runtime/live/wrapper_jobs
+category: quick
+
+name: phase5
+description: phase5.
+intent:
+  question: phase5 testing.
+  axes:
+    - case
+matrix_order:
+  - case
+  - seed
+axes:
+  case:
+    values:
+      - phase5__baseline
+    flags:
+      phase5__baseline:
+        - --knob
+        - sim_cfg.epi_enable=true
+        - --knob
+        - sim_cfg.epi_print_each_gen=true
+        - --knob
+        - sim_cfg.epi_timeseries_enable=true
+seeds:
+  - 1
+cli_defaults:
+  - [--generations, '1000']
+  - [--steps, '150']
+  - [--pop, '32']
+  - [--policy_tick_stride, '2']
+expected_artifacts:
+  - manifest.json
+  - run_config.csv
+  - config.json
+  - metrics.csv
+  - epi_v2.json
+  - av_v2.json
+naming:
+  run_tag_prefix: phase5
+  run_id_format: phase5__{case}__seed{seed:06d}
+  run_tag_format: phase5__{case}

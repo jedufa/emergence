@@ -1,0 +1,39 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_working_state_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented contract for eiel_working_state_v2; runtime validators remain authoritative.",
+  "properties": {
+    "next_safe_action": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_working_state_v2"
+    },
+    "session_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "status": {
+      "type": "string"
+    },
+    "work_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "EIEL Working State V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.context_projection",
+  "x-eiel-persistence-class": "persisted_projection"
+}

@@ -1,0 +1,39 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_authoritative_review_binding_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented contract for eiel_authoritative_review_binding_v1; runtime validators remain authoritative.",
+  "properties": {
+    "review_record_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "review_revision": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "review_session_id": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_authoritative_review_binding_v1"
+    },
+    "verdict": {
+      "type": "string"
+    },
+    "work_id": {
+      "type": "string"
+    },
+    "work_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "EIEL Authoritative Review Binding V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.lifecycle_policy",
+  "x-eiel-persistence-class": "embedded_durable_exact_reference"
+}

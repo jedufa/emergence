@@ -1,0 +1,52 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_qualification_evidence_input_ref_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "manifest",
+        "evidence",
+        "evidence_binding"
+      ]
+    },
+    "original_path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "path": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_qualification_evidence_input_ref_v1"
+    },
+    "sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "size_bytes": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "state_root_locator": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "kind",
+    "original_path",
+    "path",
+    "state_root_locator",
+    "sha256",
+    "size_bytes"
+  ],
+  "title": "EIEL retained qualification evidence input reference",
+  "type": "object"
+}

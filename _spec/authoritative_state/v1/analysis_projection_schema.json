@@ -1,0 +1,50 @@
+{
+  "binding_keys": [
+    "authoritative_schema_hash",
+    "binary_schema_hash",
+    "checkpoint_schema_hash",
+    "provider_projection_hash"
+  ],
+  "contract_hash": "893d1aa492d7edb16abe7d41fe1d2a9ade3a7bd399fde786e568194417d1a6c1",
+  "fields": [
+    {
+      "dtype": "float32",
+      "field_id": "analysis.injury_delta.v1",
+      "required": true,
+      "shape": [
+        "rows"
+      ],
+      "source_field_ids": [
+        "reporting.injury_start.v1",
+        "reporting.injury_end.v1"
+      ],
+      "transform": "derived"
+    },
+    {
+      "dtype": "string",
+      "field_id": "analysis.lineage_id.v1",
+      "required": true,
+      "shape": [
+        "rows"
+      ],
+      "source_field_ids": [
+        "identity.lineage_founder_id.v1"
+      ],
+      "transform": "converted"
+    },
+    {
+      "dtype": "int64",
+      "field_id": "analysis.offspring_count.v1",
+      "required": true,
+      "shape": [
+        "rows"
+      ],
+      "source_field_ids": [
+        "reporting.offspring_count.v1"
+      ],
+      "transform": "copied"
+    }
+  ],
+  "kind": "authoritative_analysis_projection",
+  "schema_version": "eiel_authoritative_analysis_projection_schema_v1"
+}

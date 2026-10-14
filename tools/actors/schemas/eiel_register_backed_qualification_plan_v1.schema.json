@@ -1,0 +1,33 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_register_backed_qualification_plan_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_register_backed_qualification_plan_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "authority_register": {
+      "type": "object"
+    },
+    "families": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "plan_id": {
+      "type": "string"
+    },
+    "qualification_request": {
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_register_backed_qualification_plan_v1"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "EIEL Register-Backed Qualification Plan V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.qualification_manager",
+  "x-eiel-persistence-class": "durable_actor_payload"
+}

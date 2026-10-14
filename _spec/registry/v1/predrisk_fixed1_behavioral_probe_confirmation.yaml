@@ -1,0 +1,214 @@
+harness_api: 1
+version: 1
+name: predrisk_fixed1_behavioral_probe_confirmation
+description: PREDRISK-FIXED-1 independent confirmation matrix for fixed ordinary-policy predator-resource behavioral probes.
+intent: Can fixed ordinary-policy probes separate exposed-rich risk exploitation from safe-covered foraging under frozen predator-resource controls?
+matrix_order:
+- world_family
+- fixed_probe
+- seed
+flag_templates:
+  true_flat: &true_flat
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=false
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=false
+  resource_only: &resource_only
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=resource_only
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=false
+  predator_only: &predator_only
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=predator_only
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=true
+  - --knob
+  - env_cfg.jungle_terrain_protection_enable=true
+  cover_only: &cover_only
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=cover_only
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=false
+  label_only_sham: &label_only_sham
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=label_only_sham
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=false
+  uncorrelated_risk_resource: &uncorrelated_risk_resource
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=uncorrelated_risk_resource
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=true
+  - --knob
+  - env_cfg.jungle_terrain_protection_enable=true
+  budget_matched_uniform: &budget_matched_uniform
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=budget_matched_uniform
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=true
+  - --knob
+  - env_cfg.jungle_terrain_protection_enable=true
+  correlated_tradeoff: &correlated_tradeoff
+  - --knob
+  - env_cfg.patch_world_enable=true
+  - --knob
+  - env_cfg.patch_world_observation_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_enable=true
+  - --knob
+  - env_cfg.predrisk_fixed1_control_mode=correlated_tradeoff
+  - --knob
+  - env_cfg.jungle_predator_pressure_enable=true
+  - --knob
+  - env_cfg.jungle_terrain_protection_enable=true
+  risk_exploit: &risk_exploit
+  - --knob
+  - sim_cfg.predrisk_fixed1_probe_enable=true
+  - --knob
+  - sim_cfg.predrisk_fixed1_probe_arm=risk_exploit
+  - --knob
+  - sim_cfg.predrisk_fixed1_telemetry_enable=true
+  balanced_generalist: &balanced_generalist
+  - --knob
+  - sim_cfg.predrisk_fixed1_probe_enable=true
+  - --knob
+  - sim_cfg.predrisk_fixed1_probe_arm=balanced_generalist
+  - --knob
+  - sim_cfg.predrisk_fixed1_telemetry_enable=true
+  safe_cover: &safe_cover
+  - --knob
+  - sim_cfg.predrisk_fixed1_probe_enable=true
+  - --knob
+  - sim_cfg.predrisk_fixed1_probe_arm=safe_cover
+  - --knob
+  - sim_cfg.predrisk_fixed1_telemetry_enable=true
+axes:
+  world_family:
+    values:
+    - true_flat
+    - resource_only
+    - predator_only
+    - cover_only
+    - label_only_sham
+    - uncorrelated_risk_resource
+    - budget_matched_uniform
+    - correlated_tradeoff
+    flags:
+      true_flat: *true_flat
+      resource_only: *resource_only
+      predator_only: *predator_only
+      cover_only: *cover_only
+      label_only_sham: *label_only_sham
+      uncorrelated_risk_resource: *uncorrelated_risk_resource
+      budget_matched_uniform: *budget_matched_uniform
+      correlated_tradeoff: *correlated_tradeoff
+  fixed_probe:
+    values:
+    - risk_exploit
+    - balanced_generalist
+    - safe_cover
+    flags:
+      risk_exploit: *risk_exploit
+      balanced_generalist: *balanced_generalist
+      safe_cover: *safe_cover
+seeds:
+- 505
+- 606
+- 707
+- 808
+- 909
+- 1001
+- 1102
+- 1203
+cli_defaults:
+- - --generations
+  - '48'
+- - --steps
+  - '96'
+- - --pop
+  - '64'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cuda
+- - --bank_device
+  - cuda
+- - --knob
+  - env_cfg.view_radius=1
+- - --knob
+  - env_cfg.patch_movement_cost_apply_enable=true
+- - --knob
+  - env_cfg.jungle_predator_risk_cap=0.10
+- - --knob
+  - env_cfg.jungle_predator_health_damage=0.25
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.policy_weight_mutation_enable=false
+- - --knob
+  - genome.mutation_rate=0.0
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+naming:
+  run_id_format: '{name}__{world_family}__{fixed_probe}__seed{seed:06d}'
+  run_tag_prefix: predrisk_fixed1
+  run_tag_format: '{run_tag_prefix}_{world_family}_{fixed_probe}_seed{seed:06d}'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- metrics.csv
+- metrics/predrisk_fixed1_generation_summary.csv
+- metrics/predrisk_fixed1_probe_contract.json
+output_profile:
+  compact: true
+  expected_cells: 192
+  future_workers: 6
+  repeat_parity_workers: 1
+decision_contract:
+  scientific_campaign_authorized: false
+  next_required_step: separate fixed-probe validation campaign prompt

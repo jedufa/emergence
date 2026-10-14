@@ -1,0 +1,26 @@
+{
+  "schema_version": "eiel_qualification_plan_v1",
+  "plan_id": "flat-batch-order-v1",
+  "description": "Declarative deterministic batch-order matrix; this plan does not execute a runtime.",
+  "capability_requirements": [
+    "independent-cell-batch",
+    "stable-seed-order"
+  ],
+  "dimensions": [
+    {"id": "batch_cells", "values": [4]},
+    {"id": "seed_order", "values": ["primary", "reversed"]},
+    {"id": "ticks", "values": [80]}
+  ],
+  "cases": [
+    {
+      "id": "primary-order",
+      "assignments": {"batch_cells": 4, "seed_order": "primary", "ticks": 80}
+    },
+    {
+      "id": "reversed-order",
+      "assignments": {"batch_cells": 4, "seed_order": "reversed", "ticks": 80},
+      "prerequisites": ["primary-order"],
+      "capability_requirements": ["permutation-invariance"]
+    }
+  ]
+}

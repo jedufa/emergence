@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-result-receipt",
+  "title": "EIEL Science Result Receipt V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "campaign_spec_sha256",
+    "instrument_manifest_sha256",
+    "route_binding_sha256",
+    "science_semantic_acquisition_sha256",
+    "physical_execution_plan_sha256",
+    "science_execution_plan_sha256",
+    "evidence_manifest_sha256",
+    "reduction_plan_sha256",
+    "reducer_descriptor_sha256",
+    "reducer_implementation_sha256",
+    "reducer_configuration_sha256",
+    "output_contract_id",
+    "result_sha256",
+    "resume_chain_sha256",
+    "trajectory_effects_performed"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_result_receipt_v1"},
+    "campaign_spec_sha256": {"$ref": "#/$defs/digest"},
+    "instrument_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "route_binding_sha256": {"$ref": "#/$defs/digest"},
+    "science_semantic_acquisition_sha256": {"$ref": "#/$defs/digest"},
+    "physical_execution_plan_sha256": {"$ref": "#/$defs/digest"},
+    "science_execution_plan_sha256": {"$ref": "#/$defs/digest"},
+    "evidence_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "reduction_plan_sha256": {"$ref": "#/$defs/digest"},
+    "reducer_descriptor_sha256": {"$ref": "#/$defs/digest"},
+    "reducer_implementation_sha256": {"$ref": "#/$defs/digest"},
+    "reducer_configuration_sha256": {"$ref": "#/$defs/digest"},
+    "output_contract_id": {"$ref": "#/$defs/token"},
+    "result_sha256": {"$ref": "#/$defs/digest"},
+    "resume_chain_sha256": {
+      "oneOf": [{"$ref": "#/$defs/digest"}, {"type": "null"}]
+    },
+    "trajectory_effects_performed": {"const": false}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+:/-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

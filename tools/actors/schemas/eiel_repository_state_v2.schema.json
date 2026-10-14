@@ -1,0 +1,47 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_repository_state_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented EIEL contract for eiel_repository_state_v2. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "branch": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "dirty": {
+      "type": "boolean"
+    },
+    "dirty_entries": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "head": {
+      "type": "string"
+    },
+    "repository_state_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "root": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_repository_state_v2"
+    }
+  },
+  "required": [
+    "schema_version",
+    "root",
+    "head",
+    "dirty",
+    "repository_state_sha256"
+  ],
+  "title": "EIEL Repository State V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.bootstrap",
+  "x-eiel-persistence-class": "nested_durable_receipt"
+}

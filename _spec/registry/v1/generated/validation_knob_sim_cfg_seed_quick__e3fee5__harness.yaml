@@ -1,0 +1,62 @@
+harness_api: 1
+version: 1
+uid: validation_knob_sim_cfg_seed_quick
+name: validation_knob_sim_cfg_seed_quick
+description: Per-knob A/B validation for sim_cfg.seed. Baseline vs variant differ
+  only by this knob (or required enabling context).
+intent:
+  question: Is knob sim_cfg.seed traceably applied (config + required artifacts) in
+    an A/B run pair?
+  axes:
+  - ab
+matrix_order:
+- ab
+- seed
+axes:
+  ab:
+    values:
+    - baseline
+    - variant
+    flags:
+      baseline:
+      - --knob
+      - sim_cfg.epi_enable=true
+      - --knob
+      - sim_cfg.epi_print_each_gen=true
+      - --knob
+      - sim_cfg.epi_timeseries_enable=true
+      - --seed
+      - '1'
+      variant:
+      - --knob
+      - sim_cfg.epi_enable=true
+      - --knob
+      - sim_cfg.epi_print_each_gen=true
+      - --knob
+      - sim_cfg.epi_timeseries_enable=true
+      - --seed
+      - '2'
+seeds:
+- 1
+cli_defaults:
+- - --generations
+  - '1'
+- - --steps
+  - '150'
+- - --pop
+  - '64'
+- - --policy_tick_stride
+  - '2'
+- - --checkpoint_period_gen
+  - '0'
+- - --checkpoint_rotate
+  - '0'
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: validation_knob_sim_cfg_seed_quick
+  run_id_format: r__{ab}__s{seed:06d}
+  run_tag_format: '{run_tag_prefix}__{ab}'

@@ -1,0 +1,69 @@
+{
+  "bootstrap": {
+    "age_hours": 0.25,
+    "record_id": "BST-W32",
+    "record_sha256": "sha256-example",
+    "status": "READY"
+  },
+  "bridge": {
+    "authority_effect": "none",
+    "automatic_execution": false,
+    "required": false,
+    "status": "available_optional"
+  },
+  "context_health": null,
+  "context_receipt": null,
+  "execution_budget": null,
+  "initial_context": null,
+  "mission": {
+    "mission_id": "MIS-W32-QUALIFICATION",
+    "status": "READY"
+  },
+  "normal_path": [
+    "bootstrap",
+    "workspace",
+    "workManager",
+    "sessionManager",
+    "missionPlanner_when_needed",
+    "qualificationManager_when_needed",
+    "resourceManager_when_needed",
+    "existing_campaign_tools",
+    "evidenceManager_when_needed",
+    "knowledge_librarian"
+  ],
+  "operator_contract_version": "eiel_codex_operator_contract_v1",
+  "output_policy": null,
+  "portfolio": {
+    "open_work_count": 3,
+    "resumable_session_count": 1
+  },
+  "repository": {
+    "branch": "main",
+    "head": "0123456789abcdef0123456789abcdef01234567",
+    "root": "/tmp/emergence-example/user/emergence"
+  },
+  "schema_version": "eiel_codex_workspace_v2",
+  "selected_session": {
+    "record_id": "SES-W32-QUALIFICATION-01",
+    "status": "INTERRUPTED"
+  },
+  "selected_work": {
+    "record_id": "WORK-W32-QUALIFICATION",
+    "status": "ACTIVE"
+  },
+  "state_root": "/tmp/emergence-example/user/.local/state/eiel/actors",
+  "task_context": {
+    "bootstrap_task_mode": "implementation",
+    "qualification_reason": "No qualification records are currently attached to this work item.",
+    "qualification_required": false,
+    "qualification_status": "UNKNOWN",
+    "required_authority_domain": "implementation",
+    "required_session_role": "IMPLEMENTATION_AUTHORITY",
+    "task_class": "implementation"
+  },
+  "workflow_administration": {
+    "required_for_operator_authorized_execution": false,
+    "obligations": []
+  },
+  "tooling_version": "1.16.0"
+}

@@ -1,0 +1,175 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_token_snapshot_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "attribution_assurance": {
+      "type": "string"
+    },
+    "capture_kind": {
+      "enum": [
+        "START",
+        "END"
+      ]
+    },
+    "captured_at_utc": {
+      "type": "string"
+    },
+    "close_intent_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "codex_thread_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "context_epoch_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_assurance": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_capture_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "cumulative": {
+      "additionalProperties": false,
+      "properties": {
+        "cache_creation_tokens": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "cached_input_tokens": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "first_activity": {},
+        "input_tokens": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "last_activity": {},
+        "models": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "output_tokens": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "total_tokens": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "input_tokens",
+        "cached_input_tokens",
+        "cache_creation_tokens",
+        "output_tokens",
+        "total_tokens",
+        "models",
+        "first_activity",
+        "last_activity"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "measurement_scope": {
+      "type": "string"
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "problems": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reasoning_level": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resource_dimension": {
+      "const": "tokens"
+    },
+    "schema_version": {
+      "const": "eiel_token_snapshot_v1"
+    },
+    "session_id": {
+      "pattern": "^SES-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "pattern": "^TOKSNAP-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "source": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "MEASURED",
+        "UNAVAILABLE"
+      ]
+    },
+    "work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "snapshot_id",
+    "snapshot_sha256",
+    "capture_kind",
+    "status",
+    "work_id",
+    "session_id",
+    "context_epoch_id",
+    "codex_thread_id",
+    "captured_at_utc",
+    "model",
+    "reasoning_level",
+    "cumulative",
+    "source",
+    "problems",
+    "correction_note"
+  ],
+  "title": "EIEL WRA-1 normalized cumulative token snapshot",
+  "type": "object"
+}

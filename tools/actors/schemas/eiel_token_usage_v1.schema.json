@@ -1,0 +1,275 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_token_usage_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actual_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "artifact_id": {
+      "pattern": "^WRA-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "artifact_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "attribution_assurance": {
+      "type": "string"
+    },
+    "cache_creation_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "cached_input_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "compactions": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "correction_assurance": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "correction_note": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "duration_minutes": {
+      "minimum": 0,
+      "type": [
+        "number",
+        "null"
+      ]
+    },
+    "estimated_tokens": {
+      "additionalProperties": false,
+      "properties": {
+        "expected": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "high": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "low": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "low",
+        "expected",
+        "high"
+      ],
+      "type": "object"
+    },
+    "estimation_error": {
+      "additionalProperties": false,
+      "properties": {
+        "actual_tokens": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "confidence_was_correct": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "expected_tokens": {
+          "minimum": 0,
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "percent_error": {
+          "type": [
+            "number",
+            "null"
+          ]
+        },
+        "token_delta": {
+          "type": [
+            "integer",
+            "null"
+          ]
+        },
+        "within_low_high": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        }
+      },
+      "required": [
+        "expected_tokens",
+        "actual_tokens",
+        "token_delta",
+        "percent_error",
+        "within_low_high",
+        "confidence_was_correct"
+      ],
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "generated_at_utc": {
+      "type": "string"
+    },
+    "input_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "measured_segment_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "measurement_scope": {
+      "type": "string"
+    },
+    "model": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "output_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "problems": {
+      "items": {
+        "type": "string"
+      },
+      "type": "array"
+    },
+    "reasoning_level": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "resource_dimension": {
+      "const": "tokens"
+    },
+    "schema_version": {
+      "const": "eiel_token_usage_v1"
+    },
+    "session_breakdown": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "session_count": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "source": {
+      "type": "object"
+    },
+    "status": {
+      "enum": [
+        "MEASURED",
+        "PARTIAL",
+        "UNAVAILABLE"
+      ]
+    },
+    "subsystem": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "tool_calls": {
+      "minimum": 0,
+      "type": "integer"
+    },
+    "total_tokens": {
+      "minimum": 0,
+      "type": [
+        "integer",
+        "null"
+      ]
+    },
+    "work_id": {
+      "pattern": "^WORK-[A-Z0-9-]+$",
+      "type": "string"
+    },
+    "work_type": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "artifact_id",
+    "artifact_sha256",
+    "status",
+    "work_id",
+    "model",
+    "reasoning_level",
+    "work_type",
+    "subsystem",
+    "duration_minutes",
+    "tool_calls",
+    "compactions",
+    "input_tokens",
+    "cached_input_tokens",
+    "cache_creation_tokens",
+    "output_tokens",
+    "total_tokens",
+    "estimated_tokens",
+    "actual_tokens",
+    "estimation_error",
+    "source",
+    "session_count",
+    "measured_segment_count",
+    "session_breakdown",
+    "problems",
+    "generated_at_utc",
+    "correction_note"
+  ],
+  "title": "EIEL WRA-1 immutable Work Item token usage",
+  "type": "object"
+}

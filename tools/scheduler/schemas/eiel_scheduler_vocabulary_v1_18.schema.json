@@ -1,0 +1,18 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_scheduler_vocabulary_v1_18.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documentation schema for retained EIEL runtime contract eiel_scheduler_vocabulary_v1_18. It closes the schema-documentation gap while preserving the owning runtime loader as the semantic authority.",
+  "properties": {
+    "schema_version": {
+      "const": "eiel_scheduler_vocabulary_v1_18"
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "eiel_scheduler_vocabulary_v1_18",
+  "type": "object",
+  "x-eiel-contract-class": "retained_runtime_contract",
+  "x-eiel-semantic-validator": "owning runtime loader/validator"
+}

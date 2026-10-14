@@ -1,0 +1,46 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_resource_accounting_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "description": "Documented EIEL contract for eiel_session_resource_accounting_v1. Runtime loaders remain authoritative for semantic invariants.",
+  "properties": {
+    "active_capture_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "captures": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    },
+    "latest_usage_artifact": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_session_resource_accounting_v1"
+    },
+    "usage_artifacts": {
+      "items": {
+        "type": "object"
+      },
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "captures",
+    "active_capture_id",
+    "usage_artifacts",
+    "latest_usage_artifact"
+  ],
+  "title": "EIEL Session Resource Accounting V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.resource_accounting",
+  "x-eiel-persistence-class": "embedded_durable_accounting_projection"
+}

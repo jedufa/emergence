@@ -1,0 +1,804 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://causyl.local/schemas/eiel_campaign_v1.schema.json",
+  "title": "EIEL Declarative Campaign v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "campaign_id",
+    "no_claims",
+    "world",
+    "policy",
+    "matrix",
+    "execution",
+    "checkpoints",
+    "artifacts",
+    "output"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_campaign_v1"},
+    "campaign_id": {"$ref": "#/$defs/id"},
+    "description": {"type": "string"},
+    "no_claims": {"$ref": "#/$defs/nonemptyString"},
+    "world": {"$ref": "#/$defs/world"},
+    "policy": {"$ref": "#/$defs/policy"},
+    "selection": {"$ref": "#/$defs/selection"},
+    "parameters": {"$ref": "#/$defs/parameters"},
+    "matrix": {"$ref": "#/$defs/matrix"},
+    "execution": {"$ref": "#/$defs/execution"},
+    "checkpoints": {"$ref": "#/$defs/checkpoints"},
+    "comparisons": {"$ref": "#/$defs/comparisons"},
+    "artifacts": {"$ref": "#/$defs/artifacts"},
+    "analysis": {"$ref": "#/$defs/analysis"},
+    "output": {"$ref": "#/$defs/output"},
+    "artifact_lifecycle": {"$ref": "#/$defs/artifactLifecycle"},
+    "run_contract": {"$ref": "#/$defs/runContract"},
+    "authority": {"$ref": "#/$defs/authorityDisposition"},
+    "_legacy_lifecycle_derived": {"const": true}
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "execution": {
+            "properties": {
+              "execution_route_identity": {"const": "tick_native_execution_route_v1"}
+            },
+            "required": ["execution_route_identity"]
+          }
+        }
+      },
+      "then": {
+        "properties": {
+          "checkpoints": {
+            "properties": {
+              "milestones": {"maxItems": 0}
+            },
+            "not": {"required": ["digest_every_generation"]}
+          },
+          "artifact_lifecycle": {
+            "properties": {
+              "checkpoints": {
+                "required": ["authority", "checkpoint_ticks", "roles"],
+                "properties": {
+                  "authority": {"const": "absolute_tick"},
+                  "roles": {
+                    "items": {"$ref": "#/$defs/artifactCheckpointTickRole"}
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "authority": {
+            "properties": {
+              "classification": {"const": "HISTORICAL_IMMUTABLE"}
+            },
+            "required": ["classification"]
+          }
+        },
+        "required": ["authority"]
+      },
+      "then": {
+        "properties": {
+          "authority": {
+            "required": [
+              "classification",
+              "execution_permission",
+              "superseded_by",
+              "reason"
+            ],
+            "properties": {
+              "execution_permission": {"const": "NON_EXECUTABLE_HISTORICAL"}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9]*(?:[-_][a-z0-9]+)*$"
+    },
+    "nonemptyString": {
+      "type": "string",
+      "pattern": "\\S"
+    },
+    "scalar": {"type": ["boolean", "integer", "number", "string"]},
+    "uniqueStrings": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"type": "string"}
+    },
+    "ids": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/id"}
+    },
+    "positiveInteger": {"type": "integer", "minimum": 1},
+    "runContract": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "profile_id"],
+      "properties": {
+        "mode": {"enum": ["optional", "strict"]},
+        "profile_id": {"$ref": "#/$defs/id"}
+      }
+    },
+    "authorityDisposition": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["classification", "execution_permission", "reason"],
+      "properties": {
+        "classification": {
+          "enum": [
+            "AUTHORITATIVE_CURRENT",
+            "LEGACY_COMPATIBILITY_GUIDANCE",
+            "HISTORICAL_IMMUTABLE"
+          ]
+        },
+        "execution_permission": {
+          "enum": ["EXECUTABLE", "NON_EXECUTABLE_HISTORICAL"]
+        },
+        "superseded_by": {"$ref": "#/$defs/nonemptyString"},
+        "reason": {"$ref": "#/$defs/nonemptyString"}
+      }
+    },
+    "world": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["base"],
+      "properties": {
+        "base": {"$ref": "#/$defs/id"},
+        "overlays": {"$ref": "#/$defs/ids"}
+      }
+    },
+    "policy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["family"],
+      "properties": {"family": {"$ref": "#/$defs/id"}}
+    },
+    "selection": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {"mode": {"$ref": "#/$defs/id"}}
+    },
+    "parameters": {
+      "type": "object",
+      "additionalProperties": {"$ref": "#/$defs/scalar"}
+    },
+    "dimension": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "values"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "description": {"type": "string"},
+        "values": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/scalar"}
+        }
+      }
+    },
+    "selector": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/scalar"}
+    },
+    "selectors": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/selector"}
+    },
+    "parameterBindings": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {"$ref": "#/$defs/nonemptyString"}
+    },
+    "seedBindings": {
+      "type": "object",
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {
+        "enum": ["ecology", "task", "policy", "founder"]
+      }
+    },
+    "matrix": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["dimensions"],
+      "properties": {
+        "dimensions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/$defs/dimension"}
+        },
+        "parameter_bindings": {"$ref": "#/$defs/parameterBindings"},
+        "seed_bindings": {"$ref": "#/$defs/seedBindings"},
+        "include": {"$ref": "#/$defs/selectors"},
+        "exclude": {"$ref": "#/$defs/selectors"},
+        "expected_cells": {"$ref": "#/$defs/positiveInteger"},
+        "max_cells": {"$ref": "#/$defs/positiveInteger"}
+      }
+    },
+    "batch": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "mode": {"enum": ["automatic", "explicit", "bounded"]},
+        "cells": {"$ref": "#/$defs/positiveInteger"},
+        "maximum": {"$ref": "#/$defs/positiveInteger"}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"mode": {"const": "explicit"}}, "required": ["mode"]},
+          "then": {"required": ["cells"], "not": {"required": ["maximum"]}},
+          "else": {"required": ["maximum"], "not": {"required": ["cells"]}}
+        }
+      ]
+    },
+    "budgets": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["vram_bytes", "disk_bytes", "wall_seconds"],
+      "properties": {
+        "vram_bytes": {"$ref": "#/$defs/positiveInteger"},
+        "host_bytes": {"$ref": "#/$defs/positiveInteger"},
+        "minimum_free_gpu_bytes": {"$ref": "#/$defs/positiveInteger"},
+        "maximum_gpu_memory_slope_bytes_per_window": {"$ref": "#/$defs/positiveInteger"},
+        "maximum_host_memory_slope_bytes_per_window": {"$ref": "#/$defs/positiveInteger"},
+        "maximum_event_ring_occupancy_slope_per_window": {"$ref": "#/$defs/positiveInteger"},
+        "disk_bytes": {"$ref": "#/$defs/positiveInteger"},
+        "wall_seconds": {"$ref": "#/$defs/positiveInteger"}
+      }
+    },
+    "execution": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "backend": {"$ref": "#/$defs/id"},
+        "generations": {"$ref": "#/$defs/positiveInteger"},
+        "ticks_per_generation": {"$ref": "#/$defs/positiveInteger"},
+        "execution_route_identity": {
+          "enum": [
+            "legacy_generation_route_v1",
+            "tick_native_execution_route_v1"
+          ]
+        },
+        "total_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "start_next_tick": {"type": "integer", "minimum": 0},
+        "resident_owner_span_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "native_dispatch_window_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "source_window_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "event_window_capacity": {"$ref": "#/$defs/positiveInteger"},
+        "checkpoint_ticks": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/positiveInteger"}
+        },
+        "checkpoint_every_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "science_sample_interval_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "report_every_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "reducer_every_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "archive_every_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "legacy_turnover_interval_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "runtime_partition_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "deliberate_restore_tick": {"$ref": "#/$defs/positiveInteger"},
+        "deliberate_restore_ticks": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/positiveInteger"}
+        },
+        "internal_lifecycle_schedule": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["interval_ticks", "authority"],
+          "properties": {
+            "interval_ticks": {"$ref": "#/$defs/positiveInteger"},
+            "authority": {"const": "internal_compatibility_only"}
+          }
+        },
+        "max_internal_lifecycle_segments_per_dispatch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 128
+        },
+        "tick_native_control": {"$ref": "#/$defs/tickNativeControl"},
+        "physical_window_generations": {"type": "integer", "enum": [1, 2]},
+        "batch": {"$ref": "#/$defs/batch"},
+        "budgets": {"$ref": "#/$defs/budgets"},
+        "cancellation": {"type": "boolean"},
+        "technical_gate": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["selectors"],
+          "properties": {
+            "selectors": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"$ref": "#/$defs/dimensionSelector"}
+            },
+            "partition": {"type": "boolean"},
+            "generations": {"$ref": "#/$defs/positiveInteger"},
+            "total_ticks": {"$ref": "#/$defs/positiveInteger"},
+            "checkpoint_ticks": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"type": "integer", "minimum": 0}
+            },
+            "checkpoint_milestones": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {"type": "integer", "minimum": 0}
+            },
+            "profile": {"$ref": "#/$defs/nonemptyString"}
+          }
+        }
+      },
+      "if": {
+        "properties": {
+          "execution_route_identity": {
+            "const": "tick_native_execution_route_v1"
+          }
+        },
+        "required": ["execution_route_identity"]
+      },
+      "then": {
+        "required": [
+          "backend",
+          "execution_route_identity",
+          "total_ticks",
+          "batch",
+          "budgets"
+        ],
+        "anyOf": [
+          {
+            "required": [
+              "resident_owner_span_ticks",
+              "native_dispatch_window_ticks",
+              "source_window_ticks",
+              "event_window_capacity"
+            ]
+          },
+          {"required": ["tick_native_control"]}
+        ],
+        "not": {
+          "anyOf": [
+            {"required": ["generations"]},
+            {"required": ["ticks_per_generation"]},
+            {"required": ["physical_window_generations"]},
+            {"required": ["internal_lifecycle_schedule"]},
+            {"required": ["max_internal_lifecycle_segments_per_dispatch"]},
+            {"required": ["internal_lifecycle_interval_ticks"]},
+            {"required": ["refill_chunk_ticks"]},
+            {"required": ["legacy_turnover_interval_ticks"]}
+          ]
+        },
+        "properties": {
+          "technical_gate": {
+            "not": {
+              "anyOf": [
+                {"required": ["generations"]},
+                {"required": ["checkpoint_milestones"]}
+              ]
+            }
+          }
+        }
+      },
+      "else": {
+        "required": [
+          "backend",
+          "execution_route_identity",
+          "generations",
+          "ticks_per_generation",
+          "batch",
+          "budgets"
+        ],
+        "properties": {
+          "execution_route_identity": {"const": "legacy_generation_route_v1"}
+        }
+      }
+    },
+    "tickNativeControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "time_authority",
+        "total_ticks",
+        "next_absolute_tick",
+        "resident_owner_span_ticks",
+        "native_dispatch_window_ticks",
+        "source_window_ticks",
+        "event_window_capacity"
+      ],
+      "properties": {
+        "schema_version": {"const": "eiel-tick-native-control-v2"},
+        "time_authority": {"const": "absolute_tick_v1"},
+        "total_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "next_absolute_tick": {"type": "integer", "minimum": 0},
+        "resident_owner_span_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "native_dispatch_window_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "source_window_ticks": {"$ref": "#/$defs/positiveInteger"},
+        "event_window_capacity": {"$ref": "#/$defs/positiveInteger"},
+        "report_every_ticks": {
+          "anyOf": [{"$ref": "#/$defs/positiveInteger"}, {"type": "null"}]
+        },
+        "science_sample_interval_ticks": {
+          "anyOf": [{"$ref": "#/$defs/positiveInteger"}, {"type": "null"}]
+        },
+        "reducer_every_ticks": {
+          "anyOf": [{"$ref": "#/$defs/positiveInteger"}, {"type": "null"}]
+        },
+        "archive_every_ticks": {
+          "anyOf": [{"$ref": "#/$defs/positiveInteger"}, {"type": "null"}]
+        },
+        "checkpoint_ticks": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"type": "integer", "minimum": 0}
+        },
+        "checkpoint_every_ticks": {
+          "anyOf": [{"$ref": "#/$defs/positiveInteger"}, {"type": "null"}]
+        },
+        "legacy_turnover_interval_ticks": {
+          "anyOf": [{"$ref": "#/$defs/positiveInteger"}, {"type": "null"}]
+        },
+        "schedules": {"type": "object"}
+      }
+    },
+    "checkpoints": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "milestones": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/positiveInteger"}
+        },
+        "digest_every_generation": {"type": "boolean"},
+        "storage_mode": {"enum": ["disk", "disk_and_memory"]},
+        "acs_slots": {"type": "integer", "enum": [0, 1, 2, 3]},
+        "acs_capture_instrumentation": {"type": "boolean"},
+        "native_streamed_checkpoint": {"type": "boolean"}
+      }
+    },
+    "comparisons": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "fresh_repeats": {"type": "integer", "minimum": 0},
+        "fresh_selectors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/dimensionSelector"}
+        },
+        "continuation_splits": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/positiveInteger"}
+        },
+        "continuation_cells": {"type": "integer", "minimum": 0},
+        "continuation_baseline": {
+          "enum": ["fresh_branch", "campaign_primary"]
+        },
+        "continuation_selectors": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {"$ref": "#/$defs/dimensionSelector"}
+        },
+        "reporting_parity": {"type": "boolean"},
+        "reporting_selector": {
+          "anyOf": [
+            {"$ref": "#/$defs/dimensionSelector"},
+            {"type": "null"}
+          ]
+        }
+      }
+    },
+    "dimensionSelector": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"$ref": "#/$defs/scalar"}
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {
+        "path": {"$ref": "#/$defs/nonemptyString"},
+        "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+        "kind": {"$ref": "#/$defs/nonemptyString"},
+        "abi": {"$ref": "#/$defs/nonemptyString"}
+      }
+    },
+    "artifacts": {
+      "type": "object",
+      "minProperties": 1,
+      "propertyNames": {"$ref": "#/$defs/id"},
+      "additionalProperties": {"$ref": "#/$defs/artifact"}
+    },
+    "analysisRule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "metric", "threshold"],
+      "properties": {
+        "id": {"$ref": "#/$defs/id"},
+        "metric": {"$ref": "#/$defs/nonemptyString"},
+        "aggregate": {"enum": ["sum", "mean", "count", "paired_delta"]},
+        "group_by": {"$ref": "#/$defs/uniqueStrings"},
+        "pair_by": {"$ref": "#/$defs/uniqueStrings"},
+        "operator": {"enum": [">", ">=", "<", "<=", "==", "!="]},
+        "threshold": {"$ref": "#/$defs/scalar"},
+        "minimum_coverage": {"type": "number", "minimum": 0, "maximum": 1}
+      }
+    },
+    "analysis": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "required_metrics": {"$ref": "#/$defs/uniqueStrings"},
+        "optional_metrics": {"$ref": "#/$defs/uniqueStrings"},
+        "extension": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["id", "contract", "contract_sha256"],
+          "properties": {
+            "id": {"$ref": "#/$defs/id"},
+            "contract": {"type": "object"},
+            "contract_sha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        },
+        "rules": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/analysisRule"}
+        }
+      }
+    },
+    "artifactLifecycle": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "lifecycle_profile",
+        "storage",
+        "observability",
+        "checkpoints",
+        "closeout",
+        "retention",
+        "prune"
+      ],
+      "properties": {
+        "schema_version": {"const": "eiel_run_artifact_lifecycle_contract_v1"},
+        "lifecycle_profile": {
+          "enum": [
+            "CHECKPOINT_TRANSIT",
+            "SCIENCE_COMPACT",
+            "QUALIFICATION",
+            "DEBUG_FORENSIC"
+          ]
+        },
+        "storage": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "total_max_bytes",
+            "scratch_max_bytes",
+            "checkpoint_max_bytes",
+            "durable_max_bytes",
+            "emergency_reserve_bytes"
+          ],
+          "properties": {
+            "total_max_bytes": {"$ref": "#/$defs/positiveInteger"},
+            "scratch_max_bytes": {"$ref": "#/$defs/positiveInteger"},
+            "checkpoint_max_bytes": {"$ref": "#/$defs/positiveInteger"},
+            "durable_max_bytes": {"$ref": "#/$defs/positiveInteger"},
+            "emergency_reserve_bytes": {"$ref": "#/$defs/positiveInteger"}
+          }
+        },
+        "observability": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "output_profile",
+            "raw_tick_trace_policy",
+            "debug_event_trace_policy",
+            "ring_buffer"
+          ],
+          "properties": {
+            "output_profile": {
+              "enum": [
+                "compact_default",
+                "compact_funnel",
+                "fast_scan",
+                "repeat_parity",
+                "debug_event_trace",
+                "full_replay"
+              ]
+            },
+            "raw_tick_trace_policy": {
+              "enum": ["forbidden", "allowed", "bounded"]
+            },
+            "debug_event_trace_policy": {
+              "enum": ["forbidden", "allowed", "bounded"]
+            },
+            "override_reason": {
+              "type": "string",
+              "minLength": 1
+            },
+            "ring_buffer": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["enabled", "max_bytes"],
+              "properties": {
+                "enabled": {"type": "boolean"},
+                "max_bytes": {"$ref": "#/$defs/positiveInteger"}
+              }
+            }
+          }
+        },
+        "checkpoints": {
+          "oneOf": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["authority", "checkpoint_ticks", "roles"],
+              "properties": {
+                "authority": {"const": "absolute_tick"},
+                "checkpoint_ticks": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {"type": "integer", "minimum": 0}
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {"$ref": "#/$defs/artifactCheckpointTickRole"}
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["schedule", "roles"],
+              "properties": {
+                "authority": {"const": "legacy_generation"},
+                "schedule": {
+                  "type": "array",
+                  "uniqueItems": true,
+                  "items": {"type": "integer", "minimum": 0}
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {"$ref": "#/$defs/artifactCheckpointLegacyRole"}
+                }
+              }
+            }
+          ]
+        },
+        "closeout": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "required_types",
+            "compact_replacement_verification_required"
+          ],
+          "properties": {
+            "required_types": {"$ref": "#/$defs/uniqueStrings"},
+            "compact_replacement_verification_required": {"type": "boolean"}
+          }
+        },
+        "retention": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "default_class",
+            "decision_evidence_class",
+            "audit_hold_binding",
+            "qualification_hold_binding",
+            "unknown_artifact_policy"
+          ],
+          "properties": {
+            "default_class": {"$ref": "#/$defs/retentionClass"},
+            "decision_evidence_class": {
+              "anyOf": [
+                {"type": "null"},
+                {"enum": ["A", "B", "C"]}
+              ]
+            },
+            "audit_hold_binding": {"enum": ["required", "not_required"]},
+            "qualification_hold_binding": {"enum": ["required", "not_required"]},
+            "unknown_artifact_policy": {"const": "RX_BLOCKS_AUTO_DELETE"}
+          }
+        },
+        "prune": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["automatic_prune_allowed", "required_predicates"],
+          "properties": {
+            "automatic_prune_allowed": {"type": "boolean"},
+            "required_predicates": {"$ref": "#/$defs/uniqueStrings"}
+          }
+        },
+        "contract_sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        }
+      }
+    },
+    "artifactCheckpointRole": {
+      "oneOf": [
+        {"$ref": "#/$defs/artifactCheckpointTickRole"},
+        {"$ref": "#/$defs/artifactCheckpointLegacyRole"}
+      ]
+    },
+    "artifactCheckpointTickRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "checkpoint_tick", "role", "retention_class"],
+      "properties": {
+        "identity": {"$ref": "#/$defs/id"},
+        "checkpoint_tick": {"type": "integer", "minimum": 0},
+        "role": {
+          "enum": [
+            "intermediate",
+            "transit_durable",
+            "terminal",
+            "branch_origin",
+            "qualification_required"
+          ]
+        },
+        "retention_class": {"$ref": "#/$defs/retentionClass"}
+      }
+    },
+    "artifactCheckpointLegacyRole": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["identity", "generation", "role", "retention_class"],
+      "properties": {
+        "identity": {"$ref": "#/$defs/id"},
+        "generation": {"type": "integer", "minimum": 0},
+        "role": {
+          "enum": [
+            "intermediate",
+            "transit_durable",
+            "terminal",
+            "branch_origin",
+            "qualification_required"
+          ]
+        },
+        "retention_class": {"$ref": "#/$defs/retentionClass"}
+      }
+    },
+    "retentionClass": {
+      "enum": ["R0", "R1", "R2", "R3", "R4", "R5", "RX"]
+    },
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["runtime_root"],
+      "properties": {
+        "runtime_root": {"type": "string", "pattern": "^/"},
+        "reporting_profile": {"$ref": "#/$defs/id"},
+        "chronicle_profile": {
+          "type": "string",
+          "enum": ["summary", "notable", "scientific_full"]
+        },
+        "chronicle_history_root": {"type": "string", "pattern": "^/"},
+        "chronicle_archive_enabled": {"type": "boolean"},
+        "evidence_closeout_enabled": {"type": "boolean"}
+      }
+    }
+  }
+}

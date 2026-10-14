@@ -1,0 +1,219 @@
+harness_api: 1
+version: 1
+name: founder_spatial_lineage_persistence_probe_parity_20260704
+description: Founder spatial separation lineage persistence probe.
+intent:
+  question: Does default-off founder spatial/ecological separation improve live lineage
+    persistence and reduce founder collision?
+  safe_claim_boundary: Initialization-only diagnostic; no lineage protection, rescue,
+    reseeding, rewards, cognition, intelligence, or emergence claim.
+matrix_order:
+- context
+- init_arm
+- repeat
+- seed
+axes:
+  context:
+    values:
+    - clean_patch_jungle
+    flags:
+      clean_patch_jungle:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      theme12_clean_ecology:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      - --knob
+      - env_cfg.patch_waste_regrowth_penalty_scale=0.35
+      - --knob
+      - env_cfg.patch_density_regrowth_penalty_scale=0.35
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.045
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.22
+      - --knob
+      - env_cfg.jungle_recovery_regrowth_boost_scale=0.08
+  init_arm:
+    values:
+    - legacy
+    - founder_balance
+    - founder_spatial
+    flags:
+      legacy:
+      - --knob
+      - sim_cfg.lineage_founder_balance_enable=false
+      - --knob
+      - sim_cfg.lineage_founder_spatial_separation_enable=false
+      founder_balance:
+      - --knob
+      - sim_cfg.lineage_founder_balance_enable=true
+      - --knob
+      - sim_cfg.lineage_founder_group_count=8
+      - --knob
+      - sim_cfg.lineage_founder_min_agents_per_group=8
+      - --knob
+      - sim_cfg.lineage_founder_assignment_mode=deterministic_round_robin
+      - --knob
+      - sim_cfg.lineage_founder_balance_schema_version=1
+      - --knob
+      - sim_cfg.lineage_founder_spatial_separation_enable=false
+      founder_spatial:
+      - --knob
+      - sim_cfg.lineage_founder_balance_enable=false
+      - --knob
+      - sim_cfg.lineage_founder_spatial_separation_enable=true
+      - --knob
+      - sim_cfg.lineage_founder_spatial_group_count=8
+      - --knob
+      - sim_cfg.lineage_founder_spatial_min_distance=5
+      - --knob
+      - sim_cfg.lineage_founder_spatial_assignment_mode=grid_quadrants
+      - --knob
+      - sim_cfg.lineage_founder_spatial_use_patch_basins=true
+      - --knob
+      - sim_cfg.lineage_founder_spatial_schema_version=1
+  repeat:
+    values:
+    - a
+    - b
+    flags:
+      a: []
+      b: []
+seeds:
+- 43
+cli_defaults:
+- - --generations
+  - '36'
+- - --steps
+  - '80'
+- - --pop
+  - '64'
+- - --grid_size
+  - '16'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cuda
+- - --bank_device
+  - cuda
+- - --checkpoint_bundle_v2_period_gen
+  - '1'
+- - --checkpoint_rotate
+  - '0'
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_strict_replay_mode=true
+- - --knob
+  - sim_cfg.lineage_observability_enable=true
+- - --knob
+  - sim_cfg.lineage_qd_archive_enable=true
+- - --knob
+  - sim_cfg.lineage_qd_archive_top_n=8
+- - --knob
+  - sim_cfg.lineage_qd_archive_min_score=0.25
+- - --knob
+  - sim_cfg.lineage_qd_archive_cooldown_generations=0
+- - --knob
+  - sim_cfg.lineage_collapse_forensics_enable=true
+- - --knob
+  - sim_cfg.lineage_collapse_forensics_schema_version=1
+- - --knob
+  - sim_cfg.device=cuda
+- - --knob
+  - sim_cfg.bank_device=cuda
+- - --knob
+  - sim_cfg.phase_e_e1_enable=false
+- - --knob
+  - sim_cfg.enable_developmental_cognition=false
+- - --knob
+  - sim_cfg.enable_introspection_channels=false
+- - --knob
+  - sim_cfg.enable_introspection_policy_input=false
+- - --knob
+  - sim_cfg.enable_self_regulation=false
+- - --knob
+  - sim_cfg.enable_self_regulation_surface=false
+- - --knob
+  - sim_cfg.enable_self_regulation_policy_output=false
+- - --knob
+  - sim_cfg.enable_self_modification=false
+- - --knob
+  - sim_cfg.enable_self_modification_policy_output=false
+- - --knob
+  - sim_cfg.enable_directed_inheritance=false
+- - --knob
+  - sim_cfg.enable_directed_inheritance_surface=false
+- - --knob
+  - sim_cfg.enable_directed_inheritance_policy_output=false
+- - --knob
+  - sim_cfg.enable_cognitive_trait_registry=false
+- - --knob
+  - sim_cfg.enable_cognitive_status_metrics=false
+- - --knob
+  - sim_cfg.enable_cognitive_budget_ledger=false
+- - --knob
+  - sim_cfg.episode0_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_pred_err_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_thrashing_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_drive_jitter_fitness_weight=0.0
+- - --knob
+  - sim_cfg.episode0_selfharm_fitness_weight=0.0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: founder_spatial_lineage_persistence_probe_parity_20260704
+  run_id_format: founder_spatial_lineage_persistence_probe_parity_20260704__context_{context}__arm_{init_arm}__repeat_{repeat}__seed{seed:06d}
+  run_tag_format: founder_spatial_lineage_persistence_probe_parity_20260704__context_{context}__arm_{init_arm}__repeat_{repeat}

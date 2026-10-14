@@ -1,0 +1,125 @@
+harness_api: 1
+version: 1
+name: tier4_harsh_exposure
+description: >
+  Nightly-scale Tier 4 "harsh-region exposure" verification.
+
+  Goal:
+    Ensure long-horizon runs include meaningful exposure to harsh regions
+    (via Tier 1 hazard gradient + Tier 2 time-varying drought patterns),
+    so Tier 4 juvenile vulnerability pressures cannot "pass invisibly" by
+    simply camping in permanent safe zones.
+
+  Matrix:
+    - exposure_mode: static hazard gradient vs repeated center drought vs sweeping drought
+    - scenario: Tier4 OFF vs Tier4 ON
+    - seeds: 1,2,3
+
+intent:
+  question: >
+    Under environments that force long-horizon harshness exposure (static gradient + time-varying drought),
+    does Tier4 produce stable, interpretable life-history pressure without collapse?
+  axes:
+    - exposure_mode: ["E1_static_gradient", "E2_repeated_center_drought", "E3_sweep_drought_LMR"]
+    - scenario: ["baseline", "tier4_on"]
+
+matrix_order: [exposure_mode, scenario, seed]
+
+axes:
+  exposure_mode:
+    values: ["E1_static_gradient", "E2_repeated_center_drought", "E3_sweep_drought_LMR"]
+    flags:
+      E1_static_gradient:
+        - "--grid_size"
+        - "32"
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json"
+
+      E2_repeated_center_drought:
+        - "--grid_size"
+        - "32"
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json"
+        - "--spatial_droughts_enable"
+        - "--spatial_droughts_spec"
+        - "@experiments/assets/spatial_droughts/v1/impact090/drought_spec__repeated_CENTER_severe.json"
+        - "--spatial_droughts_log_timeseries_every"
+        - "10"
+        - "--spatial_droughts_log_periodic_every"
+        - "50"
+
+      E3_sweep_drought_LMR:
+        - "--grid_size"
+        - "32"
+        - "--spatial_ecology_enable"
+        - "--spatial_ecology_seed"
+        - "123"
+        - "--spatial_ecology_log_formats"
+        - "npy"
+        - "--resource_regrowth_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_regrowth_map__voronoi10.json"
+        - "--resource_spawn_density_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/resource_spawn_density_map__hotspot_center8.json"
+        - "--hazard_rate_map_spec"
+        - "@experiments/assets/spatial_ecology/v1/hazard_rate_map__left_high_right_low.json"
+        - "--spatial_droughts_enable"
+        - "--spatial_droughts_spec"
+        - "@experiments/assets/spatial_droughts/v1/tier4_exposure/drought_spec__sweep_LMR_severe.json"
+        - "--spatial_droughts_log_timeseries_every"
+        - "10"
+        - "--spatial_droughts_log_periodic_every"
+        - "50"
+
+  scenario:
+    values: ["baseline", "tier4_on"]
+    flags:
+      baseline: []
+      tier4_on:
+        - "--tier4_juvenile_vulnerability_enable"
+        - "--tier4_juvenile_steps"
+        - "25"
+        - "--tier4_juvenile_grace_steps"
+        - "0"
+        - "--tier4_juvenile_hazard_multiplier"
+        - "3.0"
+        - "--tier4_juvenile_movement_penalty"
+        - "1.7"
+        - "--tier4_juvenile_harvest_multiplier"
+        - "0.9"
+
+seeds: [1, 2, 3]
+
+cli_defaults:
+  - ["--generations", "300"]
+  - ["--steps", "150"]
+  - ["--pop", "256"]
+  - ["--policy_tick_stride", "2"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "run_config.csv"
+  - "config.json"
+  - "metrics.csv"
+
+naming:
+  run_tag_prefix: "tier4_exposure_nightly"
+  run_id_format: "{name}__exposure_{exposure_mode}__scenario_{scenario}__seed{seed:06d}"
+  run_tag_format: "{run_tag_prefix}__exposure_{exposure_mode}__scenario_{scenario}"

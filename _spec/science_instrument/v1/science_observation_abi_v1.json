@@ -1,0 +1,381 @@
+{
+  "schema_version": "eiel_science_observation_abi_v1",
+  "abi_id": "EIEL_SCIENCE_OBSERVATION_ABI_V1",
+  "product_id": "EIEL_SCIENCE_INSTRUMENT_V1",
+  "time_authority": "absolute_tick_v1",
+  "canonical_serialization": "emergence_contracts.canonical.canonical_json_bytes",
+  "instrument_identity_scope": "instrument_manifest_sha256 identifies the route-neutral science core; route bindings and physical execution identities are excluded from canonical observation records",
+  "record_envelope_required_fields": [
+    "schema_version",
+    "instrument_manifest_sha256",
+    "producer_component_id",
+    "producer_contract_version",
+    "semantic_execution_id",
+    "crca_semantic_run_digest",
+    "science_semantic_acquisition_sha256",
+    "cell_id",
+    "logical_world_id",
+    "world_uid",
+    "absolute_tick",
+    "semantic_source_address",
+    "pre_sequence_key_sha256",
+    "world_local_sequence",
+    "deterministic_event_id",
+    "record_kind",
+    "record_kind_version",
+    "control_binding_sha256",
+    "payload"
+  ],
+  "record_identity_exclusions": [
+    "attempt_identity",
+    "route_binding_sha256",
+    "legacy_compatibility",
+    "lifecycle_disposition",
+    "physical_batch",
+    "physical_chunk",
+    "physical_slot",
+    "presentation_metadata",
+    "question_metadata",
+    "reducer_selection"
+  ],
+  "ordering_contract": {
+    "world_uid": "sha256(semantic_execution_id, semantic_world_key)",
+    "logical_world_id": "zero-based ordinal after bytewise world_uid sort",
+    "pre_sequence_order": [
+      "absolute_tick",
+      "producer_phase_registry_ordinal",
+      "record_kind_registry_ordinal",
+      "pre_sequence_key_sha256"
+    ],
+    "event_identity_stage": "after_world_local_sequence_assignment",
+    "duplicate_pre_sequence_key": "INSTRUMENT_INTEGRITY_FAILURE",
+    "physical_discovery_order_authoritative": false
+  },
+  "profiles": [
+    {
+      "profile_id": "SCIENCE_MINIMAL_V1",
+      "record_kinds": [
+        "agent_state_snapshot",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "world_completion",
+        "world_state_snapshot"
+      ],
+      "known_missing_capabilities": [
+        "causal_genome_to_behavior",
+        "causal_mutation_supply"
+      ]
+    },
+    {
+      "profile_id": "SCIENCE_STANDARD_V1",
+      "record_kinds": [
+        "agent_state_snapshot",
+        "birth_attempt",
+        "birth_committed",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "decision_action",
+        "ecological_transaction",
+        "environment_transition",
+        "mutation_outcome",
+        "reproduction_opportunity",
+        "world_completion",
+        "world_state_snapshot"
+      ],
+      "default_for": "core_v1_causal_science"
+    },
+    {
+      "profile_id": "SCIENCE_FORENSIC_V1",
+      "record_kinds": [
+        "agent_state_snapshot",
+        "birth_attempt",
+        "birth_committed",
+        "checkpoint_marker",
+        "control_binding",
+        "death",
+        "decision_action",
+        "ecological_transaction",
+        "environment_transition",
+        "mutation_outcome",
+        "reproduction_opportunity",
+        "world_completion",
+        "world_state_snapshot"
+      ],
+      "requires": [
+        "bounded_forensic_reason",
+        "cadence",
+        "lifecycle_contract",
+        "quota",
+        "resource_envelope"
+      ]
+    }
+  ],
+  "record_kinds": [
+    {
+      "record_kind": "control_binding",
+      "version": 1,
+      "required_payload_fields": [
+        "binding_id",
+        "semantic_cell_id",
+        "seed_bindings",
+        "control_values",
+        "control_schedules",
+        "registered_profile_ids",
+        "semantic_envelope_resolution_sha256",
+        "semantic_applied_readback_sha256",
+        "continuation_parent_execution_identity"
+      ],
+      "optional_payload_fields": [
+        "applied_native_control"
+      ],
+      "optional_payload_schema": "eiel_science_native_control_binding_payload_v1"
+    },
+    {
+      "record_kind": "world_state_snapshot",
+      "version": 1,
+      "required_payload_fields": [
+        "world_state_id",
+        "field_set_version",
+        "qualified_field_values",
+        "snapshot_reason"
+      ]
+    },
+    {
+      "record_kind": "agent_state_snapshot",
+      "version": 1,
+      "required_payload_fields": [
+        "agent_state_id",
+        "agent_id",
+        "alive",
+        "position",
+        "energy",
+        "health",
+        "injury",
+        "age_ticks",
+        "genome_state_id",
+        "policy_id",
+        "founder_id",
+        "lineage_id",
+        "lineage_depth",
+        "hereditary_package_state_ids",
+        "linkage_state_id"
+      ]
+    },
+    {
+      "record_kind": "reproduction_opportunity",
+      "version": 1,
+      "required_payload_fields": [
+        "opportunity_id",
+        "subject_agent_id",
+        "subject_agent_state_id",
+        "eligible",
+        "candidate_parent_ids",
+        "selected_parent_ids",
+        "selection_mode_id",
+        "outcome_class",
+        "reason_code"
+      ]
+    },
+    {
+      "record_kind": "birth_attempt",
+      "version": 1,
+      "required_payload_fields": [
+        "birth_attempt_id",
+        "opportunity_id",
+        "parent_agent_ids",
+        "parent_genome_state_ids",
+        "birth_mode_id",
+        "inheritance_operator_id",
+        "recombination_operator_id",
+        "attempt_result_class",
+        "reason_code"
+      ]
+    },
+    {
+      "record_kind": "birth_committed",
+      "version": 1,
+      "required_payload_fields": [
+        "birth_attempt_id",
+        "opportunity_id",
+        "child_agent_id",
+        "parent_agent_ids",
+        "parent_genome_state_ids",
+        "birth_mode_id",
+        "inheritance_operator_id",
+        "recombination_operator_id",
+        "parent_hereditary_package_state_ids",
+        "child_pre_mutation_genome_state_id",
+        "child_post_birth_genome_state_id",
+        "child_hereditary_package_state_ids",
+        "child_linkage_state_id",
+        "founder_id",
+        "lineage_id",
+        "lineage_depth"
+      ]
+    },
+    {
+      "record_kind": "mutation_outcome",
+      "version": 1,
+      "required_payload_fields": [
+        "mutation_opportunity_id",
+        "mutation_attempt_id",
+        "subject_agent_id",
+        "origin_agent_id",
+        "origin_absolute_tick",
+        "attempted",
+        "result_class",
+        "operator_id",
+        "mutation_class_id",
+        "affected_coordinates",
+        "pre_value_or_state_digest",
+        "post_value_or_state_digest",
+        "bounded_delta",
+        "pre_genome_state_id",
+        "post_genome_state_id",
+        "reason_code"
+      ]
+    },
+    {
+      "record_kind": "decision_action",
+      "version": 1,
+      "required_payload_fields": [
+        "decision_id",
+        "agent_id",
+        "agent_state_before_id",
+        "genome_state_id",
+        "policy_id",
+        "decision_input_state_id",
+        "qualified_policy_output_summary",
+        "selected_action_id",
+        "executed_action_id",
+        "execution_status",
+        "execution_reason_code"
+      ]
+    },
+    {
+      "record_kind": "ecological_transaction",
+      "version": 1,
+      "required_payload_fields": [
+        "transaction_id",
+        "decision_id",
+        "actor_agent_id",
+        "affected_subject_ids",
+        "executed_action_id",
+        "phenotype_state_id",
+        "world_state_before_id",
+        "world_state_after_id",
+        "resource_deltas",
+        "energy_delta",
+        "health_delta",
+        "injury_delta",
+        "movement_cost",
+        "outcome_class"
+      ]
+    },
+    {
+      "record_kind": "death",
+      "version": 1,
+      "required_payload_fields": [
+        "agent_id",
+        "terminal_agent_state_id",
+        "genome_state_id",
+        "lineage_id",
+        "cause_class",
+        "reason_code",
+        "causing_event_ids"
+      ]
+    },
+    {
+      "record_kind": "environment_transition",
+      "version": 1,
+      "required_payload_fields": [
+        "transition_id",
+        "transition_class",
+        "schedule_binding_id",
+        "world_state_before_id",
+        "world_state_after_id",
+        "changed_fields",
+        "cause_event_ids",
+        "persistent"
+      ]
+    },
+    {
+      "record_kind": "world_completion",
+      "version": 1,
+      "required_payload_fields": [
+        "completion_id",
+        "completion_class",
+        "terminal_state_sha256",
+        "terminal_population_count",
+        "terminal_absolute_tick",
+        "next_absolute_tick",
+        "terminal_record_count",
+        "canonical_record_stream_sha256",
+        "checkpoint_occurrence_ids",
+        "reason_code"
+      ],
+      "completion_classes": [
+        "EMPTY_INITIAL",
+        "EXTINCT",
+        "NO_BIRTHS",
+        "TERMINAL_HORIZON"
+      ]
+    },
+    {
+      "record_kind": "checkpoint_marker",
+      "version": 1,
+      "forbidden_payload_fields": ["fork_identity"],
+      "required_payload_fields": [
+        "checkpoint_occurrence_id",
+        "checkpoint_contract_id",
+        "authoritative_state_sha256",
+        "observation_prefix_sha256",
+        "next_world_local_sequence",
+        "continuation_parent_identity"
+      ]
+    }
+  ],
+  "reserved_extensions": [
+    {
+      "record_kind": "lifetime_state_change",
+      "status": "V2_NOT_PRODUCED_BY_V1",
+      "extension_target": "B136_SCIENCE_INSTRUMENT_V2_EXTENSION"
+    },
+    {
+      "record_kind": "structural_change",
+      "status": "V2_NOT_PRODUCED_BY_V1",
+      "extension_target": "B136_SCIENCE_INSTRUMENT_V2_EXTENSION"
+    }
+  ],
+  "empty_world_contract": {
+    "required_records": ["control_binding", "world_completion"],
+    "zero_row_partition": {
+      "row_count": 0,
+      "rows": [],
+      "first_sequence": null,
+      "last_sequence": null
+    },
+    "completion_classes": [
+      "EMPTY_INITIAL",
+      "EXTINCT",
+      "NO_BIRTHS",
+      "TERMINAL_HORIZON"
+    ],
+    "missing_completion_outcome": "INSTRUMENT_INTEGRITY_FAILURE"
+  },
+  "profile_resource_required_fields": [
+    "max_records_per_tick_per_world_by_kind",
+    "max_record_bytes_by_kind",
+    "chunk_max_records",
+    "chunk_max_bytes",
+    "max_in_flight_chunks",
+    "fixed_buffer_bytes",
+    "per_world_cursor_bytes",
+    "per_resident_agent_observation_state_bytes",
+    "max_resident_observation_bytes"
+  ],
+  "resident_byte_equation": "fixed_buffer_bytes + max_in_flight_chunks * chunk_max_bytes + logical_world_count * per_world_cursor_bytes + logical_world_count * resident_capacity * per_resident_agent_observation_state_bytes",
+  "resident_byte_equation_forbidden_inputs": ["total_ticks"]
+}

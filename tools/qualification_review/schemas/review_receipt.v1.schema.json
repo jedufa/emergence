@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "eiel_qualification_mechanical_review_receipt_v1.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "review_id", "generated_at_utc", "hash_contract", "spec_sha256", "rules", "input_hashes", "MECHANICAL_REVIEW", "SEMANTIC_REVIEW_REQUIRED", "freshness", "reuse", "receipt_sha256"],
+  "properties": {
+    "schema_version": {"const": "eiel_qualification_mechanical_review_receipt_v1"},
+    "review_id": {"type": "string", "minLength": 1},
+    "generated_at_utc": {"type": "string", "format": "date-time"},
+    "hash_contract": {
+      "type": "object", "additionalProperties": false,
+      "required": ["file_hash_kind", "receipt_digest_kind"],
+      "properties": {
+        "file_hash_kind": {"const": "sha256_raw_bytes_v1"},
+        "receipt_digest_kind": {"const": "canonical_json_ascii_sorted_compact_v1+sha256"}
+      }
+    },
+    "spec_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "rules": {"type": "array", "items": {"$ref": "#/$defs/hash"}},
+    "input_hashes": {"type": "array", "items": {"$ref": "#/$defs/hash"}},
+    "MECHANICAL_REVIEW": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "counts", "checks", "errors", "warnings"],
+      "properties": {
+        "status": {"enum": ["PASS", "FAIL"]},
+        "counts": {
+          "type": "object", "additionalProperties": false,
+          "required": ["checks", "passed", "failed", "warned", "errors", "warnings"],
+          "properties": {"checks": {"type": "integer"}, "passed": {"type": "integer"}, "failed": {"type": "integer"}, "warned": {"type": "integer"}, "errors": {"type": "integer"}, "warnings": {"type": "integer"}}
+        },
+        "checks": {"type": "array", "items": {"type": "object"}},
+        "errors": {"type": "array", "items": {"type": "string"}},
+        "warnings": {"type": "array", "items": {"type": "string"}}
+      }
+    },
+    "SEMANTIC_REVIEW_REQUIRED": {
+      "type": "object", "additionalProperties": false,
+      "required": ["status", "question_count", "questions"],
+      "properties": {
+        "status": {"enum": ["REQUIRED", "NOT_REQUIRED"]},
+        "question_count": {"type": "integer", "minimum": 0},
+        "questions": {"type": "array", "items": {"type": "object"}}
+      }
+    },
+    "freshness": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reusable", "checked_at_utc", "valid_until_utc"],
+      "properties": {"reusable": {"type": "boolean"}, "checked_at_utc": {"type": "string", "format": "date-time"}, "valid_until_utc": {"type": ["string", "null"], "format": "date-time"}}
+    },
+    "reuse": {
+      "type": "object", "additionalProperties": false,
+      "required": ["reused", "source_receipt_sha256"],
+      "properties": {"reused": {"type": "boolean"}, "source_receipt_sha256": {"type": ["string", "null"], "pattern": "^[0-9a-f]{64}$"}}
+    },
+    "receipt_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+  },
+  "$defs": {
+    "hash": {"type": "object", "additionalProperties": false, "required": ["path", "sha256"], "properties": {"path": {"type": "string", "minLength": 1}, "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"}}}
+  }
+}

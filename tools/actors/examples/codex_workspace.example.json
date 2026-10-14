@@ -1,0 +1,28 @@
+{
+  "schema_version": "eiel_codex_workspace_v1",
+  "bootstrap": {
+    "record_id": "BST-W32",
+    "readiness": "READY"
+  },
+  "portfolio": {
+    "open_work_count": 3,
+    "resumable_session_count": 1
+  },
+  "selected_work": {
+    "record_id": "WORK-W32-QUALIFICATION",
+    "status": "ACTIVE"
+  },
+  "selected_session": {
+    "record_id": "SES-W32-QUALIFICATION-01",
+    "status": "INTERRUPTED",
+    "next_action": "Resume the bounded resource envelope canary."
+  },
+  "mission": {
+    "record_id": "MIS-W32-QUALIFICATION",
+    "status": "READY"
+  },
+  "bridge": {
+    "required": false,
+    "status": "not_integrated_in_v1_4"
+  }
+}

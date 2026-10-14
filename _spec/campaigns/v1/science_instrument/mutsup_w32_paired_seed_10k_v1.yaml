@@ -1,0 +1,14 @@
+schema_version: eiel_science_cuda_v2_mutsup_authoring_v1
+request_id: mutsup-w32-paired-seed-10k-v1
+campaign_id: mutsup-w32-paired-seed-10k-v1
+question: >-
+  Under the fixed native mutation law, do mutation-enabled worlds produce
+  attributable genome changes whose carriers later reproduce versus paired
+  mutation-off controls?
+task_seeds: [100001, 100002, 100003]
+mutation_values: [false, true]
+total_ticks: 10000
+checkpoint_ticks: [5000, 10000]
+observation_milestones: [0, 80, 160, 400, 800, 1600, 5000, 10000]
+artifact_lifecycle_profile: SCIENCE_COMPACT
+qualification_claims: false

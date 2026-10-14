@@ -1,0 +1,150 @@
+{
+  "schema_version": "eiel_production_science_request_v2",
+  "request_id": "generic-factorial-science-example-v1",
+  "baseline": {
+    "schema_version": "eiel_baseline_declaration_v1",
+    "profile_id": "EIEL_PRODUCTION_BASELINE_V1",
+    "intent": "development",
+    "deviations": []
+  },
+  "science_campaign": {
+    "schema_version": "eiel_science_campaign_v1",
+    "product_id": "EIEL_SCIENCE_INSTRUMENT_V1",
+    "campaign_id": "generic-factorial-science-example-v1",
+    "instrument": {
+      "product_id": "EIEL_SCIENCE_INSTRUMENT_V1",
+      "instrument_manifest_sha256": {
+        "algorithm": "sha256",
+        "hex": "1111111111111111111111111111111111111111111111111111111111111111"
+      }
+    },
+    "question": {
+      "question_id": "Q-GENERIC-FACTORIAL",
+      "hypothesis_ids": ["H-SELECTION-X-MUTATION"],
+      "labels": ["factorial", "mixed-founders", "route-neutral"],
+      "description": "Illustrates a route-neutral factorial campaign; placeholder component digests must be replaced by a sealed instrument context before admission.",
+      "preregistration_ref": null,
+      "no_claims": true
+    },
+    "design": {
+      "dimensions": [
+        {
+          "dimension_id": "mutation_seed",
+          "binding_path": "seeds.mutation",
+          "canonical_values": [501, 502],
+          "ordering": "declared"
+        },
+        {
+          "dimension_id": "selection_pressure",
+          "binding_path": "controls.selection.pressure",
+          "canonical_values": [0.1, 0.5],
+          "ordering": "canonical_json_bytes"
+        },
+        {
+          "dimension_id": "task_seed",
+          "binding_path": "seeds.task_environment",
+          "canonical_values": [101, 102, 103],
+          "ordering": "declared"
+        }
+      ],
+      "pairing_groups": ["task_seed"],
+      "repeat_groups": ["mutation_seed"],
+      "expected_cell_count": 12
+    },
+    "world": {
+      "world_profile_id": "patch-ecology-v1",
+      "overlay_profile_ids": ["resource-pulse-v1"],
+      "geometry": {"width": 32, "height": 32},
+      "resident_capacity": 512
+    },
+    "initialization": {
+      "initial_population": 256,
+      "initial_live_count": 256,
+      "founder_profiles": ["founder-a-v1", "founder-b-v1"],
+      "exact_founder_composition": [
+        {"founder_profile_id": "founder-a-v1", "count": 128},
+        {"founder_profile_id": "founder-b-v1", "count": 128}
+      ],
+      "spatial_placement_profile": "stratified-random-v1",
+      "standing_variation_profile": "standing-variation-v1"
+    },
+    "controls": [
+      {
+        "control_id": "selection.pressure",
+        "value": 0.0,
+        "dimension_binding": "selection_pressure",
+        "schedule": {"kind": "static"}
+      },
+      {
+        "control_id": "environment.resource_multiplier",
+        "value": 0.75,
+        "schedule": {
+          "kind": "pulse_absolute_ticks",
+          "start_absolute_tick": 2000,
+          "duration_ticks": 250
+        }
+      }
+    ],
+    "seeds": [
+      {"owner": "ecology", "binding_kind": "literal", "literal": 7001},
+      {
+        "owner": "mutation",
+        "binding_kind": "dimension_bound",
+        "dimension_id": "mutation_seed",
+        "held_equal_in_pairing_groups": ["task_seed"]
+      },
+      {
+        "owner": "task_environment",
+        "binding_kind": "dimension_bound",
+        "dimension_id": "task_seed"
+      }
+    ],
+    "time": {
+      "authority": "absolute_tick_v1",
+      "start_next_tick": 0,
+      "total_ticks": 5000,
+      "observation_ticks": [1000, 2000, 2250, 3000, 4000, 5000],
+      "checkpoint_ticks": [2500, 5000],
+      "branches": []
+    },
+    "observations": {
+      "profile_id": "SCIENCE_STANDARD_V1",
+      "required_capability_ids": [
+        "causal_lifecycle",
+        "mutation_provenance",
+        "reproductive_funnel"
+      ],
+      "milestone_ticks": [2000, 2250, 5000]
+    },
+    "execution": {
+      "machine_profile_id": "EIEL_PRODUCTION_BASELINE_V1",
+      "logical_world_count": 12,
+      "batching_policy": "authority_selected",
+      "maximum_physical_batch_worlds": 136
+    },
+    "reducers": [
+      {
+        "reducer_id": "selection-mutation-interaction-v1",
+        "contract_version": "selection_mutation_interaction_v1",
+        "descriptor_sha256": {
+          "algorithm": "sha256",
+          "hex": "2222222222222222222222222222222222222222222222222222222222222222"
+        },
+        "configuration": {"minimum_completed_worlds": 12},
+        "required_observation_capability_ids": [
+          "mutation_provenance",
+          "reproductive_funnel"
+        ],
+        "output_contract_id": "selection-mutation-summary-v1"
+      }
+    ],
+    "decision": {
+      "offline_decision_rule_ids": ["no-claim-example-v1"],
+      "expected_outputs": ["selection-mutation-summary-v1"],
+      "presentation_metadata": {
+        "example_only": true,
+        "replace_placeholder_digests": true
+      }
+    }
+  }
+}

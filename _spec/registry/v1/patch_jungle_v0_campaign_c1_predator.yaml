@@ -1,0 +1,188 @@
+harness_api: 1
+version: 1
+name: patch_jungle_v0_campaign_c1_predator
+description: 'Campaign C1 predator pressure sweep: low, medium, and high bounded predator-pressure bundles.'
+intent:
+  question: 'Campaign C1 predator pressure sweep: low, medium, and high bounded predator-pressure bundles.'
+  axes:
+  - variant:
+    - predator_low
+    - predator_medium
+    - predator_high
+  - scenario: &id001
+    - s05_predator_pressure
+    - s08_full_jungle_no_recovery
+    - s09_full_jungle_recovery
+matrix_order:
+- variant
+- scenario
+- seed
+axes:
+  variant:
+    values:
+    - predator_low
+    - predator_medium
+    - predator_high
+    flags:
+      predator_low:
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.0
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.01
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.01
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.01
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.01
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.03
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.2
+      predator_medium:
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.0
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.02
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.05
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.25
+      predator_high:
+      - --knob
+      - env_cfg.jungle_predator_base_risk=0.002
+      - --knob
+      - env_cfg.jungle_predator_scent_weight=0.035
+      - --knob
+      - env_cfg.jungle_predator_waste_weight=0.035
+      - --knob
+      - env_cfg.jungle_predator_density_weight=0.035
+      - --knob
+      - env_cfg.jungle_predator_visibility_weight=0.035
+      - --knob
+      - env_cfg.jungle_predator_risk_cap=0.08
+      - --knob
+      - env_cfg.jungle_predator_health_damage=0.35
+  scenario:
+    values: *id001
+    flags:
+      s05_predator_pressure:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=false
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=false
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=false
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=false
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      s08_full_jungle_no_recovery:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=false
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+      s09_full_jungle_recovery:
+      - --knob
+      - env_cfg.patch_world_enable=true
+      - --knob
+      - env_cfg.patch_world_observation_enable=true
+      - --knob
+      - env_cfg.patch_world_waste_consequence_enable=true
+      - --knob
+      - env_cfg.jungle_predator_pressure_enable=true
+      - --knob
+      - env_cfg.jungle_reproduction_emissions_enable=true
+      - --knob
+      - env_cfg.jungle_juvenile_predator_vulnerability_enable=false
+      - --knob
+      - env_cfg.jungle_terrain_protection_enable=true
+      - --knob
+      - env_cfg.jungle_ecological_recovery_enable=true
+      - --knob
+      - env_cfg.patch_movement_cost_apply_enable=false
+      - --knob
+      - env_cfg.patch_cover_default=0.25
+      - --knob
+      - env_cfg.patch_shelter_default=0.15
+      - --knob
+      - env_cfg.patch_shelter_from_cover_enable=false
+seeds:
+- 101
+- 202
+- 303
+- 404
+- 505
+- 606
+- 707
+- 808
+- 909
+- 1001
+cli_defaults:
+- - --generations
+  - '10'
+- - --steps
+  - '80'
+- - --pop
+  - '32'
+- - --grid_size
+  - '12'
+- - --policy_tick_stride
+  - '1'
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - sim_cfg.behavior_log_enable=false
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: patch_jungle_v0_campaign_c1_predator
+  run_id_format: '{name}__variant_{variant}__scenario_{scenario}__seed{seed:06d}'
+  run_tag_format: '{run_tag_prefix}__variant_{variant}__scenario_{scenario}'

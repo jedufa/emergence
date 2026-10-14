@@ -1,0 +1,255 @@
+{
+  "$defs": {
+    "actorSourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "enum": [
+            "assignment",
+            "bootstrap",
+            "dispatch_request",
+            "evidence_assessment",
+            "lease",
+            "mission",
+            "qualification",
+            "resource_assessment",
+            "resource_observation",
+            "session",
+            "technical_qualification",
+            "work",
+            "worker_result"
+          ]
+        },
+        "record_id": {
+          "pattern": "^[A-Z][A-Z0-9-]{2,63}$",
+          "type": "string"
+        },
+        "record_sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "record_type": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "schema_version": {
+          "const": "eiel_actor_record_ref_v1"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "status": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "record_id"
+      ],
+      "type": "object"
+    },
+    "externalSourceRef": {
+      "additionalProperties": false,
+      "anyOf": [
+        {
+          "required": [
+            "uri"
+          ]
+        },
+        {
+          "required": [
+            "path"
+          ]
+        }
+      ],
+      "properties": {
+        "catalog_build_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "commit": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "authority_register",
+            "campaign_evidence_manifest",
+            "evidence",
+            "input",
+            "knowledge_librarian_preflight",
+            "librarian_preflight",
+            "manifest",
+            "qf_catalog",
+            "qualification_authority_register",
+            "qualification_catalog",
+            "repository",
+            "resource_demand",
+            "work_package"
+          ]
+        },
+        "path": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[0-9a-f]{64}$",
+          "type": "string"
+        },
+        "uri": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind"
+      ],
+      "type": "object"
+    },
+    "externalUnverifiableSourceRef": {
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "const": "external_unverifiable"
+        },
+        "reason": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "uri": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "uri",
+        "reason"
+      ],
+      "type": "object"
+    },
+    "historyEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "action": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "at_utc": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "note": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "revision": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "status": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "revision",
+        "action",
+        "at_utc",
+        "status"
+      ],
+      "type": "object",
+      "x-eiel-frozen-by-parent": "eiel_actor_record_envelope_v1"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "actor": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "created_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "history": {
+      "items": {
+        "$ref": "#/$defs/historyEvent"
+      },
+      "type": "array"
+    },
+    "payload": {
+      "type": "object"
+    },
+    "previous_record_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "record_id": {
+      "pattern": "^[A-Z][A-Z0-9-]{2,63}$",
+      "type": "string"
+    },
+    "record_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "record_type": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "revision": {
+      "minimum": 1,
+      "type": "integer"
+    },
+    "schema_version": {
+      "const": "eiel_actor_record_envelope_v1"
+    },
+    "source_refs": {
+      "items": {
+        "oneOf": [
+          {
+            "$ref": "#/$defs/actorSourceRef"
+          },
+          {
+            "$ref": "#/$defs/externalSourceRef"
+          },
+          {
+            "$ref": "#/$defs/externalUnverifiableSourceRef"
+          }
+        ]
+      },
+      "type": "array"
+    },
+    "status": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "updated_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    }
+  },
+  "required": [
+    "schema_version",
+    "record_type",
+    "record_id",
+    "actor",
+    "status",
+    "revision",
+    "created_at_utc",
+    "updated_at_utc",
+    "source_refs",
+    "payload",
+    "history",
+    "record_sha256"
+  ],
+  "title": "EIEL Actor Record Envelope V1",
+  "type": "object"
+}

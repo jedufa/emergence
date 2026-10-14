@@ -1,0 +1,234 @@
+{
+  "schema_version": "tw_cuda_full_evolution_performance_execution_contract_v2",
+  "programme_id": "TW-CUDA-FULL-EVOLUTION-REFORM-20260825",
+  "contract_status": "DUAL_PROFILE_IMPLEMENTATION_ACTIVE",
+  "supersession": {
+    "date": "2026-08-26",
+    "supersedes": "tw_cuda_full_evolution_performance_restructure_contract_v1",
+    "reason": "The measured W32 monolith exceeded the literal 100x target, while the operator separately authorized a shape-versatility workhorse through 100x surface. The former mandatory three-kernel micro graph and dense event prescription would rewrite the proven speed path without serving either requirement.",
+    "preserved_history": "The superseded design remains reachable in Git history and in the retained independent audit ZIPs.",
+    "forbidden_interpretation": "No declaration in this contract is runtime graph evidence or a qualification decision."
+  },
+  "shared_semantic_contract": {
+    "transition": "EIEL_FULL_EVOLUTION_CUDA_NATIVE_V2",
+    "time_authority": "absolute_tick_v1",
+    "transition_oracle": "cuda_golden_only",
+    "required_capabilities": [
+      "patch",
+      "wdl_delayed_hazard",
+      "jungle",
+      "eed",
+      "genome_v2_ordinary_birth",
+      "genome_v2_mutation",
+      "recombination_profile"
+    ],
+    "trajectory_arithmetic": "bounded_integer_only",
+    "next_absolute_tick_publish": "last canonical write of each complete tick",
+    "compatibility_with_v1_transition_or_checkpoint": "FORBIDDEN",
+    "host_rng_or_hot_path_staging": "FORBIDDEN",
+    "horizon_dependent_resident_bytes": 0
+  },
+  "profiles": {
+    "micro": {
+      "profile_id": "eiel_full_evolution_cuda_native_v2",
+      "profile_label": "W32_P256_C512_MICRO_V1",
+      "route_id": "tensor_world_cuda_full_evolution_v2",
+      "native_abi": "eiel_full_evolution_cuda_native_abi_v1",
+      "geometry": {
+        "width": 32,
+        "height": 32,
+        "sites": 1024,
+        "initial_population": 256,
+        "capacity": 512,
+        "site_index_dtype": "u16"
+      },
+      "purpose": [
+        "literal apples-to-apples 100x throughput comparison",
+        "rapid causal, determinism, event, checkpoint and continuation gates",
+        "parameter and mechanism screening"
+      ],
+      "claim_boundary": "The micro profile is not evidence that W32/P256/C512 is scientifically adequate.",
+      "topology": {
+        "kernel": "advance_optimized_kernel",
+        "world_mapping": "one independent 256-thread CTA per world",
+        "temporal_blocking": "one kernel advances exact bounded d in [1,64] with CTA barriers",
+        "execution_modes": [
+          {
+            "id": "eager_monolith",
+            "runtime_nodes": 1,
+            "runtime_edges": 0
+          },
+          {
+            "id": "cuda_graph_monolith",
+            "runtime_nodes": 1,
+            "runtime_edges": 0,
+            "law": "the graph contains the one real monolith kernel and no wrapper or no-op nodes"
+          }
+        ],
+        "selection": "measure both modes on the exact artifact and device; retain the faster valid mode",
+        "forbidden_evidence": [
+          "declared graph presented as captured graph",
+          "invented K0 K1 K2 nodes",
+          "wrapper nodes presented as causal topology",
+          "fabricated per-node or inter-node timings"
+        ]
+      },
+      "events": {
+        "layout": "sparse canonical death slots then birth slots",
+        "rows_per_world_per_tick": 1024,
+        "row_bytes": 48,
+        "resident_formula": "2*C*d*48",
+        "dense_compaction": "OPTIONAL_SEPARATELY_IDENTIFIED_SINK_OPTIMIZATION"
+      },
+      "memory": {
+        "state_bytes_per_world": 265472,
+        "canonical_checkpoint_slab_bytes_per_world": 191744,
+        "checkpoint_staging_slabs": 2,
+        "optimized_global_scratch_bytes_per_world": 0,
+        "bounded_core_formula": "state + 2*checkpoint_slab + event_buffer_count*(2*C*d*48) + bounded owner allowance",
+        "total_ticks_in_resident_formula": false,
+        "b136_design_upper_bound_bytes": 1073741824,
+        "minimum_live_headroom_fraction": 0.25
+      },
+      "performance": {
+        "qualified_v1_world_ticks_per_second": 4467.193115159868,
+        "literal_factor": 100,
+        "required_world_ticks_per_second": 446719.3115159868,
+        "winning_batch": "any exact live-device-admitted B",
+        "b136_role": "qualified denominator plus comparison and memory sentinel",
+        "closure_statistic": "selected valid p10 committed world-ticks per second",
+        "timed_scope": "CUDA simulation transition only",
+        "required_fixture": "non-collapsing P256 causal fixture with all seven positive counter deltas",
+        "separate_sentinel": "source-bound exact C512 saturation timing"
+      }
+    },
+    "workhorse": {
+      "profile_family": "EIEL_FULL_EVOLUTION_CUDA_WORKHORSE_V2",
+      "profile_id": "eiel_full_evolution_cuda_workhorse_v2__{shape_id}",
+      "route_id": "tensor_world_cuda_full_evolution_workhorse_v2__{shape_id}",
+      "native_abi": "eiel_full_evolution_cuda_workhorse_abi_v2",
+      "event_abi": "eiel_full_evolution_workhorse_sparse_lifecycle_event_v3",
+      "checkpoint_schema": "eiel_full_evolution_cuda_workhorse_checkpoint_v2",
+      "semantic_transition_id": "eiel_full_evolution_workhorse_transition_v2",
+      "normative_host_contract": "engine/perf/cuda_full_evolution_v2/workhorse/contract.py",
+      "normative_layout": "engine/perf/cuda_full_evolution_v2/workhorse/layout.py",
+      "purpose": "mechanical shape-versatility envelope and later science-workhorse selection; no present science claim",
+      "compile_time_shapes": [
+        {"scale": 4, "width": 64, "height": 64, "sites": 4096, "initial_population": 1024, "capacity": 2048},
+        {"scale": 10, "width": 128, "height": 80, "sites": 10240, "initial_population": 2560, "capacity": 5120},
+        {"scale": 25, "width": 160, "height": 160, "sites": 25600, "initial_population": 6400, "capacity": 12800},
+        {"scale": 50, "width": 256, "height": 200, "sites": 51200, "initial_population": 12800, "capacity": 25600},
+        {"scale": 100, "width": 320, "height": 320, "sites": 102400, "initial_population": 25600, "capacity": 51200}
+      ],
+      "indexing": {
+        "site_and_slot_dtype": "u32",
+        "empty_sentinel": "UINT32_MAX",
+        "byte_offset_and_vram_arithmetic": "checked signed int64",
+        "shape_identity_fields": ["shape_profile_id", "shape_route_id", "W", "H", "S", "P", "C", "index_width", "layout_sha256", "semantic_transition_sha256", "backend_id", "backend_topology_sha256", "ABI", "toolchain", "target_sm"]
+      },
+      "identity_split": {
+        "semantic_transition_sha256": "shape-independent seven-capability order and laws, absolute-tick RNG, deterministic ordering, event law, checkpoint and frontier law; excludes CUDA topology, B, K, W, H, P and C",
+        "artifact_identity": "exact shape plus per-shape profile/route, semantic hash, backend ID/topology hash, compile geometry, toolchain and target SM",
+        "attempt_identity": "artifact identity plus immutable admitted B/K, exact ten-field live device identity including CUDA runtime, and exact live VRAM/reserve/headroom observation"
+      },
+      "topology": {
+        "reference_backend": "reference_phased_v2",
+        "performance_candidates": [
+          "phase_graph_v2",
+          "fused_cta_temporal_v2"
+        ],
+        "phase_graph_v2": "real CUDA Graph containing the actual batched grid.y multi-CTA phase DAG, including deterministic stable death and birth compaction, for immutable K replay",
+        "fused_cta_temporal_v2": "one CTA per world with thread-strided site/slot work, block barriers, one K-independent 2*C sparse event page, and stable slot compaction across K absolute ticks",
+        "per_shape_rule": "compile and tune both performance candidates separately for all five exact shapes; no copied topology, tuning row, or resized generic artifact counts",
+        "shared_array_limit": "no S-sized or C-sized CTA shared array",
+        "ranking": "stable biological-UID ordering with O(C) or O(C log C) bounded work; no O(C squared) ranking",
+        "same_shape_oracle": "byte-exact canonical state, event, counter and frontier parity against reference_phased_v2 at the same shape and tick partition"
+      },
+      "scratch": {
+        "complexity": "O(S+C)",
+        "tick_horizon_dependency": false,
+        "runtime_allocation_inside_tick": false,
+        "exact_formula_authority": "source-derived per backend and per shape; the rejected B1/K1 formula is not inherited"
+      },
+      "first_execution_envelope": {
+        "reference_seed": "The retired B1/K1 monolithic gate is not authority; use the closed atomic semantic-case route before measured admitted batched candidates",
+        "semantic_evidence_contract": {
+          "operation": "SEMANTIC_EVIDENCE_CASE",
+          "atomic_cases": 24,
+          "datasets": 29,
+          "attempt_rule": "one fresh ExecutionRequestV2, Run and Scheduler Attempt per case",
+          "negative_rule": "expected native negatives return sealed provisional evidence, then terminalize the Attempt FAILED at the exact case-law frontier; request VALID_NEGATIVE requires the terminal receipt and explicit R3 lifecycle commit",
+          "checkpoint_rule": "case 20 publishes a Workhorse CRCA occurrence; cases 21 and 22 restore it only in fresh child Runs",
+          "science_rule": "checkpoint identity binds the observation-OFF science continuation contract but grants neither science authority nor Qualification"
+        },
+        "required_for_each_shape": [
+          "separate compile of reference_phased_v2, phase_graph_v2 and fused_cta_temporal_v2",
+          "full-population allocation and initialization",
+          "paired downstream causal ablations for all seven components",
+          "exact repeat",
+          "death and birth sparse-event validation plus exact immutable V3 sink acknowledgement",
+          "forced event-page overflow with no out-of-bounds write, exact pre-state rollback, deterministic left-to-right K splitting, and non-selectable recovered K",
+          "checkpoint plus fresh-process continuation after arbitrary slot reuse",
+          "same-shape backend parity and B/K partition invariance",
+          "measured actual owner checkpoint event allocator and device-process VRAM",
+          "independently tuned backend B K world-ticks site-ticks and agent-capacity-ticks per second"
+        ],
+        "larger_batch_rule": "only after the same-shape causal reference and B1/K1 backend parity pass; derive exact B and K candidate sets from live SM, free VRAM, exact topology, reserve and required headroom"
+      },
+      "rejected_path": "the retained fifteen-eager-kernel B1/K1 artifacts and 4x through 50x rates are diagnostics only and cannot satisfy any workhorse acceptance",
+      "normalized_efficiency": {
+        "denominator": "final source/device-matched micro P256 p10 site-ticks per second",
+        "ideal_linear_world_rate": "final micro P256 p10 world-ticks per second divided by exact surface scale",
+        "reported_ratio": "selected workhorse site-ticks per second divided by the final matched micro site-ticks per second",
+        "minimum_viable_ratio": 0.25,
+        "below_minimum_action": "PERFORMANCE_RECOVERY; retain the measurement as a physical limit but do not call the shape-adapted engine viable"
+      },
+      "event_transport": {
+        "resident_page": "uint8[B,2*C,48] plus int64[B] counts",
+        "resident_growth_with_temporal_k": false,
+        "canonical_packed_order": "world_uid, absolute_tick, event_kind, canonical_slot_ordinal",
+        "overflow_recovery": "restore exact pre-state and recursively split the private physical tick span left-to-right; preserve one public requested dispatch and one ACK",
+        "benchmark_selection": "a K requiring overflow recovery is retained as technical evidence but cannot win"
+      },
+      "measurement_law": {
+        "measurement_window_ticks": 64,
+        "warmup_windows": 3,
+        "measured_windows": 20,
+        "same_tick_horizon_for_every_k": true,
+        "primary_statistic": "Hyndman-Fan R7 p10 of fixed-window committed world-ticks per second",
+        "tie_breakers": ["minimum", "median"]
+      },
+      "performance_boundary": "No workhorse shape is required to retain the W32 literal 100x world-rate gate. Each shape must nevertheless use its own honestly adapted and tuned CUDA engine; capacity or performance limits are retained measured outcomes."
+    }
+  },
+  "runtime_evidence": {
+    "required_bindings": [
+      "artifact and manifest sha256",
+      "this contract sha256",
+      "profile shape layout transition and checkpoint identities",
+      "device UUID SM driver runtime and toolchain",
+      "B d capability mask event-buffer count and execution mode",
+      "runtime-inspected node types kernel parameters and dependency edges",
+      "start and end absolute tick committed world-ticks and event digest",
+      "CUDA-event whole-transition timing",
+      "measured allocator and device-process peaks"
+    ],
+    "graph_objects_checkpointed": false,
+    "restore_rule": "restore canonical bytes onto fresh tensors and construct a fresh execution plan",
+    "full_pass_rule": "Any missing source device topology causal C512 B136 allocator or staged-envelope binding yields preliminary or fail, never full pass."
+  },
+  "autotune": {
+    "micro_candidates": "static anchors plus q times live SM count for q=1..4 plus each per-K VRAM maximum",
+    "temporal_k_values": [1, 2, 4, 8, 16, 32, 64],
+    "stage_maximum_arms": 64,
+    "explicit_partial_plan": "runnable only as preliminary; full closure requires the complete live-derived envelope",
+    "b136": "one measured-valid or canonically recomputed capacity-skip row for every K",
+    "workhorse_candidates": "reference B1/K1 causal seed, then both phase_graph_v2 and fused_cta_temporal_v2 over per-shape live-SM/VRAM-derived B/K envelopes; select independently per exact shape",
+    "larger_gpu": "recompute the immutable candidate envelope from live SM and VRAM; never reuse a prior device's selected B or d"
+  },
+  "qualification_boundary": {
+    "micro": "separate V2 identity requires targeted delta qualification; existing V1 remains unchanged",
+    "workhorse": "every shape artifact and device envelope remains TECHNICAL_ONLY until separately qualified",
+    "science": "no profile size or versatility probe demonstrates scientific adequacy"
+  }
+}

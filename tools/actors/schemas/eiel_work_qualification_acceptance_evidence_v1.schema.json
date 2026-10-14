@@ -1,0 +1,25 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_work_qualification_acceptance_evidence_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {"const": "eiel_work_qualification_acceptance_evidence_v1"},
+    "qualification_record": {"$ref": "eiel_actor_record_ref_v1.schema.json"},
+    "decision_status": {"enum": ["QUALIFIED", "QUALIFIED_WITH_LIMITS"]},
+    "source_commit": {"pattern": "^[0-9a-f]{40,64}$", "type": "string"},
+    "repository_state_sha256": {"pattern": "^[0-9a-f]{64}$", "type": "string"},
+    "acceptance_scope": {"enum": ["TECHNICAL_ONLY", "WITH_LIMITS"]},
+    "limitations": {"items": {"minLength": 1, "type": "string"}, "type": "array", "uniqueItems": true},
+    "evidence_bindings": {"items": {"type": "object"}, "minItems": 1, "type": "array"},
+    "recorded_at_utc": {"minLength": 1, "type": "string"}
+  },
+  "required": [
+    "schema_version", "qualification_record", "decision_status",
+    "source_commit", "repository_state_sha256", "acceptance_scope",
+    "limitations", "evidence_bindings", "recorded_at_utc"
+  ],
+  "title": "EIEL Work technical qualification acceptance evidence V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.work_manager",
+  "x-eiel-persistence-class": "embedded_durable_terminal_decision_evidence"
+}

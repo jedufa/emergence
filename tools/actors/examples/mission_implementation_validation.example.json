@@ -1,0 +1,82 @@
+{
+  "authority_context": {
+    "active_goal": null,
+    "approved_work_package": null,
+    "authorization_basis": null,
+    "operator_instruction_ref": null,
+    "preflight": null,
+    "preflight_exemption": null,
+    "preflight_fail_closed_acknowledged": false,
+    "repository_fallback_reason": null,
+    "schema_version": "eiel_mission_authority_context_v1"
+  },
+  "claim_ceiling": "Implementation and regression validity only.",
+  "controls": [
+    "baseline actor tests before the change",
+    "same tests after the change"
+  ],
+  "decision_rule": "Accept only when every implementation acceptance gate passes; otherwise return a bounded repair list.",
+  "decision_to_enable": "Accept the implementation package for Codex merge review or return it for repair.",
+  "failure_criteria": [
+    "an actor violates its authority boundary",
+    "the transfer package omits repository files or tests"
+  ],
+  "mission_type": "IMPLEMENTATION_VALIDATION",
+  "out_of_scope": [
+    "scientific campaign execution",
+    "scientific claims",
+    "Mission Control or services"
+  ],
+  "qualification_request": {
+    "track_label": "b1w32p256c512gNt160cpu"
+  },
+  "question": "Does the implementation preserve the declared actor boundaries and pass the required regression suite?",
+  "references": {
+    "campaign_output_paths": [],
+    "campaign_spec_paths": [],
+    "evidence_assessment_ids": [],
+    "implementation_report_refs": [],
+    "librarian_document_ids": [],
+    "qualification_record_ids": [],
+    "resource_record_ids": []
+  },
+  "required_closeout_refs": [
+    "qualification_refs",
+    "report_refs",
+    "source_identity",
+    "librarian_document_ids"
+  ],
+  "required_evidence": [
+    "focused test results",
+    "relevant regression results",
+    "complete ZIP checksum and change manifest"
+  ],
+  "resource_demand": {
+    "device": "cpu",
+    "minimum_ram_available_gib": 2,
+    "minimum_storage_available_gib": 2
+  },
+  "schema_version": "eiel_mission_specification_v2",
+  "scope": [
+    "actor CLI implementation",
+    "focused and relevant regression tests",
+    "transfer-package verification"
+  ],
+  "stopping_rules": [
+    "stop after the fixed validation suite and clean transfer-package check"
+  ],
+  "success_criteria": [
+    "all implementation-caused test failures are repaired",
+    "the complete ZIP passes extraction verification"
+  ],
+  "tasks": [
+    "audit current implementation",
+    "run fixed tests",
+    "repair implementation defects",
+    "verify complete ZIP"
+  ],
+  "technical_qualification_requirements": [
+    "existing Python CLI route and actor-record integrity tests"
+  ],
+  "title": "Validate the actor-manager integration change"
+}

@@ -1,0 +1,110 @@
+{
+  "schema_version": "emergence_dev_benchmark_manifest_v2",
+  "cases": [
+    {
+      "id": "runtime-root-portability",
+      "objective": "repair EIEL runtime root resolution and its focused tests",
+      "historical_reference": "docs/400_implementation-engineering/410_implementation-reports/000_programme-cross-cutting/EIEL-DOC-000280--eiel-development-automation-v1-implementation-report-2026-07-26.md#historical-task-benchmark",
+      "relationship_class": "dynamic-string-resolution",
+      "required_paths": ["engine/runtime_roots.py", "tests/test_eiel_runtime_roots.py"],
+      "baseline_discovery_operations": 12,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "instruction-and-status-reads", "operations": 3}, {"name": "source-searches", "operations": 5}, {"name": "test-and-consumer-searches", "operations": 4}]},
+      "overrides": []
+    },
+    {
+      "id": "validation-plan-contract",
+      "objective": "change the strict CPU validation plan contract and CLI tests",
+      "historical_reference": "engine/validation_plans/v1.py and tests/tools/test_eiel_validation_plan.py",
+      "relationship_class": "public-contract",
+      "required_paths": ["engine/validation_plans/v1.py", "tests/tools/test_eiel_validation_plan.py"],
+      "baseline_discovery_operations": 18,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "instruction-and-status-reads", "operations": 3}, {"name": "implementation-searches", "operations": 8}, {"name": "contract-test-searches", "operations": 7}]},
+      "overrides": []
+    },
+    {
+      "id": "campaign-evidence-closeout",
+      "objective": "repair deterministic EIEL campaign evidence closeout and orchestration tests",
+      "historical_reference": "engine/campaigns/evidence_closeout.py and tests/test_eiel_campaign_evidence_closeout_v1.py",
+      "relationship_class": "campaign-orchestration",
+      "required_paths": ["engine/campaigns/evidence_closeout.py", "tests/test_eiel_campaign_evidence_closeout_v1.py"],
+      "baseline_discovery_operations": 21,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "instruction-and-status-reads", "operations": 4}, {"name": "campaign-source-searches", "operations": 10}, {"name": "evidence-test-searches", "operations": 7}]},
+      "overrides": []
+    },
+    {
+      "id": "register-renderer",
+      "objective": "update the unfinished work register renderer and verify its HTML reading copy",
+      "historical_reference": "docs/100_governance-authority/110_authority-registers/EIEL-DOC-000007--eiel-unfinished-work-register.md generator relationship",
+      "relationship_class": "generated-counterpart",
+      "required_paths": ["tools/scripts/render_eiel_unfinished_work_register_html.py", "docs/100_governance-authority/110_authority-registers/EIEL-DOC-000007--eiel-unfinished-work-register.md", "docs/100_governance-authority/110_authority-registers/EIEL-DOC-000006--eiel-unfinished-work-register.html"],
+      "baseline_discovery_operations": 14,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "instruction-and-status-reads", "operations": 3}, {"name": "generator-searches", "operations": 6}, {"name": "source-output-verification", "operations": 5}]},
+      "overrides": []
+    },
+    {
+      "id": "route-qualification",
+      "objective": "repair execution route qualification planning and focused qualification tests",
+      "historical_reference": "docs/400_implementation-engineering/410_implementation-reports/100_engine-route-qualification/EIEL-DOC-000330--eiel-execution-route-qualification-v1-closeout-report-2026-07-23.md",
+      "relationship_class": "campaign-qualification",
+      "required_paths": ["engine/campaigns/route_qualification.py", "tests/test_eiel_route_qualification_execution_v1.py"],
+      "required_critical_rules": ["campaign-qualification"],
+      "baseline_discovery_operations": 24,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "authority-document-reads", "operations": 5}, {"name": "route-source-searches", "operations": 11}, {"name": "qualification-test-searches", "operations": 8}]},
+      "overrides": []
+    },
+    {
+      "id": "route-preflight",
+      "objective": "repair EIEL execution route preflight invalidation and canary contracts",
+      "historical_reference": "tests/test_eiel_execution_route_preflight_v1.py and tests/test_eiel_execution_route_invalidation_v1.py",
+      "relationship_class": "registry-string-route",
+      "required_paths": ["tests/test_eiel_execution_route_preflight_v1.py", "tests/test_eiel_execution_route_invalidation_v1.py"],
+      "required_critical_rules": ["campaign-qualification"],
+      "baseline_discovery_operations": 22,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "authority-document-reads", "operations": 4}, {"name": "preflight-searches", "operations": 10}, {"name": "canary-contract-searches", "operations": 8}]},
+      "overrides": []
+    },
+    {
+      "id": "checkpoint-bundle",
+      "objective": "change checkpoint bundle v2 replay and compatibility contracts",
+      "historical_reference": "engine/simulation/checkpoint_bundle_v2.py and tests/regression/test_checkpoint_bundle_contracts.py",
+      "relationship_class": "checkpoint-replay",
+      "required_paths": ["engine/simulation/checkpoint_bundle_v2.py", "tests/regression/test_checkpoint_bundle_contracts.py"],
+      "required_critical_rules": ["checkpoint"],
+      "baseline_discovery_operations": 26,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "checkpoint-authority-reads", "operations": 5}, {"name": "schema-and-writer-searches", "operations": 12}, {"name": "replay-test-searches", "operations": 9}]},
+      "overrides": []
+    },
+    {
+      "id": "chronicle-attribution",
+      "objective": "repair scientific Chronicle genome attribution and focused tests",
+      "historical_reference": "engine/simulation/chronicle/genome_attribution.py and tests/scientific_chronicle/test_genome_attribution.py",
+      "relationship_class": "dynamic-scientific-attribution",
+      "required_paths": ["engine/simulation/chronicle/genome_attribution.py", "tests/scientific_chronicle/test_genome_attribution.py"],
+      "baseline_discovery_operations": 17,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "instruction-and-scope-reads", "operations": 4}, {"name": "chronicle-source-searches", "operations": 7}, {"name": "scientific-test-searches", "operations": 6}]},
+      "overrides": []
+    },
+    {
+      "id": "genome-v2-package",
+      "objective": "change Genome V2 package identity contract and package tests",
+      "historical_reference": "engine/evolution/genome_upgrade_v2_package_v1.py and tests/test_genome_upgrade_v2_package_contract_v1.py",
+      "relationship_class": "native-cuda-lifecycle",
+      "required_paths": ["engine/evolution/genome_upgrade_v2_package_v1.py", "tests/test_genome_upgrade_v2_package_contract_v1.py"],
+      "required_critical_rules": ["native-cuda-parity"],
+      "baseline_discovery_operations": 31,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "authority-and-package-reads", "operations": 6}, {"name": "native-cuda-consumer-searches", "operations": 15}, {"name": "package-contract-test-searches", "operations": 10}]},
+      "overrides": []
+    },
+    {
+      "id": "campaign-compiler",
+      "objective": "repair EIEL campaign compiler configuration and compiler tests",
+      "historical_reference": "tools/scripts/eiel_campaign.py and tests/test_eiel_campaign_compiler_v1.py",
+      "relationship_class": "configuration-compiler",
+      "required_paths": ["tools/scripts/eiel_campaign.py", "tests/test_eiel_campaign_compiler_v1.py"],
+      "required_critical_rules": ["campaign-qualification"],
+      "baseline_discovery_operations": 28,
+      "baseline_derivation": {"method": "manual historical workflow decomposition", "components": [{"name": "authority-and-config-reads", "operations": 6}, {"name": "compiler-source-searches", "operations": 13}, {"name": "compiler-test-searches", "operations": 9}]},
+      "overrides": []
+    }
+  ]
+}

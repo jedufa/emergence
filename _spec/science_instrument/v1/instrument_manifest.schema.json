@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:instrument-manifest",
+  "title": "EIEL Science Instrument Manifest V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "product_id",
+    "component_graph_sha256",
+    "control_catalog_sha256",
+    "world_profile_catalog_sha256",
+    "founder_profile_catalog_sha256",
+    "policy_profile_catalog_sha256",
+    "mutation_operator_catalog_sha256",
+    "observation_abi_sha256",
+    "observation_profile_catalog_sha256",
+    "reducer_protocol_version",
+    "route_binding_protocol_version",
+    "eed_release_status"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_instrument_manifest_v1"},
+    "product_id": {"const": "EIEL_SCIENCE_INSTRUMENT_V1"},
+    "component_graph_sha256": {"$ref": "#/$defs/digest"},
+    "control_catalog_sha256": {"$ref": "#/$defs/digest"},
+    "world_profile_catalog_sha256": {"$ref": "#/$defs/digest"},
+    "founder_profile_catalog_sha256": {"$ref": "#/$defs/digest"},
+    "policy_profile_catalog_sha256": {"$ref": "#/$defs/digest"},
+    "mutation_operator_catalog_sha256": {"$ref": "#/$defs/digest"},
+    "observation_abi_sha256": {"$ref": "#/$defs/digest"},
+    "observation_profile_catalog_sha256": {"$ref": "#/$defs/digest"},
+    "reducer_protocol_version": {"$ref": "#/$defs/token"},
+    "route_binding_protocol_version": {"const": "eiel_science_route_binding_v1"},
+    "eed_release_status": {"enum": ["INCLUDED", "EXCLUDED"]}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    }
+  }
+}

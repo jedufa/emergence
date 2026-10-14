@@ -1,0 +1,127 @@
+{
+  "build_binding": {
+    "native_build_source_inventory_required": true,
+    "normative_execution_contract": true
+  },
+  "canonical_science_contract_provenance": {
+    "source_commit": "b6a38af9c752771c3918ff28064824cff3d2c830",
+    "source_worktree_role": "EIEL_SCIENCE_INSTRUMENT_V1_CANONICAL_CONTRACT_SOURCE",
+    "files": {
+      "_spec/science_instrument/v1/science_observation_abi_v1.json": "577b411ec0d0ef5ea00e315913bbacfc06c1628e93ae565b0aa48ab2ddd2398d",
+      "_spec/science_instrument/v1/science_observation_prefix_cursor.schema.json": "0195f3262cc98b30e1891694c4b866d5d7945fe2cc6f38192fb968d633c92a77",
+      "_spec/science_instrument/v1/science_route_binding.schema.json": "5ee5b4c004026db616f83ae6a2cda78909924d22eabcc72a43666280afa995c9",
+      "emergence_contracts/science_observation_cursor.py": "d0010d6f08678c5b01ca8fabbe347c1ae9ce099a8a3f1ee73643fed75349885a"
+    }
+  },
+  "checkpoint_extension": {
+    "base_checkpoint_remains_canonical_simulation_state": true,
+    "opaque_sidecar_not_parsed_by_cuda_hot_path": true,
+    "required_identities": [
+      "base_checkpoint_identity_sha256",
+      "science_semantic_acquisition_sha256",
+      "observation_cursor_set_sha256",
+      "control_table_sha256",
+      "control_cursor_next_absolute_tick",
+      "continuation_parent_checkpoint_sha256",
+      "world_mapping_sha256",
+      "typed_capture_inventory_sha256",
+      "typed_capture_capacity_rows",
+      "typed_capture_committed_rows",
+      "capture_overflowed",
+      "science_route_binding_sha256"
+    ],
+    "schema_version": "eiel_cuda_full_evolution_science_checkpoint_extension_v1",
+    "seal_alone_grants_continuation": false
+  },
+  "claim_boundary": {
+    "current_b136_standard_supported": false,
+    "native_capture_runtime_integrated": false,
+    "science_route_qualified": false,
+    "status": "OPAQUE_CHECKPOINT_RESTORE_SEAM_NATIVE_CAPTURE_NOT_INTEGRATED",
+    "technical_performance_is_science_evidence": false
+  },
+  "control_contract": {
+    "future_dynamic_schedules": "schema_reserved_but_fail_closed",
+    "initial_supported_contract": "STATIC_PER_WORLD_ABSOLUTE_TICK_CONTROL_TABLE_V1",
+    "interval_semantics": "contiguous_half_open_absolute_ticks",
+    "runtime_support_currently_enabled": false,
+    "time_authority": "absolute_tick_v1"
+  },
+  "lifecycle": {
+    "archive_is_asynchronous": true,
+    "profile": "SCIENCE_COMPACT",
+    "typed_capture_inventory_required": true
+  },
+  "observation_contract": {
+    "capture_overflow_policy": "fail_closed_no_frontier_commit",
+    "canonical_cursor_schema": "eiel_science_observation_prefix_cursor_v1",
+    "canonical_record_schema": "eiel_science_observation_record_v1",
+    "fast_route_hot_path_hooks": 0,
+    "fast_route_mode": "OFF",
+    "fast_route_science_allocation_bytes": 0,
+    "future_mode": "TYPED_SIDECAR_V1",
+    "on_off_trajectory_neutrality_proof_required": true,
+    "packing_and_k_partition_neutrality_proof_required": true,
+    "prefix_algorithm": "domain_separated_record_by_record_eiel_science_observation_prefix_chain_v1",
+    "typed_record_kinds": [
+      "control_binding",
+      "world_state_snapshot",
+      "agent_state_snapshot",
+      "reproduction_opportunity",
+      "birth_attempt",
+      "birth_committed",
+      "mutation_outcome",
+      "decision_action",
+      "ecological_transaction",
+      "death",
+      "environment_transition",
+      "world_completion",
+      "checkpoint_marker"
+    ]
+  },
+  "restore_gate": {
+    "complete_sidecars_required": [
+      "base_checkpoint",
+      "ScienceRouteBindingV1",
+      "numeric_to_semantic_world_mapping",
+      "static_absolute_tick_control_table",
+      "typed_capture_inventory",
+      "parent_extension_and_parent_cursor_inventory_for_continuations"
+    ],
+    "identity_complete_does_not_grant_science_qualification": true,
+    "schema_version": "eiel_cuda_full_evolution_science_restore_gate_v1"
+  },
+  "route_binding": {
+    "adapter_class": "ScienceRouteBindingV1",
+    "complete_wire_projection_required": true,
+    "numeric_uid_to_semantic_world_mapping_required": true,
+    "semantic_dimensions": [
+      "study_id",
+      "test_id",
+      "version_id",
+      "arm_id",
+      "replicate_id",
+      "reducer_id"
+    ],
+    "wire_schema": "eiel_science_route_binding_v1"
+  },
+  "workhorse_science_compatibility_demo": {
+    "artifact_lifecycle_profile": "SCIENCE_COMPACT",
+    "boundary_record_schema": "eiel_workhorse_science_host_boundary_record_v1",
+    "boundary_semantics": "next_absolute_tick state after half-open span",
+    "canonical_science_checkpoint_extension_emitted": false,
+    "checkpoint_sidecar_schema": "eiel_workhorse_science_checkpoint_compatibility_sidecar_v1",
+    "claim_class": "TECHNICAL_ONLY",
+    "host_projection_after_exact_event_ack": true,
+    "native_capture_runtime_integrated": false,
+    "raw_tick_or_event_payloads_retained": false,
+    "restore_receipt_schema": "eiel_workhorse_science_fresh_owner_restore_receipt_v1",
+    "runtime_control_adapter_integrated": false,
+    "runtime_observation_mode": "OFF",
+    "science_authority_granted": false,
+    "science_continuable": false,
+    "science_route_qualified": false,
+    "static_controls_are_compatibility_inputs_only": true
+  },
+  "schema_version": "eiel_cuda_full_evolution_science_extension_contract_v1"
+}

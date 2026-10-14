@@ -1,0 +1,55 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_session_delivery_material_ref_v2.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "delivery_commit": {
+      "pattern": "^[0-9a-f]{40,64}$",
+      "type": "string"
+    },
+    "delivery_evidence_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "delivery_session_id": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "identity_assurance": {
+      "additionalProperties": true,
+      "type": "object"
+    },
+    "schema_version": {
+      "const": "eiel_session_delivery_material_ref_v2"
+    },
+    "terminal_outcome": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "work_package_sha256": {
+      "pattern": "^[0-9a-f]{64}$",
+      "type": "string"
+    },
+    "work_package_version": {
+      "minimum": 1,
+      "type": [
+        "integer",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version",
+    "delivery_session_id",
+    "terminal_outcome",
+    "delivery_evidence_sha256",
+    "delivery_commit",
+    "work_package_sha256",
+    "work_package_version",
+    "identity_assurance"
+  ],
+  "title": "EIEL generic material delivery identity for review freshness V2",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.session_manager",
+  "x-eiel-persistence-class": "embedded_material_reference"
+}

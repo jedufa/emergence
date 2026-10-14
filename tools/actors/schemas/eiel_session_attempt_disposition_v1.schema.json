@@ -1,0 +1,52 @@
+{
+  "$id": "eiel_session_attempt_disposition_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "authority": {
+      "type": "object"
+    },
+    "continuation_ref": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "disposition": {
+      "enum": [
+        "SUCCEEDED",
+        "FAILED",
+        "ABANDONED",
+        "NOT_NEEDED",
+        "DUPLICATE",
+        "SUPERSEDED"
+      ]
+    },
+    "prior_session_ref": {
+      "type": [
+        "object",
+        "null"
+      ]
+    },
+    "reason": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "recorded_at_utc": {
+      "minLength": 1,
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "eiel_session_attempt_disposition_v1"
+    }
+  },
+  "required": [
+    "schema_version",
+    "disposition",
+    "reason",
+    "authority",
+    "recorded_at_utc"
+  ],
+  "title": "EIEL Session attempt disposition v1",
+  "type": "object"
+}

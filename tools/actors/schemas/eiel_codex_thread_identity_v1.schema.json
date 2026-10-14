@@ -1,0 +1,39 @@
+{
+  "$id": "https://eiel.local/schemas/eiel_codex_thread_identity_v1.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": true,
+  "description": "Documented contract for eiel_codex_thread_identity_v1; runtime validators remain authoritative.",
+  "properties": {
+    "assurance": {
+      "type": "string"
+    },
+    "codex_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "lease_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "schema_version": {
+      "const": "eiel_codex_thread_identity_v1"
+    },
+    "worker_id": {
+      "type": [
+        "string",
+        "null"
+      ]
+    }
+  },
+  "required": [
+    "schema_version"
+  ],
+  "title": "EIEL Codex Thread Identity V1",
+  "type": "object",
+  "x-eiel-owner": "tools.actors.lifecycle_policy",
+  "x-eiel-persistence-class": "embedded_identity_assurance"
+}

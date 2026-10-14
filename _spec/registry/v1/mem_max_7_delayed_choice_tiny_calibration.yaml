@@ -1,0 +1,187 @@
+harness_api: 1
+version: 1
+name: mem_max_7_delayed_choice_tiny_calibration
+description: MEM-MAX-7 compact delayed-choice calibration dry-run registry.
+intent:
+  question: Can a future default-off delayed-choice substrate be wired into the MEM-MAX gate matrix?
+  note: >
+    Dry-run matrix only. The current live engine has DRH0 delayed-refuge
+    fixtures, but not yet a two-target cue-selected delayed-choice substrate.
+    Do not interpret this registry as scientific evidence until
+    mem_max_delayed_choice_v1 mechanics exist.
+  planned_runs: 10
+matrix_order:
+- memory_arm
+- demand_cell
+- seed
+axes:
+  memory_arm:
+    values:
+    - memory_normal
+    - memory_ablated
+    flags:
+      memory_normal:
+      - --knob
+      - sim_cfg.force_memory_disabled=false
+      - --knob
+      - sim_cfg.reset_memory_each_tick=false
+      - --knob
+      - sim_cfg.memory_pressure_scenario=true
+      - --knob
+      - sim_cfg.memory_pressure_type=mem_max_7_delayed_choice_calibration
+      memory_ablated:
+      - --knob
+      - sim_cfg.force_memory_disabled=true
+      - --knob
+      - sim_cfg.reset_memory_each_tick=true
+      - --knob
+      - sim_cfg.memory_pressure_scenario=true
+      - --knob
+      - sim_cfg.memory_pressure_type=mem_max_7_delayed_choice_calibration
+  demand_cell:
+    values:
+    - flat_control_clean
+    - delayed_choice_useful
+    - delayed_choice_cue_off
+    - delayed_choice_consequence_off
+    - delayed_choice_shortcut_control
+    flags:
+      flat_control_clean:
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=false
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      delayed_choice_useful: &useful_flags
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_damage_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=true
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      delayed_choice_cue_off:
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_damage_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=false
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=false
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=true
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=true
+      delayed_choice_consequence_off:
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_damage_enable=false
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=true
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=true
+      - --knob
+      - env_cfg.path1_drh0_consequence_enable=false
+      - --knob
+      - env_cfg.path1_drh0_refuge_damage_reduction_enable=false
+      delayed_choice_shortcut_control:
+      - --knob
+      - env_cfg.wdl_delayed_hazard_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_damage_enable=true
+      - --knob
+      - env_cfg.wdl_delayed_hazard_observation_enable=true
+      - --knob
+      - env_cfg.path1_drh0_reporting_enable=true
+      - --knob
+      - env_cfg.path1_drh0_observation_enable=true
+      - --knob
+      - env_cfg.path1_drh0_static_refuge_control_enable=true
+seeds:
+- 101
+cli_defaults:
+- - --generations
+  - "1"
+- - --steps
+  - "8"
+- - --pop
+  - "8"
+- - --grid_size
+  - "5"
+- - --device
+  - cpu
+- - --bank_device
+  - cpu
+- - --knob
+  - env_cfg.patch_world_enable=true
+- - --knob
+  - env_cfg.patch_world_observation_enable=true
+- - --knob
+  - env_cfg.enable_biomes=false
+- - --knob
+  - env_cfg.food_spawn_per_step=0
+- - --knob
+  - env_cfg.max_food=0
+- - --knob
+  - env_cfg.wdl_delayed_hazard_radius=0
+- - --knob
+  - env_cfg.wdl_delayed_hazard_intensity=0.4
+- - --knob
+  - env_cfg.wdl_delayed_hazard_delay_steps=2
+- - --knob
+  - env_cfg.wdl_delayed_hazard_cue_duration_steps=1
+- - --knob
+  - env_cfg.wdl_delayed_hazard_active_duration_steps=1
+- - --knob
+  - env_cfg.path1_drh0_refuge_reachability_enable=true
+- - --knob
+  - env_cfg.path1_drh0_refuge_requires_shelter_or_cover=true
+- - --knob
+  - env_cfg.path1_drh0_min_refuge_cells=1
+- - --knob
+  - env_cfg.path1_drh0_cue_required_for_refuge_protection=true
+- - --knob
+  - env_cfg.path1_drh0_pre_arrival_required_for_refuge_protection=true
+- - --knob
+  - env_cfg.path1_drh0_damage_reduction_fraction=0.5
+- - --knob
+  - sim_cfg.enable_experimental_memory_cost_charging=true
+- - --knob
+  - sim_cfg.enable_cognitive_status_metrics=true
+- - --knob
+  - sim_cfg.lineage_founder_balance_enable=true
+- - --knob
+  - sim_cfg.lineage_founder_group_count=4
+- - --knob
+  - sim_cfg.lineage_founder_min_agents_per_group=2
+- - --knob
+  - sim_cfg.policy_deterministic_actions=true
+- - --knob
+  - sim_cfg.checkpoint_bundle_v2_period_gen=0
+- - --knob
+  - sim_cfg.lineage_qd_archive_enable=false
+expected_artifacts:
+- manifest.json
+- run_config.csv
+- config.json
+- metrics.csv
+naming:
+  run_tag_prefix: mem_max_7_delayed_choice_tiny_calibration
+  run_id_format: mem_max_7__memory_{memory_arm}__demand_{demand_cell}__seed{seed:06d}
+  run_tag_format: mem_max_7__memory_{memory_arm}__demand_{demand_cell}
+mem_max_7_status:
+  schema_version: mem_max_7_registry_status_v1
+  status: dry_run_only_blocked_for_live_preflight
+  blocker: live two-target cue-selected delayed-choice substrate is not implemented yet

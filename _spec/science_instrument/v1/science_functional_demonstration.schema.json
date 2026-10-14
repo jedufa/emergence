@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eiel.example/spec/science_functional_demonstration.schema.json",
+  "title": "EIEL Science Instrument functional demonstration receipt V1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "product_id",
+    "status",
+    "ok",
+    "campaign_id",
+    "request_sha256",
+    "instrument_manifest_sha256",
+    "primary_outcome",
+    "admission_decision_sha256",
+    "semantic_cell_count",
+    "world_count",
+    "record_count",
+    "partition_count",
+    "observation_cursor_count",
+    "world_uid_set_sha256",
+    "observation_cursor_set_sha256",
+    "evidence_manifest_sha256",
+    "result_sha256",
+    "result_payload",
+    "route_demonstration",
+    "reducer_resume",
+    "invariants",
+    "runtime_effects_performed",
+    "trajectory_effects_performed",
+    "provider_launch_performed",
+    "native_build_performed",
+    "gpu_used",
+    "qualification_started",
+    "qualification_authority_effect",
+    "scientific_claim",
+    "limitations",
+    "receipt_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_functional_demonstration_v1"},
+    "product_id": {"const": "EIEL_SCIENCE_INSTRUMENT_V1"},
+    "status": {"enum": ["TECHNICAL_DEMONSTRATION_PASS", "TECHNICAL_DEMONSTRATION_FAIL"]},
+    "ok": {"type": "boolean"},
+    "campaign_id": {"type": "string", "minLength": 1},
+    "request_sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "instrument_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "primary_outcome": {"type": "string", "minLength": 1},
+    "admission_decision_sha256": {"$ref": "#/$defs/digest"},
+    "semantic_cell_count": {"type": "integer", "minimum": 1},
+    "world_count": {"type": "integer", "minimum": 1},
+    "record_count": {"type": "integer", "minimum": 1},
+    "partition_count": {"type": "integer", "minimum": 1},
+    "observation_cursor_count": {"type": "integer", "minimum": 1},
+    "world_uid_set_sha256": {"$ref": "#/$defs/digest"},
+    "observation_cursor_set_sha256": {"$ref": "#/$defs/digest"},
+    "evidence_manifest_sha256": {"$ref": "#/$defs/digest"},
+    "result_sha256": {"$ref": "#/$defs/digest"},
+    "result_payload": {"type": "object"},
+    "route_demonstration": {
+      "type": "object",
+      "required": ["relationship", "route_a", "route_b", "science_semantic_acquisition_sha256"],
+      "properties": {
+        "relationship": {"const": "SEMANTICALLY_EQUIVALENT_HOST_DEMO_REBINDINGS"},
+        "route_a": {"$ref": "#/$defs/route"},
+        "route_b": {"$ref": "#/$defs/route"},
+        "science_semantic_acquisition_sha256": {"$ref": "#/$defs/digest"}
+      },
+      "additionalProperties": false
+    },
+    "reducer_resume": {
+      "type": "object",
+      "required": ["checkpoint_sha256", "resumed_result_receipt_sha256"],
+      "properties": {
+        "checkpoint_sha256": {"$ref": "#/$defs/digest"},
+        "resumed_result_receipt_sha256": {"$ref": "#/$defs/digest"}
+      },
+      "additionalProperties": false
+    },
+    "invariants": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": {"type": "boolean"}
+    },
+    "runtime_effects_performed": {"const": false},
+    "trajectory_effects_performed": {"const": false},
+    "provider_launch_performed": {"const": false},
+    "native_build_performed": {"const": false},
+    "gpu_used": {"const": false},
+    "qualification_started": {"const": false},
+    "qualification_authority_effect": {"const": false},
+    "scientific_claim": {"const": false},
+    "limitations": {"type": "array", "minItems": 1, "items": {"type": "string", "minLength": 1}},
+    "receipt_sha256": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "route": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route_id", "route_binding_sha256", "physical_execution_plan_sha256", "result_receipt_sha256"],
+      "properties": {
+        "route_id": {"type": "string", "minLength": 1},
+        "route_binding_sha256": {"$ref": "#/$defs/digest"},
+        "physical_execution_plan_sha256": {"$ref": "#/$defs/digest"},
+        "result_receipt_sha256": {"$ref": "#/$defs/digest"}
+      }
+    }
+  }
+}

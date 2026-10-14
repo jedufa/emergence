@@ -1,0 +1,57 @@
+{
+  "binding_keys": [
+    "authoritative_schema_hash",
+    "abi_variant_hash",
+    "binary_schema_hash",
+    "provider_projection_hash"
+  ],
+  "contract_hash": "3227e67e69245d7e7a409b6fa5f4a30986039a9bb666811dd50681b011ee954e",
+  "fields": [
+    {
+      "dtype": "int64",
+      "field_id": "checkpoint.generation.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "int64",
+      "field_id": "checkpoint.tick.v1",
+      "required": true,
+      "shape": []
+    },
+    {
+      "dtype": "int64",
+      "field_id": "checkpoint.slot_to_agent_id.v1",
+      "required": true,
+      "shape": [
+        "capacity"
+      ]
+    },
+    {
+      "dtype": "int32",
+      "field_id": "checkpoint.lineage_founder_id.v1",
+      "required": true,
+      "shape": [
+        "capacity"
+      ]
+    },
+    {
+      "dtype": "int64",
+      "field_id": "checkpoint.event_cursor_by_cell.v1",
+      "required": true,
+      "shape": [
+        "cells"
+      ]
+    },
+    {
+      "dtype": "sha256",
+      "field_id": "checkpoint.reproduction_continuity_hash.v1",
+      "required": true,
+      "shape": [
+        "cells"
+      ]
+    }
+  ],
+  "kind": "authoritative_checkpoint_schema",
+  "schema_version": "eiel_authoritative_checkpoint_schema_v1"
+}

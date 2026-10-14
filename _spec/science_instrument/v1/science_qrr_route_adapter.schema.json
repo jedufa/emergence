@@ -1,0 +1,117 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:eiel:science-instrument:v1:science-qrr-route-adapter",
+  "title": "EIEL Science QRR Route Adapter V1",
+  "description": "Route-owned lowering data. It changes physical/full execution identity, never route-neutral science semantics.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "execution_adapter_core",
+    "control_adapter_core",
+    "execution_adapter_sha256",
+    "control_adapter_sha256"
+  ],
+  "properties": {
+    "schema_version": {"const": "eiel_science_qrr_route_adapter_v1"},
+    "execution_adapter_core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "route_id",
+        "machine_profile_id",
+        "world_profile_id",
+        "world_width",
+        "maximum_batch_cells",
+        "acs_capture_instrumentation",
+        "acs_checkpoint_slots",
+        "living_lineage_canopy",
+        "lifecycle_total_max_bytes"
+      ],
+      "properties": {
+        "schema_version": {"const": "eiel_science_qrr_execution_adapter_core_v1"},
+        "route_id": {"$ref": "#/$defs/token"},
+        "machine_profile_id": {"$ref": "#/$defs/token"},
+        "world_profile_id": {"$ref": "#/$defs/token"},
+        "world_width": {"type": "integer", "minimum": 1},
+        "maximum_batch_cells": {"type": "integer", "minimum": 1},
+        "acs_capture_instrumentation": {"type": "boolean"},
+        "acs_checkpoint_slots": {
+          "type": ["integer", "null"],
+          "minimum": 0,
+          "maximum": 3
+        },
+        "living_lineage_canopy": {"type": "boolean"},
+        "lifecycle_total_max_bytes": {"type": "integer", "minimum": 1}
+      }
+    },
+    "control_adapter_core": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema_version",
+        "task_seed_owner",
+        "control_path_by_id",
+        "seed_path_by_owner",
+        "fixed_flat_controls"
+      ],
+      "properties": {
+        "schema_version": {"const": "eiel_science_qrr_control_adapter_core_v1"},
+        "task_seed_owner": {"$ref": "#/$defs/token"},
+        "control_path_by_id": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["control_id", "flat_path"],
+            "properties": {
+              "control_id": {"$ref": "#/$defs/token"},
+              "flat_path": {"$ref": "#/$defs/token"}
+            }
+          }
+        },
+        "seed_path_by_owner": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["owner", "flat_path"],
+            "properties": {
+              "owner": {"$ref": "#/$defs/token"},
+              "flat_path": {"$ref": "#/$defs/token"}
+            }
+          }
+        },
+        "fixed_flat_controls": {"$ref": "#/$defs/canonical_payload"}
+      }
+    },
+    "execution_adapter_sha256": {"$ref": "#/$defs/digest"},
+    "control_adapter_sha256": {"$ref": "#/$defs/digest"}
+  },
+  "$defs": {
+    "token": {
+      "type": "string",
+      "minLength": 1,
+      "pattern": "^[A-Za-z0-9][A-Za-z0-9._+-]*$"
+    },
+    "digest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["algorithm", "hex"],
+      "properties": {
+        "algorithm": {"const": "sha256"},
+        "hex": {"type": "string", "pattern": "^[0-9a-f]{64}$"}
+      }
+    },
+    "canonical_payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema_version", "payload"],
+      "properties": {
+        "schema_version": {"$ref": "#/$defs/token"},
+        "payload": {"type": "object"}
+      }
+    }
+  }
+}

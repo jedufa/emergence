@@ -1,0 +1,43 @@
+harness_api: 1
+version: 1
+name: validation_family_env_logging
+description: Quick family validation for env logging (aggregated per knob).
+intent:
+  question: Is env_cfg.spatial_ecology_log_stats traceably applied and does it produce expected logging artifacts?
+  axes:
+    - case
+
+matrix_order:
+  - case
+  - seed
+
+axes:
+  case:
+    values:
+      - env_cfg_spatial_ecology_log_stats__baseline
+      - env_cfg_spatial_ecology_log_stats__variant
+    flags:
+      env_cfg_spatial_ecology_log_stats__baseline:
+        - --knob
+        - env_cfg.spatial_ecology_log_stats=false
+      env_cfg_spatial_ecology_log_stats__variant:
+        - --knob
+        - env_cfg.spatial_ecology_log_stats=true
+
+seeds:
+  - 42
+  - 43
+
+cli_defaults:
+  - ["--gen", "8"]
+  - ["--steps", "80"]
+
+expected_artifacts:
+  - "manifest.json"
+  - "metrics.csv"
+  - "maps/tier3_regions_stats.json"
+
+naming:
+  run_tag_prefix: "validation_family_env_logging_quick"
+  run_id_format: "validation_family_env_logging__{case}__seed{seed:06d}"
+  run_tag_format: "val_family_quick__{case}"
