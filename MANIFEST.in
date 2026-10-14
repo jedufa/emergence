@@ -1,4 +1,5 @@
 # Exact public-source membership; regenerate with update_manifest.py.
+include .github/FUNDING.yml
 include .github/workflows/validation.yml
 include .gitignore
 include CONTRIBUTING.md
