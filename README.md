@@ -50,18 +50,11 @@ Emergence addresses that problem with multiple layers that can be studied, adapt
 - **Evidence as a first-class output:** paired comparisons, recorded observations, provenance checks, and analysis that remains separate from the mechanisms being tested.
 - **Controlled research operations:** resource and artifact lifecycle contracts, validation gates, and explicit decisions about what the evidence does or does not establish.
 
-```mermaid
-flowchart LR
-    Q["Question and controls"] --> D["Declarative experiment"]
-    D --> E["Execution and admission"]
-    E --> W["Worlds, agents, evolution"]
-    W --> P["Checkpoints and observations"]
-    P --> A["Comparison and analysis"]
-    A --> R["Bounded result"]
-    R --> Q
-```
+### Platform architecture at a glance
 
-*Conceptual architecture. The released code contains both modular interfaces and integrated legacy components. This is not a promise of a stable, general-purpose plug-and-play API.*
+![Emergence research platform architecture showing experiment design, WorldKit, AgentKit, execution, contracts, evidence analysis and reusable research outcomes](docs/figures/emergence-platform-architecture.svg)
+
+*Conceptual map of the source architecture, not a GUI screenshot or scientific result. Components include modular interfaces and integrated legacy code; advanced runtime routes require their own validation.*
 
 ## The reusable building blocks
 

@@ -58,8 +58,8 @@
     },
     {
       "path": "MANIFEST.in",
-      "sha256": "1badcbb4c21d9b0151efa39a1dfc81e994ead8d1bdce9abb37ed5003274cd69e",
-      "bytes": 233397,
+      "sha256": "26644ce7980630a2552dc5fd325bd8d03d1b1664aca1a39fe1200f2d978e3ced",
+      "bytes": 233454,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
@@ -70,8 +70,8 @@
     },
     {
       "path": "README.md",
-      "sha256": "7e0be4af2cc2ec9420b161cca32427b9c9657c64aa512f26a26baac02739aa46",
-      "bytes": 13102,
+      "sha256": "bb92ee9986e87eae9d3603b50d0c3fd86cc686f277e4cff5c045add234bbf0fe",
+      "bytes": 13083,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {
@@ -2310,6 +2310,12 @@
       "path": "docs/figures/emergence-lab.svg",
       "sha256": "0afa919bd75cde83b4d8ce22c4317f3cef33b962774efd2e0ca8efeb14f9c7bb",
       "bytes": 16920,
+      "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
+    },
+    {
+      "path": "docs/figures/emergence-platform-architecture.svg",
+      "sha256": "4ca131bb8bb42ef0c5ff0ad9292eb8ffbae119ae73980612b636bba597b17f92",
+      "bytes": 8892,
       "attribution": "eligible first-party scope; see LICENSE and THIRD_PARTY_NOTICES.md"
     },
     {

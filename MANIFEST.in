@@ -385,6 +385,7 @@ include _spec/theme4_campaigns/stage10g_perception_ecology_diagnostic_manifest.j
 include _spec/theme4_campaigns/stage10h_perception_ecology_calibration_manifest.json
 include _spec/theme4_campaigns/stage9_smoke_manifest.json
 include docs/figures/emergence-lab.svg
+include docs/figures/emergence-platform-architecture.svg
 include docs/release/BASELINE_DEBT.md
 include docs/release/PUBLIC_SCOPE.md
 include docs/release/VALIDATION.md

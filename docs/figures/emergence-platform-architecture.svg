@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="960" viewBox="0 0 1600 960" role="img" aria-labelledby="title description">
+<title id="title">Emergence reusable research platform architecture</title>
+<desc id="description">Source architecture diagram, not a software UI. Research questions become experiment designs. WorldKit and AgentKit feed simulation, with typed contracts, provenance, analysis, and feedback supporting reproducible experiments.</desc>
+<defs>
+  <linearGradient id="bg" x2="1" y2="1"><stop stop-color="#04121e"/><stop offset="1" stop-color="#10283a"/></linearGradient>
+  <radialGradient id="halo"><stop stop-color="#235e69" stop-opacity=".4"/><stop offset="1" stop-color="#235e69" stop-opacity="0"/></radialGradient>
+  <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse"><path d="M44 0 H0 V44" stroke="#4b8796" stroke-opacity=".08" fill="none"/></pattern>
+  <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0 L10 5 L0 10Z" fill="#64d8db"/></marker>
+  <style>
+    text{font-family:Inter,'Segoe UI',Arial,sans-serif;fill:#e5f6fb}
+    .title{font-size:66px;font-weight:700;letter-spacing:11px}
+    .sub{font-size:23px;fill:#cbdee7}
+    .head{font-size:26px;font-weight:700}
+    .heading-small{font-size:22px;font-weight:700}
+    .tag{font-size:15px;fill:#9feaff;font-weight:600}
+    .item{font-size:19px;fill:#cbe3eb}
+    .note{font-size:16px;fill:#97bac8}
+    .box{fill:#0a263b;stroke:#438dc9;stroke-width:2.4}
+    .teal{fill:#092e32;stroke:#52c9ba;stroke-width:2.4}
+    .exec{fill:#0a3337;stroke:#65e5de;stroke-width:3}
+    .badge{fill:#081d2a;stroke:#3faecd;stroke-width:1.2}
+    .links{fill:none;stroke:#64d8db;stroke-width:3.5;stroke-linecap:round;stroke-linejoin:round;marker-end:url(#arrow)}
+    .bullet{fill:#a9eff0}
+  </style>
+</defs>
+<rect width="1600" height="960" fill="url(#bg)"/>
+<ellipse cx="1100" cy="400" rx="580" ry="470" fill="url(#halo)"/>
+<rect y="245" width="1600" height="715" fill="url(#grid)"/>
+<text class="title" x="800" y="75" text-anchor="middle">EMERGENCE</text>
+<text class="sub" x="800" y="118" text-anchor="middle">A reusable platform for reproducible evolutionary experiments and evidence-backed science</text>
+<path d="M520 141 H1080" stroke="#48a8b5" opacity=".65" stroke-width="2"/>
+<text class="note" x="55" y="180" letter-spacing="3">RESEARCH PLATFORM</text>
+<text class="note" x="1540" y="180" text-anchor="end" letter-spacing="2">WORLDS  ·  AGENTS  ·  EVIDENCE</text>
+<g class="links">
+ <path d="M480 205 H205 V295"/>
+ <path d="M367 365 H409"/>
+ <path d="M367 330 H390 V266 H881 V299"/>
+ <path d="M207 505 V647 H415"/>
+ <path d="M563 492 V530"/>
+ <path d="M882 492 V530"/>
+ <path d="M1034 610 H1059 V400 H1074"/>
+ <path d="M1034 680 H1074"/>
+ <path d="M1314 506 V534"/>
+ <path d="M1314 755 V835 H1164"/>
+ <path d="M419 835 H207 V505"/>
+</g>
+<g transform="translate(480 158)">
+ <rect class="box" width="630" height="93" rx="16"/>
+ <circle cx="53" cy="47" r="29" stroke="#74c7ff" stroke-width="4" fill="none"/>
+ <text x="53" y="58" text-anchor="middle" font-size="34" fill="#74c7ff">?</text>
+ <text class="head" x="104" y="39">Research question</text>
+ <text class="item" x="104" y="71">Which conditions make adaptive capabilities useful?</text>
+</g>
+<g transform="translate(40 295)">
+ <rect class="teal" width="327" height="210" rx="16"/>
+ <path d="M45 24 v20 l-19 34 q-6 13 11 18 q17 5 32-2 q11-7 3-19 l-19-31 v-20" fill="none" stroke="#79f3dd" stroke-width="4"/>
+ <path d="M26 75 q25-8 46 0" fill="none" stroke="#79f3dd" stroke-width="2"/>
+ <text class="heading-small" x="102" y="46">Experiment Design</text>
+ <rect class="badge" x="102" y="66" width="145" height="29" rx="7"/>
+ <text class="tag" x="113" y="86">emergence_lab</text>
+ <path d="M20 111 H307" stroke="#52c9ba" opacity=".3"/>
+ <text class="item" x="28" y="136">•  Controlled treatments</text>
+ <text class="item" x="28" y="166">•  Parameter sweeps</text>
+ <text class="item" x="28" y="196">•  Paired seed blocks</text>
+</g>
+<g transform="translate(409 299)">
+ <rect class="box" width="307" height="193" rx="16"/>
+ <path d="M23 77 L45 42 L57 58 L71 27 L91 77 Z M23 80 L58 96 L91 80" fill="none" stroke="#77c8fb" stroke-width="3"/>
+ <text class="head" x="101" y="47">WorldKit</text>
+ <rect class="badge" x="101" y="66" width="186" height="29" rx="7"/>
+ <text class="tag" x="112" y="86">emergence_worldkit</text>
+ <path d="M20 107 H287" stroke="#438dc9" opacity=".35"/>
+ <text class="item" x="28" y="144">•  Ecological worlds</text>
+ <text class="item" x="28" y="175">•  Patch environments</text>
+</g>
+<g transform="translate(747 299)">
+ <rect class="box" width="287" height="193" rx="16"/>
+ <g fill="none" stroke="#77c8fb" stroke-width="3"><path d="M22 44 L50 25 L79 45 L79 80 L49 94 L22 78 Z M22 44 L50 61 L79 45 M22 78 L50 61 L79 80 M50 25 V94"/></g>
+ <g fill="#77c8fb"><circle cx="22" cy="44" r="5"/><circle cx="50" cy="25" r="5"/><circle cx="79" cy="45" r="5"/><circle cx="50" cy="61" r="5"/><circle cx="22" cy="78" r="5"/><circle cx="79" cy="80" r="5"/><circle cx="50" cy="94" r="5"/></g>
+ <text class="head" x="102" y="47">AgentKit</text>
+ <rect class="badge" x="102" y="66" width="167" height="29" rx="7"/>
+ <text class="tag" x="112" y="86">emergence_agentkit</text>
+ <path d="M20 107 H267" stroke="#438dc9" opacity=".35"/>
+ <text class="item" x="28" y="144">•  Policies &amp; heredity</text>
+ <text class="item" x="28" y="175">•  Mutation &amp; selection</text>
+</g>
+<g transform="translate(1074 295)">
+ <rect class="box" width="486" height="211" rx="16"/>
+ <g fill="none" stroke="#77c8fb" stroke-width="3"><path d="M29 26 H73 L85 39 V92 H29 Z M73 26 V39 H85 M40 51 H71 M40 66 H71 M40 80 H62"/></g>
+ <text class="heading-small" x="104" y="47">Contracts + Provenance</text>
+ <rect class="badge" x="104" y="66" width="188" height="29" rx="7"/>
+ <text class="tag" x="115" y="86">emergence_contracts</text>
+ <path d="M20 109 H466" stroke="#438dc9" opacity=".35"/>
+ <text class="item" x="28" y="133">•  Typed schemas and identities</text>
+ <text class="item" x="28" y="163">•  Artifact / checkpoint contracts</text>
+ <text class="item" x="28" y="193">•  Provenance and continuation</text>
+</g>
+<g transform="translate(415 530)">
+ <rect class="exec" width="619" height="225" rx="18"/>
+ <rect x="45" y="32" width="61" height="61" rx="8" stroke="#81f2e5" stroke-width="4" fill="none"/>
+ <rect x="60" y="47" width="31" height="31" rx="2" stroke="#81f2e5" stroke-width="3" fill="none"/>
+ <text class="head" x="137" y="45">Execution + Simulation</text>
+ <rect class="badge" x="137" y="64" width="163" height="29" rx="7"/>
+ <rect class="badge" x="313" y="64" width="84" height="29" rx="7"/>
+ <text class="tag" x="148" y="84">eiel_composition</text>
+ <text class="tag" x="324" y="84">engine</text>
+ <path d="M20 104 H599" stroke="#65e5de" opacity=".35"/>
+ <text class="item" x="136" y="130">•  Deterministic execution</text>
+ <text class="item" x="136" y="158">•  Campaigns and native runtime</text>
+ <text class="item" x="136" y="186">•  Checkpoint / restore</text>
+ <text class="item" x="136" y="214">•  Replay-oriented runs</text>
+</g>
+<g transform="translate(1074 534)">
+ <rect class="box" width="486" height="221" rx="16"/>
+ <g stroke="#79cbff" stroke-width="9" stroke-linecap="round"><path d="M28 93 V64 M50 93 V45 M72 93 V26"/></g>
+ <circle cx="92" cy="83" r="17" fill="#0a263b" stroke="#79cbff" stroke-width="4"/>
+ <path d="M105 96 l13 13" stroke="#79cbff" stroke-width="4"/>
+ <text class="head" x="121" y="47">Evidence + Analysis</text>
+ <rect class="badge" x="121" y="66" width="182" height="29" rx="7"/>
+ <text class="tag" x="132" y="86">emergence_evidence</text>
+ <path d="M20 116 H466" stroke="#438dc9" opacity=".35"/>
+ <text class="item" x="28" y="149">•  Observations and reducers</text>
+ <text class="item" x="28" y="179">•  Paired comparisons</text>
+ <text class="item" x="28" y="208">•  Evidence-backed results</text>
+</g>
+<g transform="translate(419 788)">
+ <rect class="box" width="745" height="116" rx="18"/>
+ <path d="M42 67 a30 30 0 0 1 51-25 m-7-14 l14 10 l-14 11 M92 66 a30 30 0 0 1 -49 18 m8 12 l-15-9 l14-10" stroke="#83e8de" stroke-width="4" fill="none"/>
+ <text class="head" x="134" y="39">Reusable research outcomes</text>
+ <text class="item" x="134" y="72">Matched experiments · controlled continuations</text>
+ <text class="item" x="134" y="99">Artifact-backed evidence · iterative science</text>
+</g>
+<text class="note" x="239" y="611">compiled</text><text class="note" x="239" y="634">requests</text>
+<text class="note" x="66" y="787" letter-spacing="2">REFINE</text><text class="note" x="66" y="810" letter-spacing="2">REPEAT</text>
+<text class="note" x="800" y="944" text-anchor="middle">Conceptual source architecture. Not a simulation screenshot or a qualification statement.</text>
+</svg>
